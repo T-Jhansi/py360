@@ -1,0 +1,167 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: intelipro_db
+    environment:
+      POSTGRES_DB: intelipro_renewal
+      POSTGRES_USER: intelipro_user
+      POSTGRES_PASSWORD: SecurePassword123!
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/create_database.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U intelipro_user -d intelipro_renewal"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: intelipro_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Django Web Application
+  web:
+    build: .
+    container_name: intelipro_web
+    environment:
+      - DJANGO_SETTINGS_MODULE=renewal_backend.settings.development
+      - DEBUG=True
+      - DB_HOST=db
+      - DB_NAME=intelipro_renewal
+      - DB_USER=intelipro_user
+      - DB_PASSWORD=SecurePassword123!
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - media_files:/app/media
+      - static_files:/app/staticfiles
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Celery Worker
+  celery_worker:
+    build: .
+    container_name: intelipro_celery_worker
+    environment:
+      - DJANGO_SETTINGS_MODULE=renewal_backend.settings.development
+      - DEBUG=True
+      - DB_HOST=db
+      - DB_NAME=intelipro_renewal
+      - DB_USER=intelipro_user
+      - DB_PASSWORD=SecurePassword123!
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    volumes:
+      - .:/app
+      - media_files:/app/media
+    depends_on:
+      - db
+      - redis
+    command: celery -A renewal_backend worker -l info --concurrency=2
+    healthcheck:
+      test: ["CMD", "celery", "-A", "renewal_backend", "inspect", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Celery Beat (Scheduler)
+  celery_beat:
+    build: .
+    container_name: intelipro_celery_beat
+    environment:
+      - DJANGO_SETTINGS_MODULE=renewal_backend.settings.development
+      - DEBUG=True
+      - DB_HOST=db
+      - DB_NAME=intelipro_renewal
+      - DB_USER=intelipro_user
+      - DB_PASSWORD=SecurePassword123!
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    command: celery -A renewal_backend beat -l info
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/celerybeat.pid"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Celery Flower (Monitoring)
+  flower:
+    build: .
+    container_name: intelipro_flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    ports:
+      - "5555:5555"
+    depends_on:
+      - redis
+    command: celery -A renewal_backend flower --port=5555
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5555/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # NGINX (Production)
+  nginx:
+    image: nginx:alpine
+    container_name: intelipro_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_files:/var/www/static
+      - media_files:/var/www/media
+    depends_on:
+      - web
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+  redis_data:
+  media_files:
+  static_files:
+
+networks:
+  default:
+    name: intelipro_network 

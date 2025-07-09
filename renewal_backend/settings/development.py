@@ -1,0 +1,97 @@
+"""
+Development settings for Intelipro Insurance Policy Renewal System.
+"""
+
+from .base import *
+from decouple import config
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config('DEBUG', default=True, cast=bool)
+
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS',
+    default='localhost,127.0.0.1,0.0.0.0',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)
+
+# Development-specific apps
+INSTALLED_APPS += [
+    # 'django_extensions',  # Already included in base.py
+]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        # 'django_debug_toolbar',  # Add when needed
+    ]
+    
+    # MIDDLEWARE += [
+    #     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # ]
+    
+    # Debug Toolbar Configuration
+    # INTERNAL_IPS = [
+    #     '127.0.0.1',
+    #     'localhost',
+    # ]
+    
+    # DEBUG_TOOLBAR_CONFIG = {
+    #     'DISABLE_PANELS': [
+    #         'debug_toolbar.panels.redirects.RedirectsPanel',
+    #     ],
+    #     'SHOW_TEMPLATE_CONTEXT': True,
+    # }
+
+# Email backend for development (console)
+if not config('EMAIL_HOST_USER', default=None):
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# CORS settings for development
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Security settings for development
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
+# Cache settings for development
+# Override cache configuration for development with a proper cache backend
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 60,  # Shorter cache timeout for development
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+            'CULL_FREQUENCY': 3,
+        }
+    }
+}
+
+# Celery settings for development
+CELERY_TASK_ALWAYS_EAGER = config('CELERY_TASK_ALWAYS_EAGER', default=False, cast=bool)
+CELERY_TASK_EAGER_PROPAGATES = True
+
+# Logging for development
+LOGGING['handlers']['console']['level'] = 'DEBUG'
+LOGGING['loggers']['django']['level'] = 'DEBUG'
+LOGGING['loggers']['renewal_backend']['level'] = 'DEBUG'
+
+# File storage for development (local)
+if not config('AWS_ACCESS_KEY_ID', default=None):
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
+
+# Development database settings (SQLite doesn't need these options)
+# DATABASES['default']['OPTIONS'] = {
+#     'connect_timeout': 10,
+# }
+
+print("🚀 Running in DEVELOPMENT mode")
+print(f"📊 Debug mode: {DEBUG}")
+print(f"🔗 Allowed hosts: {ALLOWED_HOSTS}")
+print(f"📧 Email backend: {EMAIL_BACKEND}")
+print(f"💾 File storage: {DEFAULT_FILE_STORAGE if 'DEFAULT_FILE_STORAGE' in locals() else 'AWS S3'}") 

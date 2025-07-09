@@ -1,0 +1,15 @@
+INFO 2025-06-27 03:41:53,629 autoreload 34024 15060 Watching for file changes with StatReloader
+INFO 2025-06-27 03:44:12,154 autoreload 35356 33540 Watching for file changes with StatReloader
+INFO 2025-06-27 03:46:23,393 autoreload 34024 15060 D:\Projects\Renewal_backend\apps\campaigns\models.py changed, reloading.
+INFO 2025-06-27 03:46:23,960 autoreload 35356 33540 D:\Projects\Renewal_backend\apps\campaigns\models.py changed, reloading.
+INFO 2025-06-27 03:46:27,403 autoreload 35048 25784 Watching for file changes with StatReloader
+INFO 2025-06-27 03:46:28,100 autoreload 5408 30708 Watching for file changes with StatReloader
+INFO 2025-06-27 12:21:42,626 autoreload 35048 25784 D:\Projects\Renewal_backend\renewal_backend\settings\development.py changed, reloading.
+INFO 2025-06-27 12:21:43,308 autoreload 5408 30708 D:\Projects\Renewal_backend\renewal_backend\settings\development.py changed, reloading.
+INFO 2025-06-27 12:21:45,310 autoreload 21060 7068 Watching for file changes with StatReloader
+INFO 2025-06-27 12:21:45,394 autoreload 18612 10732 Watching for file changes with StatReloader
+INFO 2025-06-27 15:26:49,856 autoreload 18612 10732 D:\Projects\Renewal_backend\renewal_backend\settings\development.py changed, reloading.
+INFO 2025-06-27 15:26:50,504 autoreload 21060 7068 D:\Projects\Renewal_backend\renewal_backend\settings\development.py changed, reloading.
+INFO 2025-06-27 15:26:57,306 autoreload 19988 34132 Watching for file changes with StatReloader
+INFO 2025-07-09 10:03:51,030 autoreload 7032 19812 Watching for file changes with StatReloader
+INFO 2025-07-09 10:33:04,046 autoreload 6244 14188 Watching for file changes with StatReloader
