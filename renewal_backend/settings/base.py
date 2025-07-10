@@ -394,4 +394,8 @@ LOGGING = {
             'propagate': False,
         },
     },
-} 
+}
+
+AUTHENTICATION_BACKENDS = ['apps.users.backends.EmailBackend']
+
+AUTH_USER_MODEL = 'users.User'

@@ -8,87 +8,61 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.utils import timezone
 from apps.users.models import User, Role
-
+from rest_framework.exceptions import ValidationError
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """Custom JWT token serializer with additional user data"""
-    
-    email = serializers.EmailField()
+    email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True)
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'] = self.fields.pop('email')
-    
-    @classmethod
-    def get_token(cls, user):
+        # Remove username field completely
+        if 'username' in self.fields:
+            self.fields.pop('username')
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        password = attrs.get('password')
+
+        if email and password:
+            user = authenticate(
+                request=self.context.get('request'),
+                username=email,  # important: pass as username
+                password=password
+            )
+
+            if not user:
+                raise serializers.ValidationError({"email": "Invalid email or password."})
+
+            refresh = RefreshToken.for_user(user)
+            return {
+                'email': user.email,
+                'user_id': user.id,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': user,  
+            }
+
+        raise serializers.ValidationError({"email": "Must include email and password."})
+
+
+    def get_token(self, user):
         token = super().get_token(user)
-        
-        # Add custom claims
         token['user_id'] = user.id
         token['email'] = user.email
         token['full_name'] = user.full_name
         token['role'] = user.role.name if user.role else None
         token['permissions'] = user.get_permissions()
-        
         return token
-    
-    def validate(self, attrs):
-        email = attrs.get('username')  # DRF maps email to username
-        password = attrs.get('password')
-        
-        if email and password:
-            # Get user by email
-            try:
-                user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                raise serializers.ValidationError('Invalid email or password.')
-            
-            # Check if account is locked
-            if user.is_account_locked():
-                raise serializers.ValidationError('Account is temporarily locked due to failed login attempts.')
-            
-            # Check if account is active
-            if not user.is_active:
-                raise serializers.ValidationError('Account is disabled.')
-            
-            # Check account status
-            if user.status != 'active':
-                raise serializers.ValidationError(f'Account status is {user.status}. Please contact administrator.')
-            
-            # Authenticate user
-            user = authenticate(request=self.context.get('request'), username=email, password=password)
-            
-            if not user:
-                # Record failed login attempt
-                try:
-                    user = User.objects.get(email=email)
-                    user.record_login_attempt(success=False)
-                except User.DoesNotExist:
-                    pass
-                raise serializers.ValidationError('Invalid email or password.')
-            
-            # Record successful login
-            request = self.context.get('request')
-            ip_address = self.get_client_ip(request)
-            user.record_login_attempt(success=True, ip_address=ip_address)
-            
-            # Set user for token generation
-            attrs['user'] = user
-            
-        else:
-            raise serializers.ValidationError('Must include email and password.')
-        
-        return super().validate(attrs)
-    
+
     def get_client_ip(self, request):
-        """Get client IP address from request"""
+        if not request:
+            return None
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-        return ip
+        return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):

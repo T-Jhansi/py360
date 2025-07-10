@@ -2,6 +2,7 @@
 Authentication views for the Intelipro Insurance Policy Renewal System.
 """
 
+from urllib import request
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -12,7 +13,9 @@ from django.contrib.auth import logout
 from django.utils import timezone
 from django.conf import settings
 from drf_spectacular.utils import extend_schema, OpenApiResponse
+from rest_framework.exceptions import ValidationError  
 import uuid
+import traceback
 
 from apps.users.models import User, PasswordResetToken
 from .serializers import (
@@ -22,9 +25,79 @@ from .serializers import (
     PasswordResetRequestSerializer,
     PasswordResetConfirmSerializer,
     UserProfileSerializer,
-    LoginResponseSerializer
+    LoginResponseSerializer 
 )
 
+
+# class CustomTokenObtainPairView(TokenObtainPairView):
+#     """Custom login view with JWT token generation"""
+    
+#     serializer_class = CustomTokenObtainPairSerializer
+    
+#     @extend_schema(
+#         summary="User Login",
+#         description="Authenticate user and return JWT tokens with user profile data",
+#         request=CustomTokenObtainPairSerializer,
+#         responses={
+#             200: OpenApiResponse(
+#                 response=LoginResponseSerializer,
+#                 description="Login successful"
+#             ),
+#             400: OpenApiResponse(description="Invalid credentials"),
+#             401: OpenApiResponse(description="Authentication failed"),
+#         },
+#         tags=["Authentication"]
+#     )
+#     def post(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(data=request.data)
+        
+#         try:
+#             serializer.is_valid(raise_exception=True)
+#         except Exception as e:
+#             return Response({
+#                 'success': False,
+#                 'message': 'Login failed',
+#                 'errors': serializer.errors
+#             }, status=status.HTTP_400_BAD_REQUEST)
+        
+#         user = serializer.validated_data['user']
+#         tokens = serializer.validated_data
+        
+#         # Create user session record
+#         from apps.users.models import UserSession
+#         session_expires = timezone.now() + timezone.timedelta(
+#             minutes=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds() / 60
+#         )
+        
+#         UserSession.objects.create(
+#             user=user,
+#             session_key=request.session.session_key or str(uuid.uuid4()),
+#             ip_address=self.get_client_ip(request),
+#             user_agent=request.META.get('HTTP_USER_AGENT', ''),
+#             expires_at=session_expires
+#         )
+        
+#         # Prepare response
+#         user_serializer = UserProfileSerializer(user)
+        
+#         return Response({
+#             'success': True,
+#             'message': 'Login successful',
+#             'data': {
+#                 'access': tokens['access'],
+#                 'refresh': tokens['refresh'],
+#                 'user': user_serializer.data
+#             }
+#         }, status=status.HTTP_200_OK)
+    
+#     def get_client_ip(self, request):
+#         """Get client IP address"""
+#         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+#         if x_forwarded_for:
+#             ip = x_forwarded_for.split(',')[0]
+#         else:
+#             ip = request.META.get('REMOTE_ADDR')
+#         return ip
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     """Custom login view with JWT token generation"""
@@ -47,46 +120,74 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     )
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        
+
         try:
             serializer.is_valid(raise_exception=True)
-        except Exception as e:
+            
+            # Make sure 'user' exists in validated_data before accessing it
+            if 'user' not in serializer.validated_data:
+                return Response({
+                    'success': False,
+                    'message': 'Authentication failed',
+                    'errors': 'User data not found in validated response'
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            user = serializer.validated_data.get('user')
+            if not user:
+                return Response({
+                    'success': False,
+                    'message': 'Login failed',
+                    'errors': 'User not found in validated data.'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            tokens = serializer.validated_data
+
+            # Create user session record
+            from apps.users.models import UserSession
+            import uuid
+            
+            session_expires = timezone.now() + timezone.timedelta(
+                minutes=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds() / 60
+            )
+
+            # Get session key safely
+            session_key = getattr(request, 'session', None)
+            session_key = getattr(session_key, 'session_key', None) or str(uuid.uuid4())
+
+            UserSession.objects.create(
+                user=user,
+                session_key=session_key,
+                ip_address=self.get_client_ip(request) or '0.0.0.0',
+                user_agent=request.META.get('HTTP_USER_AGENT', ''),
+                expires_at=session_expires
+            )
+
+            user_serializer = UserProfileSerializer(user)
+
+            return Response({
+                'success': True,
+                'message': 'Login successful',
+                'data': {
+                    'access': tokens['access'],
+                    'refresh': tokens['refresh'],
+                    'user': user_serializer.data
+                }
+            }, status=status.HTTP_200_OK)
+        
+        except ValidationError as e:
             return Response({
                 'success': False,
                 'message': 'Login failed',
-                'errors': serializer.errors
+                'errors': e.detail 
             }, status=status.HTTP_400_BAD_REQUEST)
-        
-        user = serializer.validated_data['user']
-        tokens = serializer.validated_data
-        
-        # Create user session record
-        from apps.users.models import UserSession
-        session_expires = timezone.now() + timezone.timedelta(
-            minutes=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds() / 60
-        )
-        
-        UserSession.objects.create(
-            user=user,
-            session_key=request.session.session_key or str(uuid.uuid4()),
-            ip_address=self.get_client_ip(request),
-            user_agent=request.META.get('HTTP_USER_AGENT', ''),
-            expires_at=session_expires
-        )
-        
-        # Prepare response
-        user_serializer = UserProfileSerializer(user)
-        
-        return Response({
-            'success': True,
-            'message': 'Login successful',
-            'data': {
-                'access': tokens['access'],
-                'refresh': tokens['refresh'],
-                'user': user_serializer.data
-            }
-        }, status=status.HTTP_200_OK)
-    
+        except Exception as e:
+            import traceback
+            traceback.print_exc()  # Shows full traceback in terminal
+            return Response({
+                "status_code": 500,
+                "errors": "Internal server error",
+                "message": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     def get_client_ip(self, request):
         """Get client IP address"""
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -95,8 +196,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
-
-
+    
 class LogoutView(APIView):
     """User logout view"""
     

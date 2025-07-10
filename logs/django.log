@@ -13,3 +13,928 @@ INFO 2025-06-27 15:26:50,504 autoreload 21060 7068 D:\Projects\Renewal_backend\r
 INFO 2025-06-27 15:26:57,306 autoreload 19988 34132 Watching for file changes with StatReloader
 INFO 2025-07-09 10:03:51,030 autoreload 7032 19812 Watching for file changes with StatReloader
 INFO 2025-07-09 10:33:04,046 autoreload 6244 14188 Watching for file changes with StatReloader
+INFO 2025-07-09 15:35:50,804 autoreload 22392 19248 Watching for file changes with StatReloader
+INFO 2025-07-09 15:40:03,801 autoreload 16764 12620 Watching for file changes with StatReloader
+INFO 2025-07-09 16:07:07,582 autoreload 16244 20380 Watching for file changes with StatReloader
+INFO 2025-07-09 16:09:19,957 autoreload 21160 4812 Watching for file changes with StatReloader
+INFO 2025-07-09 16:13:01,523 autoreload 21160 4812 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 16:13:02,434 autoreload 6952 17244 Watching for file changes with StatReloader
+INFO 2025-07-09 16:13:12,156 autoreload 6952 17244 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 16:14:23,678 autoreload 16012 22500 Watching for file changes with StatReloader
+INFO 2025-07-09 16:14:32,442 autoreload 16012 22500 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 16:14:33,339 autoreload 23800 22976 Watching for file changes with StatReloader
+INFO 2025-07-09 16:14:42,181 autoreload 23800 22976 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 16:14:43,054 autoreload 11348 21320 Watching for file changes with StatReloader
+INFO 2025-07-09 16:31:23,155 autoreload 11644 15744 Watching for file changes with StatReloader
+INFO 2025-07-09 16:33:30,636 autoreload 19652 21244 Watching for file changes with StatReloader
+INFO 2025-07-09 16:36:57,358 autoreload 19892 22884 Watching for file changes with StatReloader
+INFO 2025-07-09 16:42:32,851 autoreload 3092 23196 Watching for file changes with StatReloader
+INFO 2025-07-09 16:46:58,533 autoreload 17476 16352 Watching for file changes with StatReloader
+INFO 2025-07-09 17:03:34,092 autoreload 22996 21988 Watching for file changes with StatReloader
+INFO 2025-07-09 17:27:55,949 autoreload 1996 18788 Watching for file changes with StatReloader
+INFO 2025-07-09 17:30:35,648 autoreload 23996 11016 Watching for file changes with StatReloader
+INFO 2025-07-09 17:36:41,772 autoreload 2532 23484 Watching for file changes with StatReloader
+INFO 2025-07-09 17:39:05,601 autoreload 1228 20060 Watching for file changes with StatReloader
+INFO 2025-07-09 17:42:45,027 server 19756 6232 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:42:45,029 server 19756 6232 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 17:42:45,030 server 19756 6232 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-07-09 17:43:08,739 log 19756 4036 Not Found: /
+WARNING 2025-07-09 17:43:08,742 runserver 19756 6232 [33mHTTP GET / 404 [0.13, 127.0.0.1:54991][0m
+WARNING 2025-07-09 17:43:08,951 log 19756 4036 Not Found: /favicon.ico
+WARNING 2025-07-09 17:43:08,953 runserver 19756 6232 [33mHTTP GET /favicon.ico 404 [0.04, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:14,493 runserver 19756 6232 [32mHTTP GET /admin 301 [0.04, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:14,519 runserver 19756 6232 [32mHTTP GET /admin/ 302 [0.02, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:14,613 runserver 19756 6232 [mHTTP GET /admin/login/?next=/admin/ 200 [0.09, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:14,889 runserver 19756 6232 [mHTTP GET /static/admin/css/base.css 200 [0.27, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:14,892 runserver 19756 6232 [mHTTP GET /static/admin/css/nav_sidebar.css 200 [0.26, 127.0.0.1:54995][0m
+INFO 2025-07-09 17:43:14,894 runserver 19756 6232 [mHTTP GET /static/admin/css/dark_mode.css 200 [0.27, 127.0.0.1:54992][0m
+INFO 2025-07-09 17:43:14,901 runserver 19756 6232 [mHTTP GET /static/admin/js/theme.js 200 [0.27, 127.0.0.1:54998][0m
+INFO 2025-07-09 17:43:14,902 runserver 19756 6232 [mHTTP GET /static/admin/css/responsive.css 200 [0.27, 127.0.0.1:54997][0m
+INFO 2025-07-09 17:43:14,903 runserver 19756 6232 [mHTTP GET /static/admin/css/login.css 200 [0.27, 127.0.0.1:54996][0m
+INFO 2025-07-09 17:43:14,910 runserver 19756 6232 [mHTTP GET /static/admin/js/nav_sidebar.js 200 [0.01, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:30,186 runserver 19756 6232 [mHTTP POST /admin/login/?next=/admin/ 200 [0.75, 127.0.0.1:54991][0m
+INFO 2025-07-09 17:43:37,392 middleware 19756 23660 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 404, "duration": 0.039, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 3194, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 17:43:37,398 log 19756 13888 Not Found: /api/campaigns/
+WARNING 2025-07-09 17:43:37,399 runserver 19756 6232 [33mHTTP POST /api/campaigns/ 404 [0.05, 127.0.0.1:55007][0m
+INFO 2025-07-09 17:46:27,301 autoreload 17476 16352 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\urls.py changed, reloading.
+INFO 2025-07-09 17:46:29,559 autoreload 22388 23728 Watching for file changes with StatReloader
+INFO 2025-07-09 17:46:30,246 server 22388 21680 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:46:30,247 server 22388 21680 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 17:46:30,249 server 22388 21680 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-09 17:46:36,787 server 19756 6232 Killed 0 pending application instances
+INFO 2025-07-09 17:46:49,218 autoreload 15612 11976 Watching for file changes with StatReloader
+INFO 2025-07-09 17:46:49,829 server 15612 20696 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:46:49,829 server 15612 20696 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 17:46:49,830 server 15612 20696 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-09 17:47:08,704 server 17192 3232 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:47:08,705 server 17192 3232 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 17:47:08,707 server 17192 3232 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-09 17:47:15,303 log 17192 11412 Internal Server Error: /api/campaigns/
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 406, in initial
+    neg = self.perform_content_negotiation(request)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 310, in perform_content_negotiation
+    return conneg.select_renderer(request, renderers, self.format_kwarg)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\negotiation.py", line 78, in select_renderer
+    raise exceptions.NotAcceptable(available_renderers=renderers)
+rest_framework.exceptions.NotAcceptable: Could not satisfy the request Accept header.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\settings.py", line 177, in import_from_string
+    return import_string(val)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'apps.core.exceptions'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 463, in handle_exception
+    exception_handler = self.get_exception_handler()
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\views.py", line 298, in get_exception_handler
+    return self.settings.EXCEPTION_HANDLER
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\settings.py", line 225, in __getattr__
+    val = perform_import(val, attr)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\settings.py", line 166, in perform_import
+    return import_from_string(val, setting_name)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\rest_framework\settings.py", line 180, in import_from_string
+    raise ImportError(msg)
+ImportError: Could not import 'apps.core.exceptions.custom_exception_handler' for API setting 'EXCEPTION_HANDLER'. ModuleNotFoundError: No module named 'apps.core.exceptions'.
+INFO 2025-07-09 17:47:15,318 middleware 17192 12540 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 500, "duration": 0.146, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 22981, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+ERROR 2025-07-09 17:47:15,323 runserver 17192 3232 [35;1mHTTP POST /api/campaigns/ 500 [0.17, 127.0.0.1:55065][0m
+INFO 2025-07-09 17:50:17,970 autoreload 22388 23728 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 17:50:19,904 autoreload 23676 16236 Watching for file changes with StatReloader
+INFO 2025-07-09 17:50:20,857 server 23676 22200 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:50:20,858 server 23676 22200 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 17:50:20,859 server 23676 22200 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-09 17:50:45,206 autoreload 23676 16236 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-09 17:50:47,048 autoreload 14580 17024 Watching for file changes with StatReloader
+INFO 2025-07-09 17:50:47,602 server 14580 19544 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:50:47,602 server 14580 19544 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 17:50:47,603 server 14580 19544 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-09 17:52:01,473 middleware 17192 13684 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 406, "duration": 0.009, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 119, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 17:52:01,478 log 17192 11412 Not Acceptable: /api/campaigns/
+WARNING 2025-07-09 17:52:01,479 runserver 17192 3232 [31;1mHTTP POST /api/campaigns/ 406 [0.02, 127.0.0.1:55125][0m
+INFO 2025-07-09 17:52:23,901 server 17192 3232 Killed 0 pending application instances
+INFO 2025-07-09 17:52:30,473 server 5724 9036 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:52:30,473 server 5724 9036 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 17:52:30,474 server 5724 9036 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-09 17:52:46,334 middleware 5724 5800 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 406, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 119, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 17:52:46,339 log 5724 8544 Not Acceptable: /api/campaigns/
+WARNING 2025-07-09 17:52:46,341 runserver 5724 9036 [31;1mHTTP POST /api/campaigns/ 406 [0.03, 127.0.0.1:55153][0m
+INFO 2025-07-09 17:54:06,229 autoreload 14580 17024 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\campaigns\views.py changed, reloading.
+INFO 2025-07-09 17:54:08,056 autoreload 13072 3892 Watching for file changes with StatReloader
+INFO 2025-07-09 17:54:08,579 server 13072 21736 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:54:08,579 server 13072 21736 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 17:54:08,580 server 13072 21736 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-09 17:54:12,863 autoreload 13072 3892 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\campaigns\views.py changed, reloading.
+INFO 2025-07-09 17:54:14,850 autoreload 2192 21384 Watching for file changes with StatReloader
+INFO 2025-07-09 17:54:15,444 server 2192 4068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:54:15,445 server 2192 4068 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 17:54:15,446 server 2192 4068 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-09 17:54:17,486 autoreload 2192 21384 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\campaigns\views.py changed, reloading.
+INFO 2025-07-09 17:54:18,501 middleware 5724 21568 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 406, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 119, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 17:54:18,506 log 5724 8544 Not Acceptable: /api/campaigns/
+WARNING 2025-07-09 17:54:18,507 runserver 5724 9036 [31;1mHTTP POST /api/campaigns/ 406 [0.01, 127.0.0.1:55196][0m
+INFO 2025-07-09 17:54:19,377 autoreload 23224 23444 Watching for file changes with StatReloader
+INFO 2025-07-09 17:54:26,895 server 5724 9036 Killed 0 pending application instances
+INFO 2025-07-09 17:55:54,453 autoreload 23648 15348 Watching for file changes with StatReloader
+INFO 2025-07-09 17:59:18,589 server 900 20352 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 17:59:18,589 server 900 20352 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 17:59:18,590 server 900 20352 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-09 17:59:36,429 middleware 900 18860 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 406, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 119, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 17:59:36,433 log 900 11180 Not Acceptable: /api/campaigns/
+WARNING 2025-07-09 17:59:36,435 runserver 900 20352 [31;1mHTTP POST /api/campaigns/ 406 [0.03, 127.0.0.1:55337][0m
+INFO 2025-07-09 18:06:28,087 middleware 900 23492 API Request: {"method": "POST", "path": "/api/campaigns/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 120, "request_body": {"name": "July Discount Campaign", "campaign_type_id": 1, "description": "Promotional campaign for July discounts", "status": "draft", "channels": ["email", "sms"], "target_audience": "all_customers", "start_date": "2025-07-10T09:00:00Z", "end_date": "2025-07-20T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Exclusive July Discounts", "email_template": "<p>Enjoy 20% off</p>", "whatsapp_template": "Hello! Get 20% off now.", "sms_template": "Get 20% off this July!", "use_personalization": true, "personalization_fields": [], "total_recipients": 0, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 2}}
+WARNING 2025-07-09 18:06:28,092 log 900 11180 Unauthorized: /api/campaigns/
+WARNING 2025-07-09 18:06:28,094 runserver 900 20352 [31;1mHTTP POST /api/campaigns/ 401 [0.02, 127.0.0.1:55440][0m
+WARNING 2025-07-09 18:13:05,258 log 900 11180 Not Found: /auth/login/
+WARNING 2025-07-09 18:13:05,259 runserver 900 20352 [33mHTTP POST /auth/login/ 404 [0.06, 127.0.0.1:55550][0m
+ERROR 2025-07-09 18:17:32,117 middleware 900 2604 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:17:32,119 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:17:32,120 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55625][0m
+ERROR 2025-07-09 18:17:49,066 middleware 900 17132 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:17:49,069 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:17:49,069 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55625][0m
+ERROR 2025-07-09 18:18:13,311 middleware 900 20340 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:18:13,314 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:18:13,315 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55625][0m
+ERROR 2025-07-09 18:18:29,774 middleware 900 3080 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:18:29,778 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:18:29,779 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55625][0m
+ERROR 2025-07-09 18:20:40,646 middleware 900 18544 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:20:40,648 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:20:40,649 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55695][0m
+INFO 2025-07-09 18:25:45,747 autoreload 23224 23444 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\authentication\serializers.py changed, reloading.
+INFO 2025-07-09 18:25:47,627 autoreload 5924 23368 Watching for file changes with StatReloader
+INFO 2025-07-09 18:25:48,208 server 5924 24372 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:25:48,208 server 5924 24372 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 18:25:48,209 server 5924 24372 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-09 18:25:54,919 middleware 900 22152 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:25:54,921 log 900 11180 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:25:54,922 runserver 900 20352 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55857][0m
+INFO 2025-07-09 18:26:01,763 server 900 20352 Killed 0 pending application instances
+INFO 2025-07-09 18:26:09,029 server 22068 16628 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:26:09,030 server 22068 16628 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 18:26:09,031 server 22068 16628 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-09 18:26:15,658 middleware 22068 23772 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:26:15,663 log 22068 23884 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:26:15,664 runserver 22068 16628 [31;1mHTTP POST /api/auth/login/ 400 [0.09, 127.0.0.1:55878][0m
+INFO 2025-07-09 18:26:47,718 autoreload 5924 23368 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\authentication\serializers.py changed, reloading.
+INFO 2025-07-09 18:26:49,566 autoreload 9788 15316 Watching for file changes with StatReloader
+INFO 2025-07-09 18:26:50,151 server 9788 12812 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:26:50,152 server 9788 12812 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 18:26:50,153 server 9788 12812 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-09 18:30:44,151 middleware 22068 20240 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:30:44,155 log 22068 23884 Bad Request: /api/auth/register/
+WARNING 2025-07-09 18:30:44,156 runserver 22068 16628 [31;1mHTTP POST /api/auth/register/ 400 [0.12, 127.0.0.1:55964][0m
+ERROR 2025-07-09 18:31:03,940 middleware 22068 7036 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:31:03,943 log 22068 23884 Bad Request: /api/auth/register/
+WARNING 2025-07-09 18:31:03,944 runserver 22068 16628 [31;1mHTTP POST /api/auth/register/ 400 [0.09, 127.0.0.1:55964][0m
+ERROR 2025-07-09 18:32:02,251 middleware 22068 6656 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:32:02,255 log 22068 23884 Bad Request: /api/auth/register/
+WARNING 2025-07-09 18:32:02,256 runserver 22068 16628 [31;1mHTTP POST /api/auth/register/ 400 [0.10, 127.0.0.1:55964][0m
+ERROR 2025-07-09 18:32:58,020 middleware 22068 20352 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:32:58,023 log 22068 23884 Bad Request: /api/auth/register/
+WARNING 2025-07-09 18:32:58,025 runserver 22068 16628 [31;1mHTTP POST /api/auth/register/ 400 [0.08, 127.0.0.1:55964][0m
+INFO 2025-07-09 18:35:46,547 server 22068 16628 Killed 0 pending application instances
+INFO 2025-07-09 18:38:21,451 server 24228 14176 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:38:21,451 server 24228 14176 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-09 18:38:21,452 server 24228 14176 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-09 18:38:26,596 middleware 24228 21748 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-09 18:38:26,601 runserver 24228 14176 [mHTTP POST /api/auth/register/ 201 [0.93, 127.0.0.1:56157][0m
+ERROR 2025-07-09 18:48:57,134 middleware 24228 24176 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:48:57,137 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:48:57,138 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56373][0m
+ERROR 2025-07-09 18:49:30,211 middleware 24228 24488 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:49:30,216 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:49:30,218 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56373][0m
+ERROR 2025-07-09 18:50:04,113 middleware 24228 20268 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:50:04,116 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:50:04,117 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56373][0m
+INFO 2025-07-09 18:50:56,847 autoreload 9788 15316 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\authentication\serializers.py changed, reloading.
+INFO 2025-07-09 18:50:59,056 autoreload 15836 23544 Watching for file changes with StatReloader
+INFO 2025-07-09 18:50:59,665 server 15836 7332 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:50:59,665 server 15836 7332 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 18:50:59,666 server 15836 7332 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-09 18:51:04,334 middleware 24228 20520 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:51:04,338 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:51:04,339 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56488][0m
+ERROR 2025-07-09 18:51:12,160 middleware 24228 1984 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:51:12,166 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:51:12,167 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56488][0m
+INFO 2025-07-09 18:51:26,982 autoreload 15836 23544 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\authentication\serializers.py changed, reloading.
+INFO 2025-07-09 18:51:29,228 autoreload 13568 15100 Watching for file changes with StatReloader
+INFO 2025-07-09 18:51:29,793 server 13568 20900 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:51:29,794 server 13568 20900 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 18:51:29,794 server 13568 20900 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-09 18:51:30,768 middleware 24228 20612 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 18:51:30,771 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 18:51:30,772 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56488][0m
+INFO 2025-07-09 18:51:37,544 autoreload 13568 15100 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\authentication\serializers.py changed, reloading.
+INFO 2025-07-09 18:51:39,280 autoreload 24144 24492 Watching for file changes with StatReloader
+INFO 2025-07-09 18:51:39,830 server 24144 23424 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-09 18:51:39,831 server 24144 23424 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-09 18:51:39,831 server 24144 23424 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-09 21:30:25,500 middleware 24228 16892 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-09 21:30:25,503 log 24228 14404 Bad Request: /api/auth/login/
+WARNING 2025-07-09 21:30:25,504 runserver 24228 14176 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:53686][0m
+INFO 2025-07-10 09:42:19,907 autoreload 19252 17620 Watching for file changes with StatReloader
+INFO 2025-07-10 09:44:05,608 server 2068 14084 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 09:44:05,609 server 2068 14084 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 09:44:05,610 server 2068 14084 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 09:44:31,756 middleware 2068 21908 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 09:44:31,759 log 2068 11784 Bad Request: /api/auth/login/
+WARNING 2025-07-10 09:44:31,759 runserver 2068 14084 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:54466][0m
+INFO 2025-07-10 10:13:00,991 middleware 2068 14092 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 404, "duration": 0.029, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 3209, "request_body": {"name": "Health Insurance", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-10 10:13:00,992 log 2068 11784 Not Found: /api/policies/types/
+WARNING 2025-07-10 10:13:00,993 runserver 2068 14084 [33mHTTP POST /api/policies/types/ 404 [0.05, 127.0.0.1:55038][0m
+INFO 2025-07-10 10:13:39,447 server 2068 14084 Killed 0 pending application instances
+INFO 2025-07-10 10:14:32,102 server 15160 11440 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 10:14:32,102 server 15160 11440 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 10:14:32,103 server 15160 11440 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 10:14:36,545 middleware 15160 7248 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 120, "request_body": {"name": "Health Insurance", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-10 10:14:36,547 log 15160 2264 Unauthorized: /api/policies/types/
+WARNING 2025-07-10 10:14:36,548 runserver 15160 11440 [31;1mHTTP POST /api/policies/types/ 401 [0.01, 127.0.0.1:55072][0m
+ERROR 2025-07-10 10:20:13,579 middleware 15160 4564 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 10:20:13,581 log 15160 2264 Bad Request: /api/auth/login/
+WARNING 2025-07-10 10:20:13,581 runserver 15160 11440 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55129][0m
+ERROR 2025-07-10 10:24:53,859 middleware 15160 13492 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 10:24:53,860 runserver 15160 11440 [mHTTP POST /api/auth/register/ 201 [0.49, 127.0.0.1:55423][0m
+ERROR 2025-07-10 10:26:42,423 middleware 15160 9428 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 10:26:42,425 log 15160 2264 Bad Request: /api/auth/login/
+WARNING 2025-07-10 10:26:42,425 runserver 15160 11440 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55605][0m
+ERROR 2025-07-10 10:30:47,635 middleware 15160 23336 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 10:30:47,636 log 15160 2264 Bad Request: /api/auth/login/
+WARNING 2025-07-10 10:30:47,637 runserver 15160 11440 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55680][0m
+ERROR 2025-07-10 10:32:32,401 middleware 15160 23412 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 10:32:32,403 log 15160 2264 Bad Request: /api/auth/login/
+WARNING 2025-07-10 10:32:32,403 runserver 15160 11440 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55707][0m
+ERROR 2025-07-10 10:35:33,402 middleware 15160 23828 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 10:35:33,404 log 15160 2264 Bad Request: /api/auth/login/
+WARNING 2025-07-10 10:35:33,404 runserver 15160 11440 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:55778][0m
+INFO 2025-07-10 10:39:47,526 server 15160 11440 Killed 0 pending application instances
+INFO 2025-07-10 10:39:52,448 server 17220 1992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 10:39:52,448 server 17220 1992 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 10:39:52,449 server 17220 1992 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 10:39:56,274 middleware 17220 3908 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 10:39:56,276 log 17220 19060 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 10:39:56,277 runserver 17220 1992 [35;1mHTTP POST /api/auth/login/ 500 [0.96, 127.0.0.1:55863][0m
+INFO 2025-07-10 10:40:05,520 server 17220 1992 Killed 0 pending application instances
+INFO 2025-07-10 10:40:46,890 server 24492 9200 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 10:40:46,891 server 24492 9200 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 10:40:46,892 server 24492 9200 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 10:40:51,019 middleware 24492 3324 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 10:40:51,021 log 24492 1168 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 10:40:51,022 runserver 24492 9200 [35;1mHTTP POST /api/auth/login/ 500 [0.90, 127.0.0.1:55906][0m
+INFO 2025-07-10 10:41:01,632 middleware 24492 15956 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.031, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 10:41:01,681 log 24492 1168 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 10:41:01,688 runserver 24492 9200 [35;1mHTTP POST /api/auth/login 500 [0.09, 127.0.0.1:55906][0m
+ERROR 2025-07-10 10:41:09,214 middleware 24492 6644 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 10:41:09,215 log 24492 1168 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 10:41:09,216 runserver 24492 9200 [35;1mHTTP POST /api/auth/login/ 500 [0.89, 127.0.0.1:55906][0m
+INFO 2025-07-10 10:42:46,691 server 24492 9200 Killed 0 pending application instances
+INFO 2025-07-10 10:43:25,086 server 23312 24360 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 10:43:25,086 server 23312 24360 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 10:43:25,087 server 23312 24360 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 10:43:34,668 middleware 23312 13292 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 10:43:34,670 log 23312 20932 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 10:43:34,671 runserver 23312 24360 [35;1mHTTP POST /api/auth/login/ 500 [0.90, 127.0.0.1:55974][0m
+ERROR 2025-07-10 10:54:31,356 middleware 23312 1104 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 10:54:31,358 log 23312 20932 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 10:54:31,359 runserver 23312 24360 [35;1mHTTP POST /api/auth/login/ 500 [1.00, 127.0.0.1:56184][0m
+ERROR 2025-07-10 11:00:05,072 middleware 23312 11128 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:00:05,073 log 23312 20932 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:00:05,074 runserver 23312 24360 [35;1mHTTP POST /api/auth/login/ 500 [0.88, 127.0.0.1:56252][0m
+INFO 2025-07-10 11:00:11,695 middleware 23312 12048 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.029, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 11:00:11,726 log 23312 20932 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 11:00:11,731 runserver 23312 24360 [35;1mHTTP POST /api/auth/login 500 [0.07, 127.0.0.1:56252][0m
+INFO 2025-07-10 11:00:26,656 middleware 23312 17836 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.022, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 11:00:26,685 log 23312 20932 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 11:00:26,689 runserver 23312 24360 [35;1mHTTP POST /api/auth/login 500 [0.06, 127.0.0.1:56252][0m
+ERROR 2025-07-10 11:00:31,816 middleware 23312 20608 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:00:31,818 log 23312 20932 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:00:31,818 runserver 23312 24360 [35;1mHTTP POST /api/auth/login/ 500 [0.88, 127.0.0.1:56252][0m
+ERROR 2025-07-10 11:01:08,624 middleware 23312 3044 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:01:08,625 log 23312 20932 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:01:08,626 runserver 23312 24360 [35;1mHTTP POST /api/auth/login/ 500 [0.88, 127.0.0.1:56252][0m
+INFO 2025-07-10 11:01:11,800 server 23312 24360 Killed 0 pending application instances
+INFO 2025-07-10 11:01:14,917 server 10264 4536 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:01:14,917 server 10264 4536 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:01:14,918 server 10264 4536 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:01:17,970 middleware 10264 16788 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:01:17,971 log 10264 9568 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:01:17,972 runserver 10264 4536 [35;1mHTTP POST /api/auth/login/ 500 [1.08, 127.0.0.1:56317][0m
+ERROR 2025-07-10 11:02:32,678 middleware 10264 23128 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:02:32,680 log 10264 9568 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:02:32,680 runserver 10264 4536 [35;1mHTTP POST /api/auth/login/ 500 [1.02, 127.0.0.1:56335][0m
+INFO 2025-07-10 11:02:37,286 server 10264 4536 Killed 0 pending application instances
+INFO 2025-07-10 11:02:41,081 server 20360 5024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:02:41,081 server 20360 5024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:02:41,082 server 20360 5024 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:02:43,133 middleware 20360 17232 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:02:43,135 log 20360 21544 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:02:43,136 runserver 20360 5024 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56354][0m
+ERROR 2025-07-10 11:03:06,555 middleware 20360 13576 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:03:06,556 log 20360 21544 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:03:06,557 runserver 20360 5024 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56354][0m
+ERROR 2025-07-10 11:06:48,606 middleware 20360 10400 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:06:48,608 log 20360 21544 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:06:48,608 runserver 20360 5024 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56422][0m
+ERROR 2025-07-10 11:09:24,631 middleware 20360 18468 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:09:24,633 log 20360 21544 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:09:24,633 runserver 20360 5024 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56465][0m
+ERROR 2025-07-10 11:09:35,790 middleware 20360 18376 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:09:35,791 log 20360 21544 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:09:35,792 runserver 20360 5024 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56465][0m
+INFO 2025-07-10 11:14:11,747 server 20360 5024 Killed 0 pending application instances
+INFO 2025-07-10 11:14:49,771 server 23012 17772 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:14:49,771 server 23012 17772 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:14:49,772 server 23012 17772 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:15:40,134 middleware 23012 23980 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:15:40,136 log 23012 6644 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:15:40,136 runserver 23012 17772 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56592][0m
+ERROR 2025-07-10 11:19:02,824 middleware 23012 7060 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:19:02,826 log 23012 6644 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:19:02,826 runserver 23012 17772 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56647][0m
+INFO 2025-07-10 11:19:09,839 server 23012 17772 Killed 0 pending application instances
+INFO 2025-07-10 11:20:03,073 server 4916 19516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:20:03,073 server 4916 19516 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:20:03,074 server 4916 19516 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 11:20:09,347 middleware 4916 15272 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.033, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 11:20:09,380 log 4916 15936 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 11:20:09,385 runserver 4916 19516 [35;1mHTTP POST /api/auth/login 500 [0.08, 127.0.0.1:56681][0m
+ERROR 2025-07-10 11:20:13,632 middleware 4916 21880 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:20:13,634 log 4916 15936 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:20:13,635 runserver 4916 19516 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56681][0m
+INFO 2025-07-10 11:20:24,269 server 4916 19516 Killed 0 pending application instances
+INFO 2025-07-10 11:20:27,606 server 3848 5584 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:20:27,606 server 3848 5584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:20:27,607 server 3848 5584 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:20:31,374 middleware 3848 19072 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:20:31,376 log 3848 20404 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:20:31,377 runserver 3848 5584 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56697][0m
+ERROR 2025-07-10 11:21:58,288 middleware 3848 23276 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:21:58,290 log 3848 20404 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:21:58,291 runserver 3848 5584 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56719][0m
+ERROR 2025-07-10 11:29:39,717 middleware 3848 22524 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:29:39,719 log 3848 20404 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:29:39,719 runserver 3848 5584 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56820][0m
+ERROR 2025-07-10 11:30:26,702 middleware 3848 20736 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:30:26,704 log 3848 20404 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:30:26,704 runserver 3848 5584 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56820][0m
+ERROR 2025-07-10 11:31:05,403 middleware 3848 9988 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:31:05,404 log 3848 20404 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:31:05,405 runserver 3848 5584 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56820][0m
+INFO 2025-07-10 11:31:09,975 server 3848 5584 Killed 0 pending application instances
+INFO 2025-07-10 11:31:48,075 server 15708 13948 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:31:48,076 server 15708 13948 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:31:48,076 server 15708 13948 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:31:50,727 middleware 15708 20436 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:31:50,729 log 15708 19268 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:31:50,730 runserver 15708 13948 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56886][0m
+ERROR 2025-07-10 11:32:44,738 middleware 15708 11192 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 11:32:44,740 log 15708 19268 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 11:32:44,740 runserver 15708 13948 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:56886][0m
+INFO 2025-07-10 11:32:53,582 server 15708 13948 Killed 0 pending application instances
+INFO 2025-07-10 11:33:41,970 server 14592 12664 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 11:33:41,970 server 14592 12664 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 11:33:41,971 server 14592 12664 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 11:34:28,002 middleware 14592 6904 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:34:28,004 log 14592 21664 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:34:28,005 runserver 14592 12664 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:56993][0m
+ERROR 2025-07-10 11:36:20,307 middleware 14592 1116 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 11:36:20,308 log 14592 21664 Bad Request: /api/auth/login/
+WARNING 2025-07-10 11:36:20,309 runserver 14592 12664 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:57040][0m
+INFO 2025-07-10 11:54:18,669 server 14592 12664 Killed 0 pending application instances
+INFO 2025-07-10 12:22:18,377 autoreload 6312 22752 Watching for file changes with StatReloader
+INFO 2025-07-10 12:22:18,695 server 6312 13784 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:22:18,695 server 6312 13784 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:22:18,696 server 6312 13784 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 12:22:49,223 server 9932 5484 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:22:49,224 server 9932 5484 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:22:49,224 server 9932 5484 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 12:23:08,888 middleware 9932 24024 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:23:08,890 log 9932 1832 Bad Request: /api/auth/login/
+WARNING 2025-07-10 12:23:08,891 runserver 9932 5484 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:59176][0m
+ERROR 2025-07-10 12:25:28,171 middleware 9932 23476 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:25:28,173 log 9932 1832 Bad Request: /api/auth/login/
+WARNING 2025-07-10 12:25:28,174 runserver 9932 5484 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:59403][0m
+ERROR 2025-07-10 12:26:30,836 middleware 9932 16840 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:26:30,837 log 9932 1832 Bad Request: /api/auth/login/
+WARNING 2025-07-10 12:26:30,838 runserver 9932 5484 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:59425][0m
+INFO 2025-07-10 12:31:25,338 server 9932 5484 Killed 0 pending application instances
+INFO 2025-07-10 12:31:58,488 server 9292 580 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:31:58,488 server 9292 580 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:31:58,489 server 9292 580 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 12:32:02,863 middleware 9292 16192 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:32:02,865 log 9292 1056 Bad Request: /api/auth/login/
+WARNING 2025-07-10 12:32:02,866 runserver 9292 580 [31;1mHTTP POST /api/auth/login/ 400 [0.05, 127.0.0.1:59601][0m
+ERROR 2025-07-10 12:33:10,241 middleware 9292 18348 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:33:10,242 log 9292 1056 Bad Request: /api/auth/login/
+WARNING 2025-07-10 12:33:10,243 runserver 9292 580 [31;1mHTTP POST /api/auth/login/ 400 [0.15, 127.0.0.1:59704][0m
+ERROR 2025-07-10 12:33:44,178 middleware 9292 21456 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:33:44,180 log 9292 1056 Bad Request: /api/auth/register/
+WARNING 2025-07-10 12:33:44,180 runserver 9292 580 [31;1mHTTP POST /api/auth/register/ 400 [0.06, 127.0.0.1:59704][0m
+ERROR 2025-07-10 12:34:17,095 middleware 9292 19624 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 12:34:17,097 runserver 9292 580 [mHTTP POST /api/auth/register/ 201 [0.47, 127.0.0.1:59704][0m
+ERROR 2025-07-10 12:34:42,827 middleware 9292 18636 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:34:42,829 log 9292 1056 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:34:42,829 runserver 9292 580 [35;1mHTTP POST /api/auth/login/ 500 [0.46, 127.0.0.1:59704][0m
+ERROR 2025-07-10 12:38:00,320 middleware 9292 23652 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:38:00,322 log 9292 1056 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:38:00,322 runserver 9292 580 [35;1mHTTP POST /api/auth/login/ 500 [0.58, 127.0.0.1:60038][0m
+INFO 2025-07-10 12:42:01,355 server 9292 580 Killed 0 pending application instances
+INFO 2025-07-10 12:42:35,176 server 11440 10228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:42:35,176 server 11440 10228 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:42:35,177 server 11440 10228 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 12:42:38,501 middleware 11440 19568 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:42:38,503 log 11440 19724 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:42:38,503 runserver 11440 10228 [35;1mHTTP POST /api/auth/login/ 500 [0.46, 127.0.0.1:60347][0m
+INFO 2025-07-10 12:43:25,163 server 14008 15128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:43:25,163 server 14008 15128 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:43:25,164 server 14008 15128 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 12:43:55,122 middleware 14008 20120 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 12:43:55,124 log 14008 17232 Bad Request: /api/auth/register/
+WARNING 2025-07-10 12:43:55,125 runserver 14008 15128 [31;1mHTTP POST /api/auth/register/ 400 [0.16, 127.0.0.1:60520][0m
+ERROR 2025-07-10 12:44:24,088 middleware 14008 21148 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:44:24,089 log 14008 17232 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:44:24,090 runserver 14008 15128 [35;1mHTTP POST /api/auth/login/ 500 [0.57, 127.0.0.1:60520][0m
+INFO 2025-07-10 12:49:38,178 server 14008 15128 Killed 0 pending application instances
+INFO 2025-07-10 12:49:58,953 server 1996 3520 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:49:58,954 server 1996 3520 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:49:58,954 server 1996 3520 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 12:50:02,586 middleware 1996 3560 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:50:02,589 log 1996 14968 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:50:02,589 runserver 1996 3520 [35;1mHTTP POST /api/auth/login/ 500 [0.49, 127.0.0.1:60846][0m
+ERROR 2025-07-10 12:57:55,035 middleware 1996 23804 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 12:57:55,037 log 1996 14968 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 12:57:55,037 runserver 1996 3520 [35;1mHTTP POST /api/auth/login/ 500 [0.48, 127.0.0.1:61096][0m
+INFO 2025-07-10 12:59:58,529 autoreload 20896 8388 Watching for file changes with StatReloader
+INFO 2025-07-10 12:59:58,842 server 20896 19960 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 12:59:58,842 server 20896 19960 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 12:59:58,843 server 20896 19960 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:00:06,593 middleware 20896 16024 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:00:06,595 log 20896 21940 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:00:06,596 runserver 20896 19960 [35;1mHTTP POST /api/auth/login/ 500 [0.47, 127.0.0.1:61193][0m
+INFO 2025-07-10 13:00:25,515 server 2532 23720 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:00:25,515 server 2532 23720 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:00:25,515 server 2532 23720 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:00:29,085 middleware 2532 14728 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:00:29,087 log 2532 10364 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:00:29,088 runserver 2532 23720 [35;1mHTTP POST /api/auth/login/ 500 [0.59, 127.0.0.1:61233][0m
+INFO 2025-07-10 13:10:35,913 server 2532 23720 Killed 0 pending application instances
+INFO 2025-07-10 13:11:10,792 server 8908 22508 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:11:10,792 server 8908 22508 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:11:10,793 server 8908 22508 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:11:14,865 middleware 8908 5044 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:11:14,867 log 8908 3892 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:11:14,868 runserver 8908 22508 [35;1mHTTP POST /api/auth/login/ 500 [0.47, 127.0.0.1:61894][0m
+ERROR 2025-07-10 13:11:29,350 middleware 8908 12652 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:11:29,352 log 8908 3892 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:11:29,353 runserver 8908 22508 [35;1mHTTP POST /api/auth/login/ 500 [0.47, 127.0.0.1:61894][0m
+INFO 2025-07-10 13:16:45,147 server 8908 22508 Killed 0 pending application instances
+INFO 2025-07-10 13:17:37,739 server 11336 908 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:17:37,739 server 11336 908 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:17:37,740 server 11336 908 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:17:42,537 middleware 11336 16700 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:17:42,539 log 11336 23084 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:17:42,540 runserver 11336 908 [35;1mHTTP POST /api/auth/login/ 500 [0.50, 127.0.0.1:62130][0m
+INFO 2025-07-10 13:22:24,027 middleware 11336 18532 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.032, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 13:22:24,061 log 11336 23084 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 13:22:24,065 runserver 11336 908 [35;1mHTTP POST /api/auth/login 500 [0.07, 127.0.0.1:62289][0m
+ERROR 2025-07-10 13:22:27,317 middleware 11336 22968 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:22:27,318 log 11336 23084 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:22:27,319 runserver 11336 908 [35;1mHTTP POST /api/auth/login/ 500 [0.46, 127.0.0.1:62289][0m
+INFO 2025-07-10 13:30:05,120 server 23736 10568 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:30:05,122 server 23736 10568 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:30:05,127 server 23736 10568 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:30:12,302 middleware 23736 11712 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:30:12,303 log 23736 20832 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:30:12,304 runserver 23736 10568 [35;1mHTTP POST /api/auth/login/ 500 [0.48, 127.0.0.1:62669][0m
+INFO 2025-07-10 13:34:23,367 server 23736 10568 Killed 0 pending application instances
+INFO 2025-07-10 13:34:47,277 server 19248 10512 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:34:47,278 server 19248 10512 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:34:47,278 server 19248 10512 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 13:34:51,965 middleware 19248 12384 API Request: {"method": "POST", "path": "/api/auth/login", "status_code": 404, "duration": 0.046, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5309, "request_body": {"email": "newuser@example.com", "password": "***REDACTED***"}}
+ERROR 2025-07-10 13:34:52,005 log 19248 6768 Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 489, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 439, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 493, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-10 13:34:52,011 runserver 19248 10512 [35;1mHTTP POST /api/auth/login 500 [0.10, 127.0.0.1:62895][0m
+ERROR 2025-07-10 13:34:54,770 middleware 19248 7308 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:34:54,772 log 19248 6768 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:34:54,773 runserver 19248 10512 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:62895][0m
+ERROR 2025-07-10 13:35:18,515 middleware 19248 17208 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:35:18,517 log 19248 6768 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:35:18,517 runserver 19248 10512 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:62895][0m
+ERROR 2025-07-10 13:35:38,733 middleware 19248 20564 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:35:38,735 log 19248 6768 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:35:38,735 runserver 19248 10512 [35;1mHTTP POST /api/auth/login/ 500 [0.01, 127.0.0.1:62895][0m
+INFO 2025-07-10 13:42:43,963 server 19248 10512 Killed 0 pending application instances
+INFO 2025-07-10 13:43:29,923 server 12116 22616 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:43:29,924 server 12116 22616 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:43:29,924 server 12116 22616 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:43:36,023 middleware 12116 13596 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 13:43:36,025 log 12116 8572 Bad Request: /api/auth/login/
+WARNING 2025-07-10 13:43:36,026 runserver 12116 22616 [31;1mHTTP POST /api/auth/login/ 400 [0.01, 127.0.0.1:63199][0m
+ERROR 2025-07-10 13:43:36,673 middleware 12116 1852 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 13:43:36,675 log 12116 8572 Bad Request: /api/auth/login/
+WARNING 2025-07-10 13:43:36,676 runserver 12116 22616 [31;1mHTTP POST /api/auth/login/ 400 [0.03, 127.0.0.1:63199][0m
+ERROR 2025-07-10 13:46:15,033 middleware 12116 15252 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 13:46:15,034 log 12116 8572 Bad Request: /api/auth/login/
+WARNING 2025-07-10 13:46:15,035 runserver 12116 22616 [31;1mHTTP POST /api/auth/login/ 400 [0.48, 127.0.0.1:63295][0m
+ERROR 2025-07-10 13:47:22,891 middleware 12116 22140 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 13:47:22,893 log 12116 8572 Bad Request: /api/auth/login/
+WARNING 2025-07-10 13:47:22,893 runserver 12116 22616 [31;1mHTTP POST /api/auth/login/ 400 [0.04, 127.0.0.1:63348][0m
+INFO 2025-07-10 13:53:22,227 server 12116 22616 Killed 0 pending application instances
+INFO 2025-07-10 13:54:47,802 server 18984 356 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 13:54:47,802 server 18984 356 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 13:54:47,803 server 18984 356 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 13:54:50,853 middleware 18984 13696 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 13:54:50,855 log 18984 4148 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 13:54:50,856 runserver 18984 356 [35;1mHTTP POST /api/auth/login/ 500 [0.58, 127.0.0.1:58063][0m
+ERROR 2025-07-10 13:55:00,085 middleware 18984 2604 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 13:55:00,086 log 18984 4148 Bad Request: /api/auth/login/
+WARNING 2025-07-10 13:55:00,087 runserver 18984 356 [31;1mHTTP POST /api/auth/login/ 400 [0.04, 127.0.0.1:58063][0m
+ERROR 2025-07-10 14:01:40,049 middleware 18984 9316 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 14:01:40,050 log 18984 4148 Bad Request: /api/auth/login/
+WARNING 2025-07-10 14:01:40,051 runserver 18984 356 [31;1mHTTP POST /api/auth/login/ 400 [0.15, 127.0.0.1:58374][0m
+INFO 2025-07-10 14:05:08,357 server 18984 356 Killed 0 pending application instances
+INFO 2025-07-10 14:08:32,400 server 9728 14644 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 14:08:32,400 server 9728 14644 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 14:08:32,401 server 9728 14644 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 14:08:35,481 middleware 9728 18764 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 14:08:35,483 log 9728 1860 Bad Request: /api/auth/login/
+WARNING 2025-07-10 14:08:35,484 runserver 9728 14644 [31;1mHTTP POST /api/auth/login/ 400 [0.45, 127.0.0.1:58783][0m
+ERROR 2025-07-10 14:31:05,475 middleware 9728 16556 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 14:31:05,476 log 9728 1860 Bad Request: /api/auth/login/
+WARNING 2025-07-10 14:31:05,477 runserver 9728 14644 [31;1mHTTP POST /api/auth/login/ 400 [0.47, 127.0.0.1:59184][0m
+INFO 2025-07-10 14:32:47,480 server 9728 14644 Killed 0 pending application instances
+INFO 2025-07-10 14:56:18,702 server 9040 5680 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 14:56:18,702 server 9040 5680 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 14:56:18,703 server 9040 5680 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 14:56:21,990 middleware 9040 22712 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 14:56:21,992 runserver 9040 5680 [mHTTP POST /api/auth/register/ 201 [0.59, 127.0.0.1:60706][0m
+ERROR 2025-07-10 14:56:52,796 middleware 9040 18760 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 14:56:52,798 log 9040 16476 Bad Request: /api/auth/login/
+WARNING 2025-07-10 14:56:52,798 runserver 9040 5680 [31;1mHTTP POST /api/auth/login/ 400 [0.46, 127.0.0.1:60706][0m
+ERROR 2025-07-10 14:59:59,905 middleware 9040 1748 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 14:59:59,906 log 9040 16476 Bad Request: /api/auth/login/
+WARNING 2025-07-10 14:59:59,907 runserver 9040 5680 [31;1mHTTP POST /api/auth/login/ 400 [0.45, 127.0.0.1:61129][0m
+ERROR 2025-07-10 15:00:06,685 middleware 9040 20080 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 15:00:06,686 log 9040 16476 Bad Request: /api/auth/login/
+WARNING 2025-07-10 15:00:06,687 runserver 9040 5680 [31;1mHTTP POST /api/auth/login/ 400 [0.45, 127.0.0.1:61129][0m
+INFO 2025-07-10 15:10:47,131 server 11128 5924 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:10:47,131 server 11128 5924 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:10:47,132 server 11128 5924 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:11:11,060 middleware 11128 380 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:11:11,062 log 11128 14672 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 15:11:11,063 runserver 11128 5924 [35;1mHTTP POST /api/auth/login/ 500 [0.58, 127.0.0.1:61752][0m
+ERROR 2025-07-10 15:12:12,545 middleware 11128 9268 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:12:12,546 log 11128 14672 Internal Server Error: /api/auth/login/
+ERROR 2025-07-10 15:12:12,547 runserver 11128 5924 [35;1mHTTP POST /api/auth/login/ 500 [0.46, 127.0.0.1:61824][0m
+INFO 2025-07-10 15:12:31,493 server 11128 5924 Killed 0 pending application instances
+INFO 2025-07-10 15:12:34,981 server 22076 22456 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:12:34,982 server 22076 22456 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:12:34,982 server 22076 22456 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:12:37,488 middleware 22076 9124 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 15:12:37,490 log 22076 11372 Bad Request: /api/auth/login/
+WARNING 2025-07-10 15:12:37,491 runserver 22076 22456 [31;1mHTTP POST /api/auth/login/ 400 [0.47, 127.0.0.1:61872][0m
+INFO 2025-07-10 15:18:04,578 server 22076 22456 Killed 0 pending application instances
+INFO 2025-07-10 15:18:07,471 server 18716 15448 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:18:07,472 server 18716 15448 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:18:07,473 server 18716 15448 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:18:11,071 middleware 18716 16400 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 15:18:11,073 runserver 18716 15448 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:62348][0m
+INFO 2025-07-10 15:19:41,638 middleware 18716 4916 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 120, "request_body": {"name": "Health Insurance", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-10 15:19:41,640 log 18716 13244 Unauthorized: /api/policies/types/
+WARNING 2025-07-10 15:19:41,640 runserver 18716 15448 [31;1mHTTP POST /api/policies/types/ 401 [0.01, 127.0.0.1:62410][0m
+INFO 2025-07-10 15:20:51,274 middleware 18716 18044 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 238, "request_body": {"name": "Health Insurance", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-10 15:20:51,276 log 18716 13244 Unauthorized: /api/policies/types/
+WARNING 2025-07-10 15:20:51,276 runserver 18716 15448 [31;1mHTTP POST /api/policies/types/ 401 [0.01, 127.0.0.1:62470][0m
+ERROR 2025-07-10 15:22:16,115 middleware 18716 20284 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:22:16,117 log 18716 13244 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 15:22:16,117 runserver 18716 15448 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:62504][0m
+INFO 2025-07-10 15:24:18,486 server 18716 15448 Killed 0 pending application instances
+INFO 2025-07-10 15:24:39,375 server 13036 16816 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:24:39,375 server 13036 16816 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:24:39,376 server 13036 16816 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:24:41,898 middleware 13036 10928 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:24:41,900 log 13036 16568 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 15:24:41,901 runserver 13036 16816 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:62631][0m
+INFO 2025-07-10 15:30:57,313 server 13036 16816 Killed 0 pending application instances
+INFO 2025-07-10 15:31:22,687 server 17804 13704 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:31:22,687 server 17804 13704 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:31:22,688 server 17804 13704 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:31:25,875 middleware 17804 5160 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:31:25,878 log 17804 15728 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 15:31:25,878 runserver 17804 13704 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:63665][0m
+INFO 2025-07-10 15:34:47,357 server 17804 13704 Killed 0 pending application instances
+INFO 2025-07-10 15:48:23,007 server 8348 18240 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:48:23,008 server 8348 18240 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:48:23,009 server 8348 18240 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:48:25,974 middleware 8348 9536 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:48:25,976 log 8348 22004 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 15:48:25,977 runserver 8348 18240 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:65523][0m
+INFO 2025-07-10 15:53:11,311 server 8348 18240 Killed 0 pending application instances
+INFO 2025-07-10 15:56:43,194 server 20328 4596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 15:56:43,195 server 20328 4596 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 15:56:43,195 server 20328 4596 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 15:56:47,049 middleware 20328 23584 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 15:56:47,052 log 20328 5852 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 15:56:47,052 runserver 20328 4596 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:50105][0m
+INFO 2025-07-10 15:57:29,364 server 20328 4596 Killed 0 pending application instances
+INFO 2025-07-10 16:00:26,721 server 14736 9588 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:00:26,721 server 14736 9588 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:00:26,721 server 14736 9588 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:00:31,883 middleware 14736 19664 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:00:31,885 log 14736 22676 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:00:31,886 runserver 14736 9588 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:50381][0m
+INFO 2025-07-10 16:04:17,459 server 14736 9588 Killed 0 pending application instances
+INFO 2025-07-10 16:13:43,798 server 15492 14868 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:13:43,799 server 15492 14868 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:13:43,799 server 15492 14868 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 16:14:58,085 server 15492 14868 Killed 0 pending application instances
+INFO 2025-07-10 16:37:15,765 server 9716 17796 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:37:15,766 server 9716 17796 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:37:15,766 server 9716 17796 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 16:37:20,889 middleware 9716 17624 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 401, "duration": 0.01, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245, "request_body": {"name": "Health Insurance", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-10 16:37:20,891 log 9716 9496 Unauthorized: /api/policies/types/
+WARNING 2025-07-10 16:37:20,891 runserver 9716 17796 [31;1mHTTP POST /api/policies/types/ 401 [0.02, 127.0.0.1:57401][0m
+ERROR 2025-07-10 16:37:32,819 middleware 9716 10516 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 16:37:32,821 runserver 9716 17796 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:57401][0m
+ERROR 2025-07-10 16:37:51,358 middleware 9716 21200 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 16:37:51,360 log 9716 9496 Bad Request: /api/policies/types/
+WARNING 2025-07-10 16:37:51,360 runserver 9716 17796 [31;1mHTTP POST /api/policies/types/ 400 [0.08, 127.0.0.1:57401][0m
+ERROR 2025-07-10 16:38:06,310 middleware 9716 12420 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:38:06,311 log 9716 9496 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:38:06,312 runserver 9716 17796 [35;1mHTTP POST /api/policies/types/ 500 [0.05, 127.0.0.1:57401][0m
+INFO 2025-07-10 16:44:06,966 server 9716 17796 Killed 0 pending application instances
+INFO 2025-07-10 16:44:11,169 server 13048 16548 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:44:11,169 server 13048 16548 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:44:11,170 server 13048 16548 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:44:12,981 middleware 13048 13228 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:44:12,984 log 13048 22264 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:44:12,985 runserver 13048 16548 [35;1mHTTP POST /api/policies/types/ 500 [0.07, 127.0.0.1:59056][0m
+INFO 2025-07-10 16:47:35,810 server 13048 16548 Killed 0 pending application instances
+INFO 2025-07-10 16:47:38,518 server 10160 2744 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:47:38,519 server 10160 2744 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:47:38,519 server 10160 2744 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:47:40,458 middleware 10160 18376 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:47:40,460 log 10160 13528 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:47:40,461 runserver 10160 2744 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:60351][0m
+INFO 2025-07-10 16:48:03,776 server 10160 2744 Killed 0 pending application instances
+INFO 2025-07-10 16:48:06,308 server 14468 18516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:48:06,308 server 14468 18516 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:48:06,309 server 14468 18516 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:48:09,249 middleware 14468 12300 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:48:09,250 log 14468 18312 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:48:09,251 runserver 14468 18516 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:60655][0m
+INFO 2025-07-10 16:48:23,484 server 14468 18516 Killed 0 pending application instances
+INFO 2025-07-10 16:48:26,166 server 23084 12600 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:48:26,228 server 23084 12600 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:48:26,229 server 23084 12600 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:48:29,245 middleware 23084 10740 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-10 16:48:29,248 log 23084 7320 Internal Server Error: /api/policies/types/
+ERROR 2025-07-10 16:48:29,249 runserver 23084 12600 [35;1mHTTP POST /api/policies/types/ 500 [0.06, 127.0.0.1:60882][0m
+INFO 2025-07-10 16:49:11,584 server 23084 12600 Killed 0 pending application instances
+INFO 2025-07-10 16:49:14,713 server 12116 5532 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 16:49:14,714 server 12116 5532 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 16:49:14,714 server 12116 5532 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-10 16:49:17,200 middleware 12116 15496 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 16:49:17,203 runserver 12116 5532 [mHTTP POST /api/policies/types/ 201 [0.06, 127.0.0.1:61111][0m
+INFO 2025-07-10 17:06:35,931 middleware 12116 23236 API Request: {"method": "POST", "path": "/api/policies/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245, "request_body": {"policy_number": "POL-2025-001", "customer": 5, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-10 17:06:35,935 log 12116 17796 Unauthorized: /api/policies/
+WARNING 2025-07-10 17:06:35,936 runserver 12116 5532 [31;1mHTTP POST /api/policies/ 401 [0.02, 127.0.0.1:50053][0m
+INFO 2025-07-10 17:07:02,417 middleware 12116 9596 API Request: {"method": "POST", "path": "/api/policies/", "status_code": 405, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"policy_number": "POL-2025-001", "customer": 5, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-10 17:07:02,420 log 12116 17796 Method Not Allowed: /api/policies/
+WARNING 2025-07-10 17:07:02,421 runserver 12116 5532 [31;1mHTTP POST /api/policies/ 405 [0.08, 127.0.0.1:50053][0m
+INFO 2025-07-10 17:07:30,417 middleware 12116 16840 API Request: {"method": "GET", "path": "/api/policies/", "status_code": 200, "duration": 0.097, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 461}
+INFO 2025-07-10 17:07:30,420 runserver 12116 5532 [mHTTP GET /api/policies/ 200 [0.11, 127.0.0.1:50053][0m
+INFO 2025-07-10 17:08:15,128 middleware 12116 18256 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 200, "duration": 0.086, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 115}
+INFO 2025-07-10 17:08:15,132 runserver 12116 5532 [mHTTP GET /api/policies/policies/ 200 [0.09, 127.0.0.1:50053][0m
+ERROR 2025-07-10 17:08:29,163 middleware 12116 18656 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 17:08:29,166 log 12116 17796 Bad Request: /api/policies/policies/
+WARNING 2025-07-10 17:08:29,167 runserver 12116 5532 [31;1mHTTP POST /api/policies/policies/ 400 [0.10, 127.0.0.1:50053][0m
+ERROR 2025-07-10 17:08:53,414 middleware 12116 21540 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 17:08:53,417 log 12116 17796 Bad Request: /api/policies/policies/
+WARNING 2025-07-10 17:08:53,418 runserver 12116 5532 [31;1mHTTP POST /api/policies/policies/ 400 [0.11, 127.0.0.1:50053][0m
+ERROR 2025-07-10 17:23:54,816 middleware 12116 8080 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 17:23:54,822 log 12116 17796 Bad Request: /api/policies/policies/
+WARNING 2025-07-10 17:23:54,824 runserver 12116 5532 [31;1mHTTP POST /api/policies/policies/ 400 [0.10, 127.0.0.1:60663][0m
+INFO 2025-07-10 17:25:17,078 middleware 12116 10028 API Request: {"method": "GET", "path": "/api/policies/", "status_code": 200, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 461}
+INFO 2025-07-10 17:25:17,082 runserver 12116 5532 [mHTTP GET /api/policies/ 200 [0.08, 127.0.0.1:60703][0m
+INFO 2025-07-10 17:25:21,102 middleware 12116 24240 API Request: {"method": "POST", "path": "/api/policies/", "status_code": 405, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"policy_number": "POL-2025-001", "customer": 5, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-10 17:25:21,106 log 12116 17796 Method Not Allowed: /api/policies/
+WARNING 2025-07-10 17:25:21,107 runserver 12116 5532 [31;1mHTTP POST /api/policies/ 405 [0.08, 127.0.0.1:60703][0m
+INFO 2025-07-10 17:25:33,170 middleware 12116 13244 API Request: {"method": "GET", "path": "/api/policies/", "status_code": 200, "duration": 0.077, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 461}
+INFO 2025-07-10 17:25:33,173 runserver 12116 5532 [mHTTP GET /api/policies/ 200 [0.08, 127.0.0.1:60703][0m
+INFO 2025-07-10 17:26:00,551 middleware 12116 12564 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 200, "duration": 0.092, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 115}
+INFO 2025-07-10 17:26:00,555 runserver 12116 5532 [mHTTP GET /api/policies/policies/ 200 [0.10, 127.0.0.1:60703][0m
+ERROR 2025-07-10 17:26:12,843 middleware 12116 14604 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-10 17:26:12,847 log 12116 17796 Bad Request: /api/policies/policies/
+WARNING 2025-07-10 17:26:12,848 runserver 12116 5532 [31;1mHTTP POST /api/policies/policies/ 400 [0.11, 127.0.0.1:60703][0m
+INFO 2025-07-10 18:01:42,579 server 12116 5532 Killed 0 pending application instances
