@@ -108,7 +108,7 @@ class PolicySerializer(serializers.ModelSerializer):
             'agent_name', 'agent_code', 'created_by', 'created_by_name', 'last_modified_by',
             'last_modified_by_name', 'is_due_for_renewal', 'days_to_expiry',
             'beneficiaries', 'documents', 'payments', 'notes',
-            'created_at', 'updated_at'
+            'created_at', 'updated_at', 
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'is_due_for_renewal', 'days_to_expiry']
 

@@ -23,7 +23,7 @@ api_patterns = [
     
     # Core business endpoints (add as we create them)
     # path('users/', include('apps.users.urls')),
-    # path('customers/', include('apps.customers.urls')),
+    path('customers/', include('apps.customers.urls')),
     path('policies/', include('apps.policies.urls')),
     # path('upload/', include('apps.uploads.urls')),
     # path('campaigns/', include('apps.campaigns.urls')),

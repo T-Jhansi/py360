@@ -938,3 +938,294 @@ ERROR 2025-07-10 17:26:12,843 middleware 12116 14604 Error in RequestLoggingMidd
 WARNING 2025-07-10 17:26:12,847 log 12116 17796 Bad Request: /api/policies/policies/
 WARNING 2025-07-10 17:26:12,848 runserver 12116 5532 [31;1mHTTP POST /api/policies/policies/ 400 [0.11, 127.0.0.1:60703][0m
 INFO 2025-07-10 18:01:42,579 server 12116 5532 Killed 0 pending application instances
+INFO 2025-07-10 18:06:05,797 server 21232 3092 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 18:06:05,797 server 21232 3092 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 18:06:05,798 server 21232 3092 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 18:26:51,226 middleware 21232 9668 API Request: {"method": "GET", "path": "/api/customers/", "status_code": 404, "duration": 0.082, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 3353}
+WARNING 2025-07-10 18:26:51,231 log 21232 1820 Not Found: /api/customers/
+WARNING 2025-07-10 18:26:51,233 runserver 21232 3092 [33mHTTP GET /api/customers/ 404 [0.11, 127.0.0.1:50184][0m
+INFO 2025-07-10 18:27:13,163 server 21232 3092 Killed 0 pending application instances
+INFO 2025-07-10 18:27:47,493 server 22616 22796 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-10 18:27:47,493 server 22616 22796 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-10 18:27:47,494 server 22616 22796 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-10 18:27:50,902 middleware 22616 3028 API Request: {"method": "GET", "path": "/api/customers/", "status_code": 401, "duration": 0.055, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-10 18:27:50,907 log 22616 21940 Unauthorized: /api/customers/
+WARNING 2025-07-10 18:27:50,908 runserver 22616 22796 [31;1mHTTP GET /api/customers/ 401 [0.08, 127.0.0.1:50319][0m
+ERROR 2025-07-10 18:28:00,387 middleware 22616 16148 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-10 18:28:00,393 runserver 22616 22796 [mHTTP POST /api/auth/login/ 200 [0.99, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:28:19,506 middleware 22616 11572 API Request: {"method": "POST", "path": "/api/customers/", "status_code": 405, "duration": 0.067, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"customer_id": "CUST2025", "customer_type": "individual", "first_name": "Sahina", "last_name": "Yusuf", "email": "sahina@example.com", "phone": "+919876543210", "alternate_phone": "+918765432109", "address_line1": "123 MG Road", "address_line2": "Near Church Street", "city": "Bangalore", "state": "Karnataka", "postal_code": "560001", "country": "India", "gender": "female", "date_of_birth": "1995-03-15", "industry": "Insurance", "business_registration_number": "REG98765", "tax_id": "TAX12345", "annual_revenue": "1000000.00", "employee_count": 50, "status": "active", "priority": "medium", "preferred_contact_method": "email", "preferred_language": "en", "timezone": "Asia/Kolkata", "email_notifications": true, "sms_notifications": true, "whatsapp_notifications": false, "marketing_communications": true, "credit_score": 700, "payment_terms": "Net 30", "credit_limit": "500000.00", "first_policy_date": "2021-01-01", "last_policy_date": "2023-12-31", "last_contact_date": "2024-06-15T10:30:00Z", "next_followup_date": "2024-07-15T10:00:00Z", "total_policies": 5, "total_premium": "25000.00", "lifetime_value": "30000.00", "internal_notes": "VIP customer with high potential", "tags": ["vip", "priority"], "custom_fields": {"referred_by": "AgentX", "preferred_branch": "Bangalore Central"}}}
+WARNING 2025-07-10 18:28:19,510 log 22616 21940 Method Not Allowed: /api/customers/
+WARNING 2025-07-10 18:28:19,511 runserver 22616 22796 [31;1mHTTP POST /api/customers/ 405 [0.08, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:28:37,009 middleware 22616 17712 API Request: {"method": "GET", "path": "/api/customers/", "status_code": 200, "duration": 0.209, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 62}
+INFO 2025-07-10 18:28:37,012 runserver 22616 22796 [mHTTP GET /api/customers/ 200 [0.22, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:28:52,169 middleware 22616 9832 API Request: {"method": "GET", "path": "/api/customers/cutomers/", "status_code": 404, "duration": 0.066, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 4939}
+WARNING 2025-07-10 18:28:52,174 log 22616 21940 Not Found: /api/customers/cutomers/
+WARNING 2025-07-10 18:28:52,175 runserver 22616 22796 [33mHTTP GET /api/customers/cutomers/ 404 [0.08, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:28:57,881 middleware 22616 23516 API Request: {"method": "POST", "path": "/api/customers/cutomers/", "status_code": 404, "duration": 0.058, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 4940, "request_body": {"customer_id": "CUST2025", "customer_type": "individual", "first_name": "Sahina", "last_name": "Yusuf", "email": "sahina@example.com", "phone": "+919876543210", "alternate_phone": "+918765432109", "address_line1": "123 MG Road", "address_line2": "Near Church Street", "city": "Bangalore", "state": "Karnataka", "postal_code": "560001", "country": "India", "gender": "female", "date_of_birth": "1995-03-15", "industry": "Insurance", "business_registration_number": "REG98765", "tax_id": "TAX12345", "annual_revenue": "1000000.00", "employee_count": 50, "status": "active", "priority": "medium", "preferred_contact_method": "email", "preferred_language": "en", "timezone": "Asia/Kolkata", "email_notifications": true, "sms_notifications": true, "whatsapp_notifications": false, "marketing_communications": true, "credit_score": 700, "payment_terms": "Net 30", "credit_limit": "500000.00", "first_policy_date": "2021-01-01", "last_policy_date": "2023-12-31", "last_contact_date": "2024-06-15T10:30:00Z", "next_followup_date": "2024-07-15T10:00:00Z", "total_policies": 5, "total_premium": "25000.00", "lifetime_value": "30000.00", "internal_notes": "VIP customer with high potential", "tags": ["vip", "priority"], "custom_fields": {"referred_by": "AgentX", "preferred_branch": "Bangalore Central"}}}
+WARNING 2025-07-10 18:28:57,892 log 22616 21940 Not Found: /api/customers/cutomers/
+WARNING 2025-07-10 18:28:57,894 runserver 22616 22796 [33mHTTP POST /api/customers/cutomers/ 404 [0.08, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:29:04,853 middleware 22616 20832 API Request: {"method": "POST", "path": "/api/customers/", "status_code": 405, "duration": 0.07, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"customer_id": "CUST2025", "customer_type": "individual", "first_name": "Sahina", "last_name": "Yusuf", "email": "sahina@example.com", "phone": "+919876543210", "alternate_phone": "+918765432109", "address_line1": "123 MG Road", "address_line2": "Near Church Street", "city": "Bangalore", "state": "Karnataka", "postal_code": "560001", "country": "India", "gender": "female", "date_of_birth": "1995-03-15", "industry": "Insurance", "business_registration_number": "REG98765", "tax_id": "TAX12345", "annual_revenue": "1000000.00", "employee_count": 50, "status": "active", "priority": "medium", "preferred_contact_method": "email", "preferred_language": "en", "timezone": "Asia/Kolkata", "email_notifications": true, "sms_notifications": true, "whatsapp_notifications": false, "marketing_communications": true, "credit_score": 700, "payment_terms": "Net 30", "credit_limit": "500000.00", "first_policy_date": "2021-01-01", "last_policy_date": "2023-12-31", "last_contact_date": "2024-06-15T10:30:00Z", "next_followup_date": "2024-07-15T10:00:00Z", "total_policies": 5, "total_premium": "25000.00", "lifetime_value": "30000.00", "internal_notes": "VIP customer with high potential", "tags": ["vip", "priority"], "custom_fields": {"referred_by": "AgentX", "preferred_branch": "Bangalore Central"}}}
+WARNING 2025-07-10 18:29:04,859 log 22616 21940 Method Not Allowed: /api/customers/
+WARNING 2025-07-10 18:29:04,860 runserver 22616 22796 [31;1mHTTP POST /api/customers/ 405 [0.08, 127.0.0.1:50319][0m
+INFO 2025-07-10 18:30:37,639 middleware 22616 18888 API Request: {"method": "POST", "path": "/api/customers/", "status_code": 405, "duration": 0.072, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"customer_id": "CUST2025", "customer_type": "individual", "first_name": "Sahina", "last_name": "Yusuf", "email": "sahina@example.com", "phone": "+919876543210", "alternate_phone": "+918765432109", "address_line1": "123 MG Road", "address_line2": "Near Church Street", "city": "Bangalore", "state": "Karnataka", "postal_code": "560001", "country": "India", "gender": "female", "date_of_birth": "1995-03-15", "industry": "Insurance", "business_registration_number": "REG98765", "tax_id": "TAX12345", "annual_revenue": "1000000.00", "employee_count": 50, "status": "active", "priority": "medium", "preferred_contact_method": "email", "preferred_language": "en", "timezone": "Asia/Kolkata", "email_notifications": true, "sms_notifications": true, "whatsapp_notifications": false, "marketing_communications": true, "credit_score": 700, "payment_terms": "Net 30", "credit_limit": "500000.00", "first_policy_date": "2021-01-01", "last_policy_date": "2023-12-31", "last_contact_date": "2024-06-15T10:30:00Z", "next_followup_date": "2024-07-15T10:00:00Z", "total_policies": 5, "total_premium": "25000.00", "lifetime_value": "30000.00", "internal_notes": "VIP customer with high potential", "tags": ["vip", "priority"], "custom_fields": {"referred_by": "AgentX", "preferred_branch": "Bangalore Central"}}}
+WARNING 2025-07-10 18:30:37,642 log 22616 21940 Method Not Allowed: /api/customers/
+WARNING 2025-07-10 18:30:37,643 runserver 22616 22796 [31;1mHTTP POST /api/customers/ 405 [0.08, 127.0.0.1:50571][0m
+INFO 2025-07-11 09:40:55,303 server 1780 19068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 09:40:55,303 server 1780 19068 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 09:40:55,303 server 1780 19068 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-11 10:39:15,563 middleware 1780 13796 API Request: {"method": "POST", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.031, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-2025-001", "customer": 4, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-11 10:39:15,567 log 1780 17208 Unauthorized: /api/policies/policies/
+WARNING 2025-07-11 10:39:15,568 runserver 1780 19068 [31;1mHTTP POST /api/policies/policies/ 401 [0.06, 127.0.0.1:63214][0m
+INFO 2025-07-11 10:41:24,523 server 1780 19068 Killed 0 pending application instances
+INFO 2025-07-11 10:41:39,476 server 26200 11340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 10:41:39,476 server 26200 11340 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 10:41:39,477 server 26200 11340 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 10:41:50,417 middleware 26200 10716 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 10:41:50,420 runserver 26200 11340 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:63500][0m
+ERROR 2025-07-11 10:42:15,626 middleware 26200 15368 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 10:42:15,628 log 26200 13416 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 10:42:15,628 runserver 26200 11340 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:63500][0m
+ERROR 2025-07-11 10:46:50,391 middleware 26200 10352 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 10:46:50,399 log 26200 13416 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 10:46:50,402 runserver 26200 11340 [35;1mHTTP POST /api/policies/policies/ 500 [0.12, 127.0.0.1:63967][0m
+ERROR 2025-07-11 10:55:54,701 middleware 26200 12260 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 10:55:54,703 log 26200 13416 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 10:55:54,704 runserver 26200 11340 [35;1mHTTP POST /api/policies/policies/ 500 [0.16, 127.0.0.1:64376][0m
+INFO 2025-07-11 10:56:35,797 server 26200 11340 Killed 0 pending application instances
+INFO 2025-07-11 10:57:14,907 server 20984 23048 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 10:57:14,907 server 20984 23048 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 10:57:14,908 server 20984 23048 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 10:57:18,773 middleware 20984 5680 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 10:57:18,775 log 20984 5764 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 10:57:18,776 runserver 20984 23048 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:64444][0m
+INFO 2025-07-11 11:01:52,963 server 20984 23048 Killed 0 pending application instances
+INFO 2025-07-11 11:04:34,645 server 18516 15664 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:04:34,646 server 18516 15664 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:04:34,646 server 18516 15664 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-11 11:13:42,746 server 18516 15664 Killed 0 pending application instances
+INFO 2025-07-11 11:15:05,423 server 5160 22684 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:15:05,423 server 5160 22684 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:15:05,424 server 5160 22684 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 11:20:20,878 middleware 5160 1408 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:20:20,880 log 5160 19800 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:20:20,881 runserver 5160 22684 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:49814][0m
+ERROR 2025-07-11 11:20:55,240 middleware 5160 10216 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:20:55,242 log 5160 19800 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:20:55,242 runserver 5160 22684 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:49814][0m
+INFO 2025-07-11 11:24:23,863 server 5160 22684 Killed 0 pending application instances
+INFO 2025-07-11 11:25:05,480 server 16516 22028 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:25:05,480 server 16516 22028 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:25:05,481 server 16516 22028 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 11:25:11,051 middleware 16516 12904 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:25:11,136 log 16516 17096 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:25:11,165 runserver 16516 22028 [35;1mHTTP POST /api/policies/policies/ 500 [0.43, 127.0.0.1:50657][0m
+ERROR 2025-07-11 11:25:57,155 middleware 16516 25708 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:25:57,156 log 16516 17096 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:25:57,157 runserver 16516 22028 [35;1mHTTP POST /api/policies/policies/ 500 [0.16, 127.0.0.1:50657][0m
+ERROR 2025-07-11 11:26:36,467 middleware 16516 12756 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:26:36,469 log 16516 17096 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:26:36,469 runserver 16516 22028 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:50657][0m
+INFO 2025-07-11 11:26:39,272 server 16516 22028 Killed 0 pending application instances
+INFO 2025-07-11 11:26:44,994 autoreload 15368 18292 Watching for file changes with StatReloader
+INFO 2025-07-11 11:27:13,903 server 18940 24720 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:27:13,903 server 18940 24720 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:27:13,904 server 18940 24720 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 11:27:16,807 middleware 18940 15056 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:27:16,809 log 18940 25988 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:27:16,809 runserver 18940 24720 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:50924][0m
+ERROR 2025-07-11 11:34:16,703 middleware 18940 26484 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:34:16,704 log 18940 25988 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:34:16,705 runserver 18940 24720 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:51131][0m
+ERROR 2025-07-11 11:34:27,783 middleware 18940 25760 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:34:27,785 log 18940 25988 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:34:27,786 runserver 18940 24720 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:51131][0m
+INFO 2025-07-11 11:40:59,986 server 18940 24720 Killed 0 pending application instances
+INFO 2025-07-11 11:49:23,793 server 16808 11920 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:49:23,794 server 16808 11920 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:49:23,794 server 16808 11920 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-11 11:49:27,797 middleware 16808 22464 API Request: {"method": "POST", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.011, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-2025-001", "customer": 4, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-11 11:49:27,799 log 16808 18044 Unauthorized: /api/policies/policies/
+WARNING 2025-07-11 11:49:27,800 runserver 16808 11920 [31;1mHTTP POST /api/policies/policies/ 401 [0.02, 127.0.0.1:52503][0m
+INFO 2025-07-11 11:49:44,314 middleware 16808 16348 API Request: {"method": "POST", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-2025-001", "customer": 4, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-11 11:49:44,315 log 16808 18044 Unauthorized: /api/policies/policies/
+WARNING 2025-07-11 11:49:44,316 runserver 16808 11920 [31;1mHTTP POST /api/policies/policies/ 401 [0.01, 127.0.0.1:52503][0m
+ERROR 2025-07-11 11:49:53,530 middleware 16808 1796 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 11:49:53,532 runserver 16808 11920 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:52503][0m
+ERROR 2025-07-11 11:50:04,048 middleware 16808 15092 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:50:04,049 log 16808 18044 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:50:04,050 runserver 16808 11920 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:52503][0m
+INFO 2025-07-11 11:51:22,388 server 16808 11920 Killed 0 pending application instances
+INFO 2025-07-11 11:55:14,864 server 8348 19512 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 11:55:14,865 server 8348 19512 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 11:55:14,865 server 8348 19512 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 11:55:17,897 middleware 8348 22028 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 11:55:17,899 log 8348 10892 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 11:55:17,899 runserver 8348 19512 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:52749][0m
+INFO 2025-07-11 11:57:57,067 server 8348 19512 Killed 0 pending application instances
+INFO 2025-07-11 12:17:25,016 server 13572 17208 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 12:17:25,017 server 13572 17208 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 12:17:25,017 server 13572 17208 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 12:17:36,791 middleware 13572 9100 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:17:36,793 log 13572 9868 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:17:36,794 runserver 13572 17208 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:55938][0m
+INFO 2025-07-11 12:21:27,942 server 13572 17208 Killed 0 pending application instances
+INFO 2025-07-11 12:21:31,470 server 16620 23148 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 12:21:31,470 server 16620 23148 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 12:21:31,471 server 16620 23148 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 12:21:33,185 middleware 16620 3588 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:21:33,186 log 16620 24836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:21:33,187 runserver 16620 23148 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:56825][0m
+INFO 2025-07-11 12:26:32,751 server 16620 23148 Killed 0 pending application instances
+INFO 2025-07-11 12:26:35,909 server 492 18144 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 12:26:35,909 server 492 18144 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 12:26:35,910 server 492 18144 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 12:26:40,707 middleware 492 23604 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:26:40,709 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:26:40,710 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.12, 127.0.0.1:59482][0m
+ERROR 2025-07-11 12:29:59,830 middleware 492 15648 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:29:59,832 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:29:59,832 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:60886][0m
+ERROR 2025-07-11 12:31:45,319 middleware 492 15016 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:31:45,321 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:31:45,321 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.08, 127.0.0.1:61394][0m
+ERROR 2025-07-11 12:34:18,940 middleware 492 26280 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:34:18,942 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:34:18,942 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.17, 127.0.0.1:62453][0m
+ERROR 2025-07-11 12:35:27,596 middleware 492 7012 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:35:27,598 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:35:27,598 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.08, 127.0.0.1:63290][0m
+ERROR 2025-07-11 12:47:54,672 middleware 492 21584 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:47:54,674 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:47:54,674 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.07, 127.0.0.1:51420][0m
+ERROR 2025-07-11 12:49:43,173 middleware 492 4900 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:49:43,175 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:49:43,176 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.17, 127.0.0.1:52641][0m
+INFO 2025-07-11 12:52:38,252 middleware 492 12812 API Request: {"method": "POST", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-2025-001", "customer": 4, "policy_type": "Auto Insurance", "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-11 12:52:38,254 log 492 9836 Unauthorized: /api/policies/policies/
+WARNING 2025-07-11 12:52:38,254 runserver 492 18144 [31;1mHTTP POST /api/policies/policies/ 401 [0.01, 127.0.0.1:52995][0m
+ERROR 2025-07-11 12:52:44,609 middleware 492 14064 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 12:52:44,611 runserver 492 18144 [mHTTP POST /api/auth/login/ 200 [0.53, 127.0.0.1:52995][0m
+ERROR 2025-07-11 12:52:59,023 middleware 492 312 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 12:52:59,024 log 492 9836 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 12:52:59,025 runserver 492 18144 [31;1mHTTP POST /api/policies/policies/ 400 [0.06, 127.0.0.1:52995][0m
+ERROR 2025-07-11 12:54:11,294 middleware 492 4656 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:54:11,295 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:54:11,296 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.16, 127.0.0.1:53057][0m
+ERROR 2025-07-11 12:54:25,156 middleware 492 20728 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 12:54:25,158 log 492 9836 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 12:54:25,158 runserver 492 18144 [31;1mHTTP POST /api/policies/policies/ 400 [0.06, 127.0.0.1:53057][0m
+ERROR 2025-07-11 12:54:34,861 middleware 492 18760 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:54:34,862 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:54:34,863 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.16, 127.0.0.1:53057][0m
+ERROR 2025-07-11 12:55:32,186 middleware 492 19508 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 12:55:32,187 log 492 9836 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 12:55:32,188 runserver 492 18144 [31;1mHTTP POST /api/policies/policies/ 400 [0.16, 127.0.0.1:53057][0m
+ERROR 2025-07-11 12:57:38,194 middleware 492 9616 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 12:57:38,196 log 492 9836 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 12:57:38,197 runserver 492 18144 [31;1mHTTP POST /api/policies/policies/ 400 [0.05, 127.0.0.1:54882][0m
+ERROR 2025-07-11 12:57:44,457 middleware 492 22288 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 12:57:44,459 log 492 9836 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 12:57:44,459 runserver 492 18144 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:54882][0m
+INFO 2025-07-11 13:02:04,324 server 492 18144 Killed 0 pending application instances
+INFO 2025-07-11 13:02:37,205 server 23416 7656 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 13:02:37,206 server 23416 7656 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 13:02:37,206 server 23416 7656 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 13:02:39,925 middleware 23416 2448 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 13:02:39,927 log 23416 2884 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 13:02:39,928 runserver 23416 7656 [35;1mHTTP POST /api/policies/policies/ 500 [0.08, 127.0.0.1:56491][0m
+ERROR 2025-07-11 13:05:57,656 middleware 23416 22272 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 13:05:57,658 log 23416 2884 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 13:05:57,658 runserver 23416 7656 [35;1mHTTP POST /api/policies/policies/ 500 [0.06, 127.0.0.1:56716][0m
+INFO 2025-07-11 13:09:04,630 server 23416 7656 Killed 0 pending application instances
+INFO 2025-07-11 13:09:07,774 server 16672 22268 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 13:09:07,774 server 16672 22268 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 13:09:07,775 server 16672 22268 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 13:09:13,700 middleware 16672 13748 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 13:09:13,703 log 16672 968 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 13:09:13,704 runserver 16672 22268 [35;1mHTTP POST /api/policies/policies/ 500 [0.08, 127.0.0.1:59434][0m
+INFO 2025-07-11 13:14:24,162 server 16672 22268 Killed 0 pending application instances
+INFO 2025-07-11 13:14:27,530 server 3884 18068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 13:14:27,531 server 3884 18068 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 13:14:27,531 server 3884 18068 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 13:14:31,643 middleware 3884 10196 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 13:14:31,645 log 3884 25096 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 13:14:31,646 runserver 3884 18068 [35;1mHTTP POST /api/policies/policies/ 500 [0.09, 127.0.0.1:61802][0m
+ERROR 2025-07-11 13:18:28,290 middleware 3884 21340 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 13:18:28,291 log 3884 25096 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 13:18:28,292 runserver 3884 18068 [31;1mHTTP POST /api/policies/policies/ 400 [0.04, 127.0.0.1:65508][0m
+ERROR 2025-07-11 13:18:37,435 middleware 3884 16532 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 13:18:37,438 log 3884 25096 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 13:18:37,439 runserver 3884 18068 [31;1mHTTP POST /api/policies/policies/ 400 [0.16, 127.0.0.1:65508][0m
+ERROR 2025-07-11 13:18:50,007 middleware 3884 8680 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 13:18:50,008 log 3884 25096 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 13:18:50,009 runserver 3884 18068 [31;1mHTTP POST /api/policies/policies/ 400 [0.04, 127.0.0.1:65508][0m
+ERROR 2025-07-11 13:18:58,709 middleware 3884 6484 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 13:18:58,711 log 3884 25096 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 13:18:58,711 runserver 3884 18068 [31;1mHTTP POST /api/policies/policies/ 400 [0.04, 127.0.0.1:65508][0m
+ERROR 2025-07-11 13:19:07,347 middleware 3884 9780 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 13:19:07,348 log 3884 25096 Bad Request: /api/policies/policies/
+WARNING 2025-07-11 13:19:07,349 runserver 3884 18068 [31;1mHTTP POST /api/policies/policies/ 400 [0.06, 127.0.0.1:65508][0m
+ERROR 2025-07-11 13:20:52,842 middleware 3884 20736 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 13:20:52,844 log 3884 25096 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-11 13:20:52,844 runserver 3884 18068 [35;1mHTTP POST /api/policies/policies/ 500 [0.17, 127.0.0.1:50408][0m
+INFO 2025-07-11 13:22:30,535 server 3884 18068 Killed 0 pending application instances
+INFO 2025-07-11 13:22:33,991 server 23348 25972 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-11 13:22:33,991 server 23348 25972 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-11 13:22:33,992 server 23348 25972 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-11 13:22:37,704 middleware 23348 12820 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 13:22:37,706 runserver 23348 25972 [mHTTP POST /api/policies/policies/ 201 [0.08, 127.0.0.1:51195][0m
+INFO 2025-07-11 14:37:48,727 middleware 23348 25696 API Request: {"method": "POST", "path": "/api/policies/renewals/", "status_code": 401, "duration": 0.015, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-2025-001", "customer": 5, "policy_type": 1, "start_date": "2025-07-10", "end_date": "2026-07-10", "premium_amount": 15000.0, "sum_assured": 1000000.0, "payment_frequency": "yearly", "status": "pending", "nominee_name": "Alice Johnson", "nominee_relationship": "Spouse", "nominee_contact": "9123456789", "terms_conditions": "Subject to policy approval.", "special_conditions": "Medical report required", "agent_name": "Robert Lee", "agent_code": "AGT2025"}}
+WARNING 2025-07-11 14:37:48,732 log 23348 23812 Unauthorized: /api/policies/renewals/
+WARNING 2025-07-11 14:37:48,734 runserver 23348 25972 [31;1mHTTP POST /api/policies/renewals/ 401 [0.04, 127.0.0.1:52026][0m
+ERROR 2025-07-11 14:37:59,851 middleware 23348 22360 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 14:37:59,853 runserver 23348 25972 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:52026][0m
+INFO 2025-07-11 14:38:14,717 middleware 23348 15532 API Request: {"method": "POST", "path": "/api/policies/renewals/", "status_code": 400, "duration": 0.157, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 238}
+WARNING 2025-07-11 14:38:14,719 log 23348 23812 Bad Request: /api/policies/renewals/
+WARNING 2025-07-11 14:38:14,720 runserver 23348 25972 [31;1mHTTP POST /api/policies/renewals/ 400 [0.16, 127.0.0.1:52026][0m
+ERROR 2025-07-11 14:39:56,117 middleware 23348 1184 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 14:39:56,119 log 23348 23812 Bad Request: /api/policies/renewals/
+WARNING 2025-07-11 14:39:56,119 runserver 23348 25972 [31;1mHTTP POST /api/policies/renewals/ 400 [0.05, 127.0.0.1:52118][0m
+ERROR 2025-07-11 14:40:35,203 middleware 23348 17688 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-11 14:40:35,204 log 23348 23812 Bad Request: /api/policies/renewals/
+WARNING 2025-07-11 14:40:35,205 runserver 23348 25972 [31;1mHTTP POST /api/policies/renewals/ 400 [0.05, 127.0.0.1:52118][0m
+ERROR 2025-07-11 14:42:18,033 middleware 23348 12032 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:42:18,034 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:42:18,035 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.06, 127.0.0.1:53246][0m
+ERROR 2025-07-11 14:44:47,092 middleware 23348 26620 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:44:47,093 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:44:47,094 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.05, 127.0.0.1:54965][0m
+ERROR 2025-07-11 14:45:45,102 middleware 23348 14208 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:45:45,104 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:45:45,105 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.05, 127.0.0.1:54965][0m
+ERROR 2025-07-11 14:46:11,911 middleware 23348 26276 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:46:11,913 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:46:11,913 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.15, 127.0.0.1:54965][0m
+ERROR 2025-07-11 14:46:29,606 middleware 23348 22596 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:46:29,608 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:46:29,610 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.05, 127.0.0.1:54965][0m
+ERROR 2025-07-11 14:46:40,480 middleware 23348 24712 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:46:40,482 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:46:40,483 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.05, 127.0.0.1:54965][0m
+ERROR 2025-07-11 14:55:27,183 middleware 23348 15332 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 14:55:27,185 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 14:55:27,185 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.06, 127.0.0.1:64957][0m
+ERROR 2025-07-11 15:06:07,737 middleware 23348 18832 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 15:06:07,739 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 15:06:07,740 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.06, 127.0.0.1:51461][0m
+ERROR 2025-07-11 15:07:32,242 middleware 23348 11204 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 15:07:32,243 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 15:07:32,244 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.15, 127.0.0.1:52068][0m
+ERROR 2025-07-11 15:09:28,842 middleware 23348 11256 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-11 15:09:28,844 log 23348 23812 Internal Server Error: /api/policies/renewals/
+ERROR 2025-07-11 15:09:28,845 runserver 23348 25972 [35;1mHTTP POST /api/policies/renewals/ 500 [0.19, 127.0.0.1:52403][0m
+ERROR 2025-07-11 15:11:08,029 middleware 23348 9420 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 15:11:08,032 runserver 23348 25972 [mHTTP POST /api/policies/renewals/ 201 [0.06, 127.0.0.1:54229][0m
+INFO 2025-07-11 15:58:22,681 middleware 23348 10812 API Request: {"method": "POST", "path": "/api/policies/", "status_code": 401, "duration": 0.009, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL123456", "customer": 1, "policy_type": 2, "start_date": "2025-07-01", "end_date": "2030-07-01", "premium_amount": "10000.00", "sum_assured": "500000.00", "payment_frequency": "yearly", "nominee_name": "Aisha Khan", "nominee_relationship": "Daughter", "nominee_contact": "+919876543210", "terms_conditions": "Standard terms apply.", "special_conditions": "No smoking clause applies.", "agent_name": "Rahul Mehta", "agent_code": "AGT1003"}}
+WARNING 2025-07-11 15:58:22,685 log 23348 23812 Unauthorized: /api/policies/
+WARNING 2025-07-11 15:58:22,687 runserver 23348 25972 [31;1mHTTP POST /api/policies/ 401 [0.02, 127.0.0.1:57135][0m
+ERROR 2025-07-11 15:58:34,733 middleware 23348 27444 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-11 15:58:34,737 runserver 23348 25972 [mHTTP POST /api/auth/login/ 200 [0.98, 127.0.0.1:57135][0m
+INFO 2025-07-11 15:58:51,649 middleware 23348 5332 API Request: {"method": "POST", "path": "/api/policies/", "status_code": 405, "duration": 0.079, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"policy_number": "POL123456", "customer": 1, "policy_type": 2, "start_date": "2025-07-01", "end_date": "2030-07-01", "premium_amount": "10000.00", "sum_assured": "500000.00", "payment_frequency": "yearly", "nominee_name": "Aisha Khan", "nominee_relationship": "Daughter", "nominee_contact": "+919876543210", "terms_conditions": "Standard terms apply.", "special_conditions": "No smoking clause applies.", "agent_name": "Rahul Mehta", "agent_code": "AGT1003"}}
+WARNING 2025-07-11 15:58:51,652 log 23348 23812 Method Not Allowed: /api/policies/
+WARNING 2025-07-11 15:58:51,653 runserver 23348 25972 [31;1mHTTP POST /api/policies/ 405 [0.09, 127.0.0.1:57135][0m
+INFO 2025-07-11 15:59:04,541 server 23348 25972 Killed 0 pending application instances
