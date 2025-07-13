@@ -15,6 +15,9 @@ router.register(r'beneficiaries', PolicyBeneficiaryViewSet, basename='policybene
 router.register(r'payments', PolicyPaymentViewSet, basename='policypayment')
 router.register(r'notes', PolicyNoteViewSet, basename='policynote')
 
+
+
 urlpatterns = [
     path('', include(router.urls)),
+
 ] 

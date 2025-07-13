@@ -5,8 +5,10 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q, Count, Sum
 from django.utils import timezone
+from django.utils.timezone import now
 from datetime import date, timedelta
-
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from .models import (
     PolicyType, Policy, PolicyRenewal, PolicyClaim, 
     PolicyDocument, PolicyBeneficiary, PolicyPayment, PolicyNote
