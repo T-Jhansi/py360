@@ -35,6 +35,7 @@ THIRD_PARTY_APPS = [
     'drf_spectacular',
     'django_extensions',
     'django_filters',
+    'storages',
 ]
 
 LOCAL_APPS = [
@@ -45,6 +46,8 @@ LOCAL_APPS = [
     'apps.policies',
     'apps.uploads',
     'apps.campaigns',
+    'apps.templates',
+    'apps.TargetAudience',
     # 'apps.communications',  # Add when dependencies are installed
     # 'apps.emails',  # Add when dependencies are installed
     # 'apps.surveys',  # Add when dependencies are installed

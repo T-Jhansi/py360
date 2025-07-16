@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel, TimestampedModel
 from apps.customers.models import Customer
 from apps.policies.models import Policy
+from apps.templates.models import Template
+from apps.uploads.models import FileUpload
+from apps.TargetAudience.models import TargetAudience
 import uuid
 import json
 
@@ -44,40 +47,40 @@ class Campaign(BaseModel):
     
     name = models.CharField(max_length=200)
     campaign_type = models.ForeignKey(CampaignType, on_delete=models.CASCADE, related_name='campaigns')
+    template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns')
     description = models.TextField(blank=True)
     status = models.CharField(max_length=20, choices=CAMPAIGN_STATUS_CHOICES, default='draft')
-    
+    upload = models.ForeignKey(FileUpload,on_delete=models.SET_NULL,null=True,blank=True,related_name='campaigns')
     # Campaign Settings
     channels = models.JSONField(default=list, help_text="List of communication channels")
-    target_audience = models.CharField(max_length=50, choices=[
-        ('all_customers', 'All Customers'),
-        ('policy_holders', 'Policy Holders'),
-        ('renewal_due', 'Renewal Due'),
-        ('custom', 'Custom Segment'),
-    ], default='all_customers')
-    
+    target_audience = models.ForeignKey(TargetAudience,on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns'
+    )
+
     # Scheduling
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField(null=True, blank=True)
+    schedule_type = models.CharField(max_length=20, choices=[
+        ('immediate', 'Immediate'),
+        ('schedule later', 'Scheduled Later'),
+    ], default='immediate')
+    scheduled_at = models.DateTimeField(null=True, blank=True)
+    started_at = models.DateTimeField()
+    completed_at = models.DateTimeField(null=True, blank=True)
+
     is_recurring = models.BooleanField(default=False)
     recurrence_pattern = models.JSONField(default=dict, blank=True)
     
     # Content
     subject_line = models.CharField(max_length=200, blank=True)
-    email_template = models.TextField(blank=True)
-    whatsapp_template = models.TextField(blank=True)
-    sms_template = models.TextField(blank=True)
     
     # Personalization
     use_personalization = models.BooleanField(default=True)
     personalization_fields = models.JSONField(default=list, blank=True)
     
     # Tracking
-    total_recipients = models.PositiveIntegerField(default=0)
-    total_sent = models.PositiveIntegerField(default=0)
-    total_delivered = models.PositiveIntegerField(default=0)
-    total_opened = models.PositiveIntegerField(default=0)
-    total_clicked = models.PositiveIntegerField(default=0)
+    target_count = models.PositiveIntegerField(default=0)
+    sent_count = models.PositiveIntegerField(default=0)
+    delivered_count = models.PositiveIntegerField(default=0)
+    opened_count = models.PositiveIntegerField(default=0)
+    clicked_count = models.PositiveIntegerField(default=0)
     total_responses = models.PositiveIntegerField(default=0)
     
     # System Fields
@@ -88,7 +91,7 @@ class Campaign(BaseModel):
         db_table = 'campaigns'
         ordering = ['-created_at']
         indexes = [
-            models.Index(fields=['status', 'start_date']),
+            models.Index(fields=['status', 'started_at']),
             models.Index(fields=['campaign_type', 'status']),
         ]
     
@@ -98,30 +101,30 @@ class Campaign(BaseModel):
     @property
     def delivery_rate(self):
         """Calculate delivery rate percentage"""
-        if self.total_sent == 0:
+        if self.sent_count == 0:
             return 0
-        return round((self.total_delivered / self.total_sent) * 100, 2)
+        return round((self.delivered_count / self.sent_count) * 100, 2)
     
     @property
     def open_rate(self):
         """Calculate open rate percentage"""
-        if self.total_delivered == 0:
+        if self.delivered_count == 0:
             return 0
-        return round((self.total_opened / self.total_delivered) * 100, 2)
+        return round((self.opened_count / self.delivered_count) * 100, 2)
     
     @property
     def click_rate(self):
         """Calculate click rate percentage"""
-        if self.total_opened == 0:
+        if self.opened_count == 0:
             return 0
-        return round((self.total_clicked / self.total_opened) * 100, 2)
+        return round((self.clicked_count / self.opened_count) * 100, 2)
     
     @property
     def response_rate(self):
         """Calculate response rate percentage"""
-        if self.total_delivered == 0:
+        if self.delivered_count == 0:
             return 0
-        return round((self.total_responses / self.total_delivered) * 100, 2)
+        return round((self.total_responses / self.delivered_count) * 100, 2)
 
 class CampaignSegment(BaseModel):
     """Customer segments for targeted campaigns"""

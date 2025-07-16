@@ -1418,3 +1418,412 @@ INFO 2025-07-13 17:35:45,783 middleware 4104 11460 API Request: {"method": "POST
 WARNING 2025-07-13 17:35:45,785 log 4104 28488 Not Found: /api/policies/claimcreate/
 WARNING 2025-07-13 17:35:45,786 runserver 4104 6044 [33mHTTP POST /api/policies/claimcreate/ 404 [0.09, 127.0.0.1:64915][0m
 INFO 2025-07-13 18:06:33,428 server 4104 6044 Killed 0 pending application instances
+INFO 2025-07-14 09:46:43,676 server 9840 10700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 09:46:43,676 server 9840 10700 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 09:46:43,677 server 9840 10700 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 10:50:01,347 middleware 9840 892 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 10:50:01,350 runserver 9840 10700 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:53822][0m
+INFO 2025-07-14 11:11:30,918 server 9840 10700 Killed 0 pending application instances
+INFO 2025-07-14 11:12:49,538 server 24976 16628 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 11:12:49,538 server 24976 16628 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 11:12:49,539 server 24976 16628 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 11:14:47,263 middleware 24976 20648 API Request: {"method": "POST", "path": "/api/campaigns/campaigns", "status_code": 404, "duration": 0.057, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5380, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder to customers about policies due for renewal this month.", "status": "draft", "channels": ["email", "sms"], "target_audience": "renewal_due", "start_date": "2025-07-20T10:00:00Z", "end_date": "2025-07-30T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Your Policy is Due for Renewal", "email_template": "<p>Dear {{customer_name}}, your policy is due soon. Renew now!</p>", "whatsapp_template": "Hi {{customer_name}}, your policy will expire soon. Renew it now!", "sms_template": "Reminder: Renew your policy before it expires!", "use_personalization": true, "personalization_fields": ["customer_name", "policy_number"], "assigned_to": 2}}
+ERROR 2025-07-14 11:14:47,299 log 24976 20776 Internal Server Error: /api/campaigns/campaigns
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 489, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 439, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\asgiref\sync.py", line 493, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/campaigns/campaigns/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-14 11:14:47,305 runserver 24976 16628 [35;1mHTTP POST /api/campaigns/campaigns 500 [0.10, 127.0.0.1:56076][0m
+ERROR 2025-07-14 11:15:02,646 middleware 24976 21936 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-14 11:15:02,647 log 24976 20776 Bad Request: /api/campaigns/campaigns/
+WARNING 2025-07-14 11:15:02,648 runserver 24976 16628 [31;1mHTTP POST /api/campaigns/campaigns/ 400 [0.07, 127.0.0.1:56076][0m
+ERROR 2025-07-14 11:31:07,876 middleware 24976 24172 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-14 11:31:07,878 log 24976 20776 Bad Request: /api/campaigns/campaigns/
+WARNING 2025-07-14 11:31:07,879 runserver 24976 16628 [31;1mHTTP POST /api/campaigns/campaigns/ 400 [0.15, 127.0.0.1:57942][0m
+INFO 2025-07-14 12:21:43,886 server 24976 16628 Killed 0 pending application instances
+INFO 2025-07-14 12:22:19,003 server 29308 27532 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 12:22:19,004 server 29308 27532 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 12:22:19,004 server 29308 27532 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 12:27:52,551 middleware 29308 17828 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.012, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder to customers about policies due for renewal this month.", "status": "draft", "channels": ["email", "sms"], "target_audience": 1, "start_date": "2025-07-20T10:00:00Z", "end_date": "2025-07-30T18:00:00Z", "is_recurring": false, "recurrence_pattern": {}, "subject_line": "Your Policy is Due for Renewal", "email_template": "<p>Dear {{customer_name}}, your policy is due soon. Renew now!</p>", "whatsapp_template": "Hi {{customer_name}}, your policy will expire soon. Renew it now!", "sms_template": "Reminder: Renew your policy before it expires!", "use_personalization": true, "personalization_fields": ["customer_name", "policy_number"], "assigned_to": 2}}
+WARNING 2025-07-14 12:27:52,553 log 29308 13056 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-14 12:27:52,554 runserver 29308 27532 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.02, 127.0.0.1:61277][0m
+ERROR 2025-07-14 12:27:58,555 middleware 29308 26592 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 12:27:58,558 runserver 29308 27532 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:61277][0m
+INFO 2025-07-14 12:55:26,515 server 25964 28456 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 12:55:26,515 server 25964 28456 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 12:55:26,516 server 25964 28456 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 13:03:48,583 server 25964 28456 Killed 0 pending application instances
+INFO 2025-07-14 13:09:28,355 server 13564 20408 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 13:09:28,356 server 13564 20408 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 13:09:28,356 server 13564 20408 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 14:03:59,841 middleware 13564 27416 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 14:03:59,844 runserver 13564 20408 [mHTTP POST /api/auth/login/ 200 [1.01, 127.0.0.1:59154][0m
+ERROR 2025-07-14 14:53:32,544 middleware 13564 512 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 14:53:32,548 log 13564 20864 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 14:53:32,549 runserver 13564 20408 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.19, 127.0.0.1:61700][0m
+INFO 2025-07-14 15:12:32,522 server 25608 25024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:12:32,523 server 25608 25024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:12:32,524 server 25608 25024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 15:12:37,439 middleware 25608 25512 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.023, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template_id": 3, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "total_recipients": 1500, "total_sent": 0, "total_delivered": 0, "total_opened": 0, "total_clicked": 0, "total_responses": 0, "assigned_to": 5}}
+WARNING 2025-07-14 15:12:37,444 log 25608 16188 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-14 15:12:37,446 runserver 25608 25024 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.04, 127.0.0.1:51310][0m
+ERROR 2025-07-14 15:12:44,215 middleware 25608 9176 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 15:12:44,218 runserver 25608 25024 [mHTTP POST /api/auth/login/ 200 [0.88, 127.0.0.1:51310][0m
+ERROR 2025-07-14 15:13:03,900 middleware 25608 29644 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:13:03,902 log 25608 16188 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:13:03,903 runserver 25608 25024 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.08, 127.0.0.1:51310][0m
+INFO 2025-07-14 15:16:39,353 server 25608 25024 Killed 0 pending application instances
+INFO 2025-07-14 15:16:45,127 server 20356 5492 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:16:45,127 server 20356 5492 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:16:45,129 server 20356 5492 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:16:46,380 middleware 20356 10104 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:16:46,384 log 20356 25404 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:16:46,385 runserver 20356 5492 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.11, 127.0.0.1:51645][0m
+INFO 2025-07-14 15:24:38,965 server 20356 5492 Killed 0 pending application instances
+INFO 2025-07-14 15:25:19,322 server 10852 9884 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:25:19,323 server 10852 9884 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:25:19,324 server 10852 9884 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:25:24,765 middleware 10852 26028 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:25:24,769 log 10852 2980 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:25:24,771 runserver 10852 9884 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.10, 127.0.0.1:53880][0m
+INFO 2025-07-14 15:35:09,669 server 10852 9884 Killed 0 pending application instances
+INFO 2025-07-14 15:35:47,778 server 4100 26156 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:35:47,778 server 4100 26156 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:35:47,780 server 4100 26156 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:35:51,477 middleware 4100 14192 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:35:51,482 log 4100 7612 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:35:51,483 runserver 4100 26156 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.14, 127.0.0.1:57931][0m
+INFO 2025-07-14 15:46:37,859 server 4100 26156 Killed 0 pending application instances
+INFO 2025-07-14 15:47:15,259 server 2768 18324 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:47:15,260 server 2768 18324 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:47:15,261 server 2768 18324 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:47:19,045 middleware 2768 9192 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:47:19,050 log 2768 24308 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:47:19,052 runserver 2768 18324 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.10, 127.0.0.1:58458][0m
+INFO 2025-07-14 15:51:26,268 server 2768 18324 Killed 0 pending application instances
+INFO 2025-07-14 15:51:31,495 server 3600 22228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:51:31,496 server 3600 22228 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:51:31,497 server 3600 22228 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:51:32,621 middleware 3600 19888 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:51:32,626 log 3600 28220 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:51:32,627 runserver 3600 22228 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.21, 127.0.0.1:59319][0m
+INFO 2025-07-14 15:53:06,249 server 3600 22228 Killed 0 pending application instances
+INFO 2025-07-14 15:53:10,669 server 28408 22180 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:53:10,670 server 28408 22180 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:53:10,671 server 28408 22180 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:53:12,199 middleware 28408 12368 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:53:12,205 log 28408 14952 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:53:12,207 runserver 28408 22180 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.11, 127.0.0.1:59448][0m
+INFO 2025-07-14 15:54:26,239 server 28408 22180 Killed 0 pending application instances
+INFO 2025-07-14 15:54:30,380 server 7956 16816 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:54:30,380 server 7956 16816 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:54:30,384 server 7956 16816 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:54:30,960 middleware 7956 10956 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:54:30,965 log 7956 9208 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:54:30,966 runserver 7956 16816 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.11, 127.0.0.1:59525][0m
+INFO 2025-07-14 15:55:20,787 server 7956 16816 Killed 0 pending application instances
+INFO 2025-07-14 15:55:25,217 server 17320 23676 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:55:25,217 server 17320 23676 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:55:25,218 server 17320 23676 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:55:26,479 middleware 17320 16788 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:55:26,484 log 17320 22304 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:55:26,487 runserver 17320 23676 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.11, 127.0.0.1:59586][0m
+INFO 2025-07-14 15:55:58,507 server 17320 23676 Killed 0 pending application instances
+INFO 2025-07-14 15:56:02,573 server 21540 21388 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 15:56:02,574 server 21540 21388 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 15:56:02,575 server 21540 21388 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 15:56:05,390 middleware 21540 22660 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 15:56:05,394 log 21540 12520 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 15:56:05,397 runserver 21540 21388 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.13, 127.0.0.1:59645][0m
+INFO 2025-07-14 15:59:30,145 server 21540 21388 Killed 0 pending application instances
+INFO 2025-07-14 16:00:16,328 server 28416 22508 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 16:00:16,328 server 28416 22508 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 16:00:16,330 server 28416 22508 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 16:00:25,724 middleware 28416 20256 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:00:25,727 log 28416 25856 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:00:25,728 runserver 28416 22508 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.14, 127.0.0.1:60300][0m
+ERROR 2025-07-14 16:02:58,940 middleware 28416 18296 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:02:59,019 log 28416 25856 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:02:59,087 runserver 28416 22508 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [1.46, 127.0.0.1:60969][0m
+ERROR 2025-07-14 16:04:19,662 middleware 28416 14448 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:04:19,668 log 28416 25856 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:04:19,670 runserver 28416 22508 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.10, 127.0.0.1:61178][0m
+ERROR 2025-07-14 16:05:28,102 middleware 28416 9880 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-14 16:05:28,125 log 28416 25856 Bad Request: /api/campaigns/campaigns/
+WARNING 2025-07-14 16:05:28,132 runserver 28416 22508 [31;1mHTTP POST /api/campaigns/campaigns/ 400 [0.20, 127.0.0.1:61333][0m
+INFO 2025-07-14 16:10:54,868 server 28416 22508 Killed 0 pending application instances
+INFO 2025-07-14 16:10:59,741 server 20268 9904 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 16:10:59,742 server 20268 9904 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 16:10:59,744 server 20268 9904 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 16:11:03,830 middleware 20268 10056 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:11:03,835 log 20268 26720 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:11:03,837 runserver 20268 9904 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.31, 127.0.0.1:62969][0m
+INFO 2025-07-14 16:16:58,102 middleware 20268 25084 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template_id": 3, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "target_count": 1500, "sent_count": 0, "delivered_count": 0, "opened_count": 0, "clicked_count": 0, "total_responses": 0, "assigned_to": 5, "upload": 2}}
+WARNING 2025-07-14 16:16:58,107 log 20268 26720 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-14 16:16:58,109 runserver 20268 9904 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.02, 127.0.0.1:65281][0m
+ERROR 2025-07-14 16:17:04,908 middleware 20268 18592 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 16:17:04,912 runserver 20268 9904 [mHTTP POST /api/auth/login/ 200 [1.12, 127.0.0.1:65281][0m
+ERROR 2025-07-14 16:17:21,809 middleware 20268 9880 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:17:21,813 log 20268 26720 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:17:21,815 runserver 20268 9904 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.14, 127.0.0.1:65281][0m
+ERROR 2025-07-14 16:19:10,962 middleware 20268 5924 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:19:10,969 log 20268 26720 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:19:10,970 runserver 20268 9904 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.13, 127.0.0.1:50617][0m
+ERROR 2025-07-14 16:21:02,065 middleware 20268 11456 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:21:02,068 log 20268 26720 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:21:02,070 runserver 20268 9904 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.15, 127.0.0.1:50995][0m
+INFO 2025-07-14 16:36:46,142 server 20268 9904 Killed 0 pending application instances
+INFO 2025-07-14 16:37:10,819 server 6172 27400 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 16:37:10,819 server 6172 27400 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 16:37:10,820 server 6172 27400 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 16:40:50,512 server 6172 27400 Killed 0 pending application instances
+INFO 2025-07-14 16:41:34,594 server 14020 24172 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 16:41:34,595 server 14020 24172 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 16:41:34,596 server 14020 24172 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-14 16:57:29,340 server 14020 24172 Killed 0 pending application instances
+INFO 2025-07-14 16:57:35,893 server 25016 15104 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 16:57:35,893 server 25016 15104 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 16:57:35,899 server 25016 15104 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 16:57:36,237 middleware 25016 19508 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 16:57:36,243 log 25016 25280 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 16:57:36,245 runserver 25016 15104 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.15, 127.0.0.1:60728][0m
+ERROR 2025-07-14 17:01:04,679 middleware 25016 17040 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 17:01:04,686 log 25016 25280 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 17:01:04,693 runserver 25016 15104 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.29, 127.0.0.1:63356][0m
+ERROR 2025-07-14 17:04:22,896 middleware 25016 19796 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 17:04:22,899 log 25016 25280 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 17:04:22,902 runserver 25016 15104 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.16, 127.0.0.1:51648][0m
+ERROR 2025-07-14 17:05:40,624 middleware 25016 21780 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-14 17:05:40,629 log 25016 25280 Bad Request: /api/campaigns/campaigns/
+WARNING 2025-07-14 17:05:40,630 runserver 25016 15104 [31;1mHTTP POST /api/campaigns/campaigns/ 400 [0.11, 127.0.0.1:52347][0m
+ERROR 2025-07-14 17:05:54,462 middleware 25016 14880 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 17:05:54,466 log 25016 25280 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 17:05:54,467 runserver 25016 15104 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.11, 127.0.0.1:52347][0m
+INFO 2025-07-14 17:25:53,340 middleware 25016 29592 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template_id": 3, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "target_count": 1500, "sent_count": 0, "delivered_count": 0, "opened_count": 0, "clicked_count": 0, "total_responses": 0, "assigned_to": 5, "upload": 2}}
+WARNING 2025-07-14 17:25:53,342 log 25016 25280 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-14 17:25:53,342 runserver 25016 15104 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.01, 127.0.0.1:53087][0m
+ERROR 2025-07-14 17:25:59,438 middleware 25016 14248 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 17:25:59,439 runserver 25016 15104 [mHTTP POST /api/auth/login/ 200 [0.57, 127.0.0.1:53087][0m
+ERROR 2025-07-14 17:26:18,931 middleware 25016 10256 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-14 17:26:18,932 runserver 25016 15104 [mHTTP POST /api/auth/login/ 200 [0.58, 127.0.0.1:53087][0m
+ERROR 2025-07-14 17:26:34,841 middleware 25016 29476 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 17:26:34,843 log 25016 25280 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 17:26:34,843 runserver 25016 15104 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.06, 127.0.0.1:53087][0m
+INFO 2025-07-14 17:33:38,840 server 25016 15104 Killed 0 pending application instances
+INFO 2025-07-14 17:34:16,848 server 20024 17308 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-14 17:34:16,849 server 20024 17308 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-14 17:34:16,850 server 20024 17308 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-14 17:34:22,335 middleware 20024 19888 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-14 17:34:22,338 log 20024 15684 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-14 17:34:22,339 runserver 20024 17308 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.10, 127.0.0.1:54268][0m
+INFO 2025-07-15 10:40:06,954 server 28336 21204 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 10:40:06,955 server 28336 21204 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 10:40:06,956 server 28336 21204 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 10:52:08,200 server 28336 21204 Killed 0 pending application instances
+INFO 2025-07-15 10:53:39,023 server 14940 20372 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 10:53:39,024 server 14940 20372 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 10:53:39,024 server 14940 20372 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 10:53:41,028 server 14940 20372 Killed 0 pending application instances
+INFO 2025-07-15 10:55:12,602 server 23524 20932 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 10:55:12,602 server 23524 20932 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 10:55:12,603 server 23524 20932 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 10:55:49,411 middleware 23524 12072 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.017, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template_id": 3, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "target_count": 1500, "sent_count": 0, "delivered_count": 0, "opened_count": 0, "clicked_count": 0, "total_responses": 0, "assigned_to": 5, "upload": 2}}
+WARNING 2025-07-15 10:55:49,414 log 23524 3980 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-15 10:55:49,415 runserver 23524 20932 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.03, 127.0.0.1:65134][0m
+ERROR 2025-07-15 10:55:56,168 middleware 23524 24084 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 10:55:56,170 runserver 23524 20932 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:65134][0m
+ERROR 2025-07-15 10:56:11,747 middleware 23524 27188 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 10:56:11,749 runserver 23524 20932 [mHTTP POST /api/campaigns/campaigns/ 201 [0.07, 127.0.0.1:65134][0m
+ERROR 2025-07-15 11:02:26,955 middleware 23524 26092 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:02:26,958 runserver 23524 20932 [mHTTP POST /api/campaigns/campaigns/ 201 [0.17, 127.0.0.1:49347][0m
+INFO 2025-07-15 11:09:33,889 server 23524 20932 Killed 0 pending application instances
+INFO 2025-07-15 11:10:11,665 server 20072 27816 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 11:10:11,665 server 20072 27816 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 11:10:11,666 server 20072 27816 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 11:10:56,416 middleware 20072 25484 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:10:56,418 runserver 20072 27816 [mHTTP POST /api/campaigns/campaigns/ 201 [0.19, 127.0.0.1:50232][0m
+INFO 2025-07-15 11:13:54,528 server 20072 27816 Killed 0 pending application instances
+INFO 2025-07-15 11:15:25,562 server 19480 20712 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 11:15:25,562 server 19480 20712 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 11:15:25,563 server 19480 20712 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 11:15:29,879 middleware 19480 5692 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:15:29,881 runserver 19480 20712 [mHTTP POST /api/campaigns/campaigns/ 201 [0.19, 127.0.0.1:50639][0m
+ERROR 2025-07-15 11:33:48,778 middleware 19480 16688 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:33:48,783 runserver 19480 20712 [mHTTP POST /api/campaigns/campaigns/ 201 [0.15, 127.0.0.1:52569][0m
+ERROR 2025-07-15 11:36:05,615 middleware 19480 18268 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:36:05,619 runserver 19480 20712 [mHTTP POST /api/campaigns/campaigns/ 201 [0.13, 127.0.0.1:52781][0m
+INFO 2025-07-15 11:44:47,573 server 19480 20712 Killed 0 pending application instances
+INFO 2025-07-15 11:45:04,598 server 10104 23180 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 11:45:04,599 server 10104 23180 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 11:45:04,601 server 10104 23180 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 11:45:05,885 middleware 10104 10396 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-15 11:45:05,891 log 10104 10488 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-15 11:45:05,892 runserver 10104 23180 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.17, 127.0.0.1:53269][0m
+INFO 2025-07-15 11:49:40,639 server 10104 23180 Killed 0 pending application instances
+INFO 2025-07-15 11:50:52,358 server 9832 6572 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 11:50:52,359 server 9832 6572 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 11:50:52,360 server 9832 6572 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 11:51:03,653 middleware 9832 7988 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-15 11:51:03,658 log 9832 17652 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-15 11:51:03,659 runserver 9832 6572 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.17, 127.0.0.1:53579][0m
+INFO 2025-07-15 11:58:24,839 server 9832 6572 Killed 0 pending application instances
+INFO 2025-07-15 11:58:30,202 server 7796 25980 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 11:58:30,203 server 7796 25980 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 11:58:30,204 server 7796 25980 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 11:58:33,717 middleware 7796 20004 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/", "status_code": 401, "duration": 0.024, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template": 1, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "target_count": 1500, "sent_count": 0, "delivered_count": 0, "opened_count": 0, "clicked_count": 0, "total_responses": 0, "assigned_to": 5, "upload": 2}}
+WARNING 2025-07-15 11:58:33,722 log 7796 19048 Unauthorized: /api/campaigns/campaigns/
+WARNING 2025-07-15 11:58:33,724 runserver 7796 25980 [31;1mHTTP POST /api/campaigns/campaigns/ 401 [0.04, 127.0.0.1:54380][0m
+ERROR 2025-07-15 11:58:39,990 middleware 7796 27228 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 11:58:39,995 runserver 7796 25980 [mHTTP POST /api/auth/login/ 200 [0.99, 127.0.0.1:54380][0m
+ERROR 2025-07-15 11:58:51,472 middleware 7796 22512 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-15 11:58:51,476 log 7796 19048 Internal Server Error: /api/campaigns/campaigns/
+ERROR 2025-07-15 11:58:51,477 runserver 7796 25980 [35;1mHTTP POST /api/campaigns/campaigns/ 500 [0.10, 127.0.0.1:54380][0m
+INFO 2025-07-15 12:06:12,006 server 7796 25980 Killed 0 pending application instances
+INFO 2025-07-15 12:06:16,570 server 25148 5428 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 12:06:16,571 server 25148 5428 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 12:06:16,572 server 25148 5428 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 12:07:25,063 middleware 25148 4784 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 12:07:25,067 runserver 25148 5428 [mHTTP POST /api/campaigns/campaigns/ 201 [0.16, 127.0.0.1:55216][0m
+ERROR 2025-07-15 12:49:45,759 middleware 25148 9612 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 12:49:45,762 runserver 25148 5428 [mHTTP POST /api/auth/login/ 200 [0.54, 127.0.0.1:56386][0m
+INFO 2025-07-15 12:50:07,235 middleware 25148 8720 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/", "status_code": 200, "duration": 0.164, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 932}
+INFO 2025-07-15 12:50:07,237 runserver 25148 5428 [mHTTP GET /api/campaigns/campaigns/ 200 [0.17, 127.0.0.1:56386][0m
+INFO 2025-07-15 12:50:44,933 middleware 25148 6448 API Request: {"method": "POST", "path": "/api/campaigns/campaigns/2/", "status_code": 405, "duration": 0.141, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103, "request_body": {"name": "July Renewal Campaign", "campaign_type": 1, "description": "Reminder campaign for customers whose policies are due for renewal.", "status": "scheduled", "channels": ["email", "sms"], "target_audience": 2, "schedule_type": "schedule later", "scheduled_at": "2025-07-20T10:00:00Z", "started_at": "2025-07-20T10:00:00Z", "completed_at": null, "is_recurring": true, "recurrence_pattern": {"frequency": "weekly", "interval": 1, "weekdays": ["monday", "wednesday"]}, "subject_line": "Policy Renewal Reminder", "template": 1, "use_personalization": true, "personalization_fields": ["first_name", "policy_number"], "target_count": 1500, "sent_count": 0, "delivered_count": 0, "opened_count": 0, "clicked_count": 0, "total_responses": 0, "assigned_to": 5, "upload": 2}}
+WARNING 2025-07-15 12:50:44,935 log 25148 27544 Method Not Allowed: /api/campaigns/campaigns/2/
+WARNING 2025-07-15 12:50:44,936 runserver 25148 5428 [31;1mHTTP POST /api/campaigns/campaigns/2/ 405 [0.15, 127.0.0.1:56386][0m
+ERROR 2025-07-15 12:54:44,697 middleware 25148 9860 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 12:54:44,699 runserver 25148 5428 [mHTTP POST /api/campaigns/campaigns/ 201 [0.18, 127.0.0.1:56600][0m
+INFO 2025-07-15 12:55:13,009 middleware 25148 10424 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/", "status_code": 200, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1764}
+INFO 2025-07-15 12:55:13,011 runserver 25148 5428 [mHTTP GET /api/campaigns/campaigns/ 200 [0.05, 127.0.0.1:56600][0m
+ERROR 2025-07-15 15:25:39,966 middleware 25148 8752 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 15:25:39,971 runserver 25148 5428 [mHTTP POST /api/auth/login/ 200 [0.83, 127.0.0.1:59516][0m
+INFO 2025-07-15 15:25:59,528 middleware 25148 788 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/11/", "status_code": 200, "duration": 0.156, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 817}
+INFO 2025-07-15 15:25:59,530 runserver 25148 5428 [mHTTP GET /api/campaigns/campaigns/11/ 200 [0.16, 127.0.0.1:59516][0m
+INFO 2025-07-15 15:26:09,809 middleware 25148 22880 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/12/", "status_code": 200, "duration": 0.153, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 831}
+INFO 2025-07-15 15:26:09,811 runserver 25148 5428 [mHTTP GET /api/campaigns/campaigns/12/ 200 [0.16, 127.0.0.1:59516][0m
+INFO 2025-07-15 15:26:15,951 middleware 25148 19364 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/13/", "status_code": 404, "duration": 0.045, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 111}
+WARNING 2025-07-15 15:26:15,952 log 25148 27544 Not Found: /api/campaigns/campaigns/13/
+WARNING 2025-07-15 15:26:15,953 runserver 25148 5428 [33mHTTP GET /api/campaigns/campaigns/13/ 404 [0.05, 127.0.0.1:59516][0m
+INFO 2025-07-15 15:26:22,940 middleware 25148 24812 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/11/", "status_code": 200, "duration": 0.046, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 817}
+INFO 2025-07-15 15:26:22,942 runserver 25148 5428 [mHTTP GET /api/campaigns/campaigns/11/ 200 [0.05, 127.0.0.1:59516][0m
+INFO 2025-07-15 15:29:50,394 server 28916 26308 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 15:29:50,394 server 28916 26308 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 15:29:50,395 server 28916 26308 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 15:30:17,759 middleware 28916 17084 API Request: {"method": "POST", "path": "/api/policies/types/", "status_code": 401, "duration": 0.012, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"name": "Health Insurance test", "code": "HLT2025", "description": "Comprehensive health policy for individuals", "is_active": true, "base_premium_rate": 5.5, "coverage_details": "Covers hospitalization, surgery, and diagnostics"}}
+WARNING 2025-07-15 15:30:17,761 log 28916 23840 Unauthorized: /api/policies/types/
+WARNING 2025-07-15 15:30:17,761 runserver 28916 26308 [31;1mHTTP POST /api/policies/types/ 401 [0.02, 127.0.0.1:59970][0m
+ERROR 2025-07-15 15:30:25,285 middleware 28916 1164 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 15:30:25,287 runserver 28916 26308 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:59970][0m
+ERROR 2025-07-15 15:30:34,438 middleware 28916 22132 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-15 15:30:34,439 log 28916 23840 Bad Request: /api/policies/types/
+WARNING 2025-07-15 15:30:34,440 runserver 28916 26308 [31;1mHTTP POST /api/policies/types/ 400 [0.06, 127.0.0.1:59970][0m
+INFO 2025-07-15 15:35:29,249 server 28916 26308 Killed 0 pending application instances
+INFO 2025-07-15 15:35:44,890 server 27092 8492 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 15:35:44,891 server 27092 8492 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 15:35:44,892 server 27092 8492 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-15 16:03:14,735 middleware 27092 24624 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 16:03:14,738 runserver 27092 8492 [mHTTP POST /api/auth/login/ 200 [0.92, 127.0.0.1:61182][0m
+INFO 2025-07-15 16:03:57,163 middleware 27092 15372 API Request: {"method": "GET", "path": "/api/policies/policylist/", "status_code": 404, "duration": 0.317, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 23224}
+WARNING 2025-07-15 16:03:57,169 log 27092 12152 Not Found: /api/policies/policylist/
+WARNING 2025-07-15 16:03:57,171 runserver 27092 8492 [33mHTTP GET /api/policies/policylist/ 404 [0.33, 127.0.0.1:61182][0m
+INFO 2025-07-15 16:04:43,436 middleware 27092 29444 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.14, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 261}
+ERROR 2025-07-15 16:04:43,439 log 27092 12152 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 16:04:43,440 runserver 27092 8492 [35;1mHTTP GET /api/policies/policies/ 500 [0.15, 127.0.0.1:61182][0m
+INFO 2025-07-15 16:42:42,223 server 27092 8492 Killed 0 pending application instances
+INFO 2025-07-15 16:43:19,794 server 19620 13084 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 16:43:19,795 server 19620 13084 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 16:43:19,801 server 19620 13084 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 16:43:36,413 middleware 19620 23108 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.146, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 257}
+ERROR 2025-07-15 16:43:36,418 log 19620 28144 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 16:43:36,419 runserver 19620 13084 [35;1mHTTP GET /api/policies/policies/ 500 [0.16, 127.0.0.1:65493][0m
+INFO 2025-07-15 16:43:53,051 server 19620 13084 Killed 0 pending application instances
+INFO 2025-07-15 16:49:35,372 server 10852 420 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 16:49:35,373 server 10852 420 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 16:49:35,375 server 10852 420 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 16:49:42,968 middleware 10852 6388 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.139, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 257}
+ERROR 2025-07-15 16:49:42,971 log 10852 28024 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 16:49:42,972 runserver 10852 420 [35;1mHTTP GET /api/policies/policies/ 500 [0.15, 127.0.0.1:49354][0m
+INFO 2025-07-15 16:59:06,733 server 10852 420 Killed 0 pending application instances
+INFO 2025-07-15 16:59:25,939 server 25008 28572 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 16:59:25,940 server 25008 28572 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 16:59:25,941 server 25008 28572 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 16:59:28,830 middleware 25008 25812 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.153, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 257}
+ERROR 2025-07-15 16:59:28,833 log 25008 26428 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 16:59:28,835 runserver 25008 28572 [35;1mHTTP GET /api/policies/policies/ 500 [0.17, 127.0.0.1:50487][0m
+INFO 2025-07-15 17:12:42,005 server 25008 28572 Killed 0 pending application instances
+INFO 2025-07-15 17:12:46,854 server 12076 18264 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 17:12:46,855 server 12076 18264 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 17:12:46,856 server 12076 18264 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 17:12:48,441 middleware 12076 22860 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.021, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234}
+WARNING 2025-07-15 17:12:48,444 log 12076 10620 Unauthorized: /api/policies/policies/
+WARNING 2025-07-15 17:12:48,445 runserver 12076 18264 [31;1mHTTP GET /api/policies/policies/ 401 [0.04, 127.0.0.1:51570][0m
+ERROR 2025-07-15 17:12:56,279 middleware 12076 17712 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 17:12:56,284 runserver 12076 18264 [mHTTP POST /api/auth/login/ 200 [0.90, 127.0.0.1:51570][0m
+INFO 2025-07-15 17:13:21,771 middleware 12076 21784 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.243, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 257}
+ERROR 2025-07-15 17:13:21,775 log 12076 10620 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 17:13:21,777 runserver 12076 18264 [35;1mHTTP GET /api/policies/policies/ 500 [0.25, 127.0.0.1:51570][0m
+INFO 2025-07-15 17:41:02,302 middleware 12076 26236 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 500, "duration": 0.129, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 254}
+ERROR 2025-07-15 17:41:02,306 log 12076 10620 Internal Server Error: /api/policies/policies/
+ERROR 2025-07-15 17:41:02,308 runserver 12076 18264 [35;1mHTTP GET /api/policies/policies/ 500 [0.14, 127.0.0.1:52724][0m
+INFO 2025-07-15 17:44:19,500 server 12076 18264 Killed 0 pending application instances
+INFO 2025-07-15 17:44:37,052 server 9496 22568 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 17:44:37,053 server 9496 22568 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 17:44:37,055 server 9496 22568 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 17:44:41,899 middleware 9496 11724 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 200, "duration": 0.326, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1006}
+INFO 2025-07-15 17:44:41,904 runserver 9496 22568 [mHTTP GET /api/policies/policies/ 200 [0.35, 127.0.0.1:53340][0m
+ERROR 2025-07-15 17:46:25,537 middleware 9496 25676 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-15 17:46:25,541 runserver 9496 22568 [mHTTP POST /api/auth/login/ 200 [0.88, 127.0.0.1:53409][0m
+INFO 2025-07-15 17:46:46,457 middleware 9496 14464 API Request: {"method": "GET", "path": "/api/policies/policies/11/", "status_code": 500, "duration": 0.162, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 158}
+ERROR 2025-07-15 17:46:46,460 log 9496 29936 Internal Server Error: /api/policies/policies/11/
+ERROR 2025-07-15 17:46:46,461 runserver 9496 22568 [35;1mHTTP GET /api/policies/policies/11/ 500 [0.17, 127.0.0.1:53409][0m
+INFO 2025-07-15 17:47:19,463 middleware 9496 3168 API Request: {"method": "GET", "path": "/api/policies/policies/11/", "status_code": 500, "duration": 0.123, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 158}
+ERROR 2025-07-15 17:47:19,467 log 9496 29936 Internal Server Error: /api/policies/policies/11/
+ERROR 2025-07-15 17:47:19,469 runserver 9496 22568 [35;1mHTTP GET /api/policies/policies/11/ 500 [0.14, 127.0.0.1:53409][0m
+INFO 2025-07-15 17:47:35,452 server 9496 22568 Killed 0 pending application instances
+INFO 2025-07-15 17:48:00,787 server 14568 16012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 17:48:00,788 server 14568 16012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 17:48:00,789 server 14568 16012 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 17:48:01,797 server 14568 16012 Killed 0 pending application instances
+INFO 2025-07-15 17:48:56,799 server 19064 6436 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 17:48:56,800 server 19064 6436 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 17:48:56,800 server 19064 6436 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 18:04:05,686 server 19064 6436 Killed 0 pending application instances
+INFO 2025-07-15 18:06:37,655 server 24112 24024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 18:06:37,656 server 24112 24024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 18:06:37,657 server 24112 24024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 18:06:43,373 middleware 24112 23816 API Request: {"method": "GET", "path": "/api/policies/policies/11/", "status_code": 500, "duration": 0.165, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 158}
+ERROR 2025-07-15 18:06:43,379 log 24112 22320 Internal Server Error: /api/policies/policies/11/
+ERROR 2025-07-15 18:06:43,380 runserver 24112 24024 [35;1mHTTP GET /api/policies/policies/11/ 500 [0.18, 127.0.0.1:54581][0m
+INFO 2025-07-15 18:07:23,803 server 24112 24024 Killed 0 pending application instances
+INFO 2025-07-15 18:09:54,367 server 29988 23644 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-15 18:09:54,368 server 29988 23644 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-15 18:09:54,369 server 29988 23644 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-15 18:09:58,593 middleware 29988 25052 API Request: {"method": "GET", "path": "/api/policies/policies/11/", "status_code": 200, "duration": 1.036, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 2823}
+INFO 2025-07-15 18:09:58,597 runserver 29988 23644 [mHTTP GET /api/policies/policies/11/ 200 [1.05, 127.0.0.1:54920][0m
+INFO 2025-07-15 18:11:27,792 middleware 29988 22672 API Request: {"method": "GET", "path": "/api/policies/policies/14/", "status_code": 200, "duration": 0.142, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 833}
+INFO 2025-07-15 18:11:27,797 runserver 29988 23644 [mHTTP GET /api/policies/policies/14/ 200 [0.15, 127.0.0.1:55231][0m
+INFO 2025-07-15 18:11:33,327 middleware 29988 2308 API Request: {"method": "GET", "path": "/api/policies/policies/15/", "status_code": 200, "duration": 0.175, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 912}
+INFO 2025-07-15 18:11:33,369 runserver 29988 23644 [mHTTP GET /api/policies/policies/15/ 200 [0.22, 127.0.0.1:55231][0m

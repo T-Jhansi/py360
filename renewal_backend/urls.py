@@ -26,7 +26,8 @@ api_patterns = [
     path('customers/', include('apps.customers.urls')),
     path('policies/', include('apps.policies.urls')),
     # path('upload/', include('apps.uploads.urls')),
-    # path('campaigns/', include('apps.campaigns.urls')),
+    path('campaigns/', include('apps.campaigns.urls')),
+    path('templates/', include('apps.templates.urls')),
     
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),

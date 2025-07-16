@@ -82,6 +82,7 @@ class FileUpload(BaseModel):
     expires_at = models.DateTimeField(null=True, blank=True)
     
     class Meta:
+        db_table = 'uploads_fileupload'
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['category', 'status']),
