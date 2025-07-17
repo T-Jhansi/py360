@@ -1937,3 +1937,107 @@ INFO 2025-07-16 16:46:40,430 runserver 25548 28300 [mHTTP POST /api/auth/login/
 ERROR 2025-07-16 16:47:09,351 middleware 25548 25068 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
 INFO 2025-07-16 16:47:09,355 runserver 25548 28300 [mHTTP POST /api/policies/claims/ 201 [0.10, 127.0.0.1:55379][0m
 INFO 2025-07-17 11:01:10,600 server 25548 28300 Killed 0 pending application instances
+INFO 2025-07-17 11:02:34,687 server 28204 28896 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 11:02:34,687 server 28204 28896 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 11:02:34,688 server 28204 28896 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-17 11:24:17,910 server 28204 28896 Killed 0 pending application instances
+INFO 2025-07-17 11:25:47,913 autoreload 9320 31652 Watching for file changes with StatReloader
+INFO 2025-07-17 11:25:48,656 server 9320 29644 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 11:25:48,656 server 9320 29644 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 11:25:48,657 server 9320 29644 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-17 11:26:25,036 server 24516 1924 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 11:26:25,037 server 24516 1924 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 11:26:25,037 server 24516 1924 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 11:34:51,817 middleware 24516 31740 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 11:34:51,819 runserver 24516 1924 [mHTTP POST /api/auth/login/ 200 [0.54, 127.0.0.1:65454][0m
+ERROR 2025-07-17 11:58:02,962 middleware 24516 25036 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-17 11:58:02,964 log 24516 17276 Bad Request: /api/uploads/files/
+WARNING 2025-07-17 11:58:02,965 runserver 24516 1924 [31;1mHTTP POST /api/uploads/files/ 400 [0.05, 127.0.0.1:52172][0m
+INFO 2025-07-17 12:01:27,706 middleware 24516 5256 API Request: {"method": "POST", "path": "/api/uploads/upload/", "status_code": 404, "duration": 0.062, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5670}
+WARNING 2025-07-17 12:01:27,710 log 24516 17276 Not Found: /api/uploads/upload/
+WARNING 2025-07-17 12:01:27,711 runserver 24516 1924 [33mHTTP POST /api/uploads/upload/ 404 [0.07, 127.0.0.1:52756][0m
+INFO 2025-07-17 12:01:31,296 server 24516 1924 Killed 0 pending application instances
+INFO 2025-07-17 12:02:07,692 server 30832 14952 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 12:02:07,692 server 30832 14952 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 12:02:07,693 server 30832 14952 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-17 12:02:11,659 middleware 30832 18780 API Request: {"method": "POST", "path": "/api/uploads/upload/", "status_code": 404, "duration": 0.059, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5670}
+WARNING 2025-07-17 12:02:11,662 log 30832 11308 Not Found: /api/uploads/upload/
+WARNING 2025-07-17 12:02:11,663 runserver 30832 14952 [33mHTTP POST /api/uploads/upload/ 404 [0.07, 127.0.0.1:52839][0m
+ERROR 2025-07-17 12:02:43,341 middleware 30832 1240 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-17 12:02:43,343 log 30832 11308 Bad Request: /api/uploads/files/
+WARNING 2025-07-17 12:02:43,343 runserver 30832 14952 [31;1mHTTP POST /api/uploads/files/ 400 [0.05, 127.0.0.1:52839][0m
+INFO 2025-07-17 12:04:27,853 server 30832 14952 Killed 0 pending application instances
+INFO 2025-07-17 12:04:31,346 server 23704 23328 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 12:04:31,347 server 23704 23328 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 12:04:31,347 server 23704 23328 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 12:04:36,251 middleware 23704 22508 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-17 12:04:36,254 log 23704 26112 Internal Server Error: /api/uploads/files/
+ERROR 2025-07-17 12:04:36,255 runserver 23704 23328 [35;1mHTTP POST /api/uploads/files/ 500 [1.75, 127.0.0.1:53230][0m
+INFO 2025-07-17 12:17:31,220 server 23704 23328 Killed 0 pending application instances
+INFO 2025-07-17 12:18:23,375 server 28128 27296 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 12:18:23,375 server 28128 27296 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 12:18:23,376 server 28128 27296 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 12:18:27,088 middleware 28128 16772 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 12:18:27,090 runserver 28128 27296 [mHTTP POST /api/uploads/files/ 201 [0.08, 127.0.0.1:54113][0m
+INFO 2025-07-17 12:32:00,631 server 28128 27296 Killed 0 pending application instances
+INFO 2025-07-17 12:32:40,883 server 20580 30172 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 12:32:40,884 server 20580 30172 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 12:32:40,885 server 20580 30172 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 12:32:46,656 middleware 20580 12060 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-17 12:32:46,657 log 20580 31220 Internal Server Error: /api/uploads/files/
+ERROR 2025-07-17 12:32:46,658 runserver 20580 30172 [35;1mHTTP POST /api/uploads/files/ 500 [0.06, 127.0.0.1:56149][0m
+INFO 2025-07-17 12:33:54,553 server 20580 30172 Killed 0 pending application instances
+INFO 2025-07-17 12:33:57,542 server 25628 29552 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 12:33:57,542 server 25628 29552 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 12:33:57,543 server 25628 29552 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 12:34:00,211 middleware 25628 21832 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 12:34:00,213 runserver 25628 29552 [mHTTP POST /api/uploads/files/ 201 [0.08, 127.0.0.1:56197][0m
+INFO 2025-07-17 12:50:41,037 middleware 25628 27420 API Request: {"method": "POST", "path": "/api/uploads/files/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234}
+WARNING 2025-07-17 12:50:41,039 log 25628 30952 Unauthorized: /api/uploads/files/
+WARNING 2025-07-17 12:50:41,039 runserver 25628 29552 [31;1mHTTP POST /api/uploads/files/ 401 [0.01, 127.0.0.1:58309][0m
+ERROR 2025-07-17 12:50:49,032 middleware 25628 27452 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 12:50:49,034 runserver 25628 29552 [mHTTP POST /api/auth/login/ 200 [0.46, 127.0.0.1:58309][0m
+ERROR 2025-07-17 12:51:20,380 middleware 25628 29108 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-17 12:51:20,382 log 25628 30952 Internal Server Error: /api/uploads/files/
+ERROR 2025-07-17 12:51:20,382 runserver 25628 29552 [35;1mHTTP POST /api/uploads/files/ 500 [0.06, 127.0.0.1:58309][0m
+ERROR 2025-07-17 12:51:38,983 middleware 25628 18804 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 12:51:38,985 runserver 25628 29552 [mHTTP POST /api/uploads/files/ 201 [0.05, 127.0.0.1:58309][0m
+INFO 2025-07-17 13:02:00,297 server 25628 29552 Killed 0 pending application instances
+INFO 2025-07-17 13:06:21,826 server 28344 23668 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 13:06:21,826 server 28344 23668 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 13:06:21,827 server 28344 23668 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 13:06:26,436 middleware 28344 15920 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 13:06:26,438 runserver 28344 23668 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:59185][0m
+INFO 2025-07-17 13:06:52,875 middleware 28344 31020 API Request: {"method": "GET", "path": "/api/uploads/files/", "status_code": 200, "duration": 0.168, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 635}
+INFO 2025-07-17 13:06:52,877 runserver 28344 23668 [mHTTP GET /api/uploads/files/ 200 [0.17, 127.0.0.1:59185][0m
+INFO 2025-07-17 13:08:36,824 middleware 28344 30340 API Request: {"method": "GET", "path": "/api/uploads/files/5/", "status_code": 404, "duration": 0.044, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 113}
+WARNING 2025-07-17 13:08:36,826 log 28344 30104 Not Found: /api/uploads/files/5/
+WARNING 2025-07-17 13:08:36,826 runserver 28344 23668 [33mHTTP GET /api/uploads/files/5/ 404 [0.05, 127.0.0.1:59413][0m
+INFO 2025-07-17 13:08:45,104 middleware 28344 21704 API Request: {"method": "GET", "path": "/api/uploads/files/6/", "status_code": 200, "duration": 0.082, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 520}
+INFO 2025-07-17 13:08:45,106 runserver 28344 23668 [mHTTP GET /api/uploads/files/6/ 200 [0.13, 127.0.0.1:59413][0m
+INFO 2025-07-17 13:08:53,871 middleware 28344 26556 API Request: {"method": "GET", "path": "/api/uploads/files//", "status_code": 404, "duration": 0.06, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6904}
+WARNING 2025-07-17 13:08:53,873 log 28344 30104 Not Found: /api/uploads/files//
+WARNING 2025-07-17 13:08:53,874 runserver 28344 23668 [33mHTTP GET /api/uploads/files// 404 [0.06, 127.0.0.1:59413][0m
+INFO 2025-07-17 13:09:04,822 middleware 28344 17496 API Request: {"method": "GET", "path": "/api/uploads/files/6/", "status_code": 200, "duration": 0.151, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 520}
+INFO 2025-07-17 13:09:04,825 runserver 28344 23668 [mHTTP GET /api/uploads/files/6/ 200 [0.16, 127.0.0.1:59413][0m
+INFO 2025-07-17 13:10:08,873 middleware 28344 32600 API Request: {"method": "GET", "path": "/api/uploads/files/5/download/", "status_code": 404, "duration": 0.041, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 26}
+WARNING 2025-07-17 13:10:08,875 log 28344 30104 Not Found: /api/uploads/files/5/download/
+WARNING 2025-07-17 13:10:08,876 runserver 28344 23668 [33mHTTP GET /api/uploads/files/5/download/ 404 [0.05, 127.0.0.1:59533][0m
+INFO 2025-07-17 13:10:14,260 middleware 28344 21560 API Request: {"method": "GET", "path": "/api/uploads/files/6/download/", "status_code": 200, "duration": 0.141, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 11086}
+INFO 2025-07-17 13:10:14,262 runserver 28344 23668 [mHTTP GET /api/uploads/files/6/download/ 200 [0.15, 127.0.0.1:59533][0m
+INFO 2025-07-17 13:14:22,734 server 28344 23668 Killed 0 pending application instances
+INFO 2025-07-17 13:14:37,986 server 23248 8508 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 13:14:37,986 server 23248 8508 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 13:14:37,987 server 23248 8508 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-17 13:14:41,458 middleware 23248 26240 API Request: {"method": "GET", "path": "/api/uploads/files/6/download/", "status_code": 200, "duration": 0.061, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 11086}
+INFO 2025-07-17 13:14:41,461 runserver 23248 8508 [mHTTP GET /api/uploads/files/6/download/ 200 [0.07, 127.0.0.1:59825][0m
+INFO 2025-07-17 13:30:08,740 middleware 23248 13356 API Request: {"method": "GET", "path": "/api/uploads/files/", "status_code": 200, "duration": 0.151, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 635}
+INFO 2025-07-17 13:30:08,742 runserver 23248 8508 [mHTTP GET /api/uploads/files/ 200 [0.16, 127.0.0.1:60519][0m
+INFO 2025-07-17 13:30:19,800 server 23248 8508 Killed 0 pending application instances
+INFO 2025-07-17 13:33:21,432 server 25456 3760 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-17 13:33:21,432 server 25456 3760 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-17 13:33:21,433 server 25456 3760 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-17 13:33:30,215 middleware 25456 13416 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-17 13:33:30,218 runserver 25456 3760 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:60704][0m
+INFO 2025-07-17 13:33:46,513 middleware 25456 26776 API Request: {"method": "GET", "path": "/api/uploads/files/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 849}
+INFO 2025-07-17 13:33:46,515 runserver 25456 3760 [mHTTP GET /api/uploads/files/ 200 [0.06, 127.0.0.1:60704][0m

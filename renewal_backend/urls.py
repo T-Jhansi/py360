@@ -25,7 +25,7 @@ api_patterns = [
     # path('users/', include('apps.users.urls')),
     path('customers/', include('apps.customers.urls')),
     path('policies/', include('apps.policies.urls')),
-    # path('upload/', include('apps.uploads.urls')),
+    path('uploads/', include('apps.uploads.urls')),
     path('campaigns/', include('apps.campaigns.urls')),
     path('templates/', include('apps.templates.urls')),
     
