@@ -1827,3 +1827,113 @@ INFO 2025-07-15 18:11:27,792 middleware 29988 22672 API Request: {"method": "GET
 INFO 2025-07-15 18:11:27,797 runserver 29988 23644 [mHTTP GET /api/policies/policies/14/ 200 [0.15, 127.0.0.1:55231][0m
 INFO 2025-07-15 18:11:33,327 middleware 29988 2308 API Request: {"method": "GET", "path": "/api/policies/policies/15/", "status_code": 200, "duration": 0.175, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 912}
 INFO 2025-07-15 18:11:33,369 runserver 29988 23644 [mHTTP GET /api/policies/policies/15/ 200 [0.22, 127.0.0.1:55231][0m
+INFO 2025-07-16 11:30:51,196 server 20724 25908 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-16 11:30:51,197 server 20724 25908 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-16 11:30:51,198 server 20724 25908 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-16 11:46:40,349 server 20724 25908 Killed 0 pending application instances
+INFO 2025-07-16 11:46:56,703 server 25456 29400 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-16 11:46:56,703 server 25456 29400 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-16 11:46:56,704 server 25456 29400 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-16 11:47:09,898 middleware 25456 31280 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 11:47:09,901 runserver 25456 29400 [mHTTP POST /api/auth/login/ 200 [0.61, 127.0.0.1:61632][0m
+ERROR 2025-07-16 11:47:20,491 middleware 25456 9144 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 11:47:20,494 runserver 25456 29400 [mHTTP POST /api/campaigns/campaigns/ 201 [0.07, 127.0.0.1:61632][0m
+ERROR 2025-07-16 11:47:54,266 middleware 25456 27132 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 11:47:54,268 runserver 25456 29400 [mHTTP POST /api/campaigns/campaigns/ 201 [0.17, 127.0.0.1:61632][0m
+INFO 2025-07-16 11:49:06,131 middleware 25456 24684 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/", "status_code": 200, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 2595}
+INFO 2025-07-16 11:49:06,134 runserver 25456 29400 [mHTTP GET /api/campaigns/campaigns/ 200 [0.06, 127.0.0.1:61946][0m
+INFO 2025-07-16 11:49:52,355 middleware 25456 24188 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/11/", "status_code": 200, "duration": 0.046, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 817}
+INFO 2025-07-16 11:49:52,357 runserver 25456 29400 [mHTTP GET /api/campaigns/campaigns/11/ 200 [0.05, 127.0.0.1:61946][0m
+INFO 2025-07-16 11:50:01,171 middleware 25456 22392 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/15/", "status_code": 404, "duration": 0.173, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 111}
+WARNING 2025-07-16 11:50:01,174 log 25456 10444 Not Found: /api/campaigns/campaigns/15/
+WARNING 2025-07-16 11:50:01,175 runserver 25456 29400 [33mHTTP GET /api/campaigns/campaigns/15/ 404 [0.18, 127.0.0.1:61946][0m
+INFO 2025-07-16 11:50:16,650 middleware 25456 26160 API Request: {"method": "GET", "path": "/api/campaigns/campaigns/14/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 830}
+INFO 2025-07-16 11:50:16,653 runserver 25456 29400 [mHTTP GET /api/campaigns/campaigns/14/ 200 [0.06, 127.0.0.1:61946][0m
+INFO 2025-07-16 15:14:24,934 server 25456 29400 Killed 0 pending application instances
+INFO 2025-07-16 15:14:41,752 server 7020 2260 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-16 15:14:41,753 server 7020 2260 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-16 15:14:41,754 server 7020 2260 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-16 15:16:40,275 middleware 7020 10080 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:16:40,280 runserver 7020 2260 [mHTTP POST /api/auth/login/ 200 [0.88, 127.0.0.1:51633][0m
+INFO 2025-07-16 15:17:03,851 middleware 7020 5276 API Request: {"method": "GET", "path": "/api/policies/renewals/", "status_code": 200, "duration": 0.154, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 2211}
+INFO 2025-07-16 15:17:03,861 runserver 7020 2260 [mHTTP GET /api/policies/renewals/ 200 [0.17, 127.0.0.1:51633][0m
+INFO 2025-07-16 15:18:34,173 middleware 7020 17624 API Request: {"method": "GET", "path": "/api/policies/renewals/4/", "status_code": 200, "duration": 0.1, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 523}
+INFO 2025-07-16 15:18:34,180 runserver 7020 2260 [mHTTP GET /api/policies/renewals/4/ 200 [0.11, 127.0.0.1:51732][0m
+INFO 2025-07-16 15:18:43,877 middleware 7020 12568 API Request: {"method": "GET", "path": "/api/policies/renewals/3/", "status_code": 404, "duration": 0.093, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 116}
+WARNING 2025-07-16 15:18:43,882 log 7020 20900 Not Found: /api/policies/renewals/3/
+WARNING 2025-07-16 15:18:43,883 runserver 7020 2260 [33mHTTP GET /api/policies/renewals/3/ 404 [0.10, 127.0.0.1:51732][0m
+INFO 2025-07-16 15:18:50,405 middleware 7020 10852 API Request: {"method": "GET", "path": "/api/policies/renewals/5/", "status_code": 200, "duration": 0.101, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 519}
+INFO 2025-07-16 15:18:50,409 runserver 7020 2260 [mHTTP GET /api/policies/renewals/5/ 200 [0.11, 127.0.0.1:51732][0m
+ERROR 2025-07-16 15:19:42,425 middleware 7020 27664 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:19:42,429 runserver 7020 2260 [mHTTP POST /api/auth/login/ 200 [1.08, 127.0.0.1:51732][0m
+INFO 2025-07-16 15:20:08,563 middleware 7020 2296 API Request: {"method": "GET", "path": "/api/policies/claims/", "status_code": 200, "duration": 0.127, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 609}
+INFO 2025-07-16 15:20:08,567 runserver 7020 2260 [mHTTP GET /api/policies/claims/ 200 [0.13, 127.0.0.1:51732][0m
+INFO 2025-07-16 15:21:37,416 middleware 7020 29872 API Request: {"method": "POST", "path": "/api/policies/claims/1/", "status_code": 405, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 103}
+WARNING 2025-07-16 15:21:37,419 log 7020 20900 Method Not Allowed: /api/policies/claims/1/
+WARNING 2025-07-16 15:21:37,420 runserver 7020 2260 [31;1mHTTP POST /api/policies/claims/1/ 405 [0.08, 127.0.0.1:52597][0m
+INFO 2025-07-16 15:21:42,688 middleware 7020 31652 API Request: {"method": "GET", "path": "/api/policies/claims/1/", "status_code": 200, "duration": 0.21, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 494}
+INFO 2025-07-16 15:21:42,693 runserver 7020 2260 [mHTTP GET /api/policies/claims/1/ 200 [0.22, 127.0.0.1:52597][0m
+INFO 2025-07-16 15:23:02,269 middleware 7020 28548 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 200, "duration": 0.198, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1006}
+INFO 2025-07-16 15:23:02,275 runserver 7020 2260 [mHTTP GET /api/policies/policies/ 200 [0.21, 127.0.0.1:53011][0m
+INFO 2025-07-16 15:26:43,879 middleware 7020 26884 API Request: {"method": "POST", "path": "/api/policies/policies/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy_number": "POL-20250713-001", "customer": 3, "policy_type": 1, "start_date": "2025-07-06", "end_date": "2026-08-01", "premium_amount": "12000.00", "sum_assured": "500000.00", "status": "active", "payment_frequency": "yearly", "nominee_name": "Testing", "nominee_relationship": "son", "nominee_contact": "9876543213", "terms_conditions": "Policy valid only after full premium payment.", "special_conditions": "No pre-existing conditions covered in first 6 months.", "agent_name": "tester_agent", "agent_code": "AGT-5001"}}
+WARNING 2025-07-16 15:26:43,898 log 7020 20900 Unauthorized: /api/policies/policies/
+WARNING 2025-07-16 15:26:43,951 runserver 7020 2260 [31;1mHTTP POST /api/policies/policies/ 401 [0.09, 127.0.0.1:54166][0m
+ERROR 2025-07-16 15:27:03,700 middleware 7020 18260 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-16 15:27:03,703 log 7020 20900 Bad Request: /api/policies/policies/
+WARNING 2025-07-16 15:27:03,705 runserver 7020 2260 [31;1mHTTP POST /api/policies/policies/ 400 [0.12, 127.0.0.1:54166][0m
+ERROR 2025-07-16 15:27:59,430 middleware 7020 22156 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:27:59,434 runserver 7020 2260 [mHTTP POST /api/policies/policies/ 201 [0.15, 127.0.0.1:54166][0m
+INFO 2025-07-16 15:39:07,472 middleware 7020 23500 API Request: {"method": "GET", "path": "/api/policies/policies/", "status_code": 200, "duration": 0.217, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1306}
+INFO 2025-07-16 15:39:07,479 runserver 7020 2260 [mHTTP GET /api/policies/policies/ 200 [0.24, 127.0.0.1:57926][0m
+INFO 2025-07-16 15:39:38,613 middleware 7020 8980 API Request: {"method": "GET", "path": "/api/policies/policies/15/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234}
+WARNING 2025-07-16 15:39:38,615 log 7020 20900 Unauthorized: /api/policies/policies/15/
+WARNING 2025-07-16 15:39:38,616 runserver 7020 2260 [31;1mHTTP GET /api/policies/policies/15/ 401 [0.01, 127.0.0.1:57926][0m
+INFO 2025-07-16 15:39:47,000 middleware 7020 18668 API Request: {"method": "GET", "path": "/api/policies/policies/15/", "status_code": 200, "duration": 0.141, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 912}
+INFO 2025-07-16 15:39:47,005 runserver 7020 2260 [mHTTP GET /api/policies/policies/15/ 200 [0.15, 127.0.0.1:57926][0m
+INFO 2025-07-16 15:43:46,302 middleware 7020 17632 API Request: {"method": "POST", "path": "/api/policies/renewals/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"policy": 14, "renewal_date": "2025-08-16", "new_premium_amount": 7500.0, "new_sum_assured": 500000.0, "status": "pending", "renewal_notice_sent": true, "renewal_notice_date": "2025-07-10T10:30:00Z", "customer_response": "interested", "contact_attempts": 2, "last_contact_date": "2025-07-12T15:45:00Z", "contact_method": "phone", "notes": "Customer agreed to proceed after discussion.", "assigned_to": 3}}
+WARNING 2025-07-16 15:43:46,306 log 7020 20900 Unauthorized: /api/policies/renewals/
+WARNING 2025-07-16 15:43:46,307 runserver 7020 2260 [31;1mHTTP POST /api/policies/renewals/ 401 [0.02, 127.0.0.1:59843][0m
+ERROR 2025-07-16 15:43:52,450 middleware 7020 10668 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:43:52,453 runserver 7020 2260 [mHTTP POST /api/auth/login/ 200 [0.99, 127.0.0.1:59843][0m
+ERROR 2025-07-16 15:44:12,068 middleware 7020 12116 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:44:12,071 runserver 7020 2260 [mHTTP POST /api/policies/renewals/ 201 [0.12, 127.0.0.1:59843][0m
+INFO 2025-07-16 15:45:20,035 middleware 7020 30540 API Request: {"method": "GET", "path": "/api/policies/renewals/14/", "status_code": 404, "duration": 0.1, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 116}
+WARNING 2025-07-16 15:45:20,040 log 7020 20900 Not Found: /api/policies/renewals/14/
+WARNING 2025-07-16 15:45:20,041 runserver 7020 2260 [33mHTTP GET /api/policies/renewals/14/ 404 [0.11, 127.0.0.1:60371][0m
+INFO 2025-07-16 15:45:39,689 middleware 7020 29788 API Request: {"method": "GET", "path": "/api/policies/renewals/8/", "status_code": 200, "duration": 0.174, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 532}
+INFO 2025-07-16 15:45:39,695 runserver 7020 2260 [mHTTP GET /api/policies/renewals/8/ 200 [0.18, 127.0.0.1:60371][0m
+INFO 2025-07-16 15:45:52,788 middleware 7020 9052 API Request: {"method": "GET", "path": "/api/policies/renewals/6/", "status_code": 200, "duration": 0.098, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 519}
+INFO 2025-07-16 15:45:52,792 runserver 7020 2260 [mHTTP GET /api/policies/renewals/6/ 200 [0.11, 127.0.0.1:60371][0m
+ERROR 2025-07-16 15:47:57,282 middleware 7020 25664 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-16 15:47:57,287 log 7020 20900 Bad Request: /api/policies/claims/
+WARNING 2025-07-16 15:47:57,288 runserver 7020 2260 [31;1mHTTP POST /api/policies/claims/ 400 [0.22, 127.0.0.1:60583][0m
+ERROR 2025-07-16 15:48:25,339 middleware 7020 26132 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-16 15:48:25,342 log 7020 20900 Bad Request: /api/policies/claims/
+WARNING 2025-07-16 15:48:25,343 runserver 7020 2260 [31;1mHTTP POST /api/policies/claims/ 400 [0.10, 127.0.0.1:60583][0m
+ERROR 2025-07-16 15:48:57,744 middleware 7020 17872 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-16 15:48:57,749 log 7020 20900 Bad Request: /api/policies/claims/
+WARNING 2025-07-16 15:48:57,751 runserver 7020 2260 [31;1mHTTP POST /api/policies/claims/ 400 [0.09, 127.0.0.1:60583][0m
+ERROR 2025-07-16 15:49:30,747 middleware 7020 20320 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 15:49:30,750 runserver 7020 2260 [mHTTP POST /api/policies/claims/ 201 [0.12, 127.0.0.1:60583][0m
+ERROR 2025-07-16 16:10:50,297 middleware 7020 15524 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 16:10:50,302 runserver 7020 2260 [mHTTP POST /api/policies/claims/ 201 [0.13, 127.0.0.1:50056][0m
+INFO 2025-07-16 16:19:25,884 server 7020 2260 Killed 0 pending application instances
+INFO 2025-07-16 16:20:04,207 server 29592 13356 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-16 16:20:04,207 server 29592 13356 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-16 16:20:04,208 server 29592 13356 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-16 16:20:25,694 middleware 29592 17536 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 16:20:25,700 runserver 29592 13356 [mHTTP POST /api/policies/claims/ 201 [0.14, 127.0.0.1:52448][0m
+ERROR 2025-07-16 16:42:37,677 middleware 29592 14592 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 16:42:37,682 runserver 29592 13356 [mHTTP POST /api/policies/claims/ 201 [0.12, 127.0.0.1:55000][0m
+INFO 2025-07-16 16:44:54,045 server 29592 13356 Killed 0 pending application instances
+INFO 2025-07-16 16:45:34,382 server 25548 28300 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-16 16:45:34,383 server 25548 28300 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-16 16:45:34,385 server 25548 28300 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-16 16:46:32,279 middleware 25548 29400 API Request: {"method": "POST", "path": "/api/policies/claims/", "status_code": 401, "duration": 0.019, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 234, "request_body": {"claim_number": "CLM-00004", "policy": 15, "claim_type": "disability", "claim_amount": 500000, "approved_amount": 480000, "incident_date": "2025-07-10", "claim_date": "2025-07-15", "status": "under_review", "description": "Accident occurred while traveling.", "assigned_to": 3, "review_notes": "Documents verified, pending approval.", "rejection_reason": "", "payment_date": "2025-07-20", "payment_reference": "PAY12343"}}
+WARNING 2025-07-16 16:46:32,282 log 25548 24340 Unauthorized: /api/policies/claims/
+WARNING 2025-07-16 16:46:32,283 runserver 25548 28300 [31;1mHTTP POST /api/policies/claims/ 401 [0.03, 127.0.0.1:55379][0m
+ERROR 2025-07-16 16:46:40,425 middleware 25548 8432 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 16:46:40,430 runserver 25548 28300 [mHTTP POST /api/auth/login/ 200 [1.00, 127.0.0.1:55379][0m
+ERROR 2025-07-16 16:47:09,351 middleware 25548 25068 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-16 16:47:09,355 runserver 25548 28300 [mHTTP POST /api/policies/claims/ 201 [0.10, 127.0.0.1:55379][0m
+INFO 2025-07-17 11:01:10,600 server 25548 28300 Killed 0 pending application instances

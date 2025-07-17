@@ -155,6 +155,7 @@ class FileShare(BaseModel):
     access_log = models.JSONField(default=list, blank=True)
     
     class Meta:
+        db_table = 'uploads_fileshare'
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['share_token']),
@@ -220,6 +221,7 @@ class ImageVariant(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = 'uploads_imagevariant'
         unique_together = ['original_file', 'variant_type']
         ordering = ['variant_type']
     
@@ -256,6 +258,7 @@ class UploadSession(BaseModel):
     expires_at = models.DateTimeField()
     
     class Meta:
+        db_table = 'uploads_uploadsession'
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['session_id']),
@@ -318,6 +321,7 @@ class FileProcessingQueue(models.Model):
     max_retries = models.PositiveIntegerField(default=3)
     
     class Meta:
+        db_table = 'uploads_fileprocessingqueue'
         ordering = ['priority', 'created_at']
         indexes = [
             models.Index(fields=['status', 'priority']),

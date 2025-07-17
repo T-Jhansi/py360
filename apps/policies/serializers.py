@@ -171,7 +171,7 @@ class PolicyCreateSerializer(serializers.ModelSerializer):
             'policy_number', 'customer', 'policy_type', 'start_date', 'end_date',
             'premium_amount', 'sum_assured', 'payment_frequency', 'nominee_name',
             'nominee_relationship', 'nominee_contact', 'terms_conditions',
-            'special_conditions', 'agent_name', 'agent_code'
+            'special_conditions', 'agent_name', 'agent_code', 'assigned_to'
         ]
     
     def validate_policy_number(self, value):
