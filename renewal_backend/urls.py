@@ -21,13 +21,13 @@ api_patterns = [
     # Core utilities
     path('core/', include('apps.core.urls')),
     
-    # Core business endpoints (add as we create them)
-    # path('users/', include('apps.users.urls')),
+    # Core business endpoints
     path('customers/', include('apps.customers.urls')),
     path('policies/', include('apps.policies.urls')),
-    path('uploads/', include('apps.uploads.urls')),
     path('campaigns/', include('apps.campaigns.urls')),
     path('templates/', include('apps.templates.urls')),
+    path('policy_data/', include('apps.policy_data.urls')),
+    path('files_upload/', include('apps.files_upload.urls')),
     
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),

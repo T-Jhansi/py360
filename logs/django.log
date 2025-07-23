@@ -2041,3 +2041,1436 @@ ERROR 2025-07-17 13:33:30,215 middleware 25456 13416 Error in RequestLoggingMidd
 INFO 2025-07-17 13:33:30,218 runserver 25456 3760 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:60704][0m
 INFO 2025-07-17 13:33:46,513 middleware 25456 26776 API Request: {"method": "GET", "path": "/api/uploads/files/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 849}
 INFO 2025-07-17 13:33:46,515 runserver 25456 3760 [mHTTP GET /api/uploads/files/ 200 [0.06, 127.0.0.1:60704][0m
+INFO 2025-07-21 11:14:50,554 server 19096 13724 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 11:14:50,555 server 19096 13724 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 11:14:50,555 server 19096 13724 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 13:35:41,857 server 28516 3644 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 13:35:41,857 server 28516 3644 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 13:35:41,858 server 28516 3644 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 14:38:42,759 middleware 28516 17224 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 14:38:42,763 runserver 28516 3644 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:63352][0m
+ERROR 2025-07-21 14:39:49,709 middleware 28516 21460 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 14:39:49,711 log 28516 19552 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 14:39:49,712 runserver 28516 3644 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.06, 127.0.0.1:63405][0m
+INFO 2025-07-21 14:47:51,510 server 28516 3644 Killed 0 pending application instances
+INFO 2025-07-21 14:48:56,366 server 9152 12264 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 14:48:56,367 server 9152 12264 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 14:48:56,367 server 9152 12264 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 15:02:29,021 server 9152 12264 Killed 0 pending application instances
+INFO 2025-07-21 15:03:03,178 server 9492 28648 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:03:03,178 server 9492 28648 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:03:03,179 server 9492 28648 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:03:09,849 middleware 9492 29400 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 15:03:09,851 runserver 9492 28648 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:64325][0m
+INFO 2025-07-21 15:03:26,631 middleware 9492 23820 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.046, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 119}
+ERROR 2025-07-21 15:03:26,633 log 9492 21732 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:03:26,633 runserver 9492 28648 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:64325][0m
+INFO 2025-07-21 15:06:13,770 server 9492 28648 Killed 0 pending application instances
+INFO 2025-07-21 15:06:28,419 server 9880 26468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:06:28,419 server 9880 26468 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:06:28,420 server 9880 26468 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 15:06:32,004 middleware 9880 24064 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 126}
+ERROR 2025-07-21 15:06:32,006 log 9880 18512 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:06:32,007 runserver 9880 26468 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:64793][0m
+INFO 2025-07-21 15:16:39,305 server 9880 26468 Killed 0 pending application instances
+INFO 2025-07-21 15:21:40,707 server 26852 12124 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:21:40,707 server 26852 12124 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:21:40,708 server 26852 12124 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 15:21:44,304 middleware 26852 28772 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 97}
+WARNING 2025-07-21 15:21:44,306 log 26852 7500 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 15:21:44,307 runserver 26852 12124 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.06, 127.0.0.1:65283][0m
+ERROR 2025-07-21 15:22:14,066 middleware 26852 23592 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:22:14,068 log 26852 7500 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:22:14,068 runserver 26852 12124 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:65283][0m
+INFO 2025-07-21 15:27:13,983 server 26852 12124 Killed 0 pending application instances
+INFO 2025-07-21 15:27:34,690 server 28996 21860 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:27:34,690 server 28996 21860 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:27:34,691 server 28996 21860 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:27:37,778 middleware 28996 12796 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:27:37,780 log 28996 21976 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:27:37,781 runserver 28996 21860 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:49203][0m
+INFO 2025-07-21 15:31:54,803 server 28996 21860 Killed 0 pending application instances
+INFO 2025-07-21 15:39:12,823 server 13688 9116 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:39:12,823 server 13688 9116 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:39:12,824 server 13688 9116 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:39:18,439 middleware 13688 22104 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:39:18,441 log 13688 18600 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:39:18,441 runserver 13688 9116 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:50084][0m
+INFO 2025-07-21 15:40:48,623 server 13688 9116 Killed 0 pending application instances
+INFO 2025-07-21 15:41:13,321 server 23200 3168 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:41:13,323 server 23200 3168 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:41:13,329 server 23200 3168 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:41:17,271 middleware 23200 25796 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:41:17,273 log 23200 5304 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:41:17,273 runserver 23200 3168 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:50183][0m
+INFO 2025-07-21 15:50:33,985 server 23200 3168 Killed 0 pending application instances
+INFO 2025-07-21 15:50:50,119 server 2760 6004 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:50:50,120 server 2760 6004 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:50:50,121 server 2760 6004 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:50:53,583 middleware 2760 28980 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:50:53,585 log 2760 2608 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 15:50:53,586 runserver 2760 6004 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:51404][0m
+INFO 2025-07-21 15:52:57,560 middleware 2760 23972 API Request: {"method": "POST", "path": "/api/files_upload/file-uploads/", "status_code": 404, "duration": 0.075, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 4633}
+WARNING 2025-07-21 15:52:57,562 log 2760 2608 Not Found: /api/files_upload/file-uploads/
+WARNING 2025-07-21 15:52:57,563 runserver 2760 6004 [33mHTTP POST /api/files_upload/file-uploads/ 404 [0.08, 127.0.0.1:51521][0m
+INFO 2025-07-21 15:53:04,589 server 2760 6004 Killed 0 pending application instances
+INFO 2025-07-21 15:53:18,749 server 12240 1284 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 15:53:18,750 server 12240 1284 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 15:53:18,750 server 12240 1284 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 15:53:22,222 middleware 12240 21604 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:53:22,224 log 12240 20216 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 15:53:22,225 runserver 12240 1284 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.09, 127.0.0.1:51574][0m
+ERROR 2025-07-21 15:54:42,593 middleware 12240 17684 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:54:42,595 log 12240 20216 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 15:54:42,596 runserver 12240 1284 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.07, 127.0.0.1:51827][0m
+ERROR 2025-07-21 15:56:17,102 middleware 12240 14060 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:56:17,105 log 12240 20216 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 15:56:17,105 runserver 12240 1284 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.07, 127.0.0.1:52130][0m
+ERROR 2025-07-21 15:57:17,833 middleware 12240 10404 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 15:57:17,834 log 12240 20216 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 15:57:17,835 runserver 12240 1284 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.05, 127.0.0.1:52248][0m
+INFO 2025-07-21 16:01:15,602 server 12240 1284 Killed 0 pending application instances
+INFO 2025-07-21 16:11:28,708 server 18364 28596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:11:28,709 server 18364 28596 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:11:28,711 server 18364 28596 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 16:11:34,555 middleware 18364 15388 API Request: {"method": "POST", "path": "/api/files_upload/file-uploads/", "status_code": 401, "duration": 0.037, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-21 16:11:34,559 log 18364 8868 Unauthorized: /api/files_upload/file-uploads/
+WARNING 2025-07-21 16:11:34,560 runserver 18364 28596 [31;1mHTTP POST /api/files_upload/file-uploads/ 401 [0.05, 127.0.0.1:53509][0m
+ERROR 2025-07-21 16:12:07,121 middleware 18364 11300 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 16:12:07,125 runserver 18364 28596 [mHTTP POST /api/auth/login/ 200 [1.14, 127.0.0.1:53509][0m
+ERROR 2025-07-21 16:12:23,073 middleware 18364 21444 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 16:12:23,076 log 18364 8868 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 16:12:23,078 runserver 18364 28596 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.11, 127.0.0.1:53509][0m
+ERROR 2025-07-21 16:16:51,016 middleware 18364 28616 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 16:16:51,021 log 18364 8868 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 16:16:51,022 runserver 18364 28596 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.11, 127.0.0.1:54195][0m
+INFO 2025-07-21 16:22:58,075 server 16456 10212 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:22:58,075 server 16456 10212 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:22:58,076 server 16456 10212 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 16:23:25,044 middleware 16456 20224 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 16:23:25,050 log 16456 18588 Internal Server Error: /api/files_upload/file-uploads/
+ERROR 2025-07-21 16:23:25,052 runserver 16456 10212 [35;1mHTTP POST /api/files_upload/file-uploads/ 500 [0.14, 127.0.0.1:54811][0m
+INFO 2025-07-21 16:26:46,872 server 16456 10212 Killed 0 pending application instances
+INFO 2025-07-21 16:30:54,547 server 29388 19740 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:30:54,547 server 29388 19740 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:30:54,549 server 29388 19740 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 16:31:44,089 middleware 29388 13244 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 16:31:44,094 log 29388 25684 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 16:31:44,096 runserver 29388 19740 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:52450][0m
+INFO 2025-07-21 16:38:12,265 server 29388 19740 Killed 0 pending application instances
+INFO 2025-07-21 16:38:48,846 autoreload 27360 26656 Watching for file changes with StatReloader
+INFO 2025-07-21 16:38:50,089 server 27360 5964 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:38:50,090 server 27360 5964 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:38:50,092 server 27360 5964 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 16:39:01,160 server 5188 25164 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:39:01,161 server 5188 25164 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:39:01,162 server 5188 25164 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 16:39:05,336 middleware 5188 316 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 16:39:05,342 log 5188 20056 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 16:39:05,344 runserver 5188 25164 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:53077][0m
+INFO 2025-07-21 16:42:50,039 server 5188 25164 Killed 0 pending application instances
+INFO 2025-07-21 16:42:55,575 server 26716 6816 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:42:55,575 server 26716 6816 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:42:55,577 server 26716 6816 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 16:42:57,585 server 26716 6816 Killed 0 pending application instances
+INFO 2025-07-21 16:43:31,563 server 2540 10664 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 16:43:31,563 server 2540 10664 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 16:43:31,564 server 2540 10664 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 16:43:36,749 middleware 2540 25116 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 16:43:36,755 log 2540 17932 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 16:43:36,758 runserver 2540 10664 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.12, 127.0.0.1:53292][0m
+INFO 2025-07-21 16:55:42,363 server 2540 10664 Killed 0 pending application instances
+INFO 2025-07-21 17:51:21,975 server 11920 25384 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 17:51:21,976 server 11920 25384 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 17:51:21,976 server 11920 25384 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 17:51:26,183 middleware 11920 22748 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 17:51:26,185 runserver 11920 25384 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:59940][0m
+INFO 2025-07-21 17:51:38,355 middleware 11920 2680 API Request: {"method": "POST", "path": "/api/file-uploads/", "status_code": 404, "duration": 0.076, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 4173}
+WARNING 2025-07-21 17:51:38,357 log 11920 13840 Not Found: /api/file-uploads/
+WARNING 2025-07-21 17:51:38,358 runserver 11920 25384 [33mHTTP POST /api/file-uploads/ 404 [0.08, 127.0.0.1:59940][0m
+INFO 2025-07-21 17:53:22,640 middleware 11920 21432 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads", "status_code": 404, "duration": 0.058, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5920}
+ERROR 2025-07-21 17:53:22,680 log 11920 13840 Internal Server Error: /api/policy_data/file-uploads
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy_data/file-uploads/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-21 17:53:22,685 runserver 11920 25384 [35;1mHTTP POST /api/policy_data/file-uploads 500 [0.11, 127.0.0.1:60175][0m
+ERROR 2025-07-21 17:53:33,608 middleware 11920 27044 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:53:33,609 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:53:33,610 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:60175][0m
+ERROR 2025-07-21 17:54:17,975 middleware 11920 27252 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:54:17,977 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:54:17,978 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.04, 127.0.0.1:60175][0m
+ERROR 2025-07-21 17:54:36,825 middleware 11920 19012 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:54:36,827 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:54:36,828 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.04, 127.0.0.1:60175][0m
+INFO 2025-07-21 17:56:17,958 middleware 11920 2728 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads", "status_code": 404, "duration": 0.111, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5920}
+ERROR 2025-07-21 17:56:17,995 log 11920 13840 Internal Server Error: /api/policy_data/file-uploads
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy_data/file-uploads/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-21 17:56:18,000 runserver 11920 25384 [35;1mHTTP POST /api/policy_data/file-uploads 500 [0.16, 127.0.0.1:60221][0m
+INFO 2025-07-21 17:56:47,849 middleware 11920 22352 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads", "status_code": 404, "duration": 0.06, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5920}
+ERROR 2025-07-21 17:56:47,880 log 11920 13840 Internal Server Error: /api/policy_data/file-uploads
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy_data/file-uploads/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-21 17:56:47,884 runserver 11920 25384 [35;1mHTTP POST /api/policy_data/file-uploads 500 [0.10, 127.0.0.1:60221][0m
+ERROR 2025-07-21 17:56:52,028 middleware 11920 3792 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:56:52,030 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:56:52,030 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.04, 127.0.0.1:60221][0m
+ERROR 2025-07-21 17:57:11,048 middleware 11920 17284 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:57:11,049 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:57:11,050 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.04, 127.0.0.1:60221][0m
+ERROR 2025-07-21 17:57:24,361 middleware 11920 8004 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 17:57:24,363 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 17:57:24,363 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.04, 127.0.0.1:60221][0m
+ERROR 2025-07-21 18:00:00,203 middleware 11920 9608 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+WARNING 2025-07-21 18:00:00,205 log 11920 13840 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-21 18:00:00,205 runserver 11920 25384 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:60571][0m
+INFO 2025-07-21 18:00:50,289 server 11920 25384 Killed 0 pending application instances
+INFO 2025-07-21 18:03:25,045 server 20944 18692 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 18:03:25,046 server 20944 18692 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 18:03:25,046 server 20944 18692 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 18:03:28,701 middleware 20944 27512 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 18:03:28,703 log 20944 18508 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 18:03:28,704 runserver 20944 18692 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:60839][0m
+INFO 2025-07-21 18:17:46,547 server 20944 18692 Killed 0 pending application instances
+INFO 2025-07-21 18:18:17,801 server 26976 27304 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 18:18:17,801 server 26976 27304 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 18:18:17,802 server 26976 27304 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 18:18:25,812 middleware 26976 15516 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 18:18:25,815 runserver 26976 27304 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:62922][0m
+ERROR 2025-07-21 18:18:44,653 middleware 26976 25112 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 18:18:44,655 log 26976 9596 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 18:18:44,655 runserver 26976 27304 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:62922][0m
+INFO 2025-07-21 18:23:06,149 server 26976 27304 Killed 0 pending application instances
+INFO 2025-07-21 18:23:18,385 server 16820 19128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 18:23:18,386 server 16820 19128 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 18:23:18,386 server 16820 19128 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 18:23:20,851 middleware 16820 20020 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 18:23:20,853 log 16820 10100 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 18:23:20,854 runserver 16820 19128 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:63687][0m
+INFO 2025-07-21 20:31:15,835 server 16324 15136 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:31:15,836 server 16324 15136 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:31:15,837 server 16324 15136 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 20:36:26,100 server 16324 15136 Killed 0 pending application instances
+INFO 2025-07-21 20:36:31,793 server 15048 15020 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:36:31,794 server 15048 15020 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:36:31,795 server 15048 15020 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 20:36:38,099 middleware 15048 13952 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.033, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-21 20:36:38,104 log 15048 11232 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-21 20:36:38,107 runserver 15048 15020 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.07, 127.0.0.1:50483][0m
+ERROR 2025-07-21 20:36:51,601 middleware 15048 13448 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 20:36:51,604 runserver 15048 15020 [mHTTP POST /api/auth/login/ 200 [0.94, 127.0.0.1:50483][0m
+ERROR 2025-07-21 20:37:08,940 middleware 15048 15268 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 20:37:08,948 log 15048 11232 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 20:37:08,950 runserver 15048 15020 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:50483][0m
+INFO 2025-07-21 20:41:26,874 server 15048 15020 Killed 0 pending application instances
+INFO 2025-07-21 20:41:33,187 server 13240 5704 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:41:33,188 server 13240 5704 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:41:33,190 server 13240 5704 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 20:41:37,169 middleware 13240 6096 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 20:41:37,172 log 13240 14720 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 20:41:37,175 runserver 13240 5704 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.14, 127.0.0.1:50729][0m
+INFO 2025-07-21 20:42:28,568 server 13240 5704 Killed 0 pending application instances
+INFO 2025-07-21 20:42:33,338 server 12820 16028 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:42:33,339 server 12820 16028 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:42:33,341 server 12820 16028 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 20:42:34,791 middleware 12820 14424 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 20:42:34,796 log 12820 3972 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 20:42:34,798 runserver 12820 16028 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:50776][0m
+INFO 2025-07-21 20:49:06,477 server 12820 16028 Killed 0 pending application instances
+INFO 2025-07-21 20:49:48,276 server 14088 17348 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:49:48,277 server 14088 17348 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:49:48,278 server 14088 17348 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 20:49:51,742 middleware 14088 16088 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 20:49:51,746 log 14088 17224 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 20:49:51,748 runserver 14088 17348 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:51009][0m
+INFO 2025-07-21 20:56:12,207 server 14088 17348 Killed 0 pending application instances
+INFO 2025-07-21 20:56:31,755 server 12284 15860 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 20:56:31,756 server 12284 15860 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 20:56:31,757 server 12284 15860 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 20:56:36,832 middleware 12284 8160 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 20:56:36,838 log 12284 3912 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 20:56:36,840 runserver 12284 15860 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:51343][0m
+INFO 2025-07-21 21:00:16,395 server 12284 15860 Killed 0 pending application instances
+INFO 2025-07-21 21:00:45,848 server 16976 6876 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:00:45,849 server 16976 6876 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:00:45,850 server 16976 6876 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:00:48,102 middleware 16976 7444 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:00:48,106 log 16976 15456 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:00:48,107 runserver 16976 6876 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.11, 127.0.0.1:51637][0m
+INFO 2025-07-21 21:01:56,400 server 16976 6876 Killed 0 pending application instances
+INFO 2025-07-21 21:02:16,552 server 14660 560 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:02:16,553 server 14660 560 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:02:16,555 server 14660 560 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:02:42,694 middleware 14660 8924 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:02:42,701 log 14660 16904 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:02:42,703 runserver 14660 560 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:51724][0m
+INFO 2025-07-21 21:03:07,931 server 14660 560 Killed 0 pending application instances
+INFO 2025-07-21 21:03:13,093 server 15340 15624 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:03:13,094 server 15340 15624 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:03:13,096 server 15340 15624 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:03:15,257 middleware 15340 16696 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:03:15,263 log 15340 16228 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:03:15,265 runserver 15340 15624 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:51758][0m
+INFO 2025-07-21 21:03:52,405 server 15340 15624 Killed 0 pending application instances
+INFO 2025-07-21 21:03:57,268 server 16084 2012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:03:57,268 server 16084 2012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:03:57,269 server 16084 2012 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:03:58,783 middleware 16084 396 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:03:58,787 log 16084 16644 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:03:58,788 runserver 16084 2012 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:51789][0m
+INFO 2025-07-21 21:05:08,795 server 16084 2012 Killed 0 pending application instances
+INFO 2025-07-21 21:05:14,271 server 16072 13060 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:05:14,272 server 16072 13060 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:05:14,275 server 16072 13060 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:05:16,011 middleware 16072 12404 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:05:16,016 log 16072 15476 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:05:16,018 runserver 16072 13060 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.11, 127.0.0.1:51838][0m
+INFO 2025-07-21 21:09:14,010 server 16072 13060 Killed 0 pending application instances
+INFO 2025-07-21 21:09:18,725 server 10640 4676 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:09:18,726 server 10640 4676 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:09:18,727 server 10640 4676 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:09:23,116 middleware 10640 14140 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:09:23,121 log 10640 7140 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:09:23,123 runserver 10640 4676 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:51921][0m
+INFO 2025-07-21 21:11:15,559 server 10640 4676 Killed 0 pending application instances
+INFO 2025-07-21 21:11:41,170 server 864 3992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:11:41,171 server 864 3992 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:11:41,172 server 864 3992 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:12:16,405 middleware 864 8004 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:12:16,411 log 864 15772 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:12:16,413 runserver 864 3992 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:52027][0m
+INFO 2025-07-21 21:30:28,851 server 864 3992 Killed 0 pending application instances
+INFO 2025-07-21 21:31:06,494 server 2024 17832 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:31:06,495 server 2024 17832 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:31:06,497 server 2024 17832 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:31:11,963 middleware 2024 18840 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:31:11,970 log 2024 7164 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:31:11,972 runserver 2024 17832 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.14, 127.0.0.1:52497][0m
+INFO 2025-07-21 21:34:52,415 autoreload 15512 9320 Watching for file changes with StatReloader
+INFO 2025-07-21 21:34:55,121 server 15512 6872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:34:55,122 server 15512 6872 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:34:55,123 server 15512 6872 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:35:51,712 autoreload 13840 12948 Watching for file changes with StatReloader
+INFO 2025-07-21 21:35:53,749 server 13840 13252 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:35:53,751 server 13840 13252 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:35:53,753 server 13840 13252 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:36:33,985 autoreload 8288 1520 Watching for file changes with StatReloader
+INFO 2025-07-21 21:36:35,441 server 8288 11068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:36:35,441 server 8288 11068 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:36:35,442 server 8288 11068 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:39:20,487 server 18544 12248 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:39:20,488 server 18544 12248 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:39:20,489 server 18544 12248 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-21 21:39:30,488 middleware 18544 18816 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.021, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-21 21:39:30,492 log 18544 3832 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-21 21:39:30,495 runserver 18544 12248 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.04, 127.0.0.1:52821][0m
+ERROR 2025-07-21 21:39:37,207 middleware 18544 17156 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-21 21:39:37,213 runserver 18544 12248 [mHTTP POST /api/auth/login/ 200 [0.91, 127.0.0.1:52821][0m
+ERROR 2025-07-21 21:39:50,101 middleware 18544 18412 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:39:50,104 log 18544 3832 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:39:50,106 runserver 18544 12248 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.11, 127.0.0.1:52821][0m
+INFO 2025-07-21 21:44:46,602 autoreload 4560 19328 Watching for file changes with StatReloader
+INFO 2025-07-21 21:44:48,746 server 4560 18092 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:44:48,746 server 4560 18092 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-21 21:44:48,748 server 4560 18092 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-21 21:45:24,686 server 10736 13364 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:45:24,687 server 10736 13364 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:45:24,690 server 10736 13364 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-21 21:45:27,018 middleware 18544 19364 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:45:27,023 log 18544 3832 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:45:27,024 runserver 18544 12248 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.10, 127.0.0.1:53079][0m
+INFO 2025-07-21 21:45:40,370 autoreload 11360 5676 Watching for file changes with StatReloader
+INFO 2025-07-21 21:45:42,167 server 11360 16728 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:45:42,167 server 11360 16728 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:45:42,168 server 11360 16728 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:45:53,445 server 18144 18836 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:45:53,445 server 18144 18836 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:45:53,446 server 18144 18836 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:46:14,100 runserver 18544 12248 [mHTTP GET /health/ 200 [0.01, 127.0.0.1:53134][0m
+INFO 2025-07-21 21:46:45,175 autoreload 16612 17024 Watching for file changes with StatReloader
+INFO 2025-07-21 21:46:47,302 server 16612 17936 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:46:47,302 server 16612 17936 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-21 21:46:47,305 server 16612 17936 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-21 21:49:15,039 server 18544 12248 Killed 0 pending application instances
+INFO 2025-07-21 21:49:20,464 server 16940 17784 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:49:20,465 server 16940 17784 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:49:20,466 server 16940 17784 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:49:27,290 middleware 16940 2420 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:49:27,295 log 16940 15556 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:49:27,296 runserver 16940 17784 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:53219][0m
+INFO 2025-07-21 21:54:07,562 server 16940 17784 Killed 0 pending application instances
+INFO 2025-07-21 21:54:12,548 server 19100 16348 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:54:12,549 server 19100 16348 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:54:12,551 server 19100 16348 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:54:17,703 middleware 19100 19004 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:54:17,708 log 19100 14616 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:54:17,710 runserver 19100 16348 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:53522][0m
+INFO 2025-07-21 21:57:29,114 server 19100 16348 Killed 0 pending application instances
+INFO 2025-07-21 21:57:56,235 server 4888 18536 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-21 21:57:56,236 server 4888 18536 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-21 21:57:56,237 server 4888 18536 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-21 21:58:00,471 middleware 4888 15712 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-21 21:58:00,475 log 4888 11620 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-21 21:58:00,477 runserver 4888 18536 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:53783][0m
+INFO 2025-07-22 09:41:11,097 server 2036 17356 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 09:41:11,097 server 2036 17356 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 09:41:11,098 server 2036 17356 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 09:42:07,851 middleware 2036 6424 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.018, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-22 09:42:07,853 log 2036 8736 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 09:42:07,854 runserver 2036 17356 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.03, 127.0.0.1:54376][0m
+ERROR 2025-07-22 09:42:13,352 middleware 2036 17080 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 09:42:13,354 runserver 2036 17356 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:54376][0m
+ERROR 2025-07-22 09:42:24,123 middleware 2036 3732 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 09:42:24,125 log 2036 8736 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 09:42:24,125 runserver 2036 17356 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:54376][0m
+INFO 2025-07-22 09:44:02,546 server 2036 17356 Killed 0 pending application instances
+INFO 2025-07-22 09:44:39,594 server 18636 6324 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 09:44:39,595 server 18636 6324 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 09:44:39,595 server 18636 6324 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 09:44:43,746 middleware 18636 10812 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 09:44:43,748 log 18636 17312 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 09:44:43,749 runserver 18636 6324 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.08, 127.0.0.1:54465][0m
+INFO 2025-07-22 09:47:46,151 server 18636 6324 Killed 0 pending application instances
+INFO 2025-07-22 09:48:33,588 server 13320 16196 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 09:48:33,589 server 13320 16196 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 09:48:33,589 server 13320 16196 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 09:48:36,250 middleware 13320 18564 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 09:48:36,252 log 13320 5072 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 09:48:36,253 runserver 13320 16196 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:55015][0m
+INFO 2025-07-22 09:54:50,587 autoreload 16960 13472 Watching for file changes with StatReloader
+INFO 2025-07-22 09:54:51,685 server 16960 15132 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 09:54:51,686 server 16960 15132 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 09:54:51,686 server 16960 15132 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 09:55:51,195 server 13320 16196 Killed 0 pending application instances
+INFO 2025-07-22 09:56:05,235 server 9360 17392 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 09:56:05,235 server 9360 17392 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 09:56:05,236 server 9360 17392 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 09:56:09,608 middleware 9360 13828 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 09:56:09,610 log 9360 18508 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 09:56:09,611 runserver 9360 17392 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:55372][0m
+INFO 2025-07-22 10:01:50,143 server 9360 17392 Killed 0 pending application instances
+INFO 2025-07-22 10:02:03,792 server 12148 18988 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 10:02:03,793 server 12148 18988 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 10:02:03,793 server 12148 18988 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 10:02:09,270 middleware 12148 3160 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 10:02:09,272 log 12148 19160 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 10:02:09,272 runserver 12148 18988 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:56120][0m
+INFO 2025-07-22 11:02:01,790 server 18960 16288 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:02:01,790 server 18960 16288 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:02:01,791 server 18960 16288 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:02:11,160 server 16976 16632 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:02:11,161 server 16976 16632 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:02:11,161 server 16976 16632 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:02:20,510 autoreload 15376 15192 Watching for file changes with StatReloader
+INFO 2025-07-22 11:02:21,276 server 15376 15492 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:02:21,277 server 15376 15492 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:02:21,277 server 15376 15492 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:02:28,290 server 15756 520 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:02:28,290 server 15756 520 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:02:28,291 server 15756 520 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:03:36,319 server 10944 2168 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:03:36,320 server 10944 2168 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-07-22 11:03:36,320 server 10944 2168 Listening on TCP address 127.0.0.1:8001
+ERROR 2025-07-22 11:04:46,286 exception 14028 17156 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 11:04:46,404 log 14028 17156 Bad Request: /api/policy-data/enhanced-uploads/
+ERROR 2025-07-22 11:22:42,625 exception 2936 14096 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 11:22:42,742 log 2936 14096 Bad Request: /api/policy-data/file-uploads/
+INFO 2025-07-22 11:24:54,579 server 17144 17440 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:24:54,579 server 17144 17440 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:24:54,580 server 17144 17440 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:25:27,671 server 15244 1840 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:25:27,671 server 15244 1840 Configuring endpoint tcp:port=8002:interface=127.0.0.1
+INFO 2025-07-22 11:25:27,672 server 15244 1840 Listening on TCP address 127.0.0.1:8002
+ERROR 2025-07-22 11:26:39,588 exception 16552 1520 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 11:26:39,761 log 16552 1520 Bad Request: /api/policy-data/file-uploads/
+INFO 2025-07-22 11:26:40,117 middleware 15244 1140 API Request: {"method": "GET", "path": "/api/policy-data/file-uploads/", "status_code": 404, "duration": 0.067, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 4208}
+WARNING 2025-07-22 11:26:40,119 log 15244 18472 Not Found: /api/policy-data/file-uploads/
+WARNING 2025-07-22 11:26:40,119 runserver 15244 1840 [33mHTTP GET /api/policy-data/file-uploads/ 404 [0.08, 127.0.0.1:62911][0m
+INFO 2025-07-22 11:27:50,958 server 4104 8224 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:27:50,958 server 4104 8224 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:27:50,959 server 4104 8224 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:28:04,317 autoreload 11396 12776 Watching for file changes with StatReloader
+INFO 2025-07-22 11:28:05,092 server 11396 12524 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:28:05,093 server 11396 12524 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 11:28:05,093 server 11396 12524 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 11:28:09,789 middleware 12148 17468 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-22 11:28:09,791 log 12148 19160 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 11:28:09,792 runserver 12148 18988 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.01, 127.0.0.1:62968][0m
+ERROR 2025-07-22 11:28:13,571 middleware 12148 11020 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 11:28:13,574 runserver 12148 18988 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:62968][0m
+ERROR 2025-07-22 11:28:22,390 middleware 12148 14468 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:28:22,391 log 12148 19160 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:28:22,392 runserver 12148 18988 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:62968][0m
+INFO 2025-07-22 11:28:55,159 server 1816 10360 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:28:55,160 server 1816 10360 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 11:28:55,160 server 1816 10360 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 11:29:00,178 middleware 1816 10216 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:29:00,181 log 1816 19252 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:29:00,182 runserver 1816 10360 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:63036][0m
+INFO 2025-07-22 11:42:48,684 server 8928 3244 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:42:48,684 server 8928 3244 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 11:42:48,685 server 8928 3244 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 11:42:53,368 middleware 8928 17340 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:42:53,372 log 8928 19356 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:42:53,372 runserver 8928 3244 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:63632][0m
+INFO 2025-07-22 11:42:58,967 middleware 8928 12752 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads", "status_code": 404, "duration": 0.138, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6604}
+ERROR 2025-07-22 11:42:59,005 log 8928 19356 Internal Server Error: /api/policy_data/file-uploads
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy_data/file-uploads/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-22 11:42:59,010 runserver 8928 3244 [35;1mHTTP POST /api/policy_data/file-uploads 500 [0.18, 127.0.0.1:63632][0m
+ERROR 2025-07-22 11:43:01,216 middleware 8928 17468 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:43:01,219 log 8928 19356 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:43:01,220 runserver 8928 3244 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:63632][0m
+ERROR 2025-07-22 11:43:16,465 middleware 8928 8164 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:43:16,467 log 8928 19356 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:43:16,468 runserver 8928 3244 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:63632][0m
+ERROR 2025-07-22 11:43:24,563 middleware 8928 2144 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:43:24,565 log 8928 19356 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:43:24,566 runserver 8928 3244 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:63632][0m
+INFO 2025-07-22 11:45:31,786 autoreload 14196 3516 Watching for file changes with StatReloader
+INFO 2025-07-22 11:45:32,894 server 14196 15824 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:45:32,894 server 14196 15824 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:45:32,895 server 14196 15824 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:46:58,429 autoreload 14196 3516 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\files_upload\models.py changed, reloading.
+INFO 2025-07-22 11:46:59,606 autoreload 1724 1132 Watching for file changes with StatReloader
+INFO 2025-07-22 11:47:00,768 server 1724 15968 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:47:00,768 server 1724 15968 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:47:00,769 server 1724 15968 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:47:11,570 autoreload 1724 1132 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\uploads\models.py changed, reloading.
+INFO 2025-07-22 11:47:12,833 autoreload 2460 12384 Watching for file changes with StatReloader
+INFO 2025-07-22 11:47:13,909 server 2460 1700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:47:13,909 server 2460 1700 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:47:13,910 server 2460 1700 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:47:37,711 autoreload 2460 12384 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\files_upload\models.py changed, reloading.
+INFO 2025-07-22 11:47:38,846 autoreload 7072 3792 Watching for file changes with StatReloader
+INFO 2025-07-22 11:47:40,025 server 7072 7516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:47:40,026 server 7072 7516 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:47:40,026 server 7072 7516 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:47:49,688 autoreload 7072 3792 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\uploads\models.py changed, reloading.
+INFO 2025-07-22 11:47:50,835 autoreload 14692 3112 Watching for file changes with StatReloader
+INFO 2025-07-22 11:47:51,966 server 14692 1012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:47:51,967 server 14692 1012 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:47:51,967 server 14692 1012 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:48:09,329 autoreload 14692 3112 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:48:10,497 autoreload 8468 5912 Watching for file changes with StatReloader
+INFO 2025-07-22 11:48:11,675 server 8468 14028 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:48:11,675 server 8468 14028 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:48:11,676 server 8468 14028 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:48:26,932 autoreload 8468 5912 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:48:28,141 autoreload 10992 15092 Watching for file changes with StatReloader
+INFO 2025-07-22 11:48:29,260 server 10992 13208 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:48:29,261 server 10992 13208 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:48:29,261 server 10992 13208 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:50:24,679 autoreload 10992 15092 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\files_upload\models.py changed, reloading.
+INFO 2025-07-22 11:50:25,976 autoreload 15144 17572 Watching for file changes with StatReloader
+INFO 2025-07-22 11:50:27,179 server 15144 14508 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:50:27,179 server 15144 14508 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:50:27,180 server 15144 14508 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:50:39,150 autoreload 15144 17572 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\uploads\models.py changed, reloading.
+INFO 2025-07-22 11:50:40,415 autoreload 3224 1848 Watching for file changes with StatReloader
+INFO 2025-07-22 11:50:41,588 server 3224 16068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:50:41,588 server 3224 16068 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:50:41,589 server 3224 16068 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:50:57,745 autoreload 3224 1848 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:50:59,044 autoreload 3392 10308 Watching for file changes with StatReloader
+INFO 2025-07-22 11:51:00,224 server 3392 18448 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:51:00,225 server 3392 18448 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:51:00,225 server 3392 18448 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:51:16,438 autoreload 3392 10308 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:51:17,639 autoreload 1488 580 Watching for file changes with StatReloader
+INFO 2025-07-22 11:51:18,757 server 1488 16892 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:51:18,757 server 1488 16892 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:51:18,758 server 1488 16892 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:52:18,741 autoreload 1488 580 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:52:20,066 autoreload 14028 12592 Watching for file changes with StatReloader
+INFO 2025-07-22 11:52:21,221 server 14028 17728 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:52:21,221 server 14028 17728 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:52:21,222 server 14028 17728 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:53:10,148 autoreload 14028 12592 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:53:11,338 autoreload 16688 14636 Watching for file changes with StatReloader
+INFO 2025-07-22 11:53:12,557 server 16688 9872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:53:12,557 server 16688 9872 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:53:12,558 server 16688 9872 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:53:26,600 autoreload 16688 14636 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 11:53:27,760 autoreload 10832 2900 Watching for file changes with StatReloader
+INFO 2025-07-22 11:53:28,977 server 10832 7180 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:53:28,977 server 10832 7180 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-07-22 11:53:28,978 server 10832 7180 Listening on TCP address 0.0.0.0:8000
+INFO 2025-07-22 11:56:47,157 server 15208 19004 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 11:56:47,157 server 15208 19004 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 11:56:47,158 server 15208 19004 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 11:56:52,150 middleware 15208 13252 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 11:56:52,153 runserver 15208 19004 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:64648][0m
+ERROR 2025-07-22 11:56:56,465 middleware 15208 17000 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 11:56:56,466 runserver 15208 19004 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:64648][0m
+ERROR 2025-07-22 11:57:05,063 middleware 15208 5468 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:57:05,065 log 15208 17188 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:57:05,066 runserver 15208 19004 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:64648][0m
+ERROR 2025-07-22 11:57:14,715 middleware 15208 4780 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 11:57:14,717 log 15208 17188 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 11:57:14,718 runserver 15208 19004 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:64648][0m
+INFO 2025-07-22 11:57:50,687 server 15208 19004 Killed 0 pending application instances
+INFO 2025-07-22 12:00:04,429 server 2744 3844 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:00:04,431 server 2744 3844 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:00:04,432 server 2744 3844 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 12:00:07,499 middleware 2744 2424 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:00:07,502 log 2744 18304 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:00:07,503 runserver 2744 3844 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:65492][0m
+INFO 2025-07-22 12:01:26,146 autoreload 5860 18712 Watching for file changes with StatReloader
+INFO 2025-07-22 12:01:27,323 server 5860 17212 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:01:27,324 server 5860 17212 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:01:27,324 server 5860 17212 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:03:04,732 autoreload 3460 12400 Watching for file changes with StatReloader
+INFO 2025-07-22 12:03:05,610 server 3460 3128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:03:05,610 server 3460 3128 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:03:05,611 server 3460 3128 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:04:09,256 server 15120 15132 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:04:09,257 server 15120 15132 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:04:09,257 server 15120 15132 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:04:41,899 middleware 2744 7804 API Request: {"method": "GET", "path": "/api/policy_data/store-policy-data/", "status_code": 404, "duration": 0.071, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Augment-VSCode/1.0", "content_length": 6621}
+WARNING 2025-07-22 12:04:41,901 log 2744 18304 Not Found: /api/policy_data/store-policy-data/
+WARNING 2025-07-22 12:04:41,902 runserver 2744 3844 [33mHTTP GET /api/policy_data/store-policy-data/ 404 [0.08, 127.0.0.1:49337][0m
+INFO 2025-07-22 12:04:48,268 middleware 2744 5176 API Request: {"method": "GET", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Augment-VSCode/1.0", "content_length": 120}
+WARNING 2025-07-22 12:04:48,269 log 2744 18304 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:04:48,270 runserver 2744 3844 [31;1mHTTP GET /api/policy_data/file-uploads/ 401 [0.01, 127.0.0.1:49342][0m
+ERROR 2025-07-22 12:05:57,317 middleware 2744 18248 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:05:57,318 log 2744 18304 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:05:57,319 runserver 2744 3844 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:49389][0m
+ERROR 2025-07-22 12:06:06,819 middleware 2744 16520 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 12:06:06,821 runserver 2744 3844 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:49389][0m
+INFO 2025-07-22 12:07:03,681 server 4688 9668 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:07:03,681 server 4688 9668 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:07:03,682 server 4688 9668 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 12:07:09,265 middleware 4688 15808 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:07:09,267 log 4688 10360 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:07:09,267 runserver 4688 9668 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.08, 127.0.0.1:49776][0m
+INFO 2025-07-22 12:14:03,397 middleware 4688 4404 API Request: {"method": "GET", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-07-22 12:14:03,400 log 4688 10360 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:14:03,400 runserver 4688 9668 [31;1mHTTP GET /api/policy_data/file-uploads/ 401 [0.01, 127.0.0.1:50180][0m
+WARNING 2025-07-22 12:14:03,491 log 4688 10360 Not Found: /favicon.ico
+WARNING 2025-07-22 12:14:03,492 runserver 4688 9668 [33mHTTP GET /favicon.ico 404 [0.03, 127.0.0.1:50180][0m
+INFO 2025-07-22 12:15:40,985 server 10772 18368 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:15:40,985 server 10772 18368 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:15:40,986 server 10772 18368 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 12:15:47,998 middleware 10772 2900 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:15:48,000 log 10772 14944 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:15:48,002 runserver 10772 18368 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.07, 127.0.0.1:50254][0m
+INFO 2025-07-22 12:21:21,809 server 10772 18368 Killed 0 pending application instances
+INFO 2025-07-22 12:24:29,368 server 18868 3344 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:24:29,368 server 18868 3344 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:24:29,369 server 18868 3344 Listening on TCP address 127.0.0.1:8000
+ERROR 2025-07-22 12:24:34,857 middleware 18868 2036 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:24:34,860 log 18868 1248 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:24:34,861 runserver 18868 3344 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.08, 127.0.0.1:51685][0m
+ERROR 2025-07-22 12:24:42,730 middleware 18868 17448 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+INFO 2025-07-22 12:24:42,732 runserver 18868 3344 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:51685][0m
+INFO 2025-07-22 12:24:55,742 middleware 18868 14464 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads", "status_code": 404, "duration": 0.067, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6604}
+ERROR 2025-07-22 12:24:55,773 log 18868 1248 Internal Server Error: /api/policy_data/file-uploads
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy_data/file-uploads/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-07-22 12:24:55,778 runserver 18868 3344 [35;1mHTTP POST /api/policy_data/file-uploads 500 [0.11, 127.0.0.1:51685][0m
+ERROR 2025-07-22 12:24:57,417 middleware 18868 10108 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:24:57,419 log 18868 1248 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:24:57,419 runserver 18868 3344 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.05, 127.0.0.1:51685][0m
+ERROR 2025-07-22 12:25:25,423 middleware 18868 14276 Error in RequestLoggingMiddleware: You cannot access body after reading from request's data stream
+ERROR 2025-07-22 12:25:25,426 log 18868 1248 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:25:25,427 runserver 18868 3344 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.06, 127.0.0.1:51685][0m
+INFO 2025-07-22 12:30:04,076 server 18868 3344 Killed 0 pending application instances
+INFO 2025-07-22 12:31:08,017 autoreload 16572 1004 Watching for file changes with StatReloader
+INFO 2025-07-22 12:31:09,160 server 16572 10100 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:31:09,160 server 16572 10100 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:31:09,161 server 16572 10100 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:32:17,842 autoreload 16572 1004 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\core\middleware.py changed, reloading.
+INFO 2025-07-22 12:32:19,026 autoreload 12168 17072 Watching for file changes with StatReloader
+INFO 2025-07-22 12:32:20,106 server 12168 528 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:32:20,107 server 12168 528 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:32:20,108 server 12168 528 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:32:42,953 autoreload 12168 17072 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 12:32:44,232 autoreload 7600 5792 Watching for file changes with StatReloader
+INFO 2025-07-22 12:32:45,423 server 7600 15604 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:32:45,423 server 7600 15604 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:32:45,424 server 7600 15604 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:32:53,051 autoreload 7600 5792 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 12:32:54,247 autoreload 13440 17252 Watching for file changes with StatReloader
+INFO 2025-07-22 12:32:55,446 server 13440 7972 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:32:55,446 server 13440 7972 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:32:55,447 server 13440 7972 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:33:31,054 middleware 13440 9388 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 400, "duration": 0.448, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 92}
+WARNING 2025-07-22 12:33:31,056 log 13440 2464 Bad Request: /api/auth/login/
+WARNING 2025-07-22 12:33:31,057 runserver 13440 7972 [31;1mHTTP POST /api/auth/login/ 400 [0.46, 127.0.0.1:52645][0m
+INFO 2025-07-22 12:34:59,357 middleware 13440 9676 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.472, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:34:59,359 runserver 13440 7972 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:52761][0m
+INFO 2025-07-22 12:35:33,434 middleware 13440 12204 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.776, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:35:33,439 runserver 13440 7972 [mHTTP POST /api/auth/login/ 200 [0.79, 127.0.0.1:52810][0m
+INFO 2025-07-22 12:36:04,875 middleware 13440 18692 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.786, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:36:04,880 runserver 13440 7972 [mHTTP POST /api/auth/login/ 200 [0.80, 127.0.0.1:52854][0m
+INFO 2025-07-22 12:36:07,002 middleware 13440 14476 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.076, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:36:07,008 log 13440 2464 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:36:07,010 runserver 13440 7972 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.09, 127.0.0.1:52862][0m
+INFO 2025-07-22 12:36:29,419 autoreload 11020 13564 Watching for file changes with StatReloader
+INFO 2025-07-22 12:36:31,408 server 11020 16380 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:36:31,409 server 11020 16380 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:36:31,410 server 11020 16380 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:38:24,876 server 8688 16760 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:38:24,877 server 8688 16760 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:38:24,878 server 8688 16760 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:38:30,027 middleware 8688 8384 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.113, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 290}
+ERROR 2025-07-22 12:38:30,031 log 8688 14564 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:38:30,033 runserver 8688 16760 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:52965][0m
+INFO 2025-07-22 12:39:38,232 middleware 8688 4436 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.071, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 12:39:38,239 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [1.08, 127.0.0.1:53022][0m
+INFO 2025-07-22 12:40:13,599 middleware 8688 17964 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 290}
+ERROR 2025-07-22 12:40:13,602 log 8688 14564 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:40:13,603 runserver 8688 16760 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.12, 127.0.0.1:53022][0m
+INFO 2025-07-22 12:42:56,330 middleware 8688 3128 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.836, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:42:56,333 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.84, 127.0.0.1:53182][0m
+INFO 2025-07-22 12:42:58,440 middleware 8688 17560 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.069, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:42:58,443 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:42:58,444 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:53189][0m
+INFO 2025-07-22 12:43:20,370 autoreload 2464 5808 Watching for file changes with StatReloader
+INFO 2025-07-22 12:43:22,509 server 2464 13380 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:43:22,509 server 2464 13380 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:43:22,510 server 2464 13380 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:44:14,488 autoreload 2464 5808 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 12:44:16,603 autoreload 12312 4776 Watching for file changes with StatReloader
+INFO 2025-07-22 12:44:18,729 server 12312 16624 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:44:18,730 server 12312 16624 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:44:18,731 server 12312 16624 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:44:30,851 middleware 8688 388 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.791, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:44:30,855 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.80, 127.0.0.1:53412][0m
+INFO 2025-07-22 12:44:32,973 middleware 8688 18656 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.076, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:44:32,978 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:44:32,979 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.09, 127.0.0.1:53417][0m
+INFO 2025-07-22 12:45:09,432 middleware 8688 6980 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.769, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:45:09,435 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.78, 127.0.0.1:53447][0m
+INFO 2025-07-22 12:45:11,523 middleware 8688 8828 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.067, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:45:11,525 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:45:11,527 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.07, 127.0.0.1:53450][0m
+INFO 2025-07-22 12:46:05,955 middleware 8688 18632 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.735, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:46:05,958 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.74, 127.0.0.1:53501][0m
+INFO 2025-07-22 12:46:08,072 middleware 8688 13220 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.069, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:46:08,074 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:46:08,075 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:53505][0m
+INFO 2025-07-22 12:47:31,760 middleware 8688 16456 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.817, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:47:31,764 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.83, 127.0.0.1:53564][0m
+INFO 2025-07-22 12:47:35,161 middleware 8688 17188 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.085, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 290}
+ERROR 2025-07-22 12:47:35,165 log 8688 14564 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:47:35,167 runserver 8688 16760 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.09, 127.0.0.1:53569][0m
+INFO 2025-07-22 12:48:02,611 autoreload 12312 4776 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 12:48:04,850 autoreload 14784 528 Watching for file changes with StatReloader
+INFO 2025-07-22 12:48:06,912 server 14784 8640 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:48:06,912 server 14784 8640 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:48:06,913 server 14784 8640 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:48:33,812 middleware 8688 10648 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.867, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:48:33,816 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.88, 127.0.0.1:53637][0m
+INFO 2025-07-22 12:48:35,926 middleware 8688 11316 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.073, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:48:35,931 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:48:35,932 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:53640][0m
+INFO 2025-07-22 12:48:58,471 autoreload 2644 5448 Watching for file changes with StatReloader
+INFO 2025-07-22 12:49:00,482 server 2644 2896 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:49:00,483 server 2644 2896 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:49:00,484 server 2644 2896 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:49:18,851 middleware 8688 3860 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.849, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:49:18,856 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.86, 127.0.0.1:53695][0m
+INFO 2025-07-22 12:49:20,985 middleware 8688 936 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.079, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:49:20,988 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:49:20,989 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.09, 127.0.0.1:53704][0m
+INFO 2025-07-22 12:49:36,496 autoreload 2644 5448 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 12:49:38,709 autoreload 13216 12860 Watching for file changes with StatReloader
+INFO 2025-07-22 12:49:40,635 server 13216 2000 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:49:40,635 server 13216 2000 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:49:40,636 server 13216 2000 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:49:49,792 middleware 8688 5920 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.798, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:49:49,796 runserver 8688 16760 [mHTTP POST /api/auth/login/ 200 [0.81, 127.0.0.1:53746][0m
+INFO 2025-07-22 12:49:51,905 middleware 8688 12828 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.064, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 148}
+WARNING 2025-07-22 12:49:51,909 log 8688 14564 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:49:51,910 runserver 8688 16760 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.07, 127.0.0.1:53751][0m
+INFO 2025-07-22 12:50:45,399 autoreload 18164 11416 Watching for file changes with StatReloader
+INFO 2025-07-22 12:50:47,550 server 18164 412 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:50:47,552 server 18164 412 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:50:47,555 server 18164 412 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:52:03,367 autoreload 10352 6356 Watching for file changes with StatReloader
+INFO 2025-07-22 12:52:04,668 server 10352 19196 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:52:04,669 server 10352 19196 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:52:04,670 server 10352 19196 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:52:15,679 server 8164 16984 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:52:15,679 server 8164 16984 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:52:15,680 server 8164 16984 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:52:29,377 middleware 8164 12520 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.171, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 305}
+ERROR 2025-07-22 12:52:29,384 log 8164 14552 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:52:29,386 runserver 8164 16984 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.19, 127.0.0.1:53928][0m
+INFO 2025-07-22 12:52:48,727 middleware 8164 2904 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.07, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 29}
+WARNING 2025-07-22 12:52:48,731 log 8164 14552 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:52:48,732 runserver 8164 16984 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:53928][0m
+INFO 2025-07-22 12:53:05,279 middleware 8164 15000 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.12, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 305}
+ERROR 2025-07-22 12:53:05,282 log 8164 14552 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:53:05,283 runserver 8164 16984 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.13, 127.0.0.1:53928][0m
+INFO 2025-07-22 12:55:35,512 middleware 8164 10656 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.0, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:55:35,514 runserver 8164 16984 [mHTTP POST /api/auth/login/ 200 [1.01, 127.0.0.1:54127][0m
+INFO 2025-07-22 12:55:37,625 middleware 8164 16060 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.068, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 101}
+WARNING 2025-07-22 12:55:37,628 log 8164 14552 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:55:37,630 runserver 8164 16984 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:54131][0m
+INFO 2025-07-22 12:55:59,615 autoreload 17484 15392 Watching for file changes with StatReloader
+INFO 2025-07-22 12:56:01,769 server 17484 6544 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:56:01,770 server 17484 6544 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:56:01,771 server 17484 6544 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:56:16,976 middleware 8164 484 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.806, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1003}
+INFO 2025-07-22 12:56:16,980 runserver 8164 16984 [mHTTP POST /api/auth/login/ 200 [0.81, 127.0.0.1:54192][0m
+INFO 2025-07-22 12:56:19,084 middleware 8164 13572 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.069, "user_id": 6, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 101}
+WARNING 2025-07-22 12:56:19,087 log 8164 14552 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 12:56:19,088 runserver 8164 16984 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.08, 127.0.0.1:54195][0m
+INFO 2025-07-22 12:57:19,099 server 8164 16984 Killed 0 pending application instances
+INFO 2025-07-22 12:57:25,842 server 1812 18504 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:57:25,843 server 1812 18504 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 12:57:25,844 server 1812 18504 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 12:57:41,776 middleware 1812 12464 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.154, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 305}
+ERROR 2025-07-22 12:57:41,782 log 1812 17572 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 12:57:41,784 runserver 1812 18504 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.17, 127.0.0.1:54249][0m
+INFO 2025-07-22 12:57:49,922 autoreload 14676 1276 Watching for file changes with StatReloader
+INFO 2025-07-22 12:57:52,044 server 14676 868 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:57:52,044 server 14676 868 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:57:52,045 server 14676 868 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:58:54,803 autoreload 14676 1276 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\urls.py changed, reloading.
+INFO 2025-07-22 12:58:56,919 autoreload 16656 15316 Watching for file changes with StatReloader
+INFO 2025-07-22 12:58:59,059 server 16656 7716 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:58:59,060 server 16656 7716 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:58:59,062 server 16656 7716 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 12:59:20,561 autoreload 12024 5468 Watching for file changes with StatReloader
+INFO 2025-07-22 12:59:22,720 server 12024 8340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 12:59:22,721 server 12024 8340 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 12:59:22,722 server 12024 8340 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:00:14,861 autoreload 12024 5468 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:00:17,615 autoreload 18004 7472 Watching for file changes with StatReloader
+INFO 2025-07-22 13:00:19,770 server 18004 17596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:00:19,771 server 18004 17596 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:00:19,772 server 18004 17596 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:01:49,845 autoreload 7988 9492 Watching for file changes with StatReloader
+INFO 2025-07-22 13:01:52,123 server 7988 15700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:01:52,124 server 7988 15700 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:01:52,125 server 7988 15700 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:02:43,074 autoreload 14088 17596 Watching for file changes with StatReloader
+INFO 2025-07-22 13:02:44,425 server 14088 9684 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:02:44,426 server 14088 9684 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:02:44,427 server 14088 9684 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:02:56,914 server 18052 12756 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:02:56,914 server 18052 12756 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:02:56,915 server 18052 12756 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:03:12,814 server 18012 9612 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:03:12,815 server 18012 9612 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:03:12,816 server 18012 9612 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:03:15,850 middleware 18012 2604 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.234, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6345}
+ERROR 2025-07-22 13:03:15,854 log 18012 17004 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 13:03:15,855 runserver 18012 9612 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.25, 127.0.0.1:54713][0m
+INFO 2025-07-22 13:04:51,152 autoreload 7460 13716 Watching for file changes with StatReloader
+INFO 2025-07-22 13:04:53,372 server 7460 3228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:04:53,373 server 7460 3228 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:04:53,374 server 7460 3228 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:05:28,847 server 18012 9612 Killed 0 pending application instances
+INFO 2025-07-22 13:05:33,727 server 9576 12440 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:05:33,728 server 9576 12440 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:05:33,729 server 9576 12440 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:05:37,512 middleware 9576 1144 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.22, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6376}
+ERROR 2025-07-22 13:05:37,518 log 9576 3544 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 13:05:37,521 runserver 9576 12440 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.24, 127.0.0.1:54893][0m
+INFO 2025-07-22 13:05:45,782 server 9576 12440 Killed 0 pending application instances
+INFO 2025-07-22 13:06:39,244 server 19248 5916 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:06:39,245 server 19248 5916 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:06:39,247 server 19248 5916 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:06:42,722 middleware 19248 18004 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.206, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 6376}
+ERROR 2025-07-22 13:06:42,728 log 19248 18512 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 13:06:42,730 runserver 19248 5916 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.23, 127.0.0.1:54967][0m
+INFO 2025-07-22 13:08:39,740 server 19248 5916 Killed 0 pending application instances
+INFO 2025-07-22 13:08:56,905 server 16248 15484 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:08:56,907 server 16248 15484 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:08:56,909 server 16248 15484 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:09:00,446 middleware 16248 12084 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.219, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5728}
+ERROR 2025-07-22 13:09:00,454 log 16248 1224 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 13:09:00,457 runserver 16248 15484 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.24, 127.0.0.1:55201][0m
+INFO 2025-07-22 13:12:07,969 autoreload 18936 13560 Watching for file changes with StatReloader
+INFO 2025-07-22 13:12:10,122 server 18936 15776 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:12:10,123 server 18936 15776 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:12:10,124 server 18936 15776 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:12:45,545 server 16248 15484 Killed 0 pending application instances
+INFO 2025-07-22 13:13:09,941 server 17252 1444 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:13:09,942 server 17252 1444 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:13:09,943 server 17252 1444 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:13:12,694 middleware 17252 18332 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.149, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 406}
+INFO 2025-07-22 13:13:12,721 runserver 17252 1444 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.19, 127.0.0.1:55492][0m
+INFO 2025-07-22 13:27:14,852 server 17252 1444 Killed 0 pending application instances
+INFO 2025-07-22 13:27:33,407 server 1788 17304 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:27:33,408 server 1788 17304 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:27:33,410 server 1788 17304 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:29:01,074 server 1788 17304 Killed 0 pending application instances
+INFO 2025-07-22 13:29:14,636 server 12132 11784 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:29:14,638 server 12132 11784 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:29:14,639 server 12132 11784 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 13:29:23,444 middleware 12132 8252 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.776, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 404}
+INFO 2025-07-22 13:29:23,456 runserver 12132 11784 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.80, 127.0.0.1:56885][0m
+INFO 2025-07-22 13:30:35,155 middleware 12132 14500 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.234, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 404}
+INFO 2025-07-22 13:30:35,166 runserver 12132 11784 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.25, 127.0.0.1:57188][0m
+INFO 2025-07-22 13:31:38,368 middleware 12132 18888 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.302, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 13:31:38,379 runserver 12132 11784 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.32, 127.0.0.1:57416][0m
+INFO 2025-07-22 13:40:05,258 autoreload 10112 18840 Watching for file changes with StatReloader
+INFO 2025-07-22 13:40:07,350 server 10112 8340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:40:07,351 server 10112 8340 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:40:07,353 server 10112 8340 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:42:40,052 autoreload 10112 18840 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:42:42,560 autoreload 13896 16912 Watching for file changes with StatReloader
+INFO 2025-07-22 13:42:45,068 server 13896 12000 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:42:45,069 server 13896 12000 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:42:45,070 server 13896 12000 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:43:17,045 autoreload 13896 16912 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:43:19,702 autoreload 11984 15876 Watching for file changes with StatReloader
+INFO 2025-07-22 13:43:21,794 server 11984 13160 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:43:21,795 server 11984 13160 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:43:21,797 server 11984 13160 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:43:47,524 autoreload 11984 15876 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:43:49,947 autoreload 3924 15580 Watching for file changes with StatReloader
+INFO 2025-07-22 13:43:52,149 server 3924 8248 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:43:52,150 server 3924 8248 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:43:52,151 server 3924 8248 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:45:40,224 middleware 12132 14624 API Request: {"method": "GET", "path": "/api/", "status_code": 404, "duration": 0.138, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 4133}
+WARNING 2025-07-22 13:45:40,228 log 12132 2904 Not Found: /api/
+WARNING 2025-07-22 13:45:40,229 runserver 12132 11784 [33mHTTP GET /api/ 404 [0.15, 127.0.0.1:58273][0m
+INFO 2025-07-22 13:46:05,865 autoreload 13780 15416 Watching for file changes with StatReloader
+INFO 2025-07-22 13:46:07,968 server 13780 8224 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:46:07,969 server 13780 8224 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:46:07,971 server 13780 8224 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:52:42,814 middleware 12132 15208 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-22 13:52:42,818 log 12132 2904 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 13:52:42,820 runserver 12132 11784 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.02, 127.0.0.1:58494][0m
+INFO 2025-07-22 13:52:51,198 middleware 12132 8928 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.91, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 13:52:51,203 runserver 12132 11784 [mHTTP POST /api/auth/login/ 200 [0.92, 127.0.0.1:58494][0m
+INFO 2025-07-22 13:53:04,159 middleware 12132 17500 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.229, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-22 13:53:04,170 runserver 12132 11784 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.25, 127.0.0.1:58494][0m
+INFO 2025-07-22 13:54:57,079 autoreload 13780 15416 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:54:59,511 autoreload 2016 1104 Watching for file changes with StatReloader
+INFO 2025-07-22 13:55:01,513 server 2016 5108 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:55:01,514 server 2016 5108 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:55:01,515 server 2016 5108 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:55:15,073 autoreload 2016 1104 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:55:17,647 autoreload 14580 15764 Watching for file changes with StatReloader
+INFO 2025-07-22 13:55:19,605 server 14580 11288 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:55:19,605 server 14580 11288 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:55:19,606 server 14580 11288 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:55:34,824 autoreload 14580 15764 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:55:37,160 autoreload 13760 11832 Watching for file changes with StatReloader
+INFO 2025-07-22 13:55:39,210 server 13760 14468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:55:39,210 server 13760 14468 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:55:39,212 server 13760 14468 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:55:49,484 autoreload 13760 11832 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:55:51,877 autoreload 420 16928 Watching for file changes with StatReloader
+INFO 2025-07-22 13:55:53,906 server 420 1288 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:55:53,907 server 420 1288 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:55:53,908 server 420 1288 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:56:07,695 autoreload 420 16928 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:56:10,456 autoreload 19068 19108 Watching for file changes with StatReloader
+INFO 2025-07-22 13:56:12,516 server 19068 11052 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:56:12,517 server 19068 11052 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:56:12,518 server 19068 11052 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:56:27,266 autoreload 19068 19108 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:56:29,643 autoreload 5468 15832 Watching for file changes with StatReloader
+INFO 2025-07-22 13:56:31,676 server 5468 11560 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:56:31,676 server 5468 11560 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:56:31,677 server 5468 11560 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:56:40,701 autoreload 5468 15832 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 13:56:43,053 autoreload 6880 3792 Watching for file changes with StatReloader
+INFO 2025-07-22 13:56:45,052 server 6880 1684 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:56:45,053 server 6880 1684 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 13:56:45,054 server 6880 1684 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 13:59:45,599 server 13480 19260 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 13:59:45,600 server 13480 19260 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 13:59:45,601 server 13480 19260 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 14:00:23,600 middleware 13480 12836 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.16, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1651}
+ERROR 2025-07-22 14:00:23,606 log 13480 688 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 14:00:23,607 runserver 13480 19260 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.18, 127.0.0.1:59490][0m
+INFO 2025-07-22 14:06:46,094 autoreload 12128 16524 Watching for file changes with StatReloader
+INFO 2025-07-22 14:06:47,229 server 12128 19324 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 14:06:47,229 server 12128 19324 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 14:06:47,230 server 12128 19324 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 14:08:39,734 autoreload 10292 10908 Watching for file changes with StatReloader
+INFO 2025-07-22 14:08:40,898 server 10292 13724 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 14:08:40,899 server 10292 13724 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 14:08:40,899 server 10292 13724 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-22 14:10:08,040 exception 11112 16832 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 14:10:08,220 log 11112 16832 Bad Request: /api/policy-data/file-uploads/
+INFO 2025-07-22 14:57:11,578 autoreload 10292 10908 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\utils.py changed, reloading.
+INFO 2025-07-22 14:57:12,744 autoreload 20896 10188 Watching for file changes with StatReloader
+INFO 2025-07-22 14:57:13,861 server 20896 5392 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 14:57:13,862 server 20896 5392 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 14:57:13,862 server 20896 5392 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 14:59:08,586 autoreload 20896 10188 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 14:59:09,782 autoreload 22468 21392 Watching for file changes with StatReloader
+INFO 2025-07-22 14:59:11,074 server 22468 22260 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 14:59:11,074 server 22468 22260 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 14:59:11,075 server 22468 22260 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 15:00:08,930 autoreload 22468 21392 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 15:00:10,309 autoreload 21992 20304 Watching for file changes with StatReloader
+INFO 2025-07-22 15:00:11,607 server 21992 20928 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 15:00:11,608 server 21992 20928 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 15:00:11,608 server 21992 20928 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 15:01:09,297 autoreload 21992 20304 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-22 15:01:10,456 autoreload 18172 19904 Watching for file changes with StatReloader
+INFO 2025-07-22 15:01:11,720 server 18172 20124 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 15:01:11,720 server 18172 20124 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 15:01:11,720 server 18172 20124 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 15:15:03,799 server 6492 11080 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 15:15:03,800 server 6492 11080 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 15:15:03,800 server 6492 11080 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 15:15:09,187 middleware 6492 22496 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.011, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-22 15:15:09,190 log 6492 6312 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 15:15:09,191 runserver 6492 11080 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.02, 127.0.0.1:62179][0m
+INFO 2025-07-22 15:15:14,411 middleware 6492 20896 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.478, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 15:15:14,413 runserver 6492 11080 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:62179][0m
+INFO 2025-07-22 15:15:24,705 middleware 6492 10980 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 205}
+WARNING 2025-07-22 15:15:24,707 log 6492 6312 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 15:15:24,708 runserver 6492 11080 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:62179][0m
+INFO 2025-07-22 15:16:03,274 middleware 6492 20312 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.316, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-22 15:16:03,281 runserver 6492 11080 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.33, 127.0.0.1:62179][0m
+INFO 2025-07-22 15:23:31,201 middleware 6492 13400 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.158, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 15:23:31,206 runserver 6492 11080 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.17, 127.0.0.1:62993][0m
+INFO 2025-07-22 15:51:49,767 server 16496 14404 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 15:51:49,768 server 16496 14404 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 15:51:49,770 server 16496 14404 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 15:54:41,691 middleware 16496 3464 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.505, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 15:54:41,693 runserver 16496 14404 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:49180][0m
+INFO 2025-07-22 15:54:55,505 middleware 16496 19784 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.691, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 15:54:55,511 runserver 16496 14404 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.70, 127.0.0.1:49180][0m
+INFO 2025-07-22 16:00:31,204 middleware 16496 14620 API Request: {"method": "POST", "path": "/api/policy-data/", "status_code": 404, "duration": 0.071, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 4170}
+WARNING 2025-07-22 16:00:31,206 log 16496 11612 Not Found: /api/policy-data/
+WARNING 2025-07-22 16:00:31,208 runserver 16496 14404 [33mHTTP POST /api/policy-data/ 404 [0.08, 127.0.0.1:50360][0m
+INFO 2025-07-22 16:01:09,230 middleware 16496 13616 API Request: {"method": "POST", "path": "/api/policy_data/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-07-22 16:01:09,232 log 16496 11612 Unauthorized: /api/policy_data/
+WARNING 2025-07-22 16:01:09,233 runserver 16496 14404 [31;1mHTTP POST /api/policy_data/ 401 [0.01, 127.0.0.1:50421][0m
+INFO 2025-07-22 16:01:24,570 autoreload 5456 21344 Watching for file changes with StatReloader
+INFO 2025-07-22 16:01:25,703 server 5456 12208 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 16:01:25,703 server 5456 12208 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 16:01:25,704 server 5456 12208 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 16:02:00,201 middleware 16496 4876 API Request: {"method": "POST", "path": "/api/policy_data/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-07-22 16:02:00,203 log 16496 11612 Unauthorized: /api/policy_data/
+WARNING 2025-07-22 16:02:00,204 runserver 16496 14404 [31;1mHTTP POST /api/policy_data/ 401 [0.01, 127.0.0.1:50484][0m
+INFO 2025-07-22 16:02:37,460 middleware 16496 20572 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 400, "duration": 0.455, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 92}
+WARNING 2025-07-22 16:02:37,462 log 16496 11612 Bad Request: /api/auth/login/
+WARNING 2025-07-22 16:02:37,462 runserver 16496 14404 [31;1mHTTP POST /api/auth/login/ 400 [0.46, 127.0.0.1:50518][0m
+INFO 2025-07-22 16:02:37,480 middleware 16496 4584 API Request: {"method": "POST", "path": "/api/policy_data/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-07-22 16:02:37,481 log 16496 11612 Unauthorized: /api/policy_data/
+WARNING 2025-07-22 16:02:37,482 runserver 16496 14404 [31;1mHTTP POST /api/policy_data/ 401 [0.01, 127.0.0.1:50518][0m
+INFO 2025-07-22 16:03:39,622 server 16496 14404 Killed 0 pending application instances
+INFO 2025-07-22 16:04:40,551 server 10812 21992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 16:04:40,552 server 10812 21992 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 16:04:40,553 server 10812 21992 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 16:04:48,090 middleware 10812 13000 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.499, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 16:04:48,096 runserver 10812 21992 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.51, 127.0.0.1:50921][0m
+INFO 2025-07-22 16:15:10,996 middleware 10812 3172 API Request: {"method": "GET", "path": "/api/auth/csrf/", "status_code": 404, "duration": 0.063, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 6118}
+WARNING 2025-07-22 16:15:10,998 log 10812 12776 Not Found: /api/auth/csrf/
+WARNING 2025-07-22 16:15:10,999 runserver 10812 21992 [33mHTTP GET /api/auth/csrf/ 404 [0.07, 127.0.0.1:52528][0m
+INFO 2025-07-22 16:15:11,462 middleware 10812 16720 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 400, "duration": 0.459, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 92}
+WARNING 2025-07-22 16:15:11,464 log 10812 12776 Bad Request: /api/auth/login/
+WARNING 2025-07-22 16:15:11,464 runserver 10812 21992 [31;1mHTTP POST /api/auth/login/ 400 [0.46, 127.0.0.1:52528][0m
+ERROR 2025-07-22 16:15:51,319 exception 15320 21376 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 16:15:51,886 log 15320 21376 Bad Request: /api/policy_data/
+INFO 2025-07-22 16:17:26,713 server 10812 21992 Killed 0 pending application instances
+INFO 2025-07-22 16:17:41,110 server 13688 13360 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 16:17:41,111 server 13688 13360 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 16:17:41,112 server 13688 13360 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 16:17:43,746 middleware 13688 20700 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.059, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 196}
+WARNING 2025-07-22 16:17:43,748 log 13688 14944 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 16:17:43,748 runserver 13688 13360 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.07, 127.0.0.1:52869][0m
+INFO 2025-07-22 16:18:11,544 middleware 13688 14532 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.577, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 16:18:11,549 runserver 13688 13360 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.58, 127.0.0.1:52869][0m
+INFO 2025-07-22 16:26:32,162 server 13688 13360 Killed 0 pending application instances
+INFO 2025-07-22 16:26:51,380 server 20956 10468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 16:26:51,381 server 20956 10468 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 16:26:51,381 server 20956 10468 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 16:26:55,644 middleware 20956 11112 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.467, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
+INFO 2025-07-22 16:26:55,650 runserver 20956 10468 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.48, 127.0.0.1:55862][0m
+INFO 2025-07-22 16:52:30,507 server 20956 10468 Killed 0 pending application instances
+ERROR 2025-07-22 16:56:47,495 exception 8332 14804 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-22 16:56:47,708 log 8332 14804 Bad Request: /api/policy_data/
+INFO 2025-07-22 17:10:23,386 server 11984 5824 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 17:10:23,387 server 11984 5824 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 17:10:23,387 server 11984 5824 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 17:13:10,902 middleware 11984 3788 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.011, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-22 17:13:10,904 log 11984 11348 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-22 17:13:10,905 runserver 11984 5824 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.02, 127.0.0.1:60833][0m
+INFO 2025-07-22 17:13:15,856 middleware 11984 17836 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.491, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 17:13:15,858 runserver 11984 5824 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:60833][0m
+INFO 2025-07-22 17:13:33,080 middleware 11984 9668 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 196}
+WARNING 2025-07-22 17:13:33,082 log 11984 11348 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 17:13:33,082 runserver 11984 5824 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:60833][0m
+INFO 2025-07-22 17:13:49,199 middleware 11984 19852 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.415, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-22 17:13:49,204 runserver 11984 5824 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.42, 127.0.0.1:60833][0m
+INFO 2025-07-22 17:33:58,994 server 14376 7508 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 17:33:58,995 server 14376 7508 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 17:33:58,996 server 14376 7508 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 17:34:06,133 middleware 14376 19176 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.481, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 17:34:06,136 runserver 14376 7508 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:63124][0m
+INFO 2025-07-22 17:34:18,021 middleware 14376 21120 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 205}
+WARNING 2025-07-22 17:34:18,023 log 14376 14876 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 17:34:18,024 runserver 14376 7508 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:63124][0m
+INFO 2025-07-22 17:35:26,271 middleware 14376 19832 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.461, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-22 17:35:26,277 runserver 14376 7508 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.47, 127.0.0.1:63492][0m
+INFO 2025-07-22 17:53:19,261 server 14376 7508 Killed 0 pending application instances
+INFO 2025-07-22 17:53:35,188 server 16272 14028 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 17:53:35,188 server 16272 14028 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 17:53:35,189 server 16272 14028 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 17:53:38,217 middleware 16272 17232 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 196}
+WARNING 2025-07-22 17:53:38,219 log 16272 15792 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-07-22 17:53:38,220 runserver 16272 14028 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.06, 127.0.0.1:49390][0m
+INFO 2025-07-22 17:53:55,724 middleware 16272 13204 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.498, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 826}
+ERROR 2025-07-22 17:53:55,726 log 16272 15792 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 17:53:55,727 runserver 16272 14028 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.50, 127.0.0.1:49390][0m
+INFO 2025-07-22 17:55:43,162 autoreload 3260 22496 Watching for file changes with StatReloader
+INFO 2025-07-22 17:55:44,389 server 3260 20036 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 17:55:44,389 server 3260 20036 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 17:55:44,390 server 3260 20036 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 17:58:47,566 server 16272 14028 Killed 0 pending application instances
+INFO 2025-07-22 17:59:12,545 server 17576 20132 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 17:59:12,545 server 17576 20132 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 17:59:12,546 server 17576 20132 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 18:00:19,617 middleware 17576 20692 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.507, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-22 18:00:19,621 runserver 17576 20132 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:50988][0m
+INFO 2025-07-22 18:00:32,474 middleware 17576 20328 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.484, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 826}
+ERROR 2025-07-22 18:00:32,476 log 17576 15468 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 18:00:32,476 runserver 17576 20132 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.49, 127.0.0.1:50988][0m
+INFO 2025-07-22 18:13:26,343 server 17576 20132 Killed 0 pending application instances
+INFO 2025-07-22 18:13:42,106 server 21856 21716 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 18:13:42,107 server 21856 21716 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 18:13:42,107 server 21856 21716 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 18:13:48,042 middleware 21856 22448 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.467, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 832}
+ERROR 2025-07-22 18:13:48,044 log 21856 3416 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 18:13:48,045 runserver 21856 21716 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.48, 127.0.0.1:52926][0m
+INFO 2025-07-22 18:22:16,715 autoreload 10104 20392 Watching for file changes with StatReloader
+INFO 2025-07-22 18:22:18,805 server 10104 14948 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 18:22:18,807 server 10104 14948 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 18:22:18,810 server 10104 14948 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-22 18:30:53,323 server 21856 21716 Killed 0 pending application instances
+INFO 2025-07-22 18:31:13,397 server 8004 15792 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 18:31:13,397 server 8004 15792 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 18:31:13,399 server 8004 15792 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 18:31:17,993 middleware 8004 8008 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.902, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 834}
+ERROR 2025-07-22 18:31:17,997 log 8004 19228 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 18:31:17,999 runserver 8004 15792 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.92, 127.0.0.1:59657][0m
+INFO 2025-07-22 18:37:08,849 server 8004 15792 Killed 0 pending application instances
+INFO 2025-07-22 18:39:25,483 server 11312 21480 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 18:39:25,484 server 11312 21480 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-22 18:39:25,486 server 11312 21480 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-22 18:39:30,879 middleware 11312 11052 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.969, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 834}
+ERROR 2025-07-22 18:39:30,883 log 11312 21060 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-22 18:39:30,885 runserver 11312 21480 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.99, 127.0.0.1:60808][0m
+INFO 2025-07-22 18:44:37,760 autoreload 22260 5824 Watching for file changes with StatReloader
+INFO 2025-07-22 18:44:39,955 server 22260 20460 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-22 18:44:39,956 server 22260 20460 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-22 18:44:39,957 server 22260 20460 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-23 09:53:51,453 server 11312 21480 Killed 0 pending application instances
+INFO 2025-07-23 09:54:32,653 server 14688 21052 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 09:54:32,654 server 14688 21052 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 09:54:32,654 server 14688 21052 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 09:54:43,994 middleware 14688 2044 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.515, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 09:54:43,997 runserver 14688 21052 [mHTTP POST /api/auth/login/ 200 [0.53, 127.0.0.1:55725][0m
+INFO 2025-07-23 09:54:57,271 middleware 14688 11144 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.504, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
+INFO 2025-07-23 09:54:57,276 runserver 14688 21052 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.51, 127.0.0.1:55725][0m
+INFO 2025-07-23 10:18:59,071 autoreload 2544 17304 Watching for file changes with StatReloader
+INFO 2025-07-23 10:19:00,602 server 2544 20036 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:19:00,602 server 2544 20036 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-23 10:19:00,603 server 2544 20036 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-23 10:24:46,449 server 14688 21052 Killed 0 pending application instances
+INFO 2025-07-23 10:25:06,087 server 4228 8180 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:25:06,087 server 4228 8180 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 10:25:06,088 server 4228 8180 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 10:25:08,888 middleware 4228 10844 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.459, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
+INFO 2025-07-23 10:25:08,894 runserver 4228 8180 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.47, 127.0.0.1:57982][0m
+INFO 2025-07-23 10:32:37,693 server 4228 8180 Killed 0 pending application instances
+INFO 2025-07-23 10:32:57,168 server 20788 10988 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:32:57,168 server 20788 10988 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 10:32:57,169 server 20788 10988 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 10:34:03,209 middleware 20788 15220 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.464, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
+INFO 2025-07-23 10:34:03,213 runserver 20788 10988 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.47, 127.0.0.1:59034][0m
+INFO 2025-07-23 10:49:34,365 server 20788 10988 Killed 0 pending application instances
+INFO 2025-07-23 10:50:03,816 server 15920 4228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:50:03,816 server 15920 4228 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 10:50:03,817 server 15920 4228 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 10:50:08,956 middleware 15920 22264 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.447, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 841}
+ERROR 2025-07-23 10:50:08,959 log 15920 16840 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-23 10:50:08,959 runserver 15920 4228 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.46, 127.0.0.1:60908][0m
+INFO 2025-07-23 10:51:44,656 server 15920 4228 Killed 0 pending application instances
+INFO 2025-07-23 10:52:12,859 server 21620 19796 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:52:12,860 server 21620 19796 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 10:52:12,860 server 21620 19796 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 10:52:20,954 middleware 21620 12212 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.475, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 10:52:20,956 runserver 21620 19796 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:61459][0m
+INFO 2025-07-23 10:52:41,377 middleware 21620 13288 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 500, "duration": 0.485, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 840}
+ERROR 2025-07-23 10:52:41,379 log 21620 19832 Internal Server Error: /api/policy_data/file-uploads/
+ERROR 2025-07-23 10:52:41,380 runserver 21620 19796 [35;1mHTTP POST /api/policy_data/file-uploads/ 500 [0.49, 127.0.0.1:61459][0m
+INFO 2025-07-23 10:59:08,107 server 21620 19796 Killed 0 pending application instances
+INFO 2025-07-23 10:59:23,740 server 7236 16684 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 10:59:23,740 server 7236 16684 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 10:59:23,741 server 7236 16684 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 10:59:28,218 middleware 7236 22604 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.449, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-23 10:59:28,223 runserver 7236 16684 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.46, 127.0.0.1:62363][0m
+INFO 2025-07-23 11:11:04,426 server 7236 16684 Killed 0 pending application instances
+INFO 2025-07-23 11:12:28,697 server 12412 22972 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:12:28,697 server 12412 22972 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 11:12:28,698 server 12412 22972 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 11:12:31,704 middleware 12412 23112 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.467, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-23 11:12:31,709 runserver 12412 22972 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.48, 127.0.0.1:64025][0m
+ERROR 2025-07-23 11:17:57,285 exception 12996 21648 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-23 11:17:57,428 log 12996 21648 Bad Request: /api/files_upload/file-uploads/
+ERROR 2025-07-23 11:18:49,014 exception 17492 23352 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-23 11:18:49,145 log 17492 23352 Bad Request: /api/files_upload/file-uploads/
+INFO 2025-07-23 11:19:26,754 autoreload 17088 19648 Watching for file changes with StatReloader
+INFO 2025-07-23 11:19:27,883 server 17088 22032 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:19:27,884 server 17088 22032 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-23 11:19:27,884 server 17088 22032 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-23 11:23:32,096 autoreload 17088 19648 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-23 11:23:33,339 autoreload 22120 13952 Watching for file changes with StatReloader
+INFO 2025-07-23 11:23:59,644 autoreload 22120 13952 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-23 11:24:00,846 autoreload 5468 20604 Watching for file changes with StatReloader
+INFO 2025-07-23 11:24:26,154 autoreload 5468 20604 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-07-23 11:24:27,719 autoreload 8688 14228 Watching for file changes with StatReloader
+INFO 2025-07-23 11:24:28,916 server 8688 10248 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:24:28,916 server 8688 10248 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-23 11:24:28,916 server 8688 10248 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-23 11:26:51,492 autoreload 8688 14228 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_data\views.py changed, reloading.
+INFO 2025-07-23 11:26:53,126 autoreload 2188 5244 Watching for file changes with StatReloader
+INFO 2025-07-23 11:26:54,410 server 2188 12604 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:26:54,410 server 2188 12604 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-23 11:26:54,411 server 2188 12604 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR 2025-07-23 11:27:36,665 exception 12612 14484 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Sahina1001\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-07-23 11:27:36,727 log 12612 14484 Bad Request: /api/files_upload/file-uploads/
+INFO 2025-07-23 11:29:50,807 server 12412 22972 Killed 0 pending application instances
+INFO 2025-07-23 11:30:46,666 server 14480 11696 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:30:46,666 server 14480 11696 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 11:30:46,667 server 14480 11696 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 11:31:11,859 server 14480 11696 Killed 0 pending application instances
+INFO 2025-07-23 11:31:16,387 server 20860 21624 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:31:16,388 server 20860 21624 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 11:31:16,389 server 20860 21624 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 11:32:46,746 server 20860 21624 Killed 0 pending application instances
+INFO 2025-07-23 11:32:52,020 server 11128 16192 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:32:52,021 server 11128 16192 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 11:32:52,021 server 11128 16192 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 11:32:55,916 middleware 11128 20012 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.439, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-23 11:32:55,921 runserver 11128 16192 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.45, 127.0.0.1:49236][0m
+INFO 2025-07-23 11:38:55,513 server 11128 16192 Killed 0 pending application instances
+INFO 2025-07-23 11:40:38,303 server 4816 19908 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 11:40:38,304 server 4816 19908 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 11:40:38,304 server 4816 19908 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 11:40:46,074 middleware 4816 13300 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.496, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
+INFO 2025-07-23 11:40:46,080 runserver 4816 19908 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.51, 127.0.0.1:50517][0m
+INFO 2025-07-23 11:55:14,063 server 4816 19908 Killed 0 pending application instances

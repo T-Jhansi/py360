@@ -56,17 +56,22 @@ class RequestLoggingMiddleware(MiddlewareMixin):
                 }
                 
                 # Log request body for POST/PUT/PATCH (excluding sensitive data)
-                if request.method in ['POST', 'PUT', 'PATCH']:
+                # Skip body logging for file uploads to avoid "body already read" error
+                if (request.method in ['POST', 'PUT', 'PATCH'] and
+                    'multipart/form-data' not in request.content_type and
+                    'application/octet-stream' not in request.content_type):
                     try:
-                        if hasattr(request, 'body') and request.body:
-                            body = json.loads(request.body.decode('utf-8'))
+                        # Only try to read body if it hasn't been read yet
+                        if hasattr(request, '_body') and request._body is not None:
+                            body = json.loads(request._body.decode('utf-8'))
                             # Remove sensitive fields
                             sensitive_fields = ['password', 'token', 'secret', 'key']
                             for field in sensitive_fields:
                                 if field in body:
                                     body[field] = '***REDACTED***'
                             log_data['request_body'] = body
-                    except (json.JSONDecodeError, UnicodeDecodeError):
+                    except (json.JSONDecodeError, UnicodeDecodeError, AttributeError):
+                        # Skip logging body if there's any issue reading it
                         pass
                 
                 # Log to file

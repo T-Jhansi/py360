@@ -61,7 +61,7 @@ class Customer(BaseModel):
     ]
     
     # Basic Information
-    customer_id = models.CharField(max_length=20, unique=True, db_index=True)
+    customer_code = models.CharField(max_length=20, unique=True, db_index=True, help_text="Auto-generated customer code like CUS2025001")
     customer_type = models.CharField(max_length=20, choices=CUSTOMER_TYPE_CHOICES, default='individual')
     
     # Personal/Company Details
@@ -90,11 +90,12 @@ class Customer(BaseModel):
     )
     
     # Address Information
-    address_line1 = models.CharField(max_length=255)
+    address = models.TextField(blank=True, help_text="Complete address from Excel import")
+    address_line1 = models.CharField(max_length=255, blank=True)
     address_line2 = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=100, db_index=True)
-    state = models.CharField(max_length=100, db_index=True)
-    postal_code = models.CharField(max_length=20, db_index=True)
+    city = models.CharField(max_length=100, blank=True, db_index=True)
+    state = models.CharField(max_length=100, blank=True, db_index=True)
+    postal_code = models.CharField(max_length=20, blank=True, db_index=True)
     country = models.CharField(max_length=100, default='India', db_index=True)
     
     # Business Information (for corporate customers)
@@ -137,11 +138,26 @@ class Customer(BaseModel):
     timezone = models.CharField(max_length=50, default='Asia/Kolkata')
     
     # Communication Preferences
+    communication_preferences = models.CharField(max_length=50, blank=True, help_text="Communication preferences from Excel")
     email_notifications = models.BooleanField(default=True)
     sms_notifications = models.BooleanField(default=True)
     whatsapp_notifications = models.BooleanField(default=False)
     marketing_communications = models.BooleanField(default=True)
     
+    # KYC Information
+    kyc_status = models.CharField(
+        max_length=20,
+        choices=[
+            ('pending', 'Pending'),
+            ('verified', 'Verified'),
+            ('rejected', 'Rejected'),
+            ('expired', 'Expired'),
+        ],
+        default='pending',
+        help_text="KYC verification status from Excel"
+    )
+    kyc_documents = models.CharField(max_length=200, blank=True, help_text="KYC documents list from Excel")
+
     # Financial Information
     credit_score = models.PositiveIntegerField(null=True, blank=True)
     payment_terms = models.CharField(max_length=50, blank=True)
@@ -166,7 +182,7 @@ class Customer(BaseModel):
     class Meta:
         ordering = ['-created_at']
         indexes = [
-            models.Index(fields=['customer_id']),
+            models.Index(fields=['customer_code']),
             models.Index(fields=['email']),
             models.Index(fields=['phone']),
             models.Index(fields=['status', 'priority']),
@@ -174,6 +190,7 @@ class Customer(BaseModel):
             models.Index(fields=['assigned_agent']),
             models.Index(fields=['segment']),
             models.Index(fields=['first_policy_date']),
+            models.Index(fields=['kyc_status']),
         ]
     
     def __str__(self):

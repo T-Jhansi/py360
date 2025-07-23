@@ -48,13 +48,16 @@ LOCAL_APPS = [
     'apps.campaigns',
     'apps.templates',
     'apps.TargetAudience',
-    # 'apps.communications',  # Add when dependencies are installed
-    # 'apps.emails',  # Add when dependencies are installed
-    # 'apps.surveys',  # Add when dependencies are installed
-    # 'apps.claims',  # Add when dependencies are installed
-    # 'apps.notifications',  # Add when dependencies are installed
-    # 'apps.analytics',  # Add when dependencies are installed
-    # 'apps.files',  # Add when dependencies are installed
+    'apps.policy_data',
+    'apps.files_upload',
+    'apps.renewals',
+    # 'apps.communications',
+    # 'apps.emails',
+    # 'apps.surveys',
+    # 'apps.claims',
+    # 'apps.notifications',
+    # 'apps.analytics',
+    # 'apps.files',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -113,7 +116,6 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432'),
         'OPTIONS': {
             'connect_timeout': 60,
-            'options': '-c default_transaction_isolation=serializable'
         },
     }
 }
@@ -195,6 +197,8 @@ STATICFILES_DIRS = [
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -61,7 +61,7 @@ class FileUpload(BaseModel):
     
     # Status and processing
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='uploading', db_index=True)
-    processing_result = models.JSONField(default=dict, blank=True)
+    processing_result = models.TextField(null=True, blank=True)
     error_message = models.TextField(blank=True)
     
     # Security
