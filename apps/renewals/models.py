@@ -30,7 +30,7 @@ class RenewalCase(BaseModel):
     
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default='medium')
-    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_renewal_cases')
+    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_renewal_cases', db_column='assigned_to')
     
     renewal_amount = models.DecimalField(max_digits=12, decimal_places=2)
     payment_status = models.CharField(max_length=20, default='pending')

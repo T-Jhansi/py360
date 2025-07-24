@@ -1,4 +1,3 @@
-# serializers.py
 from rest_framework import serializers
 from apps.files_upload.models import FileUpload
 from apps.uploads.models import FileUpload as UploadsFileUpload
@@ -107,13 +106,14 @@ class CustomerImportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = [
-            'id', 'customer_code', 'customer_id', 'first_name', 'last_name',
+            'id', 'customer_code', 'first_name', 'last_name',
             'full_name', 'email', 'phone', 'date_of_birth', 'gender',
-            'address', 'kyc_status', 'kyc_documents', 'communication_preferences',
+            'address_line1', 'address_line2', 'city', 'state', 'postal_code', 'country',
+            'kyc_status', 'kyc_documents', 'communication_preferences',
             'status', 'priority', 'policies_count', 'created_at', 'updated_at'
         ]
         read_only_fields = [
-            'id', 'customer_code', 'customer_id', 'full_name', 'policies_count',
+            'id', 'customer_code', 'full_name', 'policies_count',
             'created_at', 'updated_at'
         ]
 

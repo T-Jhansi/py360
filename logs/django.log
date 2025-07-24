@@ -3474,3 +3474,112 @@ INFO 2025-07-23 11:40:38,304 server 4816 19908 Listening on TCP address 127.0.0.
 INFO 2025-07-23 11:40:46,074 middleware 4816 13300 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.496, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 407}
 INFO 2025-07-23 11:40:46,080 runserver 4816 19908 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.51, 127.0.0.1:50517][0m
 INFO 2025-07-23 11:55:14,063 server 4816 19908 Killed 0 pending application instances
+INFO 2025-07-23 12:50:26,471 server 22872 15492 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 12:50:26,472 server 22872 15492 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 12:50:26,472 server 22872 15492 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 12:50:29,506 middleware 22872 10648 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 401, "duration": 0.025, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-07-23 12:50:29,508 log 22872 22772 Unauthorized: /api/policy_data/file-uploads/
+WARNING 2025-07-23 12:50:29,509 runserver 22872 15492 [31;1mHTTP POST /api/policy_data/file-uploads/ 401 [0.03, 127.0.0.1:54619][0m
+INFO 2025-07-23 12:50:34,014 middleware 22872 22132 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.484, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 12:50:34,017 runserver 22872 15492 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:54619][0m
+INFO 2025-07-23 12:50:52,770 middleware 22872 5216 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.563, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 405}
+INFO 2025-07-23 12:50:52,774 runserver 22872 15492 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.57, 127.0.0.1:54619][0m
+INFO 2025-07-23 12:56:51,547 server 22872 15492 Killed 0 pending application instances
+INFO 2025-07-23 12:57:12,569 server 12472 20812 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 12:57:12,570 server 12472 20812 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 12:57:12,571 server 12472 20812 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 12:58:16,194 middleware 12472 18036 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.472, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 415}
+INFO 2025-07-23 12:58:16,200 runserver 12472 20812 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.48, 127.0.0.1:56223][0m
+INFO 2025-07-23 13:19:38,275 server 12472 20812 Killed 0 pending application instances
+INFO 2025-07-23 13:20:10,778 server 19640 22692 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 13:20:10,778 server 19640 22692 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 13:20:10,779 server 19640 22692 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 13:20:48,006 middleware 19640 19668 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.503, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-23 13:20:48,011 runserver 19640 22692 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.52, 127.0.0.1:57462][0m
+INFO 2025-07-23 13:35:35,737 server 19640 22692 Killed 0 pending application instances
+INFO 2025-07-23 13:40:40,891 server 7844 9148 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 13:40:40,891 server 7844 9148 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 13:40:40,892 server 7844 9148 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 13:40:44,523 middleware 7844 10920 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.645, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-23 13:40:44,555 runserver 7844 9148 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.68, 127.0.0.1:59813][0m
+INFO 2025-07-23 14:07:28,261 server 7844 9148 Killed 0 pending application instances
+INFO 2025-07-23 14:07:56,335 server 13064 18616 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 14:07:56,335 server 13064 18616 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 14:07:56,336 server 13064 18616 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 14:08:05,704 middleware 13064 16544 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.476, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 14:08:05,707 runserver 13064 18616 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:61395][0m
+INFO 2025-07-23 14:08:19,994 middleware 13064 18960 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.506, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-23 14:08:19,999 runserver 13064 18616 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.51, 127.0.0.1:61395][0m
+INFO 2025-07-23 15:41:42,283 server 23312 11596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 15:41:42,283 server 23312 11596 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 15:41:42,284 server 23312 11596 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 15:42:08,034 middleware 23312 22476 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.472, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 15:42:08,036 runserver 23312 11596 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:62882][0m
+INFO 2025-07-23 15:42:22,970 middleware 23312 17184 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.549, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 415}
+INFO 2025-07-23 15:42:22,976 runserver 23312 11596 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.56, 127.0.0.1:62882][0m
+INFO 2025-07-23 16:32:13,791 server 19380 3844 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 16:32:13,792 server 19380 3844 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 16:32:13,792 server 19380 3844 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 16:32:32,582 middleware 19380 16136 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.557, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-23 16:32:32,588 runserver 19380 3844 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.57, 127.0.0.1:50073][0m
+INFO 2025-07-23 17:40:11,618 autoreload 16264 14080 Watching for file changes with StatReloader
+INFO 2025-07-23 17:40:12,791 server 16264 22796 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 17:40:12,792 server 16264 22796 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-23 17:40:12,792 server 16264 22796 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-23 17:53:53,472 middleware 19380 21856 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.5, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-23 17:53:53,475 runserver 19380 3844 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:56112][0m
+INFO 2025-07-23 17:54:11,040 middleware 19380 1772 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/", "status_code": 404, "duration": 0.086, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5656}
+WARNING 2025-07-23 17:54:11,043 log 19380 22152 Not Found: /api/files_upload/api/file-uploads/
+WARNING 2025-07-23 17:54:11,044 runserver 19380 3844 [33mHTTP GET /api/files_upload/api/file-uploads/ 404 [0.09, 127.0.0.1:56112][0m
+INFO 2025-07-23 17:55:16,646 middleware 19380 22356 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/{30}/", "status_code": 404, "duration": 0.057, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5675}
+WARNING 2025-07-23 17:55:16,648 log 19380 22152 Not Found: /api/files_upload/api/file-uploads/{30}/
+WARNING 2025-07-23 17:55:16,649 runserver 19380 3844 [33mHTTP GET /api/files_upload/api/file-uploads/%7B30%7D/ 404 [0.06, 127.0.0.1:56247][0m
+INFO 2025-07-23 17:55:21,702 middleware 19380 19548 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/30/", "status_code": 404, "duration": 0.06, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 5665}
+WARNING 2025-07-23 17:55:21,704 log 19380 22152 Not Found: /api/files_upload/api/file-uploads/30/
+WARNING 2025-07-23 17:55:21,705 runserver 19380 3844 [33mHTTP GET /api/files_upload/api/file-uploads/30/ 404 [0.07, 127.0.0.1:56247][0m
+INFO 2025-07-23 17:56:14,057 server 15096 23352 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-23 17:56:14,057 server 15096 23352 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-23 17:56:14,058 server 15096 23352 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-23 17:56:20,173 middleware 15096 19196 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/30/", "status_code": 200, "duration": 0.066, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1224}
+INFO 2025-07-23 17:56:20,175 runserver 15096 23352 [mHTTP GET /api/files_upload/api/file-uploads/30/ 200 [0.08, 127.0.0.1:56330][0m
+INFO 2025-07-23 17:57:52,693 middleware 15096 14080 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/", "status_code": 200, "duration": 0.053, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1118}
+INFO 2025-07-23 17:57:52,695 runserver 15096 23352 [mHTTP GET /api/files_upload/api/file-uploads/ 200 [0.06, 127.0.0.1:56392][0m
+INFO 2025-07-24 10:24:45,668 server 21988 18312 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 10:24:45,668 server 21988 18312 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 10:24:45,669 server 21988 18312 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-24 10:36:05,715 server 14620 20456 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 10:36:05,715 server 14620 20456 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 10:36:05,716 server 14620 20456 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-24 10:36:43,382 middleware 14620 7004 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.5, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-24 10:36:43,385 runserver 14620 20456 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:60945][0m
+INFO 2025-07-24 10:37:02,186 middleware 14620 23540 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.366, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-24 10:37:02,191 runserver 14620 20456 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.37, 127.0.0.1:60945][0m
+INFO 2025-07-24 10:41:16,287 server 14620 20456 Killed 0 pending application instances
+INFO 2025-07-24 10:41:21,605 server 5300 9092 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 10:41:21,606 server 5300 9092 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 10:41:21,606 server 5300 9092 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-24 10:41:25,143 middleware 5300 1108 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.315, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-24 10:41:25,149 runserver 5300 9092 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.33, 127.0.0.1:61582][0m
+INFO 2025-07-24 10:59:57,168 server 5300 9092 Killed 0 pending application instances
+INFO 2025-07-24 11:00:14,172 server 18988 7628 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 11:00:14,173 server 18988 7628 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 11:00:14,173 server 18988 7628 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-24 11:00:24,408 middleware 18988 22004 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.645, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 415}
+INFO 2025-07-24 11:00:24,413 runserver 18988 7628 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.66, 127.0.0.1:61504][0m
+INFO 2025-07-24 11:12:27,407 middleware 18988 24200 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.447, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 410}
+INFO 2025-07-24 11:12:27,411 runserver 18988 7628 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.45, 127.0.0.1:63053][0m
+INFO 2025-07-24 11:14:04,241 middleware 18988 7036 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.425, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 413}
+INFO 2025-07-24 11:14:04,246 runserver 18988 7628 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.43, 127.0.0.1:63392][0m
+INFO 2025-07-24 11:24:41,069 middleware 18988 3008 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.465, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-24 11:24:41,071 runserver 18988 7628 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:63975][0m
+INFO 2025-07-24 11:28:23,232 middleware 18988 18916 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/34/", "status_code": 200, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1218}
+INFO 2025-07-24 11:28:23,235 runserver 18988 7628 [mHTTP GET /api/files_upload/api/file-uploads/34/ 200 [0.06, 127.0.0.1:64409][0m
+INFO 2025-07-24 11:28:46,566 middleware 18988 19452 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1113}
+INFO 2025-07-24 11:28:46,568 runserver 18988 7628 [mHTTP GET /api/files_upload/api/file-uploads/ 200 [0.06, 127.0.0.1:64409][0m
+INFO 2025-07-24 13:07:21,700 server 18988 7628 Killed 0 pending application instances
+INFO 2025-07-24 13:08:14,156 server 18304 10744 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 13:08:14,156 server 18304 10744 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 13:08:14,157 server 18304 10744 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-24 15:22:00,184 server 13428 9436 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-24 15:22:00,185 server 13428 9436 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-24 15:22:00,185 server 13428 9436 Listening on TCP address 127.0.0.1:8000

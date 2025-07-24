@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from apps.uploads.models import UploadsFileupload
+from apps.uploads.models import FileUpload as UploadsFileUpload
 from apps.customers.models import Customer
 from apps.policies.models import Policy
 from apps.renewals.models import RenewalCase
@@ -17,9 +17,9 @@ class Command(BaseCommand):
         
         try:
             # Get latest upload
-            latest_upload = UploadsFileupload.objects.latest('created_at')
-            self.stdout.write(f"📁 Latest upload: {latest_upload.filename}")
-            self.stdout.write(f"📊 Current status: {latest_upload.upload_status}")
+            latest_upload = UploadsFileUpload.objects.latest('created_at')
+            self.stdout.write(f"📁 Latest upload: {latest_upload.original_name}")
+            self.stdout.write(f"📊 Current status: {latest_upload.status}")
             
             # Get user
             user = User.objects.first()

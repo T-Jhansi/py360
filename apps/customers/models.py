@@ -90,7 +90,6 @@ class Customer(BaseModel):
     )
     
     # Address Information
-    address = models.TextField(blank=True, help_text="Complete address from Excel import")
     address_line1 = models.CharField(max_length=255, blank=True)
     address_line2 = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=100, blank=True, db_index=True)
@@ -235,7 +234,7 @@ class Customer(BaseModel):
         """Get total premium for current year"""
         current_year = timezone.now().year
         return self.policies.filter(
-            policy_start_date__year=current_year,
+            start_date__year=current_year,
             is_deleted=False
         ).aggregate(
             total=models.Sum('premium_amount')
@@ -255,8 +254,8 @@ class Customer(BaseModel):
         
         # Update policy dates
         if policies.exists():
-            self.first_policy_date = policies.order_by('policy_start_date').first().policy_start_date
-            self.last_policy_date = policies.order_by('-policy_start_date').first().policy_start_date
+            self.first_policy_date = policies.order_by('start_date').first().start_date
+            self.last_policy_date = policies.order_by('-start_date').first().start_date
         
         self.save(update_fields=[
             'total_policies', 'total_premium', 'lifetime_value',

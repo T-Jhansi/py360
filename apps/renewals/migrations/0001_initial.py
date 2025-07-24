@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('communication_attempts', models.IntegerField(default=0)),
                 ('last_contact_date', models.DateTimeField(blank=True, null=True)),
                 ('notes', models.TextField(blank=True)),
-                ('assigned_to', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='assigned_renewal_cases', to=settings.AUTH_USER_MODEL)),
+                ('assigned_to', models.ForeignKey(blank=True, db_column='assigned_to', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='assigned_renewal_cases', to=settings.AUTH_USER_MODEL)),
                 ('created_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_created_objects', to=settings.AUTH_USER_MODEL)),
                 ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='renewal_cases', to='customers.customer')),
                 ('deleted_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_deleted_objects', to=settings.AUTH_USER_MODEL)),

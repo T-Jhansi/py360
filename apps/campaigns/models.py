@@ -6,6 +6,7 @@ from apps.policies.models import Policy
 from apps.templates.models import Template
 from apps.uploads.models import FileUpload
 from apps.TargetAudience.models import TargetAudience
+from decimal import Decimal
 import uuid
 import json
 
@@ -155,60 +156,205 @@ class CampaignSegment(BaseModel):
         return f"{self.name} ({self.customer_count} customers)"
 
 class CampaignRecipient(BaseModel):
-    """Individual recipients of a campaign"""
+    """Individual recipients of a campaign with enhanced tracking"""
     DELIVERY_STATUS_CHOICES = [
         ('pending', 'Pending'),
+        ('queued', 'Queued'),
         ('sent', 'Sent'),
         ('delivered', 'Delivered'),
         ('failed', 'Failed'),
         ('bounced', 'Bounced'),
+        ('rejected', 'Rejected'),
         ('opted_out', 'Opted Out'),
+        ('blocked', 'Blocked'),
     ]
-    
+
+    ENGAGEMENT_STATUS_CHOICES = [
+        ('not_opened', 'Not Opened'),
+        ('opened', 'Opened'),
+        ('clicked', 'Clicked'),
+        ('replied', 'Replied'),
+        ('forwarded', 'Forwarded'),
+        ('unsubscribed', 'Unsubscribed'),
+    ]
+
+    # Core relationships
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='recipients')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    policy = models.ForeignKey(Policy, on_delete=models.SET_NULL, null=True, blank=True)
-    
-    # Delivery tracking per channel
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='campaign_recipients')
+    policy = models.ForeignKey(Policy, on_delete=models.SET_NULL, null=True, blank=True, related_name='campaign_recipients')
+
+    # Channel-specific delivery tracking
     email_status = models.CharField(max_length=20, choices=DELIVERY_STATUS_CHOICES, default='pending')
     whatsapp_status = models.CharField(max_length=20, choices=DELIVERY_STATUS_CHOICES, default='pending')
     sms_status = models.CharField(max_length=20, choices=DELIVERY_STATUS_CHOICES, default='pending')
-    
+
+    # Channel-specific engagement tracking
+    email_engagement = models.CharField(max_length=20, choices=ENGAGEMENT_STATUS_CHOICES, default='not_opened')
+    whatsapp_engagement = models.CharField(max_length=20, choices=ENGAGEMENT_STATUS_CHOICES, default='not_opened')
+    sms_engagement = models.CharField(max_length=20, choices=ENGAGEMENT_STATUS_CHOICES, default='not_opened')
+
     # Delivery timestamps
     email_sent_at = models.DateTimeField(null=True, blank=True)
+    email_delivered_at = models.DateTimeField(null=True, blank=True)
     whatsapp_sent_at = models.DateTimeField(null=True, blank=True)
+    whatsapp_delivered_at = models.DateTimeField(null=True, blank=True)
     sms_sent_at = models.DateTimeField(null=True, blank=True)
-    
-    # Engagement tracking
+    sms_delivered_at = models.DateTimeField(null=True, blank=True)
+
+    # Engagement timestamps
     email_opened_at = models.DateTimeField(null=True, blank=True)
     email_clicked_at = models.DateTimeField(null=True, blank=True)
+    email_replied_at = models.DateTimeField(null=True, blank=True)
     whatsapp_read_at = models.DateTimeField(null=True, blank=True)
-    response_received_at = models.DateTimeField(null=True, blank=True)
-    
-    # Personalized content
-    personalized_content = models.JSONField(default=dict, blank=True)
-    
+    whatsapp_replied_at = models.DateTimeField(null=True, blank=True)
+    sms_replied_at = models.DateTimeField(null=True, blank=True)
+
+    # Error tracking
+    email_error_message = models.TextField(blank=True)
+    whatsapp_error_message = models.TextField(blank=True)
+    sms_error_message = models.TextField(blank=True)
+    retry_count = models.PositiveIntegerField(default=0)
+    max_retries = models.PositiveIntegerField(default=3)
+
+    # Personalized content for each channel
+    email_content = models.JSONField(default=dict, blank=True, help_text="Personalized email content")
+    whatsapp_content = models.JSONField(default=dict, blank=True, help_text="Personalized WhatsApp content")
+    sms_content = models.JSONField(default=dict, blank=True, help_text="Personalized SMS content")
+
     # Response tracking
     has_responded = models.BooleanField(default=False)
-    response_type = models.CharField(max_length=20, choices=[
+    response_channel = models.CharField(max_length=20, choices=Campaign.CHANNEL_CHOICES, blank=True)
+    response_type = models.CharField(max_length=30, choices=[
         ('interested', 'Interested'),
         ('not_interested', 'Not Interested'),
         ('callback_requested', 'Callback Requested'),
+        ('more_info_requested', 'More Info Requested'),
         ('complaint', 'Complaint'),
         ('unsubscribe', 'Unsubscribe'),
+        ('policy_renewed', 'Policy Renewed'),
+        ('payment_made', 'Payment Made'),
+        ('document_requested', 'Document Requested'),
     ], blank=True)
     response_notes = models.TextField(blank=True)
-    
+    response_received_at = models.DateTimeField(null=True, blank=True)
+
+    # Campaign effectiveness tracking
+    conversion_achieved = models.BooleanField(default=False, help_text="Did this recipient convert (renew/purchase)?")
+    conversion_value = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True, help_text="Value of conversion")
+    conversion_date = models.DateTimeField(null=True, blank=True)
+
+    # Additional metadata
+    recipient_metadata = models.JSONField(default=dict, blank=True, help_text="Additional recipient-specific data")
+
     class Meta:
         db_table = 'campaign_recipients'
         unique_together = ['campaign', 'customer']
         indexes = [
             models.Index(fields=['campaign', 'email_status']),
+            models.Index(fields=['campaign', 'whatsapp_status']),
+            models.Index(fields=['campaign', 'sms_status']),
             models.Index(fields=['campaign', 'has_responded']),
+            models.Index(fields=['campaign', 'conversion_achieved']),
+            models.Index(fields=['email_status', 'email_sent_at']),
+            models.Index(fields=['customer', 'campaign']),
+            models.Index(fields=['response_type', 'response_received_at']),
         ]
-    
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.campaign.name} - {self.customer.full_name}"
+
+    @property
+    def primary_status(self):
+        """Get the primary delivery status based on campaign channels"""
+        if 'email' in self.campaign.channels:
+            return self.email_status
+        elif 'whatsapp' in self.campaign.channels:
+            return self.whatsapp_status
+        elif 'sms' in self.campaign.channels:
+            return self.sms_status
+        return 'pending'
+
+    @property
+    def is_delivered(self):
+        """Check if message was delivered on any channel"""
+        return (self.email_status == 'delivered' or
+                self.whatsapp_status == 'delivered' or
+                self.sms_status == 'delivered')
+
+    @property
+    def is_engaged(self):
+        """Check if recipient engaged with any channel"""
+        return (self.email_engagement in ['opened', 'clicked', 'replied'] or
+                self.whatsapp_engagement in ['opened', 'clicked', 'replied'] or
+                self.sms_engagement in ['opened', 'clicked', 'replied'])
+
+    def mark_sent(self, channel, timestamp=None):
+        """Mark message as sent for specific channel"""
+        from django.utils import timezone
+        if timestamp is None:
+            timestamp = timezone.now()
+
+        if channel == 'email':
+            self.email_status = 'sent'
+            self.email_sent_at = timestamp
+        elif channel == 'whatsapp':
+            self.whatsapp_status = 'sent'
+            self.whatsapp_sent_at = timestamp
+        elif channel == 'sms':
+            self.sms_status = 'sent'
+            self.sms_sent_at = timestamp
+        self.save()
+
+    def mark_delivered(self, channel, timestamp=None):
+        """Mark message as delivered for specific channel"""
+        from django.utils import timezone
+        if timestamp is None:
+            timestamp = timezone.now()
+
+        if channel == 'email':
+            self.email_status = 'delivered'
+            self.email_delivered_at = timestamp
+        elif channel == 'whatsapp':
+            self.whatsapp_status = 'delivered'
+            self.whatsapp_delivered_at = timestamp
+        elif channel == 'sms':
+            self.sms_status = 'delivered'
+            self.sms_delivered_at = timestamp
+        self.save()
+
+    def mark_opened(self, channel, timestamp=None):
+        """Mark message as opened for specific channel"""
+        from django.utils import timezone
+        if timestamp is None:
+            timestamp = timezone.now()
+
+        if channel == 'email':
+            self.email_engagement = 'opened'
+            self.email_opened_at = timestamp
+        elif channel == 'whatsapp':
+            self.whatsapp_engagement = 'opened'
+            self.whatsapp_read_at = timestamp
+        self.save()
+
+    def mark_failed(self, channel, error_message="", timestamp=None):
+        """Mark message as failed for specific channel"""
+        from django.utils import timezone
+        if timestamp is None:
+            timestamp = timezone.now()
+
+        if channel == 'email':
+            self.email_status = 'failed'
+            self.email_error_message = error_message
+        elif channel == 'whatsapp':
+            self.whatsapp_status = 'failed'
+            self.whatsapp_error_message = error_message
+        elif channel == 'sms':
+            self.sms_status = 'failed'
+            self.sms_error_message = error_message
+
+        self.retry_count += 1
+        self.save()
 
 class CampaignTemplate(BaseModel):
     """Reusable campaign templates"""
@@ -301,12 +447,12 @@ class CampaignAnalytics(BaseModel):
     unsubscribes = models.PositiveIntegerField(default=0)
     
     # Cost tracking
-    total_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    cost_per_recipient = models.DecimalField(max_digits=8, decimal_places=4, default=0)
-    
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    cost_per_recipient = models.DecimalField(max_digits=8, decimal_places=4, default=Decimal('0.0000'))
+
     # ROI metrics
     conversions = models.PositiveIntegerField(default=0)
-    revenue_generated = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    revenue_generated = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal('0.00'))
     
     class Meta:
         db_table = 'campaign_analytics'

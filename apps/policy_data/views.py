@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.contrib.auth import get_user_model
 from django.core.files.storage import default_storage
 
@@ -379,7 +379,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 'error': "Excel file is empty"
             }
 
-
         return {'valid': True}
 
     def _process_excel_file(self, file_upload_record, uploads_record, user):
@@ -415,7 +414,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         """Validate Excel file structure"""
         required_columns = [
             'first_name', 'last_name', 'email', 'phone', 'date_of_birth',
-            'gender', 'address', 'kyc_status', 'kyc_documents',
+            'gender', 'address_line1', 'kyc_status', 'kyc_documents',
             'communication_preferences', 'policy_number', 'policy_type',
             'premium_amount', 'start_date', 'end_date', 'nominee_name',
             'nominee_relationship', 'agent_name', 'agent_code',
@@ -493,36 +492,62 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
     def _process_customer_data(self, row, user):
         """Process customer data from Excel row"""
-        # Check if customer exists by email
-        customer = Customer.objects.filter(email=row['email']).first()
+        # Enhanced duplicate detection: Check if customer exists by email or phone
+        email = row['email']
+        phone = str(row.get('phone', ''))
+
+        # First check by email (primary identifier)
+        customer = Customer.objects.filter(email=email).first()
+
+        # If not found by email, check by phone (secondary identifier)
+        # This handles cases where same person has different email but same phone
+        if not customer and phone:
+            customer = Customer.objects.filter(phone=phone).first()
+
         customer_created = False
 
         if not customer:
-            # Create new customer
-            customer_code = generate_customer_code()
+            # Create new customer with retry logic for unique codes
+            max_retries = 5
+            for attempt in range(max_retries):
+                try:
+                    customer_code = generate_customer_code()
 
-            # Parse priority from Excel or use default
-            priority = str(row.get('priority', 'medium')).lower()
-            if priority not in ['low', 'medium', 'high', 'urgent']:
-                priority = 'medium'
+                    # Parse priority from Excel or use default
+                    priority = str(row.get('priority', 'medium')).lower()
+                    if priority not in ['low', 'medium', 'high', 'urgent']:
+                        priority = 'medium'
 
-            customer = Customer.objects.create(
-                customer_code=customer_code,
-                first_name=row['first_name'],
-                last_name=row['last_name'],
-                email=row['email'],
-                phone=str(row.get('phone', '')),
-                date_of_birth=self._parse_date(row.get('date_of_birth')),
-                gender=row.get('gender', 'male').lower() if row.get('gender') else 'male',
-                address=str(row.get('address', '')),
-                kyc_status=row.get('kyc_status', 'pending').lower(),
-                kyc_documents=str(row.get('kyc_documents', '')),
-                communication_preferences=str(row.get('communication_preferences', '')),
-                priority=priority,
-                created_by=user,
-                updated_by=user
-            )
-            customer_created = True
+                    customer = Customer.objects.create(
+                        customer_code=customer_code,
+                        first_name=row['first_name'],
+                        last_name=row['last_name'],
+                        email=email,
+                        phone=phone,
+                        date_of_birth=self._parse_date(row.get('date_of_birth')),
+                        gender=row.get('gender', 'male').lower() if row.get('gender') else 'male',
+                        address_line1=str(row.get('address_line1', '') or row.get('address', '')),
+                        address_line2=str(row.get('address_line2', '')),
+                        city=str(row.get('city', '')),
+                        state=str(row.get('state', '')),
+                        postal_code=str(row.get('postalcode', '') or row.get('postal_code', '')),
+                        country=str(row.get('country', 'India')),
+                        kyc_status=row.get('kyc_status', 'pending').lower(),
+                        kyc_documents=str(row.get('kyc_documents', '')),
+                        communication_preferences=str(row.get('communication_preferences', '')),
+                        priority=priority,
+                        created_by=user,
+                        updated_by=user
+                    )
+                    customer_created = True
+                    break
+                except IntegrityError as e:
+                    if 'customer_code' in str(e) and attempt < max_retries - 1:
+                        # Retry with new code
+                        continue
+                    else:
+                        # Re-raise if not a customer_code issue or max retries reached
+                        raise
         return customer, customer_created
 
     def _process_policy_data(self, row, customer, user):
@@ -556,13 +581,34 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             if policy_status not in ['active', 'expired', 'cancelled', 'pending', 'suspended']:
                 policy_status = 'active'
 
+            # Handle dates with intelligent defaults
+            start_date = self._parse_date(row.get('start_date'))
+            end_date = self._parse_date(row.get('end_date'))
+
+            # If start_date is missing, use today
+            if start_date is None:
+                from datetime import date
+                start_date = date.today()
+
+            # If end_date is missing, calculate based on payment frequency
+            if end_date is None:
+                from datetime import date, timedelta
+                if payment_frequency == 'monthly':
+                    end_date = start_date + timedelta(days=30)
+                elif payment_frequency == 'quarterly':
+                    end_date = start_date + timedelta(days=90)
+                elif payment_frequency == 'half_yearly':
+                    end_date = start_date + timedelta(days=180)
+                else:  # yearly or default
+                    end_date = start_date + timedelta(days=365)
+
             # Create new policy
             policy = Policy.objects.create(
                 policy_number=policy_number,
                 customer=customer,
                 policy_type=policy_type,
-                start_date=self._parse_date(row.get('start_date')),
-                end_date=self._parse_date(row.get('end_date')),
+                start_date=start_date,
+                end_date=end_date,
                 premium_amount=Decimal(str(row.get('premium_amount', 0))),
                 sum_assured=Decimal(str(row.get('sum_assured', 0))),
                 payment_frequency=payment_frequency,
@@ -582,7 +628,20 @@ class FileUploadViewSet(viewsets.ModelViewSet):
     def _process_renewal_case_data(self, row, customer, policy, user):
         """Process renewal case data from Excel row"""
 
-        case_number = generate_case_number()
+        # Generate unique case number with retry logic
+        max_retries = 5
+        case_number = None
+        for attempt in range(max_retries):
+            case_number = generate_case_number()
+            # Check if case number already exists
+            from django.db import connection
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT COUNT(*) FROM renewal_cases WHERE case_number = %s", [case_number])
+                result = cursor.fetchone()
+                if result and result[0] == 0:
+                    break
+            if attempt == max_retries - 1:
+                raise ValueError(f"Could not generate unique case number after {max_retries} attempts")
 
         # Parse renewal case status
         renewal_status = str(row.get('status', 'pending')).lower()
@@ -635,42 +694,37 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         if not assigned_to_id:
             assigned_to_id = user.id
 
-        # Create renewal case using raw SQL
-        from django.db import connection
-        from django.utils import timezone
-        now = timezone.now()
+        # Create renewal case using Django ORM
+        from apps.renewals.models import RenewalCase
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
 
-        with connection.cursor() as cursor:
-            cursor.execute("""
-                INSERT INTO renewal_cases (
-                    case_number, customer_id, policy_id, status, priority,
-                    renewal_amount, payment_status, payment_date,
-                    communication_attempts, last_contact_date, notes,
-                    assigned_to, created_by_id, updated_by_id, created_at, updated_at,
-                    is_deleted, deleted_at, deleted_by_id
-                ) VALUES (
-                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-                )
-            """, [
-                case_number, customer.pk, policy.id,
-                renewal_status,
-                renewal_priority,
-                renewal_amount,
-                payment_status,
-                self._parse_datetime(row.get('payment_date')),
-                int(row.get('communication_attempts') or row.get('communications_attempts', 0)) if (row.get('communication_attempts') or row.get('communications_attempts')) else 0,
-                self._parse_datetime(row.get('last_contact_date')),
-                str(row.get('notes', '')),
-                assigned_to_id, user.id, user.id, now, now,
-                False, None, None
-            ])
+        # Get the assigned user object
+        assigned_user = None
+        if assigned_to_id:
+            try:
+                assigned_user = User.objects.get(id=assigned_to_id)
+            except User.DoesNotExist:
+                assigned_user = user  # fallback to uploader
+        else:
+            assigned_user = user
 
-        # Create a dummy renewal_case object for return
-        renewal_case = type('RenewalCase', (), {
-            'case_number': case_number,
-            'customer': customer,
-            'policy': policy
-        })()
+        renewal_case = RenewalCase.objects.create(
+            case_number=case_number,
+            customer=customer,
+            policy=policy,
+            status=renewal_status,
+            priority=renewal_priority,
+            renewal_amount=renewal_amount,
+            payment_status=payment_status,
+            payment_date=self._parse_datetime(row.get('payment_date')),
+            communication_attempts=int(row.get('communication_attempts') or row.get('communications_attempts', 0)) if (row.get('communication_attempts') or row.get('communications_attempts')) else 0,
+            last_contact_date=self._parse_datetime(row.get('last_contact_date')),
+            notes=str(row.get('notes', '')),
+            assigned_to=assigned_user,
+            created_by=user,
+            updated_by=user
+        )
 
         return renewal_case
 
