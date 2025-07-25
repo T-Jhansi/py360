@@ -27,34 +27,47 @@ def generate_customer_code():
     return f"{year_prefix}{next_number:03d}"
 
 def generate_case_number():
-    """Generate unique case number like CASE20250001"""
-    current_year = datetime.datetime.now().year
-    year_prefix = f"CASE{current_year}"
+    """Generate unique case number like CASE-001"""
+    prefix = "CASE-"
 
-    # Get the highest existing case number for this year
+    # Get the highest existing case number
     latest_case = RenewalCase.objects.filter(
-        case_number__startswith=year_prefix
+        case_number__startswith=prefix
     ).order_by('-case_number').first()
 
     if latest_case:
         # Extract the number part and increment
         try:
-            last_number = int(latest_case.case_number[len(year_prefix):])
+            # Remove the prefix "CASE-" and get the number part
+            number_part = latest_case.case_number[len(prefix):]
+            last_number = int(number_part)
             next_number = last_number + 1
         except (ValueError, IndexError):
             next_number = 1
     else:
         next_number = 1
 
-    return f"{year_prefix}{next_number:04d}"
+    return f"{prefix}{next_number:03d}"
 
 def generate_policy_number():
-    """Generate unique policy number like POL-2025-001"""
-    import time
-    import random
-    # Use timestamp + random for uniqueness
-    timestamp_part = int(time.time()) % 10000  
-    random_part = random.randint(1, 99)
-    unique_id = timestamp_part * 100 + random_part
-    current_year = datetime.datetime.now().year
-    return f"POL-{current_year}-{unique_id:06d}"
+    """Generate unique policy number like POL-00001"""
+    prefix = "POL-"
+
+    # Get the highest existing policy number
+    latest_policy = Policy.objects.filter(
+        policy_number__startswith=prefix
+    ).order_by('-policy_number').first()
+
+    if latest_policy:
+        # Extract the number part and increment
+        try:
+            # Remove the prefix "POL-" and get the number part
+            number_part = latest_policy.policy_number[len(prefix):]
+            last_number = int(number_part)
+            next_number = last_number + 1
+        except (ValueError, IndexError):
+            next_number = 1
+    else:
+        next_number = 1
+
+    return f"{prefix}{next_number:05d}"
