@@ -9,8 +9,18 @@ User = get_user_model()
 
 class PolicyType(BaseModel):
     """Types of insurance policies (Life, Health, Motor, etc.)"""
+
+    CATEGORY_CHOICES = [
+        ('Motor', 'Motor'),
+        ('Life', 'Life'),
+        ('Property', 'Property'),
+        ('Health', 'Health'),
+        ('Travel', 'Travel'),
+    ]
+
     name = models.CharField(max_length=100, unique=True)
     code = models.CharField(max_length=20, unique=True)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='Motor', db_index=True, help_text="Insurance category based on policy type")
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     base_premium_rate = models.DecimalField(max_digits=10, decimal_places=4, default=0)
@@ -31,6 +41,10 @@ class Policy(BaseModel):
         ('cancelled', 'Cancelled'),
         ('pending', 'Pending'),
         ('suspended', 'Suspended'),
+        ('expiring_soon', 'Expiring Soon'),
+        ('pre_due', 'Pre Due'),
+        ('reinstatement', 'Reinstatement'),
+        ('policy_due', 'Policy Due'),
     ]
     
     policy_number = models.CharField(max_length=50, unique=True)
@@ -40,6 +54,9 @@ class Policy(BaseModel):
     # Policy Details
     start_date = models.DateField()
     end_date = models.DateField()
+    renewal_date = models.DateField(null=True, blank=True, help_text="Auto-calculated renewal date")
+    renewal_reminder_days = models.IntegerField(default=30, help_text="Days before end_date to start renewal process (15, 30, 45, 60)")
+    grace_period_days = models.IntegerField(default=30, help_text="Grace period days after policy expiry")
     premium_amount = models.DecimalField(max_digits=12, decimal_places=2)
     sum_assured = models.DecimalField(max_digits=15, decimal_places=2)
     status = models.CharField(max_length=20, choices=POLICY_STATUS_CHOICES, default='pending')
@@ -56,7 +73,13 @@ class Policy(BaseModel):
     nominee_name = models.CharField(max_length=200, blank=True)
     nominee_relationship = models.CharField(max_length=100, blank=True)
     nominee_contact = models.CharField(max_length=20, blank=True)
-    
+
+    # Coverage Details - Policy-specific coverage information
+    coverage_details = models.JSONField(
+        default=dict,
+        help_text="Policy-specific coverage details that override or extend policy type defaults"
+    )
+
     # Metadata
     policy_document = models.FileField(upload_to='policies/documents/', blank=True, null=True)
     terms_conditions = models.TextField(blank=True)
@@ -80,17 +103,119 @@ class Policy(BaseModel):
     def __str__(self):
         return f"{self.policy_number} - {self.customer.full_name}"
     
+    def calculate_renewal_date(self):
+        """Calculate renewal date based on end_date and renewal_reminder_days"""
+        from datetime import timedelta
+        if self.end_date:
+            return self.end_date - timedelta(days=self.renewal_reminder_days)
+        return None
+
+    def get_complete_coverage_details(self):
+        """
+        Get complete coverage details by merging policy type defaults with policy-specific overrides
+        Policy-specific coverage details take precedence over policy type defaults
+        """
+        # Start with policy type coverage details as base
+        complete_coverage = self.policy_type.coverage_details.copy() if self.policy_type.coverage_details else {}
+
+        # Override/extend with policy-specific coverage details
+        if self.coverage_details:
+            # Deep merge the dictionaries
+            def deep_merge(base_dict, override_dict):
+                for key, value in override_dict.items():
+                    if key in base_dict and isinstance(base_dict[key], dict) and isinstance(value, dict):
+                        deep_merge(base_dict[key], value)
+                    else:
+                        base_dict[key] = value
+                return base_dict
+
+            complete_coverage = deep_merge(complete_coverage, self.coverage_details)
+
+        return complete_coverage
+
+    def save(self, *args, **kwargs):
+        """Override save to auto-calculate renewal_date"""
+        # Auto-calculate renewal date if not manually set
+        if self.end_date and not self.renewal_date:
+            self.renewal_date = self.calculate_renewal_date()
+        super().save(*args, **kwargs)
+
     @property
     def is_due_for_renewal(self):
-        """Check if policy is due for renewal (within 30 days)"""
-        from datetime import date, timedelta
-        return (self.end_date - date.today()).days <= 30
+        """Check if policy is due for renewal (within renewal_reminder_days)"""
+        from datetime import date
+        if self.renewal_date:
+            return date.today() >= self.renewal_date
+        return False
+
+    @property
+    def days_until_renewal(self):
+        """Get number of days until renewal date"""
+        from datetime import date
+        if self.renewal_date:
+            delta = self.renewal_date - date.today()
+            return delta.days
+        return None
+
+    @property
+    def days_until_expiry(self):
+        """Get number of days until policy expires"""
+        from datetime import date
+        if self.end_date:
+            delta = self.end_date - date.today()
+            return delta.days
+        return None
     
     @property
     def days_to_expiry(self):
         """Days remaining until policy expires"""
         from datetime import date
         return (self.end_date - date.today()).days
+
+    @classmethod
+    def set_renewal_reminder_days(cls, policy_ids, reminder_days):
+        """Bulk update renewal reminder days for multiple policies"""
+        from datetime import timedelta
+
+        policies = cls.objects.filter(id__in=policy_ids)
+        updated_count = 0
+
+        for policy in policies:
+            policy.renewal_reminder_days = reminder_days
+            if policy.end_date:
+                policy.renewal_date = policy.end_date - timedelta(days=reminder_days)
+            policy.save()
+            updated_count += 1
+
+        return updated_count
+
+    @classmethod
+    def get_policies_by_renewal_urgency(cls):
+        """Get policies grouped by renewal urgency"""
+        from datetime import date, timedelta
+
+        today = date.today()
+
+        return {
+            'overdue': cls.objects.filter(
+                renewal_date__lt=today,
+                status__in=['active', 'pending', 'expiring_soon']
+            ),
+            'due_today': cls.objects.filter(
+                renewal_date=today,
+                status__in=['active', 'pending', 'expiring_soon']
+            ),
+            'due_this_week': cls.objects.filter(
+                renewal_date__lte=today + timedelta(days=7),
+                renewal_date__gt=today,
+                status__in=['active', 'pending', 'expiring_soon']
+            ),
+            'due_this_month': cls.objects.filter(
+                renewal_date__lte=today + timedelta(days=30),
+                renewal_date__gt=today + timedelta(days=7),
+                status__in=['active', 'pending', 'expiring_soon']
+            ),
+        }
 
 class PolicyRenewal(BaseModel):
     """Policy renewal tracking"""
@@ -246,7 +371,7 @@ class PolicyBeneficiary(BaseModel):
     date_of_birth = models.DateField(null=True, blank=True)
     id_type = models.CharField(max_length=50, blank=True)
     id_number = models.CharField(max_length=100, blank=True)
-    percentage_share = models.DecimalField(max_digits=5, decimal_places=2, default=100.00)
+    percentage_share = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('100.00'))
     
     is_primary = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)

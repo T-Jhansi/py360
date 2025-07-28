@@ -17,10 +17,13 @@ from django.http import JsonResponse
 api_patterns = [
     # Authentication endpoints
     path('auth/', include('apps.authentication.urls')),
-    
+
     # Core utilities
     path('core/', include('apps.core.urls')),
-    
+
+    # User management
+    path('users/', include('apps.users.urls')),
+
     # Core business endpoints
     path('customers/', include('apps.customers.urls')),
     path('policies/', include('apps.policies.urls')),

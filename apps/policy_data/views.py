@@ -1,7 +1,7 @@
 import pandas as pd
 import hashlib
 import os
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from decimal import Decimal
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
@@ -10,6 +10,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 from django.db import transaction, IntegrityError
+from django.db.models import Count
 from django.contrib.auth import get_user_model
 from django.core.files.storage import default_storage
 
@@ -17,14 +18,112 @@ from apps.customers.models import Customer
 from apps.files_upload.models import FileUpload
 from apps.uploads.models import FileUpload as UploadsFileUpload
 from apps.policies.models import Policy, PolicyType
+from .utils import generate_customer_code, generate_case_number, generate_policy_number, generate_batch_code
 from .serializers import (
     FileUploadSerializer,
     EnhancedFileUploadSerializer,
     FileUploadRequestSerializer
 )
-from apps.policy_data.utils import generate_customer_code, generate_case_number, generate_policy_number
 
 User = get_user_model()
+
+def get_next_available_agent():
+    """
+    Get the next available agent using round-robin distribution.
+    Returns the agent with the least number of assigned customers.
+    """
+    try:
+        # Get all active agents ordered by their current workload
+        available_agents = User.objects.filter(
+            status='active',
+            is_active=True
+        ).annotate(
+            current_workload=Count('assigned_customers')
+        ).order_by('current_workload', 'first_name')
+
+        if available_agents.exists():
+            return available_agents.first()
+        return None
+    except Exception as e:
+        print(f"Error getting next available agent: {e}")
+        return None
+
+def calculate_policy_and_renewal_status(end_date, grace_period_days=30):
+    """
+    Calculate policy status and renewal status based on end_date and current date.
+
+    Note: This function calculates date-based statuses. Workflow statuses like
+    'assigned', 'failed', 'uploaded' should be set manually through business processes.
+
+    Args:
+        end_date (date): Policy end date
+        grace_period_days (int): Grace period in days (default: 30)
+
+    Returns:
+        tuple: (policy_status, renewal_status)
+
+    Date-based renewal statuses returned:
+        - 'not_required': Policy is active or pre_due
+        - 'due': Policy is expiring soon or policy due
+        - 'pending': Policy recently expired (eligible for reinstatement)
+        - 'overdue': Policy expired long ago (beyond grace period)
+
+    Workflow-based statuses (set manually):
+        - 'assigned': Renewal case assigned to agent
+        - 'failed': Renewal processing failed
+        - 'uploaded': Renewal documents uploaded
+        - 'in_progress': Renewal actively being processed
+        - 'completed': Renewal successfully completed
+        - 'cancelled': Renewal cancelled
+    """
+    today = date.today()
+
+    # Convert end_date to date if it's datetime
+    if isinstance(end_date, datetime):
+        end_date = end_date.date()
+
+    # Calculate time boundaries
+    days_to_expiry = (end_date - today).days
+    pre_due_threshold = 60  # 60 days before expiry for pre_due status
+    policy_due_threshold = 15  # 15 days before expiry for policy_due status
+    overdue_threshold = today - timedelta(days=grace_period_days)
+
+    # Policy has already expired
+    if end_date < today:
+        if end_date >= overdue_threshold:
+            # Recently expired (within grace period) - eligible for reinstatement
+            # Temporarily use 'expired' until constraint is fixed
+            policy_status = 'expired'  # TODO: Change to 'reinstatement' after constraint fix
+            renewal_status = 'pending'
+        else:
+            # Long overdue
+            policy_status = 'expired'
+            renewal_status = 'overdue'
+
+    # Policy expires today or very soon (due for immediate action)
+    elif 0 <= days_to_expiry <= policy_due_threshold:
+        # Temporarily use 'pending' until constraint is fixed
+        policy_status = 'pending'  # TODO: Change to 'policy_due' after constraint fix
+        renewal_status = 'due'
+
+    # Policy expires within grace period (expiring soon)
+    elif policy_due_threshold < days_to_expiry <= grace_period_days:
+        # This status should work as it was added in earlier migration
+        policy_status = 'expiring_soon'
+        renewal_status = 'due'
+
+    # Policy expires within pre-due period (advance notice)
+    elif grace_period_days < days_to_expiry <= pre_due_threshold:
+        # Temporarily use 'active' until constraint is fixed
+        policy_status = 'active'  # TODO: Change to 'pre_due' after constraint fix
+        renewal_status = 'not_required'
+
+    # Policy is still active (expires beyond pre-due period)
+    else:
+        policy_status = 'active'
+        renewal_status = 'not_required'
+
+    return policy_status, renewal_status
 
 class FileUploadViewSet(viewsets.ModelViewSet):
     """Enhanced file upload viewset with comprehensive Excel processing"""
@@ -95,7 +194,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     file_upload_record.save()
                 raise process_error
 
-            # Step 7: Prepare response
+            # Step 7: Prepare response with processing details
             response_data = {
                 'success': True,
                 'message': 'File uploaded successfully',
@@ -111,6 +210,16 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     'subcategory': uploads_record.subcategory
                 }
             }
+
+            # Add processing result details if available
+            if file_upload_record and file_upload_record.processing_result:
+                try:
+                    import json
+                    processing_details = json.loads(file_upload_record.processing_result) if isinstance(file_upload_record.processing_result, str) else file_upload_record.processing_result
+                    response_data['processing_details'] = processing_details
+                except (json.JSONDecodeError, TypeError):
+                    # If processing_result is already a dict or can't be parsed
+                    response_data['processing_details'] = file_upload_record.processing_result
 
             return Response(response_data, status=status.HTTP_201_CREATED)
 
@@ -379,6 +488,17 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 'error': "Excel file is empty"
             }
 
+        # Optional: Log available columns for debugging
+        available_columns = list(df.columns)
+        print(f"Available columns in Excel: {available_columns}")
+
+        # Check if channel columns are present (optional)
+        has_channel = 'channel' in df.columns
+        has_channel_source = 'channel_source' in df.columns
+
+        if has_channel or has_channel_source:
+            print(f"Channel tracking columns found - channel: {has_channel}, channel_source: {has_channel_source}")
+
         return {'valid': True}
 
     def _process_excel_file(self, file_upload_record, uploads_record, user):
@@ -453,6 +573,10 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         created_policies = 0
         created_renewal_cases = 0
 
+        # Generate batch code for this file upload
+        batch_code = generate_batch_code()
+        print(f"Generated batch code: {batch_code}")
+
         # Process each row individually with its own transaction
         for idx, (_, row) in enumerate(df.iterrows()):
             try:
@@ -468,7 +592,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         created_policies += 1
 
                     # Process renewal case data
-                    self._process_renewal_case_data(row, customer, policy, user)
+                    self._process_renewal_case_data(row, customer, policy, user, batch_code)
                     created_renewal_cases += 1
 
                     successful_records += 1
@@ -518,6 +642,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     if priority not in ['low', 'medium', 'high', 'urgent']:
                         priority = 'medium'
 
+                    # Get next available agent for auto-assignment
+                    assigned_agent = get_next_available_agent()
+
                     customer = Customer.objects.create(
                         customer_code=customer_code,
                         first_name=row['first_name'],
@@ -536,10 +663,18 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         kyc_documents=str(row.get('kyc_documents', '')),
                         communication_preferences=str(row.get('communication_preferences', '')),
                         priority=priority,
+                        assigned_agent=assigned_agent,  # Auto-assign agent
                         created_by=user,
                         updated_by=user
                     )
                     customer_created = True
+
+                    # Log auto-assignment
+                    if assigned_agent:
+                        print(f"✅ Auto-assigned agent {assigned_agent.get_full_name()} to customer {customer.customer_code}")
+                    else:
+                        print(f"⚠️  No agents available for auto-assignment to customer {customer.customer_code}")
+
                     break
                 except IntegrityError as e:
                     if 'customer_code' in str(e) and attempt < max_retries - 1:
@@ -552,7 +687,13 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
     def _process_policy_data(self, row, customer, user):
         """Process policy data from Excel row"""
-        policy_number = str(row.get('policy_number', f'POL{customer.customer_code}'))
+        # Check if policy_number is provided in Excel, otherwise generate one
+        excel_policy_number = row.get('policy_number')
+        if excel_policy_number and str(excel_policy_number).strip():
+            policy_number = str(excel_policy_number).strip()
+        else:
+            # Generate policy number using the proper function
+            policy_number = generate_policy_number()
 
         # Check if policy exists
         policy = Policy.objects.filter(policy_number=policy_number).first()
@@ -576,11 +717,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             if payment_frequency not in ['monthly', 'quarterly', 'half_yearly', 'yearly']:
                 payment_frequency = 'yearly'
 
-            # Parse policy status
-            policy_status = str(row.get('status', 'active')).lower()
-            if policy_status not in ['active', 'expired', 'cancelled', 'pending', 'suspended']:
-                policy_status = 'active'
-
             # Handle dates with intelligent defaults
             start_date = self._parse_date(row.get('start_date'))
             end_date = self._parse_date(row.get('end_date'))
@@ -601,6 +737,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     end_date = start_date + timedelta(days=180)
                 else:  # yearly or default
                     end_date = start_date + timedelta(days=365)
+
+            # Calculate policy status based on end_date (Option 2: Date-based logic)
+            policy_status, _ = calculate_policy_and_renewal_status(end_date)
+
+            # Note: renewal_status will be calculated in _process_renewal_case_data
 
             # Create new policy
             policy = Policy.objects.create(
@@ -625,7 +766,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
         return policy, policy_created
 
-    def _process_renewal_case_data(self, row, customer, policy, user):
+    def _process_renewal_case_data(self, row, customer, policy, user, batch_code):
         """Process renewal case data from Excel row"""
 
         # Generate unique case number with retry logic
@@ -643,10 +784,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             if attempt == max_retries - 1:
                 raise ValueError(f"Could not generate unique case number after {max_retries} attempts")
 
-        # Parse renewal case status
-        renewal_status = str(row.get('status', 'pending')).lower()
-        if renewal_status not in ['pending', 'in_progress', 'completed', 'cancelled', 'expired']:
-            renewal_status = 'pending'
+        # Calculate renewal status based on policy end_date (Option 2: Date-based logic)
+        _, renewal_status = calculate_policy_and_renewal_status(policy.end_date)
 
         # Parse priority
         renewal_priority = str(row.get('priority', 'medium')).lower()
@@ -709,8 +848,23 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         else:
             assigned_user = user
 
+        # Parse channel and channel_source from Excel
+        channel = str(row.get('channel', 'Online')).strip()
+        channel_source = str(row.get('channel_source', 'Website')).strip()
+
+        # Validate channel against choices
+        valid_channels = [choice[0] for choice in RenewalCase.CHANNEL_CHOICES]
+        if channel not in valid_channels:
+            channel = 'Online'  # Default fallback
+
+        # Validate channel_source against choices
+        valid_channel_sources = [choice[0] for choice in RenewalCase.CHANNEL_SOURCE_CHOICES]
+        if channel_source not in valid_channel_sources:
+            channel_source = 'Website'  # Default fallback
+
         renewal_case = RenewalCase.objects.create(
             case_number=case_number,
+            batch_code=batch_code,
             customer=customer,
             policy=policy,
             status=renewal_status,
@@ -720,6 +874,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             payment_date=self._parse_datetime(row.get('payment_date')),
             communication_attempts=int(row.get('communication_attempts') or row.get('communications_attempts', 0)) if (row.get('communication_attempts') or row.get('communications_attempts')) else 0,
             last_contact_date=self._parse_datetime(row.get('last_contact_date')),
+            channel=channel,
+            channel_source=channel_source,
             notes=str(row.get('notes', '')),
             assigned_to=assigned_user,
             created_by=user,

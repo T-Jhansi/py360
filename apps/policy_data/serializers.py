@@ -110,10 +110,10 @@ class CustomerImportSerializer(serializers.ModelSerializer):
             'full_name', 'email', 'phone', 'date_of_birth', 'gender',
             'address_line1', 'address_line2', 'city', 'state', 'postal_code', 'country',
             'kyc_status', 'kyc_documents', 'communication_preferences',
-            'status', 'priority', 'policies_count', 'created_at', 'updated_at'
+            'status', 'priority', 'profile', 'policies_count', 'created_at', 'updated_at'
         ]
         read_only_fields = [
-            'id', 'customer_code', 'full_name', 'policies_count',
+            'id', 'customer_code', 'full_name', 'profile', 'policies_count',
             'created_at', 'updated_at'
         ]
 
@@ -163,20 +163,21 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
     """Serializer for renewal case data from Excel import"""
 
     customer_name = serializers.SerializerMethodField()
+    customer_profile = serializers.SerializerMethodField()
     policy_number = serializers.SerializerMethodField()
     assigned_to_name = serializers.SerializerMethodField()
 
     class Meta:
         model = RenewalCase
         fields = [
-            'id', 'case_number', 'customer', 'customer_name', 'policy',
+            'id', 'case_number', 'batch_code', 'customer', 'customer_name', 'customer_profile', 'policy',
             'policy_number', 'status', 'priority', 'assigned_to', 'assigned_to_name',
             'renewal_amount', 'payment_status', 'payment_date',
             'communication_attempts', 'last_contact_date', 'notes',
             'created_at', 'updated_at'
         ]
         read_only_fields = [
-            'id', 'case_number', 'customer_name', 'policy_number', 'assigned_to_name',
+            'id', 'case_number', 'batch_code', 'customer_name', 'customer_profile', 'policy_number', 'assigned_to_name',
             'created_at', 'updated_at'
         ]
 

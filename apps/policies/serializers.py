@@ -14,7 +14,7 @@ class PolicyTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PolicyType
         fields = [
-            'id', 'name', 'code', 'description', 'is_active',
+            'id', 'name', 'code', 'category', 'description', 'is_active',
             'base_premium_rate', 'coverage_details', 'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
@@ -97,6 +97,7 @@ class PolicySerializer(serializers.ModelSerializer):
     # Computed fields
     is_due_for_renewal = serializers.ReadOnlyField()
     days_to_expiry = serializers.ReadOnlyField()
+    complete_coverage_details = serializers.SerializerMethodField()
     
     class Meta:
         model = Policy
@@ -104,13 +105,17 @@ class PolicySerializer(serializers.ModelSerializer):
             'id', 'policy_number', 'customer', 'customer_name', 'customer_email', 'customer_phone',
             'policy_type', 'policy_type_name', 'start_date', 'end_date', 'premium_amount',
             'sum_assured', 'status', 'payment_frequency', 'nominee_name', 'nominee_relationship',
-            'nominee_contact', 'policy_document', 'terms_conditions', 'special_conditions',
-            'agent_name', 'agent_code', 'created_by', 'created_by_name', 'last_modified_by',
-            'last_modified_by_name', 'is_due_for_renewal', 'days_to_expiry',
-            'beneficiaries', 'documents', 'payments', 'notes',
-            'created_at', 'updated_at', 
+            'nominee_contact', 'coverage_details', 'complete_coverage_details', 'policy_document',
+            'terms_conditions', 'special_conditions', 'agent_name', 'agent_code', 'created_by',
+            'created_by_name', 'last_modified_by', 'last_modified_by_name', 'is_due_for_renewal',
+            'days_to_expiry', 'beneficiaries', 'documents', 'payments', 'notes',
+            'created_at', 'updated_at',
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'is_due_for_renewal', 'days_to_expiry']
+
+    def get_complete_coverage_details(self, obj):
+        """Get complete coverage details combining policy type and policy-specific coverage"""
+        return obj.get_complete_coverage_details()
 
 class PolicyListSerializer(serializers.ModelSerializer):
     """Simplified serializer for policy lists"""
@@ -170,8 +175,8 @@ class PolicyCreateSerializer(serializers.ModelSerializer):
         fields = [
             'policy_number', 'customer', 'policy_type', 'start_date', 'end_date',
             'premium_amount', 'sum_assured', 'payment_frequency', 'nominee_name',
-            'nominee_relationship', 'nominee_contact', 'terms_conditions',
-            'special_conditions', 'agent_name', 'agent_code', 'assigned_to'
+            'nominee_relationship', 'nominee_contact', 'coverage_details', 'terms_conditions',
+            'special_conditions', 'agent_name', 'agent_code'
         ]
     
     def validate_policy_number(self, value):

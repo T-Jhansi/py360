@@ -39,6 +39,43 @@ class PolicyTypeViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(is_active=True)
         return queryset
 
+    @action(detail=False, methods=['get'])
+    def categories_summary(self, request):
+        """Get summary of policy types by category"""
+        try:
+            policy_types = PolicyType.objects.filter(is_active=True)
+
+            # Group by category
+            categories = {}
+            for policy_type in policy_types:
+                category = policy_type.category
+                if category not in categories:
+                    categories[category] = []
+                categories[category].append({
+                    'id': policy_type.id,
+                    'name': policy_type.name,
+                    'code': policy_type.code,
+                    'category': category
+                })
+
+            # Count by category
+            category_counts = {}
+            for category, types in categories.items():
+                category_counts[category] = len(types)
+
+            return Response({
+                'summary': {
+                    'total_policy_types': policy_types.count(),
+                    'categories_count': category_counts
+                },
+                'categories': categories
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({
+                'error': f'Failed to get categories summary: {str(e)}'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 class PolicyViewSet(viewsets.ModelViewSet):
     """ViewSet for managing policies"""
     queryset = Policy.objects.select_related('customer', 'policy_type', 'created_by').prefetch_related(
@@ -185,6 +222,199 @@ class PolicyViewSet(viewsets.ModelViewSet):
             serializer.save(policy=policy, created_by=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['get'])
+    def renewal_dashboard(self, request):
+        """Get renewal dashboard statistics with configurable reminder days"""
+        today = date.today()
+
+        # Get renewal urgency data using the new method
+        urgency_data = Policy.get_policies_by_renewal_urgency()
+
+        # Calculate statistics
+        stats = {
+            'total_policies': Policy.objects.count(),
+            'active_policies': Policy.objects.filter(status='active').count(),
+            'expired_policies': Policy.objects.filter(status='expired').count(),
+            'renewal_urgency': {
+                'overdue': urgency_data['overdue'].count(),
+                'due_today': urgency_data['due_today'].count(),
+                'due_this_week': urgency_data['due_this_week'].count(),
+                'due_this_month': urgency_data['due_this_month'].count(),
+            },
+            'renewal_reminder_distribution': {}
+        }
+
+        # Get renewal reminder days distribution
+        reminder_distribution = Policy.objects.values('renewal_reminder_days').annotate(
+            count=Count('id')
+        ).order_by('renewal_reminder_days')
+
+        for item in reminder_distribution:
+            days = item['renewal_reminder_days']
+            count = item['count']
+            stats['renewal_reminder_distribution'][f'{days}_days'] = count
+
+        return Response(stats)
+
+    @action(detail=False, methods=['post'])
+    def configure_renewal_reminders(self, request):
+        """Configure renewal reminder days for policies"""
+        reminder_days = request.data.get('reminder_days', 30)
+        policy_ids = request.data.get('policy_ids', [])
+        policy_type = request.data.get('policy_type')
+        category = request.data.get('category')
+
+        # Validate reminder_days
+        if reminder_days not in [15, 30, 45, 60]:
+            return Response(
+                {'error': 'reminder_days must be one of: 15, 30, 45, 60'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Build query filters
+        filters = {'end_date__isnull': False}
+
+        if policy_ids:
+            filters['id__in'] = policy_ids
+        elif policy_type:
+            filters['policy_type__name__icontains'] = policy_type
+        elif category:
+            filters['policy_type__category'] = category
+
+        # Get policies to update
+        policies_to_update = Policy.objects.filter(**filters)
+
+        if not policies_to_update.exists():
+            return Response(
+                {'error': 'No policies found matching the criteria'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Update policies
+        updated_count = Policy.set_renewal_reminder_days(
+            [p.id for p in policies_to_update],
+            reminder_days
+        )
+
+        return Response({
+            'message': f'Successfully updated {updated_count} policies',
+            'updated_count': updated_count,
+            'reminder_days': reminder_days,
+            'filters_applied': {
+                'policy_ids': policy_ids if policy_ids else None,
+                'policy_type': policy_type,
+                'category': category
+            }
+        })
+
+    @action(detail=False, methods=['get'])
+    def renewal_urgency_list(self, request):
+        """Get policies by renewal urgency"""
+        urgency_type = request.query_params.get('urgency', 'overdue')
+
+        urgency_data = Policy.get_policies_by_renewal_urgency()
+
+        if urgency_type not in urgency_data:
+            return Response(
+                {'error': 'Invalid urgency type. Choose from: overdue, due_today, due_this_week, due_this_month'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        policies = urgency_data[urgency_type]
+
+        page = self.paginate_queryset(policies)
+        if page is not None:
+            serializer = PolicyListSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = PolicyListSerializer(policies, many=True)
+        return Response({
+            'urgency_type': urgency_type,
+            'count': policies.count(),
+            'policies': serializer.data
+        })
+
+    @action(detail=True, methods=['post'])
+    def update_renewal_reminder(self, request, pk=None):
+        """Update renewal reminder days for a specific policy"""
+        policy = self.get_object()
+        reminder_days = request.data.get('reminder_days', 30)
+
+        # Validate reminder_days
+        if reminder_days not in [15, 30, 45, 60]:
+            return Response(
+                {'error': 'reminder_days must be one of: 15, 30, 45, 60'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Update policy
+        old_renewal_date = policy.renewal_date
+        policy.renewal_reminder_days = reminder_days
+        if policy.end_date:
+            policy.renewal_date = policy.end_date - timedelta(days=reminder_days)
+        policy.save()
+
+        return Response({
+            'message': 'Renewal reminder updated successfully',
+            'policy_number': policy.policy_number,
+            'old_renewal_date': old_renewal_date,
+            'new_renewal_date': policy.renewal_date,
+            'reminder_days': reminder_days
+        })
+
+    @action(detail=True, methods=['get', 'post'])
+    def coverage_details(self, request, pk=None):
+        """Get or update coverage details for a policy"""
+        policy = self.get_object()
+
+        if request.method == 'GET':
+            # Return complete coverage details (policy type + policy specific)
+            complete_coverage = policy.get_complete_coverage_details()
+            return Response({
+                'policy_number': policy.policy_number,
+                'policy_type_coverage': policy.policy_type.coverage_details,
+                'policy_specific_coverage': policy.coverage_details,
+                'complete_coverage': complete_coverage
+            })
+
+        elif request.method == 'POST':
+            # Update policy-specific coverage details
+            coverage_data = request.data.get('coverage_details', {})
+
+            if not isinstance(coverage_data, dict):
+                return Response(
+                    {'error': 'coverage_details must be a valid JSON object'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            policy.coverage_details = coverage_data
+            policy.last_modified_by = request.user
+            policy.save()
+
+            return Response({
+                'message': 'Coverage details updated successfully',
+                'policy_number': policy.policy_number,
+                'updated_coverage': policy.coverage_details,
+                'complete_coverage': policy.get_complete_coverage_details()
+            })
+
+    @action(detail=True, methods=['post'])
+    def reset_coverage_to_default(self, request, pk=None):
+        """Reset policy coverage details to policy type defaults"""
+        policy = self.get_object()
+
+        # Clear policy-specific coverage details
+        policy.coverage_details = {}
+        policy.last_modified_by = request.user
+        policy.save()
+
+        return Response({
+            'message': 'Coverage details reset to policy type defaults',
+            'policy_number': policy.policy_number,
+            'default_coverage': policy.policy_type.coverage_details,
+            'complete_coverage': policy.get_complete_coverage_details()
+        })
 
 class PolicyRenewalViewSet(viewsets.ModelViewSet):
     """ViewSet for managing policy renewals"""

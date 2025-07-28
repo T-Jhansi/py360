@@ -117,6 +117,9 @@ DATABASES = {
         'OPTIONS': {
             'connect_timeout': 60,
         },
+        # Connection pooling settings
+        'CONN_MAX_AGE': 600,  # Keep connections alive for 10 minutes
+        'CONN_HEALTH_CHECKS': True,  # Enable connection health checks
     }
 }
 

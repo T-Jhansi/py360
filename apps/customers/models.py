@@ -59,6 +59,11 @@ class Customer(BaseModel):
         ('high', 'High'),
         ('vip', 'VIP'),
     ]
+
+    PROFILE_CHOICES = [
+        ('Normal', 'Normal'),
+        ('HNI', 'HNI (High Net-Worth Individual)'),
+    ]
     
     # Basic Information
     customer_code = models.CharField(max_length=20, unique=True, db_index=True, help_text="Auto-generated customer code like CUS2025001")
@@ -107,6 +112,7 @@ class Customer(BaseModel):
     # Customer Management
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active', db_index=True)
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium', db_index=True)
+    profile = models.CharField(max_length=10, choices=PROFILE_CHOICES, default='Normal', db_index=True, help_text="Customer profile based on policy count")
     assigned_agent = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -243,23 +249,29 @@ class Customer(BaseModel):
     def update_metrics(self):
         """Update customer metrics"""
         policies = self.policies.filter(is_deleted=False)
-        
+
         self.total_policies = policies.count()
         self.total_premium = policies.aggregate(
             total=models.Sum('premium_amount')
         )['total'] or 0
-        
+
         # Calculate lifetime value (simplified)
         self.lifetime_value = self.total_premium
-        
+
+        # Update profile based on policy count
+        if self.total_policies > 1:
+            self.profile = 'HNI'
+        else:
+            self.profile = 'Normal'
+
         # Update policy dates
         if policies.exists():
             self.first_policy_date = policies.order_by('start_date').first().start_date
             self.last_policy_date = policies.order_by('-start_date').first().start_date
-        
+
         self.save(update_fields=[
             'total_policies', 'total_premium', 'lifetime_value',
-            'first_policy_date', 'last_policy_date'
+            'first_policy_date', 'last_policy_date', 'profile'
         ])
 
 
