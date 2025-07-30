@@ -41,9 +41,16 @@ if DEBUG:
     #     'SHOW_TEMPLATE_CONTEXT': True,
     # }
 
-# Email backend for development (console)
+# Email backend for development
+# Use console backend only if no EMAIL_HOST_USER is configured
+# This allows testing real email sending when SMTP credentials are provided
 if not config('EMAIL_HOST_USER', default=None):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    print("📧 Using console email backend (emails will appear in terminal)")
+else:
+    # Use SMTP backend when credentials are provided
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    print("📧 Using SMTP email backend (emails will be sent via SMTP)")
 
 # CORS settings for development
 CORS_ALLOW_ALL_ORIGINS = True

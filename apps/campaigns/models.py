@@ -4,7 +4,7 @@ from apps.core.models import BaseModel, TimestampedModel
 from apps.customers.models import Customer
 from apps.policies.models import Policy
 from apps.templates.models import Template
-from apps.uploads.models import FileUpload
+from apps.files_upload.models import FileUpload
 from apps.TargetAudience.models import TargetAudience
 from decimal import Decimal
 import uuid
@@ -95,9 +95,70 @@ class Campaign(BaseModel):
             models.Index(fields=['status', 'started_at']),
             models.Index(fields=['campaign_type', 'status']),
         ]
-    
+
     def __str__(self):
         return f"{self.name} ({self.status})"
+
+    def update_campaign_statistics(self):
+        """Update campaign statistics based on recipient data"""
+        recipients = self.recipients.all()
+
+        # Count sent emails (including delivered)
+        self.sent_count = recipients.filter(
+            email_status__in=['sent', 'delivered']
+        ).count()
+
+        # Count delivered emails
+        self.delivered_count = recipients.filter(email_status='delivered').count()
+
+        # Count opened emails (opened, clicked, replied, forwarded)
+        self.opened_count = recipients.filter(
+            email_engagement__in=['opened', 'clicked', 'replied', 'forwarded']
+        ).count()
+
+        # Count clicked emails (clicked, replied, forwarded)
+        self.clicked_count = recipients.filter(
+            email_engagement__in=['clicked', 'replied', 'forwarded']
+        ).count()
+
+        # Count total responses (replied, forwarded, etc.)
+        self.total_responses = recipients.filter(
+            email_engagement__in=['replied', 'forwarded']
+        ).count()
+
+        self.save(update_fields=[
+            'sent_count', 'delivered_count', 'opened_count',
+            'clicked_count', 'total_responses'
+        ])
+
+    def get_campaign_metrics(self):
+        """Get comprehensive campaign metrics"""
+        recipients = self.recipients.all()
+        total_recipients = recipients.count()
+
+        if total_recipients == 0:
+            return {
+                'total_recipients': 0,
+                'sent_rate': 0,
+                'delivery_rate': 0,
+                'open_rate': 0,
+                'click_rate': 0,
+                'response_rate': 0
+            }
+
+        return {
+            'total_recipients': total_recipients,
+            'sent_count': self.sent_count,
+            'delivered_count': self.delivered_count,
+            'opened_count': self.opened_count,
+            'clicked_count': self.clicked_count,
+            'total_responses': self.total_responses,
+            'sent_rate': round((self.sent_count / total_recipients) * 100, 2),
+            'delivery_rate': round((self.delivered_count / self.sent_count) * 100, 2) if self.sent_count > 0 else 0,
+            'open_rate': round((self.opened_count / self.delivered_count) * 100, 2) if self.delivered_count > 0 else 0,
+            'click_rate': round((self.clicked_count / self.opened_count) * 100, 2) if self.opened_count > 0 else 0,
+            'response_rate': round((self.total_responses / total_recipients) * 100, 2)
+        }
     
     @property
     def delivery_rate(self):
@@ -193,6 +254,9 @@ class CampaignRecipient(BaseModel):
     whatsapp_engagement = models.CharField(max_length=20, choices=ENGAGEMENT_STATUS_CHOICES, default='not_opened')
     sms_engagement = models.CharField(max_length=20, choices=ENGAGEMENT_STATUS_CHOICES, default='not_opened')
 
+    # Unique tracking ID for secure tracking
+    tracking_id = models.CharField(max_length=64, unique=True, blank=True)
+
     # Delivery timestamps
     email_sent_at = models.DateTimeField(null=True, blank=True)
     email_delivered_at = models.DateTimeField(null=True, blank=True)
@@ -263,6 +327,16 @@ class CampaignRecipient(BaseModel):
 
     def __str__(self):
         return f"{self.campaign.name} - {self.customer.full_name}"
+
+    def save(self, *args, **kwargs):
+        """Generate tracking ID if not exists"""
+        if not self.tracking_id:
+            import uuid
+            import hashlib
+            # Create a unique tracking ID using campaign, customer, and timestamp
+            unique_string = f"{self.campaign_id}-{self.customer_id}-{uuid.uuid4()}"
+            self.tracking_id = hashlib.sha256(unique_string.encode()).hexdigest()[:32]
+        super().save(*args, **kwargs)
 
     @property
     def primary_status(self):
