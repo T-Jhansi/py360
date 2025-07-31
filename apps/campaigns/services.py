@@ -84,9 +84,8 @@ class EmailCampaignService:
                     recipient.save()
                     failed_count += 1
 
-            # Update campaign statistics
-            campaign.sent_count = sent_count
-            # Note: failed_count is not a field in Campaign model, so we skip it
+            # Update campaign statistics using the model method
+            campaign.update_campaign_statistics()
 
             if sent_count > 0:
                 campaign.status = 'completed' if failed_count == 0 else 'running'
@@ -288,11 +287,13 @@ class EmailCampaignService:
             # Create tracking URLs using secure tracking ID
             tracking_pixel_url = f"{base_url}/api/campaigns/track-open/?t={recipient.tracking_id}"
 
-            # Create a robust tracking pixel that works with most email clients
+            # Create a medium-sized tracking image that's more reliable than tiny pixels
             tracking_pixel = f'''
-<!-- Email Open Tracking Pixel -->
-<img src="{tracking_pixel_url}" width="1" height="1" style="display:block!important;width:1px!important;height:1px!important;border:0!important;margin:0!important;padding:0!important;opacity:0;max-width:1px!important;max-height:1px!important;" alt="" border="0" />
-<div style="display:none;visibility:hidden;opacity:0;"><img src="{tracking_pixel_url}" width="1" height="1" /></div>
+<!-- Email Open Tracking Image -->
+<div style="text-align: center; margin: 20px 0; padding: 10px;">
+    <img src="{tracking_pixel_url}" width="150" height="50" style="display: block; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f8f9fa;" alt="Email Analytics" title="Email Analytics" />
+    <p style="font-size: 10px; color: #888; margin: 5px 0 0 0; text-align: center;">Email Analytics & Tracking</p>
+</div>
 '''
 
             # Ensure content is HTML format

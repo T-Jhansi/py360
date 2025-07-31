@@ -354,17 +354,19 @@ def track_email_open(request):
             if recipient.email_engagement == 'not_opened':
                 recipient.email_engagement = 'opened'
                 recipient.email_opened_at = timezone.now()
+
+                # Set email_delivered_at if not already set (email was delivered if it was opened)
+                if not recipient.email_delivered_at:
+                    recipient.email_delivered_at = timezone.now()
+
                 recipient.save()
 
-                # Update campaign statistics efficiently
+                # Update campaign statistics using the model method
                 campaign = recipient.campaign
-                campaign.opened_count = CampaignRecipient.objects.filter(
-                    campaign=campaign,
-                    email_engagement__in=['opened', 'clicked', 'replied']
-                ).count()
-                campaign.save()
+                campaign.update_campaign_statistics()
 
-                logger.info(f"Email opened: Campaign {campaign.id}, Recipient {recipient.id}")
+                logger.info(f"Email opened: Campaign {campaign.name}, Customer: {recipient.customer.email}")
+                logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}")
 
     except CampaignRecipient.DoesNotExist:
         logger.warning(f"Invalid tracking ID: {tracking_id}")
@@ -397,28 +399,28 @@ def track_email_click(request):
 
         # Mark as clicked (also marks as opened if not already)
         if recipient.email_engagement in ['not_opened', 'opened']:
+            # Store previous engagement to check if we need to set opened_at
+            was_not_opened = recipient.email_engagement == 'not_opened'
+
             recipient.email_engagement = 'clicked'
             recipient.email_clicked_at = timezone.now()
 
             # If not opened before, also mark as opened
-            if recipient.email_engagement == 'not_opened':
+            if was_not_opened:
                 recipient.email_opened_at = timezone.now()
+
+            # Set email_delivered_at if not already set (email was delivered if it was clicked)
+            if not recipient.email_delivered_at:
+                recipient.email_delivered_at = timezone.now()
 
             recipient.save()
 
-            # Update campaign statistics
+            # Update campaign statistics using the model method
             campaign = recipient.campaign
-            campaign.clicked_count = CampaignRecipient.objects.filter(
-                campaign=campaign,
-                email_engagement__in=['clicked', 'replied']
-            ).count()
-            campaign.opened_count = CampaignRecipient.objects.filter(
-                campaign=campaign,
-                email_engagement__in=['opened', 'clicked', 'replied']
-            ).count()
-            campaign.save()
+            campaign.update_campaign_statistics()
 
-            logger.info(f"Email clicked: Campaign {campaign.id}, Customer: {recipient.customer.email}, URL: {original_url}")
+            logger.info(f"Email clicked: Campaign {campaign.name}, Customer: {recipient.customer.email}, URL: {original_url}")
+            logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}, Clicked: {campaign.clicked_count}")
 
         # Decode and redirect to original URL
         decoded_url = urllib.parse.unquote(original_url)
@@ -607,47 +609,51 @@ class EmailTrackingView(View):
 
     def get(self, request):
         """Track email opens using tracking pixel"""
+        # Create 1x1 transparent pixel response first
+        pixel_data = base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==')
+        response = HttpResponse(pixel_data, content_type='image/png')
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+
         try:
             # Get tracking ID from query parameters
             tracking_id = request.GET.get('t')
             if not tracking_id:
-                # Return pixel anyway to avoid broken images
-                pixel_data = b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x04\x01\x00\x3B'
-                return HttpResponse(pixel_data, content_type='image/gif')
+                logger.warning("No tracking ID provided")
+                return response
 
             # Find the campaign recipient by tracking ID
-            recipient = CampaignRecipient.objects.select_related('campaign').get(tracking_id=tracking_id)
+            recipient = CampaignRecipient.objects.select_related('campaign', 'customer').get(tracking_id=tracking_id)
 
-            # Update opened count for the campaign
-            campaign = recipient.campaign
-            campaign.opened_count = models.F('opened_count') + 1
-            campaign.save(update_fields=['opened_count'])
+            logger.info(f"Email open tracked: {recipient.customer.email}, Campaign: {recipient.campaign.name}")
 
-            # Update delivered count if this is the first interaction
-            if not hasattr(recipient, 'email_opened') or not recipient.email_opened:
-                campaign.delivered_count = models.F('delivered_count') + 1
-                campaign.save(update_fields=['delivered_count'])
+            # Only update if not already opened
+            if recipient.email_engagement == 'not_opened':
+                recipient.email_engagement = 'opened'
+                recipient.email_opened_at = timezone.now()
 
-                # Mark recipient as email opened (you may need to add this field)
-                # recipient.email_opened = True
-                # recipient.save(update_fields=['email_opened'])
+                # Set email_delivered_at if not already set (email was delivered if it was opened)
+                if not recipient.email_delivered_at:
+                    recipient.email_delivered_at = timezone.now()
 
-            logger.info(f"Email opened tracked for campaign {campaign.id}, recipient {recipient.id}")
+                recipient.save()
 
-            # Return a 1x1 transparent pixel image
-            pixel_data = b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x04\x01\x00\x3B'
-            return HttpResponse(pixel_data, content_type='image/gif')
+                # Update campaign statistics using the model method
+                campaign = recipient.campaign
+                campaign.update_campaign_statistics()
+
+                logger.info(f"Email opened: Campaign {campaign.name}, Customer: {recipient.customer.email}")
+                logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}")
+
+            return response
 
         except CampaignRecipient.DoesNotExist:
             logger.warning(f"Invalid tracking ID: {tracking_id}")
-            # Still return pixel to avoid broken images
-            pixel_data = b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x04\x01\x00\x3B'
-            return HttpResponse(pixel_data, content_type='image/gif')
+            return response
         except Exception as e:
             logger.error(f"Error tracking email open: {str(e)}")
-            # Still return pixel to avoid broken images
-            pixel_data = b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x04\x01\x00\x3B'
-            return HttpResponse(pixel_data, content_type='image/gif')
+            return response
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -659,21 +665,35 @@ class EmailClickTrackingView(View):
         try:
             # Get tracking ID from query parameters
             tracking_id = request.GET.get('t')
-            if not tracking_id:
-                return HttpResponseRedirect('http://localhost:8000')
-
-            # Find the campaign recipient by tracking ID
-            recipient = CampaignRecipient.objects.select_related('campaign').get(tracking_id=tracking_id)
-
-            # Update clicked count for the campaign
-            campaign = recipient.campaign
-            campaign.clicked_count = models.F('clicked_count') + 1
-            campaign.save(update_fields=['clicked_count'])
-
-            # Get the original URL from query parameters
             original_url = request.GET.get('url', 'http://localhost:8000')
 
-            logger.info(f"Email click tracked for campaign {campaign.id}, recipient {recipient.id}")
+            if not tracking_id:
+                return HttpResponseRedirect(original_url)
+
+            # Find the campaign recipient by tracking ID
+            recipient = CampaignRecipient.objects.select_related('campaign', 'customer').get(tracking_id=tracking_id)
+
+            logger.info(f"Email click tracked: {recipient.customer.email}, Campaign: {recipient.campaign.name}")
+
+            # Update recipient engagement status to 'clicked' (highest engagement level)
+            if recipient.email_engagement in ['not_opened', 'opened']:
+                recipient.email_engagement = 'clicked'
+                recipient.email_clicked_at = timezone.now()
+
+                # Set delivered and opened timestamps if not already set
+                if not recipient.email_delivered_at:
+                    recipient.email_delivered_at = timezone.now()
+                if not recipient.email_opened_at:
+                    recipient.email_opened_at = timezone.now()
+
+                recipient.save()
+
+                # Update campaign statistics using the model method
+                campaign = recipient.campaign
+                campaign.update_campaign_statistics()
+
+                logger.info(f"Email clicked: Campaign {campaign.name}, Customer: {recipient.customer.email}")
+                logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}, Clicked: {campaign.clicked_count}")
 
             # Redirect to the original URL
             return HttpResponseRedirect(original_url)

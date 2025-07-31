@@ -463,7 +463,8 @@ class CampaignCreateSerializer(serializers.Serializer):
                             email_status=recipient_data.email_status,
                             whatsapp_status=recipient_data.whatsapp_status,
                             sms_status=recipient_data.sms_status,
-                            tracking_id=tracking_id
+                            tracking_id=tracking_id,
+                            created_by=self.context['request'].user
                         )
                         recipients_created += 1
                         logger.debug(f"Created recipient for customer {recipient_data.customer.email}")

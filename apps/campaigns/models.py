@@ -103,13 +103,13 @@ class Campaign(BaseModel):
         """Update campaign statistics based on recipient data"""
         recipients = self.recipients.all()
 
-        # Count sent emails (including delivered)
-        self.sent_count = recipients.filter(
-            email_status__in=['sent', 'delivered']
-        ).count()
+        # Count sent emails (status = 'sent')
+        self.sent_count = recipients.filter(email_status='sent').count()
 
-        # Count delivered emails
-        self.delivered_count = recipients.filter(email_status='delivered').count()
+        # Count delivered emails (emails that have been opened/clicked - meaning they were delivered)
+        self.delivered_count = recipients.filter(
+            email_delivered_at__isnull=False
+        ).count()
 
         # Count opened emails (opened, clicked, replied, forwarded)
         self.opened_count = recipients.filter(
