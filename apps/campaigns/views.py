@@ -210,15 +210,32 @@ class CampaignViewSet(viewsets.ModelViewSet):
         try:
             campaign = self.get_object()
 
+            # Get recipient counts before update for debugging
+            recipients = campaign.recipients.all()
+            pending_count = recipients.filter(email_status='pending').count()
+            sent_count = recipients.filter(email_status__in=['sent', 'delivered']).count()
+            delivered_count = recipients.filter(email_status='delivered').count()
+            failed_count = recipients.filter(email_status='failed').count()
+
             # Update campaign statistics
             campaign.update_campaign_statistics()
 
             return Response({
                 "message": "Campaign statistics updated successfully",
-                "sent_count": campaign.sent_count,
-                "delivered_count": campaign.delivered_count,
-                "opened_count": campaign.opened_count,
-                "clicked_count": campaign.clicked_count,
+                "debug_info": {
+                    "total_recipients": recipients.count(),
+                    "pending_recipients": pending_count,
+                    "sent_recipients": sent_count,
+                    "delivered_recipients": delivered_count,
+                    "failed_recipients": failed_count,
+                },
+                "campaign_stats": {
+                    "sent_count": campaign.sent_count,
+                    "delivered_count": campaign.delivered_count,
+                    "opened_count": campaign.opened_count,
+                    "clicked_count": campaign.clicked_count,
+                    "target_count": campaign.target_count,
+                },
                 "updated_at": timezone.now().isoformat()
             }, status=status.HTTP_200_OK)
 
@@ -226,6 +243,113 @@ class CampaignViewSet(viewsets.ModelViewSet):
             logger.error(f"Error updating campaign statistics: {str(e)}")
             return Response(
                 {"error": f"Failed to update statistics: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    @action(detail=True, methods=['get'])
+    def recipient_status(self, request, pk=None):
+        """Get detailed recipient status for debugging"""
+        try:
+            campaign = self.get_object()
+            recipients = campaign.recipients.all()
+
+            # Get status breakdown
+            status_breakdown = {}
+            for status_choice in CampaignRecipient.DELIVERY_STATUS_CHOICES:
+                status_code = status_choice[0]
+                count = recipients.filter(email_status=status_code).count()
+                if count > 0:
+                    status_breakdown[status_code] = count
+
+            # Get sample recipients for each status
+            sample_recipients = {}
+            for status_code in status_breakdown.keys():
+                sample = recipients.filter(email_status=status_code)[:3]
+                sample_recipients[status_code] = [
+                    {
+                        'id': r.id,
+                        'customer_email': r.customer.email,
+                        'email_status': r.email_status,
+                        'email_sent_at': r.email_sent_at.isoformat() if r.email_sent_at else None,
+                        'email_delivered_at': r.email_delivered_at.isoformat() if r.email_delivered_at else None,
+                        'created_at': r.created_at.isoformat()
+                    }
+                    for r in sample
+                ]
+
+            return Response({
+                "campaign_id": campaign.id,
+                "campaign_name": campaign.name,
+                "total_recipients": recipients.count(),
+                "status_breakdown": status_breakdown,
+                "sample_recipients": sample_recipients,
+                "current_campaign_counts": {
+                    "sent_count": campaign.sent_count,
+                    "delivered_count": campaign.delivered_count,
+                    "opened_count": campaign.opened_count,
+                    "clicked_count": campaign.clicked_count,
+                    "target_count": campaign.target_count,
+                }
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            logger.error(f"Error getting recipient status: {str(e)}")
+            return Response(
+                {"error": f"Failed to get recipient status: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    @action(detail=True, methods=['post'])
+    def force_update_counts(self, request, pk=None):
+        """Force update campaign counts - SIMPLE METHOD"""
+        try:
+            campaign = self.get_object()
+
+            # Get all recipients for this campaign
+            recipients = campaign.recipients.all()
+
+            # Count manually without using the model method
+            total_recipients = recipients.count()
+            sent_count = recipients.filter(email_status__in=['sent', 'delivered']).count()
+            delivered_count = recipients.filter(email_status='delivered').count()
+            opened_count = recipients.filter(email_engagement__in=['opened', 'clicked', 'replied', 'forwarded']).count()
+            clicked_count = recipients.filter(email_engagement__in=['clicked', 'replied', 'forwarded']).count()
+
+            # Update campaign fields directly
+            campaign.target_count = total_recipients
+            campaign.sent_count = sent_count
+            campaign.delivered_count = delivered_count
+            campaign.opened_count = opened_count
+            campaign.clicked_count = clicked_count
+
+            # Save the campaign
+            campaign.save()
+
+            return Response({
+                "message": "Campaign counts updated successfully",
+                "campaign_id": campaign.id,
+                "campaign_name": campaign.name,
+                "before_update": "Check database for previous values",
+                "after_update": {
+                    "target_count": campaign.target_count,
+                    "sent_count": campaign.sent_count,
+                    "delivered_count": campaign.delivered_count,
+                    "opened_count": campaign.opened_count,
+                    "clicked_count": campaign.clicked_count,
+                },
+                "recipient_details": {
+                    "total_recipients": total_recipients,
+                    "sent_recipients": sent_count,
+                    "delivered_recipients": delivered_count,
+                    "opened_recipients": opened_count,
+                    "clicked_recipients": clicked_count,
+                }
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            logger.error(f"Error force updating campaign counts: {str(e)}")
+            return Response(
+                {"error": f"Failed to force update counts: {str(e)}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 

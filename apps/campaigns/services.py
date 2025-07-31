@@ -66,16 +66,16 @@ class EmailCampaignService:
                     success = EmailCampaignService._send_individual_email(recipient)
 
                     if success:
-                        recipient.email_status = 'sent'
-                        recipient.email_sent_at = timezone.now()
+                        # The _send_individual_email method already updates the recipient status
+                        # Just increment our local counter
                         sent_count += 1
                         logger.info(f"Email sent successfully to {recipient.customer.email}")
                     else:
+                        # Make sure failed status is set
                         recipient.email_status = 'failed'
+                        recipient.save()
                         failed_count += 1
                         logger.error(f"Email failed to {recipient.customer.email}")
-
-                    recipient.save()
 
                 except Exception as e:
                     logger.error(f"Error sending email to recipient {recipient.pk}: {str(e)}")
@@ -187,8 +187,10 @@ class EmailCampaignService:
                 raise send_error
 
             # Update recipient status to sent (and assume delivered for testing)
+            current_time = timezone.now()
             recipient.email_status = 'delivered'  # Changed from 'sent' to 'delivered'
-            recipient.email_sent_at = timezone.now()
+            recipient.email_sent_at = current_time
+            recipient.email_delivered_at = current_time  # Set delivered timestamp
             recipient.save()
 
             # Update campaign statistics immediately

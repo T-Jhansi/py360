@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel, TimestampedModel
 from apps.customers.models import Customer
@@ -103,12 +104,15 @@ class Campaign(BaseModel):
         """Update campaign statistics based on recipient data"""
         recipients = self.recipients.all()
 
-        # Count sent emails (status = 'sent')
-        self.sent_count = recipients.filter(email_status='sent').count()
+        # Count sent emails (status = 'sent' OR 'delivered')
+        self.sent_count = recipients.filter(
+            email_status__in=['sent', 'delivered']
+        ).count()
 
-        # Count delivered emails (emails that have been opened/clicked - meaning they were delivered)
+        # Count delivered emails (status = 'delivered' OR has delivered timestamp)
         self.delivered_count = recipients.filter(
-            email_delivered_at__isnull=False
+            Q(email_status='delivered') |
+            Q(email_delivered_at__isnull=False)
         ).count()
 
         # Count opened emails (opened, clicked, replied, forwarded)
