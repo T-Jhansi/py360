@@ -446,124 +446,10 @@ from django.utils import timezone
 import base64
 import urllib.parse
 
-@api_view(['GET'])
-@permission_classes([])
-@authentication_classes([])
-def track_email_open(request):
-    """
-    Track email opens via tracking pixel using secure tracking ID
-    URL: /api/campaigns/track-open/?t=<tracking_id>
-    """
-    # Create 1x1 transparent pixel response
-    pixel_data = base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==')
-    response = HttpResponse(pixel_data, content_type='image/png')
-    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response['Pragma'] = 'no-cache'
-    response['Expires'] = '0'
-
-    try:
-        tracking_id = request.GET.get('t')  # Use 't' for shorter URLs
-
-        if tracking_id:
-            from .models import CampaignRecipient, Campaign
-
-            # Find recipient by tracking ID
-            recipient = CampaignRecipient.objects.select_related('campaign', 'customer').get(
-                tracking_id=tracking_id
-            )
-
-            logger.info(f"Email open tracked: {recipient.customer.email}, Campaign: {recipient.campaign.name}")
-
-            # Only update if not already opened
-            if recipient.email_engagement == 'not_opened':
-                recipient.email_engagement = 'opened'
-                recipient.email_opened_at = timezone.now()
-
-                # Set email_delivered_at if not already set (email was delivered if it was opened)
-                if not recipient.email_delivered_at:
-                    recipient.email_delivered_at = timezone.now()
-
-                recipient.save()
-
-                # Update campaign statistics using the model method
-                campaign = recipient.campaign
-                campaign.update_campaign_statistics()
-
-                logger.info(f"Email opened: Campaign {campaign.name}, Customer: {recipient.customer.email}")
-                logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}")
-
-    except CampaignRecipient.DoesNotExist:
-        logger.warning(f"Invalid tracking ID: {tracking_id}")
-    except Exception as e:
-        logger.error(f"Error tracking email open: {str(e)}")
-
-    return response
+# Removed duplicate track_email_open function - using EmailTrackingView class instead
 
 
-@api_view(['GET'])
-@permission_classes([])
-@authentication_classes([])
-def track_email_click(request):
-    """
-    Track email clicks and redirect to original URL using secure tracking ID
-    URL: /api/campaigns/track-click/?t=<tracking_id>&url=<encoded_url>
-    """
-    try:
-        tracking_id = request.GET.get('t')
-        original_url = request.GET.get('url')
-
-        if not tracking_id or not original_url:
-            return HttpResponseBadRequest("Missing required parameters")
-
-        # Find the recipient and update tracking
-        from .models import CampaignRecipient
-        recipient = CampaignRecipient.objects.select_related('campaign', 'customer').get(
-            tracking_id=tracking_id
-        )
-
-        # Mark as clicked (also marks as opened if not already)
-        if recipient.email_engagement in ['not_opened', 'opened']:
-            # Store previous engagement to check if we need to set opened_at
-            was_not_opened = recipient.email_engagement == 'not_opened'
-
-            recipient.email_engagement = 'clicked'
-            recipient.email_clicked_at = timezone.now()
-
-            # If not opened before, also mark as opened
-            if was_not_opened:
-                recipient.email_opened_at = timezone.now()
-
-            # Set email_delivered_at if not already set (email was delivered if it was clicked)
-            if not recipient.email_delivered_at:
-                recipient.email_delivered_at = timezone.now()
-
-            recipient.save()
-
-            # Update campaign statistics using the model method
-            campaign = recipient.campaign
-            campaign.update_campaign_statistics()
-
-            logger.info(f"Email clicked: Campaign {campaign.name}, Customer: {recipient.customer.email}, URL: {original_url}")
-            logger.info(f"Campaign stats updated - Sent: {campaign.sent_count}, Delivered: {campaign.delivered_count}, Opened: {campaign.opened_count}, Clicked: {campaign.clicked_count}")
-
-        # Decode and redirect to original URL
-        decoded_url = urllib.parse.unquote(original_url)
-        return HttpResponseRedirect(decoded_url)
-
-    except CampaignRecipient.DoesNotExist:
-        logger.warning(f"Invalid tracking ID for click: {tracking_id}")
-        # Still redirect to the URL even if tracking fails
-        if original_url:
-            decoded_url = urllib.parse.unquote(original_url)
-            return HttpResponseRedirect(decoded_url)
-        return HttpResponseBadRequest("Invalid tracking data")
-    except Exception as e:
-        logger.error(f"Error tracking email click: {str(e)}")
-        # Still redirect to the URL even if tracking fails
-        if original_url:
-            decoded_url = urllib.parse.unquote(original_url)
-            return HttpResponseRedirect(decoded_url)
-        return HttpResponseBadRequest("Error processing click tracking")
+# Removed duplicate track_email_click function - using EmailClickTrackingView class instead
 
 
 @api_view(['POST'])
@@ -908,8 +794,8 @@ def get_campaign_tracking_stats(request, campaign_id):
                     {
                         "recipient_email": recipient.customer.email,
                         "tracking_id": recipient.tracking_id,
-                        "open_tracking_url": f"http://localhost:8000/api/campaigns/track-open/{recipient.tracking_id}/",
-                        "click_tracking_url": f"http://localhost:8000/api/campaigns/track-click/{recipient.tracking_id}/?url=https://example.com"
+                        "open_tracking_url": f"http://localhost:8000/api/campaigns/track-open/?t={recipient.tracking_id}",
+                        "click_tracking_url": f"http://localhost:8000/api/campaigns/track-click/?t={recipient.tracking_id}&url=https://example.com"
                     }
                     for recipient in recipients[:3]  # Show first 3 recipients
                 ]

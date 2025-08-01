@@ -8556,3 +8556,444 @@ INFO 2025-08-01 13:29:42,563 runserver 16928 16916 [mHTTP POST /api/channels/ch
 INFO 2025-08-01 13:29:46,264 middleware 16928 14196 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.047, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 913}
 INFO 2025-08-01 13:29:46,265 runserver 16928 16916 [mHTTP GET /api/channels/channels/ 200 [0.05, 127.0.0.1:63557][0m
 INFO 2025-08-01 13:29:58,577 server 16928 16916 Killed 0 pending application instances
+INFO 2025-08-01 13:35:11,208 server 7268 4024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 13:35:11,209 server 7268 4024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 13:35:11,210 server 7268 4024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 16:20:38,310 server 20128 17256 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 16:20:38,311 server 20128 17256 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 16:20:38,312 server 20128 17256 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 16:20:56,634 middleware 20128 20444 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.048, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-01 16:20:56,639 runserver 20128 17256 [mHTTP POST /api/auth/login/ 200 [1.06, 127.0.0.1:53409][0m
+INFO 2025-08-01 16:21:25,320 middleware 20128 9140 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 1.465, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 589}
+INFO 2025-08-01 16:21:25,330 runserver 20128 17256 [mHTTP POST /api/policy_data/file-uploads/ 201 [1.48, 127.0.0.1:53409][0m
+INFO 2025-08-01 16:37:26,877 server 20128 17256 Killed 0 pending application instances
+INFO 2025-08-01 16:43:29,022 server 13396 13944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 16:43:29,023 server 13396 13944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 16:43:29,025 server 13396 13944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 16:43:34,989 middleware 13396 17528 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 1.647, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 589}
+INFO 2025-08-01 16:43:35,001 runserver 13396 13944 [mHTTP POST /api/policy_data/file-uploads/ 201 [1.67, 127.0.0.1:58821][0m
+INFO 2025-08-01 16:45:50,603 middleware 13396 10416 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.463, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-01 16:45:50,605 runserver 13396 13944 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:59218][0m
+INFO 2025-08-01 16:46:02,397 middleware 13396 4500 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/1/", "status_code": 404, "duration": 0.044, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-01 16:46:02,399 log 13396 20092 Not Found: /api/files_upload/api/file-uploads/1/
+WARNING 2025-08-01 16:46:02,399 runserver 13396 13944 [33mHTTP GET /api/files_upload/api/file-uploads/1/ 404 [0.05, 127.0.0.1:59218][0m
+INFO 2025-08-01 16:46:21,100 middleware 13396 9024 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/5/", "status_code": 200, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1197}
+INFO 2025-08-01 16:46:21,103 runserver 13396 13944 [mHTTP GET /api/files_upload/api/file-uploads/5/ 200 [0.05, 127.0.0.1:59218][0m
+INFO 2025-08-01 17:05:07,643 middleware 13396 12116 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.479, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-01 17:05:07,645 runserver 13396 13944 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:60737][0m
+INFO 2025-08-01 17:05:16,301 middleware 13396 21820 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/", "status_code": 200, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 601}
+INFO 2025-08-01 17:05:16,303 runserver 13396 13944 [mHTTP GET /api/files_upload/api/file-uploads/ 200 [0.06, 127.0.0.1:60737][0m
+INFO 2025-08-01 17:07:54,044 server 13396 13944 Killed 0 pending application instances
+INFO 2025-08-01 17:08:32,515 server 6736 17696 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 17:08:32,516 server 6736 17696 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 17:08:32,516 server 6736 17696 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 17:09:17,036 serializers 6736 18504 Found 10 customers from file upload time window
+INFO 2025-08-01 17:09:17,038 serializers 6736 18504 Total customers selected for campaign 1: 10
+INFO 2025-08-01 17:09:17,092 serializers 6736 18504 Successfully created 10 recipients for campaign 1
+INFO 2025-08-01 17:09:17,099 serializers 6736 18504 Starting immediate email sending for campaign 1
+INFO 2025-08-01 17:09:17,099 services 6736 18504 Starting email sending for campaign 1
+INFO 2025-08-01 17:09:17,102 services 6736 18504 Found campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:09:17,104 services 6736 18504 Found 10 pending recipients
+INFO 2025-08-01 17:09:17,116 services 6736 18504 Processing recipient 10: sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:17,118 services 6736 18504 Starting email send to sahinayasin17@gmail.com for campaign 1
+INFO 2025-08-01 17:09:17,122 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:17,122 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:17,144 services 6736 18504 Added tracking to email for recipient 10, campaign 1
+INFO 2025-08-01 17:09:17,145 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=4715601aa16ffca506ed127a7cc763ed
+INFO 2025-08-01 17:09:17,146 services 6736 18504 Creating email message for sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:17,146 services 6736 18504 Attempting to send email to sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:20,920 services 6736 18504 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:20,952 services 6736 18504 Email sent and delivered successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:20,952 services 6736 18504 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:09:20,952 services 6736 18504 Processing recipient 9: uparrish@hill.com
+INFO 2025-08-01 17:09:20,954 services 6736 18504 Starting email send to uparrish@hill.com for campaign 1
+INFO 2025-08-01 17:09:20,958 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:20,958 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:20,972 services 6736 18504 Added tracking to email for recipient 9, campaign 1
+INFO 2025-08-01 17:09:20,972 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=0f9ec09a76fd83e6138b42070eed4104
+INFO 2025-08-01 17:09:20,972 services 6736 18504 Creating email message for uparrish@hill.com
+INFO 2025-08-01 17:09:20,972 services 6736 18504 Attempting to send email to uparrish@hill.com
+INFO 2025-08-01 17:09:23,792 services 6736 18504 Email sent successfully to uparrish@hill.com
+INFO 2025-08-01 17:09:23,821 services 6736 18504 Email sent and delivered successfully to uparrish@hill.com
+INFO 2025-08-01 17:09:23,821 services 6736 18504 Email sent successfully to uparrish@hill.com
+INFO 2025-08-01 17:09:23,821 services 6736 18504 Processing recipient 8: tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:23,823 services 6736 18504 Starting email send to tracy57@phillips-jimenez.com for campaign 1
+INFO 2025-08-01 17:09:23,828 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:23,828 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:23,841 services 6736 18504 Added tracking to email for recipient 8, campaign 1
+INFO 2025-08-01 17:09:23,841 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=5295571964d099215357b1a5f747e60a
+INFO 2025-08-01 17:09:23,842 services 6736 18504 Creating email message for tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:23,842 services 6736 18504 Attempting to send email to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:26,639 services 6736 18504 Email sent successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:26,669 services 6736 18504 Email sent and delivered successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:26,670 services 6736 18504 Email sent successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:09:26,670 services 6736 18504 Processing recipient 7: jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:26,671 services 6736 18504 Starting email send to jerrygonzales@gmail.com for campaign 1
+INFO 2025-08-01 17:09:26,675 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:26,675 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:26,688 services 6736 18504 Added tracking to email for recipient 7, campaign 1
+INFO 2025-08-01 17:09:26,689 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=c34b8daf54605452858b3f1591d795a2
+INFO 2025-08-01 17:09:26,689 services 6736 18504 Creating email message for jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:26,689 services 6736 18504 Attempting to send email to jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:29,489 services 6736 18504 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:29,518 services 6736 18504 Email sent and delivered successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:29,519 services 6736 18504 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:09:29,519 services 6736 18504 Processing recipient 6: david22@gmail.com
+INFO 2025-08-01 17:09:29,521 services 6736 18504 Starting email send to david22@gmail.com for campaign 1
+INFO 2025-08-01 17:09:29,524 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:29,524 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:29,540 services 6736 18504 Added tracking to email for recipient 6, campaign 1
+INFO 2025-08-01 17:09:29,540 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=a5737966f0e517492e6e11c1dfb9b3f5
+INFO 2025-08-01 17:09:29,540 services 6736 18504 Creating email message for david22@gmail.com
+INFO 2025-08-01 17:09:29,540 services 6736 18504 Attempting to send email to david22@gmail.com
+INFO 2025-08-01 17:09:32,518 services 6736 18504 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:09:32,539 services 6736 18504 Email sent and delivered successfully to david22@gmail.com
+INFO 2025-08-01 17:09:32,540 services 6736 18504 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:09:32,540 services 6736 18504 Processing recipient 5: rvelez@yahoo.com
+INFO 2025-08-01 17:09:32,541 services 6736 18504 Starting email send to rvelez@yahoo.com for campaign 1
+INFO 2025-08-01 17:09:32,547 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:32,547 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:32,616 services 6736 18504 Added tracking to email for recipient 5, campaign 1
+INFO 2025-08-01 17:09:32,620 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=bec15605c50e83bf2751143c453f64eb
+INFO 2025-08-01 17:09:32,620 services 6736 18504 Creating email message for rvelez@yahoo.com
+INFO 2025-08-01 17:09:32,620 services 6736 18504 Attempting to send email to rvelez@yahoo.com
+INFO 2025-08-01 17:09:35,359 services 6736 18504 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:09:35,388 services 6736 18504 Email sent and delivered successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:09:35,388 services 6736 18504 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:09:35,389 services 6736 18504 Processing recipient 4: jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:35,390 services 6736 18504 Starting email send to jeffrey52@yahoo.com for campaign 1
+INFO 2025-08-01 17:09:35,396 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:35,396 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:35,409 services 6736 18504 Added tracking to email for recipient 4, campaign 1
+INFO 2025-08-01 17:09:35,409 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=76da6a5e2cd8ec664c4c900c423ad7a4
+INFO 2025-08-01 17:09:35,410 services 6736 18504 Creating email message for jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:35,410 services 6736 18504 Attempting to send email to jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:38,314 services 6736 18504 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:38,340 services 6736 18504 Email sent and delivered successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:38,341 services 6736 18504 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:09:38,341 services 6736 18504 Processing recipient 3: kelly28@bridges.biz
+INFO 2025-08-01 17:09:38,343 services 6736 18504 Starting email send to kelly28@bridges.biz for campaign 1
+INFO 2025-08-01 17:09:38,349 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:38,349 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:38,364 services 6736 18504 Added tracking to email for recipient 3, campaign 1
+INFO 2025-08-01 17:09:38,364 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=f4e21f02662ea673d01b984c1ccdd4ae
+INFO 2025-08-01 17:09:38,364 services 6736 18504 Creating email message for kelly28@bridges.biz
+INFO 2025-08-01 17:09:38,364 services 6736 18504 Attempting to send email to kelly28@bridges.biz
+INFO 2025-08-01 17:09:41,164 services 6736 18504 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:09:41,186 services 6736 18504 Email sent and delivered successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:09:41,187 services 6736 18504 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:09:41,187 services 6736 18504 Processing recipient 2: bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:41,189 services 6736 18504 Starting email send to bellholly@garrett-stewart.com for campaign 1
+INFO 2025-08-01 17:09:41,192 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:41,193 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:41,207 services 6736 18504 Added tracking to email for recipient 2, campaign 1
+INFO 2025-08-01 17:09:41,207 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=98557df0601b659267d6cd5e6e0d5960
+INFO 2025-08-01 17:09:41,207 services 6736 18504 Creating email message for bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:41,208 services 6736 18504 Attempting to send email to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:43,899 services 6736 18504 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:43,920 services 6736 18504 Email sent and delivered successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:43,921 services 6736 18504 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:09:43,921 services 6736 18504 Processing recipient 1: christopher40@yahoo.com
+INFO 2025-08-01 17:09:43,923 services 6736 18504 Starting email send to christopher40@yahoo.com for campaign 1
+INFO 2025-08-01 17:09:43,927 services 6736 18504 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:09:43,927 services 6736 18504 Template content length: 8778
+INFO 2025-08-01 17:09:43,941 services 6736 18504 Added tracking to email for recipient 1, campaign 1
+INFO 2025-08-01 17:09:43,941 services 6736 18504 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=7cd1f7f36bf983197f2e0d9d45a58246
+INFO 2025-08-01 17:09:43,941 services 6736 18504 Creating email message for christopher40@yahoo.com
+INFO 2025-08-01 17:09:43,941 services 6736 18504 Attempting to send email to christopher40@yahoo.com
+INFO 2025-08-01 17:09:46,720 services 6736 18504 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:09:46,739 services 6736 18504 Email sent and delivered successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:09:46,739 services 6736 18504 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:09:46,750 services 6736 18504 Campaign 1 email sending completed: 10 sent, 0 failed
+ERROR 2025-08-01 17:09:46,750 services 6736 18504 Error scheduling delivery status update: 'function' object has no attribute 'apply_async'
+INFO 2025-08-01 17:09:46,750 serializers 6736 18504 Email sending completed: 10 sent, 0 failed
+INFO 2025-08-01 17:09:46,754 middleware 6736 18504 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 29.813, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 387}
+INFO 2025-08-01 17:09:46,758 runserver 6736 17696 [mHTTP POST /api/campaigns/create-from-file/ 201 [29.82, 127.0.0.1:61315][0m
+INFO 2025-08-01 17:10:31,780 views 6736 3196 Email click tracked: sahinayasin17@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:10:31,805 views 6736 3196 Email clicked: Campaign Policy Renewal Campaign, Customer: sahinayasin17@gmail.com
+INFO 2025-08-01 17:10:31,805 views 6736 3196 Campaign stats updated - Sent: 10, Delivered: 10, Opened: 1, Clicked: 1
+INFO 2025-08-01 17:10:31,806 middleware 6736 3196 API Request: {"method": "GET", "path": "/api/campaigns/track-click/", "status_code": 302, "duration": 0.076, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", "content_length": 0}
+INFO 2025-08-01 17:10:31,808 runserver 6736 17696 [32mHTTP GET /api/campaigns/track-click/?t=4715601aa16ffca506ed127a7cc763ed&url=http%3A//localhost%3A8000/renew/POL-00001/ 302 [0.08, 127.0.0.1:61537][0m
+WARNING 2025-08-01 17:10:31,839 log 6736 1180 Not Found: /renew/POL-00001/
+WARNING 2025-08-01 17:10:31,840 runserver 6736 17696 [33mHTTP GET /renew/POL-00001/ 404 [0.03, 127.0.0.1:61537][0m
+WARNING 2025-08-01 17:10:31,913 log 6736 1180 Not Found: /favicon.ico
+WARNING 2025-08-01 17:10:31,913 runserver 6736 17696 [33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:61537][0m
+INFO 2025-08-01 17:10:36,159 views 6736 20332 Email click tracked: sahinayasin17@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:10:36,160 middleware 6736 20332 API Request: {"method": "GET", "path": "/api/campaigns/track-click/", "status_code": 302, "duration": 0.049, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", "content_length": 0}
+INFO 2025-08-01 17:10:36,161 runserver 6736 17696 [32mHTTP GET /api/campaigns/track-click/?t=4715601aa16ffca506ed127a7cc763ed&url=http%3A//localhost%3A8000/renew/POL-00001/ 302 [0.05, 127.0.0.1:61537][0m
+WARNING 2025-08-01 17:10:36,185 log 6736 1180 Not Found: /renew/POL-00001/
+WARNING 2025-08-01 17:10:36,185 runserver 6736 17696 [33mHTTP GET /renew/POL-00001/ 404 [0.02, 127.0.0.1:61537][0m
+INFO 2025-08-01 17:14:20,533 server 6736 17696 Killed 0 pending application instances
+INFO 2025-08-01 17:14:34,152 server 13784 2740 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 17:14:34,152 server 13784 2740 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 17:14:34,153 server 13784 2740 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 17:14:47,776 serializers 13784 6372 Found 10 customers from file upload time window
+INFO 2025-08-01 17:14:47,779 serializers 13784 6372 Total customers selected for campaign 1: 10
+INFO 2025-08-01 17:14:47,831 serializers 13784 6372 Successfully created 10 recipients for campaign 1
+INFO 2025-08-01 17:14:47,835 serializers 13784 6372 Starting immediate email sending for campaign 1
+INFO 2025-08-01 17:14:47,835 services 13784 6372 Starting email sending for campaign 1
+INFO 2025-08-01 17:14:47,837 services 13784 6372 Found campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:14:47,839 services 13784 6372 Found 10 pending recipients
+INFO 2025-08-01 17:14:47,850 services 13784 6372 Processing recipient 10: sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:47,852 services 13784 6372 Starting email send to sahinayasin17@gmail.com for campaign 1
+INFO 2025-08-01 17:14:47,855 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:14:47,856 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:14:47,872 services 13784 6372 Added tracking to email for recipient 10, campaign 1
+INFO 2025-08-01 17:14:47,872 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=e720c0171e749ef0a377d8b870167754
+INFO 2025-08-01 17:14:47,873 services 13784 6372 Creating email message for sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:47,873 services 13784 6372 Attempting to send email to sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:51,399 services 13784 6372 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:51,426 services 13784 6372 Email sent and delivered successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:51,426 services 13784 6372 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:14:51,426 services 13784 6372 Processing recipient 9: itsmesiva@gmail.com
+INFO 2025-08-01 17:14:51,428 services 13784 6372 Starting email send to itsmesiva@gmail.com for campaign 1
+INFO 2025-08-01 17:14:51,433 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:14:51,433 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:14:51,446 services 13784 6372 Added tracking to email for recipient 9, campaign 1
+INFO 2025-08-01 17:14:51,447 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=b7e4cc87273df1ae34ec9d1932593fa2
+INFO 2025-08-01 17:14:51,447 services 13784 6372 Creating email message for itsmesiva@gmail.com
+INFO 2025-08-01 17:14:51,447 services 13784 6372 Attempting to send email to itsmesiva@gmail.com
+INFO 2025-08-01 17:14:54,255 services 13784 6372 Email sent successfully to itsmesiva@gmail.com
+INFO 2025-08-01 17:14:54,283 services 13784 6372 Email sent and delivered successfully to itsmesiva@gmail.com
+INFO 2025-08-01 17:14:54,283 services 13784 6372 Email sent successfully to itsmesiva@gmail.com
+INFO 2025-08-01 17:14:54,284 services 13784 6372 Processing recipient 8: tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:54,285 services 13784 6372 Starting email send to tracy57@phillips-jimenez.com for campaign 1
+INFO 2025-08-01 17:14:54,289 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:14:54,289 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:14:54,301 services 13784 6372 Added tracking to email for recipient 8, campaign 1
+INFO 2025-08-01 17:14:54,302 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=141f334069553463513be28b0b57dd95
+INFO 2025-08-01 17:14:54,302 services 13784 6372 Creating email message for tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:54,302 services 13784 6372 Attempting to send email to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:57,176 services 13784 6372 Email sent successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:57,203 services 13784 6372 Email sent and delivered successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:57,203 services 13784 6372 Email sent successfully to tracy57@phillips-jimenez.com
+INFO 2025-08-01 17:14:57,203 services 13784 6372 Processing recipient 7: jerrygonzales@gmail.com
+INFO 2025-08-01 17:14:57,205 services 13784 6372 Starting email send to jerrygonzales@gmail.com for campaign 1
+INFO 2025-08-01 17:14:57,211 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:14:57,211 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:14:57,223 services 13784 6372 Added tracking to email for recipient 7, campaign 1
+INFO 2025-08-01 17:14:57,224 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=31f8392329389969c1e720f80a3703a2
+INFO 2025-08-01 17:14:57,224 services 13784 6372 Creating email message for jerrygonzales@gmail.com
+INFO 2025-08-01 17:14:57,224 services 13784 6372 Attempting to send email to jerrygonzales@gmail.com
+INFO 2025-08-01 17:15:00,037 services 13784 6372 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:15:00,065 services 13784 6372 Email sent and delivered successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:15:00,066 services 13784 6372 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:15:00,066 services 13784 6372 Processing recipient 6: david22@gmail.com
+INFO 2025-08-01 17:15:00,068 services 13784 6372 Starting email send to david22@gmail.com for campaign 1
+INFO 2025-08-01 17:15:00,071 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:00,071 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:00,084 services 13784 6372 Added tracking to email for recipient 6, campaign 1
+INFO 2025-08-01 17:15:00,085 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=7b291fdba799657e4e2a812ab5634e5a
+INFO 2025-08-01 17:15:00,085 services 13784 6372 Creating email message for david22@gmail.com
+INFO 2025-08-01 17:15:00,085 services 13784 6372 Attempting to send email to david22@gmail.com
+INFO 2025-08-01 17:15:02,771 services 13784 6372 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:15:02,801 services 13784 6372 Email sent and delivered successfully to david22@gmail.com
+INFO 2025-08-01 17:15:02,801 services 13784 6372 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:15:02,801 services 13784 6372 Processing recipient 5: rvelez@yahoo.com
+INFO 2025-08-01 17:15:02,803 services 13784 6372 Starting email send to rvelez@yahoo.com for campaign 1
+INFO 2025-08-01 17:15:02,807 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:02,808 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:02,820 services 13784 6372 Added tracking to email for recipient 5, campaign 1
+INFO 2025-08-01 17:15:02,820 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=d58659fd7bd095a314e640ae8b2e7328
+INFO 2025-08-01 17:15:02,821 services 13784 6372 Creating email message for rvelez@yahoo.com
+INFO 2025-08-01 17:15:02,821 services 13784 6372 Attempting to send email to rvelez@yahoo.com
+INFO 2025-08-01 17:15:05,605 services 13784 6372 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:15:05,634 services 13784 6372 Email sent and delivered successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:15:05,635 services 13784 6372 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:15:05,635 services 13784 6372 Processing recipient 4: jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:05,636 services 13784 6372 Starting email send to jeffrey52@yahoo.com for campaign 1
+INFO 2025-08-01 17:15:05,641 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:05,641 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:05,653 services 13784 6372 Added tracking to email for recipient 4, campaign 1
+INFO 2025-08-01 17:15:05,654 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=4469e4c5449d741a6b26508e7c905d84
+INFO 2025-08-01 17:15:05,654 services 13784 6372 Creating email message for jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:05,654 services 13784 6372 Attempting to send email to jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:08,782 services 13784 6372 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:08,807 services 13784 6372 Email sent and delivered successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:08,808 services 13784 6372 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:15:08,808 services 13784 6372 Processing recipient 3: kelly28@bridges.biz
+INFO 2025-08-01 17:15:08,810 services 13784 6372 Starting email send to kelly28@bridges.biz for campaign 1
+INFO 2025-08-01 17:15:08,815 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:08,815 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:08,829 services 13784 6372 Added tracking to email for recipient 3, campaign 1
+INFO 2025-08-01 17:15:08,830 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=7f9a568ae47fb5a94913eeedd7eac381
+INFO 2025-08-01 17:15:08,830 services 13784 6372 Creating email message for kelly28@bridges.biz
+INFO 2025-08-01 17:15:08,830 services 13784 6372 Attempting to send email to kelly28@bridges.biz
+INFO 2025-08-01 17:15:12,060 services 13784 6372 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:15:12,087 services 13784 6372 Email sent and delivered successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:15:12,087 services 13784 6372 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:15:12,087 services 13784 6372 Processing recipient 2: bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:12,089 services 13784 6372 Starting email send to bellholly@garrett-stewart.com for campaign 1
+INFO 2025-08-01 17:15:12,096 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:12,096 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:12,111 services 13784 6372 Added tracking to email for recipient 2, campaign 1
+INFO 2025-08-01 17:15:12,111 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=e06ee278a16817f25800be398800b3c9
+INFO 2025-08-01 17:15:12,112 services 13784 6372 Creating email message for bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:12,112 services 13784 6372 Attempting to send email to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:14,880 services 13784 6372 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:14,905 services 13784 6372 Email sent and delivered successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:14,906 services 13784 6372 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:15:14,906 services 13784 6372 Processing recipient 1: christopher40@yahoo.com
+INFO 2025-08-01 17:15:14,909 services 13784 6372 Starting email send to christopher40@yahoo.com for campaign 1
+INFO 2025-08-01 17:15:14,913 services 13784 6372 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:15:14,913 services 13784 6372 Template content length: 8778
+INFO 2025-08-01 17:15:14,926 services 13784 6372 Added tracking to email for recipient 1, campaign 1
+INFO 2025-08-01 17:15:14,926 services 13784 6372 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=898a44128e7d74f61c2f3dc9ded7e6c6
+INFO 2025-08-01 17:15:14,926 services 13784 6372 Creating email message for christopher40@yahoo.com
+INFO 2025-08-01 17:15:14,927 services 13784 6372 Attempting to send email to christopher40@yahoo.com
+INFO 2025-08-01 17:15:17,657 services 13784 6372 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:15:17,686 services 13784 6372 Email sent and delivered successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:15:17,686 services 13784 6372 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:15:17,699 services 13784 6372 Campaign 1 email sending completed: 10 sent, 0 failed
+ERROR 2025-08-01 17:15:17,699 services 13784 6372 Error scheduling delivery status update: 'function' object has no attribute 'apply_async'
+INFO 2025-08-01 17:15:17,699 serializers 13784 6372 Email sending completed: 10 sent, 0 failed
+INFO 2025-08-01 17:15:17,702 middleware 13784 6372 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 30.026, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 387}
+INFO 2025-08-01 17:15:17,709 runserver 13784 2740 [mHTTP POST /api/campaigns/create-from-file/ 201 [30.04, 127.0.0.1:62785][0m
+INFO 2025-08-01 17:19:06,730 server 13784 2740 Killed 0 pending application instances
+INFO 2025-08-01 17:19:11,559 server 18256 17692 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 17:19:11,559 server 18256 17692 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 17:19:11,560 server 18256 17692 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 17:20:20,692 serializers 18256 7204 Found 10 customers from file upload time window
+INFO 2025-08-01 17:20:20,695 serializers 18256 7204 Total customers selected for campaign 1: 10
+INFO 2025-08-01 17:20:20,740 serializers 18256 7204 Successfully created 10 recipients for campaign 1
+INFO 2025-08-01 17:20:20,744 serializers 18256 7204 Starting immediate email sending for campaign 1
+INFO 2025-08-01 17:20:20,744 services 18256 7204 Starting email sending for campaign 1
+INFO 2025-08-01 17:20:20,746 services 18256 7204 Found campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:20:20,748 services 18256 7204 Found 10 pending recipients
+INFO 2025-08-01 17:20:20,758 services 18256 7204 Processing recipient 10: sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:20,760 services 18256 7204 Starting email send to sahinayasin17@gmail.com for campaign 1
+INFO 2025-08-01 17:20:20,764 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:20,764 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:20,782 services 18256 7204 Added tracking to email for recipient 10, campaign 1
+INFO 2025-08-01 17:20:20,782 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=3843d8b72f4ab11b1be2877dce6c0f18
+INFO 2025-08-01 17:20:20,783 services 18256 7204 Creating email message for sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:20,783 services 18256 7204 Attempting to send email to sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:23,645 services 18256 7204 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:23,674 services 18256 7204 Email sent and delivered successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:23,675 services 18256 7204 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-01 17:20:23,675 services 18256 7204 Processing recipient 9: itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:23,677 services 18256 7204 Starting email send to itsmesiva057@gmail.com for campaign 1
+INFO 2025-08-01 17:20:23,681 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:23,681 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:23,695 services 18256 7204 Added tracking to email for recipient 9, campaign 1
+INFO 2025-08-01 17:20:23,696 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=aa5427b3f0f9024afa79fdeb1b4b9020
+INFO 2025-08-01 17:20:23,696 services 18256 7204 Creating email message for itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:23,696 services 18256 7204 Attempting to send email to itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:26,383 services 18256 7204 Email sent successfully to itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:26,414 services 18256 7204 Email sent and delivered successfully to itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:26,414 services 18256 7204 Email sent successfully to itsmesiva057@gmail.com
+INFO 2025-08-01 17:20:26,414 services 18256 7204 Processing recipient 8: monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:26,416 services 18256 7204 Starting email send to monikasharma951226@gmail.com for campaign 1
+INFO 2025-08-01 17:20:26,421 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:26,421 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:26,434 services 18256 7204 Added tracking to email for recipient 8, campaign 1
+INFO 2025-08-01 17:20:26,434 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=ef124c1ec7aefbfdd59a6b081dc81760
+INFO 2025-08-01 17:20:26,434 services 18256 7204 Creating email message for monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:26,435 services 18256 7204 Attempting to send email to monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:29,321 services 18256 7204 Email sent successfully to monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:29,343 services 18256 7204 Email sent and delivered successfully to monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:29,344 services 18256 7204 Email sent successfully to monikasharma951226@gmail.com
+INFO 2025-08-01 17:20:29,344 services 18256 7204 Processing recipient 7: jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:29,346 services 18256 7204 Starting email send to jerrygonzales@gmail.com for campaign 1
+INFO 2025-08-01 17:20:29,349 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:29,349 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:29,363 services 18256 7204 Added tracking to email for recipient 7, campaign 1
+INFO 2025-08-01 17:20:29,364 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=99bf68674af76e608c3aa0f9fbe61944
+INFO 2025-08-01 17:20:29,364 services 18256 7204 Creating email message for jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:29,364 services 18256 7204 Attempting to send email to jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:31,988 services 18256 7204 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:32,015 services 18256 7204 Email sent and delivered successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:32,016 services 18256 7204 Email sent successfully to jerrygonzales@gmail.com
+INFO 2025-08-01 17:20:32,016 services 18256 7204 Processing recipient 6: david22@gmail.com
+INFO 2025-08-01 17:20:32,018 services 18256 7204 Starting email send to david22@gmail.com for campaign 1
+INFO 2025-08-01 17:20:32,022 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:32,022 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:32,036 services 18256 7204 Added tracking to email for recipient 6, campaign 1
+INFO 2025-08-01 17:20:32,036 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=e00bd43b5b9695e843dad750b98b3d25
+INFO 2025-08-01 17:20:32,037 services 18256 7204 Creating email message for david22@gmail.com
+INFO 2025-08-01 17:20:32,037 services 18256 7204 Attempting to send email to david22@gmail.com
+INFO 2025-08-01 17:20:35,585 services 18256 7204 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:20:35,615 services 18256 7204 Email sent and delivered successfully to david22@gmail.com
+INFO 2025-08-01 17:20:35,615 services 18256 7204 Email sent successfully to david22@gmail.com
+INFO 2025-08-01 17:20:35,616 services 18256 7204 Processing recipient 5: rvelez@yahoo.com
+INFO 2025-08-01 17:20:35,617 services 18256 7204 Starting email send to rvelez@yahoo.com for campaign 1
+INFO 2025-08-01 17:20:35,623 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:35,623 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:35,636 services 18256 7204 Added tracking to email for recipient 5, campaign 1
+INFO 2025-08-01 17:20:35,637 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=82c1e3ebf74b414d58722cd04ad5dd7e
+INFO 2025-08-01 17:20:35,637 services 18256 7204 Creating email message for rvelez@yahoo.com
+INFO 2025-08-01 17:20:35,637 services 18256 7204 Attempting to send email to rvelez@yahoo.com
+INFO 2025-08-01 17:20:38,527 services 18256 7204 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:20:38,548 services 18256 7204 Email sent and delivered successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:20:38,549 services 18256 7204 Email sent successfully to rvelez@yahoo.com
+INFO 2025-08-01 17:20:38,549 services 18256 7204 Processing recipient 4: jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:38,551 services 18256 7204 Starting email send to jeffrey52@yahoo.com for campaign 1
+INFO 2025-08-01 17:20:38,557 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:38,557 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:38,571 services 18256 7204 Added tracking to email for recipient 4, campaign 1
+INFO 2025-08-01 17:20:38,571 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=d065c46f9003430e7f02f2d2a714053c
+INFO 2025-08-01 17:20:38,572 services 18256 7204 Creating email message for jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:38,572 services 18256 7204 Attempting to send email to jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:41,244 services 18256 7204 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:41,264 services 18256 7204 Email sent and delivered successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:41,264 services 18256 7204 Email sent successfully to jeffrey52@yahoo.com
+INFO 2025-08-01 17:20:41,265 services 18256 7204 Processing recipient 3: kelly28@bridges.biz
+INFO 2025-08-01 17:20:41,266 services 18256 7204 Starting email send to kelly28@bridges.biz for campaign 1
+INFO 2025-08-01 17:20:41,271 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:41,271 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:41,284 services 18256 7204 Added tracking to email for recipient 3, campaign 1
+INFO 2025-08-01 17:20:41,285 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=bd024efabed29ef1da403c2824a3ec64
+INFO 2025-08-01 17:20:41,285 services 18256 7204 Creating email message for kelly28@bridges.biz
+INFO 2025-08-01 17:20:41,285 services 18256 7204 Attempting to send email to kelly28@bridges.biz
+INFO 2025-08-01 17:20:44,271 services 18256 7204 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:20:44,299 services 18256 7204 Email sent and delivered successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:20:44,300 services 18256 7204 Email sent successfully to kelly28@bridges.biz
+INFO 2025-08-01 17:20:44,300 services 18256 7204 Processing recipient 2: bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:44,302 services 18256 7204 Starting email send to bellholly@garrett-stewart.com for campaign 1
+INFO 2025-08-01 17:20:44,307 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:44,307 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:44,321 services 18256 7204 Added tracking to email for recipient 2, campaign 1
+INFO 2025-08-01 17:20:44,322 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=1ccfac88a9f9226a8aece1c659a514a2
+INFO 2025-08-01 17:20:44,322 services 18256 7204 Creating email message for bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:44,322 services 18256 7204 Attempting to send email to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:47,118 services 18256 7204 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:47,151 services 18256 7204 Email sent and delivered successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:47,152 services 18256 7204 Email sent successfully to bellholly@garrett-stewart.com
+INFO 2025-08-01 17:20:47,152 services 18256 7204 Processing recipient 1: christopher40@yahoo.com
+INFO 2025-08-01 17:20:47,155 services 18256 7204 Starting email send to christopher40@yahoo.com for campaign 1
+INFO 2025-08-01 17:20:47,159 services 18256 7204 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-01 17:20:47,159 services 18256 7204 Template content length: 8778
+INFO 2025-08-01 17:20:47,173 services 18256 7204 Added tracking to email for recipient 1, campaign 1
+INFO 2025-08-01 17:20:47,173 services 18256 7204 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=ac3a0fc8f5b0b5a953b407dc9f30f87f
+INFO 2025-08-01 17:20:47,174 services 18256 7204 Creating email message for christopher40@yahoo.com
+INFO 2025-08-01 17:20:47,174 services 18256 7204 Attempting to send email to christopher40@yahoo.com
+INFO 2025-08-01 17:20:49,959 services 18256 7204 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:20:49,986 services 18256 7204 Email sent and delivered successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:20:49,987 services 18256 7204 Email sent successfully to christopher40@yahoo.com
+INFO 2025-08-01 17:20:49,996 services 18256 7204 Campaign 1 email sending completed: 10 sent, 0 failed
+ERROR 2025-08-01 17:20:49,997 services 18256 7204 Error scheduling delivery status update: 'function' object has no attribute 'apply_async'
+INFO 2025-08-01 17:20:49,997 serializers 18256 7204 Email sending completed: 10 sent, 0 failed
+INFO 2025-08-01 17:20:50,000 middleware 18256 7204 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 29.406, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 387}
+INFO 2025-08-01 17:20:50,007 runserver 18256 17692 [mHTTP POST /api/campaigns/create-from-file/ 201 [29.42, 127.0.0.1:63610][0m
+INFO 2025-08-01 17:29:30,738 server 18256 17692 Killed 0 pending application instances
+INFO 2025-08-01 17:41:40,075 autoreload 21348 14408 Watching for file changes with StatReloader
+INFO 2025-08-01 17:41:41,240 server 21348 14920 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 17:41:41,240 server 21348 14920 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 17:41:41,241 server 21348 14920 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 17:42:08,628 views 21348 16904 Email open tracked: sahinayasin17@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:42:08,650 views 21348 16904 Email opened: Campaign Policy Renewal Campaign, Customer: sahinayasin17@gmail.com
+INFO 2025-08-01 17:42:08,650 views 21348 16904 Campaign stats updated - Sent: 10, Delivered: 10, Opened: 1
+INFO 2025-08-01 17:42:08,651 middleware 21348 16904 API Request: {"method": "GET", "path": "/api/campaigns/track-open/", "status_code": 200, "duration": 0.075, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 70}
+INFO 2025-08-01 17:42:08,653 runserver 21348 14920 [mHTTP GET /api/campaigns/track-open/?t=3843d8b72f4ab11b1be2877dce6c0f18 200 [0.08, 127.0.0.1:50093][0m
+INFO 2025-08-01 17:43:01,499 views 21348 17340 Email open tracked: sahinayasin17@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:43:01,499 middleware 21348 17340 API Request: {"method": "GET", "path": "/api/campaigns/track-open/", "status_code": 200, "duration": 0.049, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 70}
+INFO 2025-08-01 17:43:01,501 runserver 21348 14920 [mHTTP GET /api/campaigns/track-open/?t=3843d8b72f4ab11b1be2877dce6c0f18 200 [0.05, 127.0.0.1:50132][0m
+INFO 2025-08-01 17:44:13,072 views 21348 22612 Email open tracked: itsmesiva057@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-01 17:44:13,092 views 21348 22612 Email opened: Campaign Policy Renewal Campaign, Customer: itsmesiva057@gmail.com
+INFO 2025-08-01 17:44:13,092 views 21348 22612 Campaign stats updated - Sent: 10, Delivered: 10, Opened: 2
+INFO 2025-08-01 17:44:13,093 middleware 21348 22612 API Request: {"method": "GET", "path": "/api/campaigns/track-open/", "status_code": 200, "duration": 0.07, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 70}
+INFO 2025-08-01 17:44:13,094 runserver 21348 14920 [mHTTP GET /api/campaigns/track-open/?t=aa5427b3f0f9024afa79fdeb1b4b9020 200 [0.07, 127.0.0.1:50189][0m
+INFO 2025-08-01 18:24:31,821 server 19736 20024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 18:24:31,821 server 19736 20024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 18:24:31,822 server 19736 20024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 18:24:42,881 server 19736 20024 Killed 0 pending application instances

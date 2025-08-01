@@ -166,6 +166,7 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
     customer_profile = serializers.SerializerMethodField()
     policy_number = serializers.SerializerMethodField()
     assigned_to_name = serializers.SerializerMethodField()
+    channel_name = serializers.SerializerMethodField()
 
     class Meta:
         model = RenewalCase
@@ -173,12 +174,12 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
             'id', 'case_number', 'batch_code', 'customer', 'customer_name', 'customer_profile', 'policy',
             'policy_number', 'status', 'priority', 'assigned_to', 'assigned_to_name',
             'renewal_amount', 'payment_status', 'payment_date',
-            'communication_attempts', 'last_contact_date', 'notes',
+            'communication_attempts', 'last_contact_date', 'channel_id', 'channel_name', 'notes',
             'created_at', 'updated_at'
         ]
         read_only_fields = [
             'id', 'case_number', 'batch_code', 'customer_name', 'customer_profile', 'policy_number', 'assigned_to_name',
-            'created_at', 'updated_at'
+            'channel_name', 'created_at', 'updated_at'
         ]
 
     def get_customer_name(self, obj):
@@ -194,6 +195,10 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
         if obj.assigned_to:
             return f"{obj.assigned_to.first_name} {obj.assigned_to.last_name}".strip()
         return None
+
+    def get_channel_name(self, obj):
+        """Get channel name"""
+        return obj.channel_id.name if obj.channel_id else None
 
 
 class FileProcessingStatusSerializer(serializers.Serializer):

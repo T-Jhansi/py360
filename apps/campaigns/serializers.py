@@ -491,7 +491,7 @@ class CampaignCreateSerializer(serializers.Serializer):
             base_url = getattr(settings, 'BASE_URL', 'http://localhost:8000')
 
             # Create tracking pixel URL
-            tracking_pixel_url = f"{base_url}/api/campaigns/track-open/{recipient.tracking_id}/"
+            tracking_pixel_url = f"{base_url}/api/campaigns/track-open/?t={recipient.tracking_id}"
 
             # Add tracking pixel to email content (1x1 transparent image)
             tracking_pixel = f'<img src="{tracking_pixel_url}" width="1" height="1" style="display:none;" alt="" />'
