@@ -8164,3 +8164,395 @@ WARNING 2025-07-31 13:24:45,938 runserver 10532 10676 [31;1mHTTP GET /api/campa
 INFO 2025-07-31 13:25:04,317 middleware 10532 15232 API Request: {"method": "GET", "path": "/api/campaigns/list/", "status_code": 200, "duration": 0.101, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 448}
 INFO 2025-07-31 13:25:04,321 runserver 10532 10676 [mHTTP GET /api/campaigns/list/ 200 [0.11, 127.0.0.1:50687][0m
 INFO 2025-07-31 13:25:45,905 server 10532 10676 Killed 0 pending application instances
+INFO 2025-07-31 15:48:09,624 autoreload 12324 16152 Watching for file changes with StatReloader
+INFO 2025-07-31 15:48:10,994 server 12324 20380 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 15:48:10,994 server 12324 20380 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 15:48:10,996 server 12324 20380 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 15:55:00,030 autoreload 12324 16152 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\channels\serializers.py changed, reloading.
+INFO 2025-07-31 15:55:01,353 autoreload 20520 26812 Watching for file changes with StatReloader
+INFO 2025-07-31 15:55:02,975 server 20520 24368 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 15:55:02,976 server 20520 24368 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 15:55:02,977 server 20520 24368 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 15:55:14,055 autoreload 20520 26812 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\channels\serializers.py changed, reloading.
+INFO 2025-07-31 15:55:15,291 autoreload 26352 15956 Watching for file changes with StatReloader
+INFO 2025-07-31 15:55:16,725 server 26352 13928 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 15:55:16,725 server 26352 13928 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 15:55:16,726 server 26352 13928 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 15:55:37,845 autoreload 26352 15956 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\channels\serializers.py changed, reloading.
+INFO 2025-07-31 15:55:39,126 autoreload 14044 23596 Watching for file changes with StatReloader
+INFO 2025-07-31 15:55:40,561 server 14044 13680 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 15:55:40,561 server 14044 13680 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 15:55:40,562 server 14044 13680 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 15:55:53,777 autoreload 14044 23596 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\channels\views.py changed, reloading.
+INFO 2025-07-31 15:55:55,070 autoreload 21840 9484 Watching for file changes with StatReloader
+INFO 2025-07-31 15:55:56,636 server 21840 13528 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 15:55:56,636 server 21840 13528 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 15:55:56,637 server 21840 13528 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 16:07:58,248 autoreload 18980 22748 Watching for file changes with StatReloader
+INFO 2025-07-31 16:07:59,710 server 18980 21364 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 16:07:59,710 server 18980 21364 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 16:07:59,711 server 18980 21364 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 16:10:45,648 autoreload 26616 7752 Watching for file changes with StatReloader
+INFO 2025-07-31 16:10:46,957 server 26616 27308 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 16:10:46,957 server 26616 27308 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 16:10:46,958 server 26616 27308 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 16:27:01,478 autoreload 9976 10776 Watching for file changes with StatReloader
+INFO 2025-07-31 16:27:02,871 server 9976 26420 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 16:27:02,871 server 9976 26420 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 16:27:02,872 server 9976 26420 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 16:28:08,347 autoreload 23376 1784 Watching for file changes with StatReloader
+INFO 2025-07-31 16:28:09,803 server 23376 2204 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 16:28:09,803 server 23376 2204 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 16:28:09,804 server 23376 2204 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 17:00:28,921 autoreload 16572 7420 Watching for file changes with StatReloader
+INFO 2025-07-31 17:00:30,282 server 16572 14348 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 17:00:30,282 server 16572 14348 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 17:00:30,284 server 16572 14348 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:17:57,210 autoreload 2828 14756 Watching for file changes with StatReloader
+INFO 2025-07-31 18:17:58,882 server 2828 12608 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:17:58,883 server 2828 12608 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:17:58,884 server 2828 12608 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:21:45,393 autoreload 10480 12012 Watching for file changes with StatReloader
+INFO 2025-07-31 18:21:46,902 server 10480 8884 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:21:46,903 server 10480 8884 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:21:46,904 server 10480 8884 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-07-31 18:22:11,159 log 10480 1956 Not Found: /
+WARNING 2025-07-31 18:22:11,162 runserver 10480 8884 [33mHTTP GET / 404 [0.08, 127.0.0.1:54001][0m
+WARNING 2025-07-31 18:22:11,545 log 10480 1956 Not Found: /favicon.ico
+WARNING 2025-07-31 18:22:11,548 runserver 10480 8884 [33mHTTP GET /favicon.ico 404 [0.12, 127.0.0.1:54001][0m
+INFO 2025-07-31 18:22:58,905 server 12888 15648 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:22:58,906 server 12888 15648 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:22:58,907 server 12888 15648 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:24:19,565 middleware 12888 13444 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.906, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-07-31 18:24:19,572 runserver 12888 15648 [mHTTP POST /api/auth/login/ 200 [0.93, 127.0.0.1:54172][0m
+INFO 2025-07-31 18:24:59,873 middleware 12888 10076 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 400, "duration": 0.08, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 115}
+WARNING 2025-07-31 18:24:59,878 log 12888 13676 Bad Request: /api/channels/channels/create_channel/
+WARNING 2025-07-31 18:24:59,880 runserver 12888 15648 [31;1mHTTP POST /api/channels/channels/create_channel/ 400 [0.09, 127.0.0.1:54172][0m
+INFO 2025-07-31 18:37:59,053 autoreload 1848 504 Watching for file changes with StatReloader
+INFO 2025-07-31 18:38:00,737 server 1848 13012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:38:00,738 server 1848 13012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-31 18:38:00,739 server 1848 13012 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-07-31 18:38:58,095 server 12888 15648 Killed 0 pending application instances
+INFO 2025-07-31 18:39:21,494 server 13544 16764 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:39:21,495 server 13544 16764 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:39:21,496 server 13544 16764 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:39:28,627 middleware 13544 2732 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 400, "duration": 0.089, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 115}
+WARNING 2025-07-31 18:39:28,633 log 13544 14972 Bad Request: /api/channels/channels/create_channel/
+WARNING 2025-07-31 18:39:28,635 runserver 13544 16764 [31;1mHTTP POST /api/channels/channels/create_channel/ 400 [0.12, 127.0.0.1:55003][0m
+INFO 2025-07-31 18:53:50,750 server 13544 16764 Killed 0 pending application instances
+INFO 2025-07-31 18:54:51,752 server 13992 13408 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:54:51,753 server 13992 13408 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:54:51,754 server 13992 13408 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:55:17,821 middleware 13992 9632 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 400, "duration": 0.113, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 115}
+WARNING 2025-07-31 18:55:17,826 log 13992 12684 Bad Request: /api/channels/channels/create_channel/
+WARNING 2025-07-31 18:55:17,828 runserver 13992 13408 [31;1mHTTP POST /api/channels/channels/create_channel/ 400 [0.13, 127.0.0.1:56264][0m
+INFO 2025-07-31 18:56:24,112 server 13992 13408 Killed 0 pending application instances
+INFO 2025-07-31 18:56:29,337 server 11936 7724 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:56:29,338 server 11936 7724 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:56:29,339 server 11936 7724 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:56:31,978 middleware 11936 13092 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 500, "duration": 0.116, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 274}
+ERROR 2025-07-31 18:56:31,985 log 11936 17800 Internal Server Error: /api/channels/channels/create_channel/
+ERROR 2025-07-31 18:56:31,987 runserver 11936 7724 [35;1mHTTP POST /api/channels/channels/create_channel/ 500 [0.14, 127.0.0.1:56602][0m
+INFO 2025-07-31 18:57:54,963 server 11936 7724 Killed 0 pending application instances
+INFO 2025-07-31 18:58:00,339 server 17988 11096 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:58:00,340 server 17988 11096 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:58:00,342 server 17988 11096 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:58:01,818 middleware 17988 8588 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 500, "duration": 0.101, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 275}
+ERROR 2025-07-31 18:58:01,823 log 17988 16512 Internal Server Error: /api/channels/channels/create_channel/
+ERROR 2025-07-31 18:58:01,826 runserver 17988 11096 [35;1mHTTP POST /api/channels/channels/create_channel/ 500 [0.12, 127.0.0.1:57180][0m
+INFO 2025-07-31 18:58:51,744 server 17988 11096 Killed 0 pending application instances
+INFO 2025-07-31 18:58:56,225 server 15852 14008 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 18:58:56,226 server 15852 14008 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-07-31 18:58:56,228 server 15852 14008 Listening on TCP address 127.0.0.1:8000
+INFO 2025-07-31 18:58:58,814 middleware 15852 15816 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.128, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 396}
+INFO 2025-07-31 18:58:58,829 runserver 15852 14008 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.15, 127.0.0.1:57331][0m
+INFO 2025-07-31 19:07:15,072 autoreload 16456 2820 Watching for file changes with StatReloader
+INFO 2025-07-31 19:07:16,828 server 16456 12884 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-07-31 19:07:16,829 server 16456 12884 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-07-31 19:07:16,830 server 16456 12884 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-01 09:52:06,066 server 15852 14008 Killed 0 pending application instances
+INFO 2025-08-01 09:53:19,282 server 18344 23432 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 09:53:19,282 server 18344 23432 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 09:53:19,283 server 18344 23432 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 09:57:29,354 middleware 18344 6660 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 401, "duration": 0.019, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-08-01 09:57:29,357 log 18344 21716 Unauthorized: /api/channels/channels/create_channel/
+WARNING 2025-08-01 09:57:29,357 runserver 18344 23432 [31;1mHTTP POST /api/channels/channels/create_channel/ 401 [0.03, 127.0.0.1:59628][0m
+INFO 2025-08-01 09:57:33,924 middleware 18344 17848 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.555, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-08-01 09:57:33,927 runserver 18344 23432 [mHTTP POST /api/auth/login/ 200 [0.56, 127.0.0.1:59628][0m
+INFO 2025-08-01 09:57:44,865 middleware 18344 19716 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 400, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 178}
+WARNING 2025-08-01 09:57:44,869 log 18344 21716 Bad Request: /api/channels/channels/create_channel/
+WARNING 2025-08-01 09:57:44,870 runserver 18344 23432 [31;1mHTTP POST /api/channels/channels/create_channel/ 400 [0.06, 127.0.0.1:59628][0m
+INFO 2025-08-01 09:58:00,321 middleware 18344 1864 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 400, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 178}
+WARNING 2025-08-01 09:58:00,323 log 18344 21716 Bad Request: /api/channels/channels/create_channel/
+WARNING 2025-08-01 09:58:00,323 runserver 18344 23432 [31;1mHTTP POST /api/channels/channels/create_channel/ 400 [0.05, 127.0.0.1:59628][0m
+INFO 2025-08-01 09:59:31,597 middleware 18344 22472 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 565}
+INFO 2025-08-01 09:59:31,602 runserver 18344 23432 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.07, 127.0.0.1:59729][0m
+INFO 2025-08-01 10:30:31,426 autoreload 9992 2192 Watching for file changes with StatReloader
+INFO 2025-08-01 10:30:32,279 server 9992 20120 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:30:32,279 server 9992 20120 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-01 10:30:32,279 server 9992 20120 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-01 10:35:38,796 server 18344 23432 Killed 0 pending application instances
+INFO 2025-08-01 10:38:39,510 server 17820 23024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:38:39,510 server 17820 23024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:38:39,511 server 17820 23024 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 10:38:47,457 middleware 17820 12784 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 537}
+INFO 2025-08-01 10:38:47,462 runserver 17820 23024 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.07, 127.0.0.1:64211][0m
+INFO 2025-08-01 10:40:51,652 server 17820 23024 Killed 0 pending application instances
+INFO 2025-08-01 10:40:54,622 server 16648 22856 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:40:54,622 server 16648 22856 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:40:54,623 server 16648 22856 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 10:41:11,223 middleware 16648 3764 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 550}
+INFO 2025-08-01 10:41:11,229 runserver 16648 22856 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:65010][0m
+INFO 2025-08-01 10:48:02,094 server 16648 22856 Killed 0 pending application instances
+INFO 2025-08-01 10:48:31,104 server 22456 17772 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:48:31,104 server 22456 17772 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:48:31,105 server 22456 17772 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 10:48:49,677 middleware 22456 17572 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.069, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 550}
+INFO 2025-08-01 10:48:49,682 runserver 22456 17772 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:50184][0m
+INFO 2025-08-01 10:52:37,130 server 22456 17772 Killed 0 pending application instances
+INFO 2025-08-01 10:52:40,263 server 20096 21308 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:52:40,263 server 20096 21308 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:52:40,264 server 20096 21308 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 10:52:42,265 server 20096 21308 Killed 0 pending application instances
+INFO 2025-08-01 10:52:58,077 server 18496 1480 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:52:58,077 server 18496 1480 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:52:58,078 server 18496 1480 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 10:53:02,464 middleware 18496 22812 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.073, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 550}
+INFO 2025-08-01 10:53:02,470 runserver 18496 1480 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:50620][0m
+INFO 2025-08-01 10:55:37,344 server 18496 1480 Killed 0 pending application instances
+INFO 2025-08-01 10:55:41,990 server 22232 17424 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 10:55:41,990 server 22232 17424 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 10:55:41,991 server 22232 17424 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:04:32,005 server 22232 17424 Killed 0 pending application instances
+INFO 2025-08-01 11:04:36,794 server 17596 13700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:04:36,794 server 17596 13700 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:04:36,795 server 17596 13700 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:04:39,812 server 17596 13700 Killed 0 pending application instances
+INFO 2025-08-01 11:04:54,167 server 7004 15580 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:04:54,168 server 7004 15580 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:04:54,169 server 7004 15580 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:04:59,673 middleware 7004 2540 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 401, "duration": 0.011, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-08-01 11:04:59,675 log 7004 22220 Unauthorized: /api/channels/channels/create_channel/
+WARNING 2025-08-01 11:04:59,676 runserver 7004 15580 [31;1mHTTP POST /api/channels/channels/create_channel/ 401 [0.02, 127.0.0.1:51399][0m
+INFO 2025-08-01 11:05:05,345 middleware 7004 18088 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.48, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-08-01 11:05:05,348 runserver 7004 15580 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:51399][0m
+INFO 2025-08-01 11:05:17,309 middleware 7004 22084 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 534}
+INFO 2025-08-01 11:05:17,315 runserver 7004 15580 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:51399][0m
+INFO 2025-08-01 11:09:02,199 server 7004 15580 Killed 0 pending application instances
+INFO 2025-08-01 11:09:05,450 server 6428 6612 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:09:05,450 server 6428 6612 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:09:05,451 server 6428 6612 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:09:11,382 middleware 6428 17316 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.067, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 550}
+INFO 2025-08-01 11:09:11,387 runserver 6428 6612 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:52094][0m
+INFO 2025-08-01 11:11:10,015 server 6428 6612 Killed 0 pending application instances
+INFO 2025-08-01 11:11:13,350 server 16040 13944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:11:13,351 server 16040 13944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:11:13,351 server 16040 13944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:11:16,864 middleware 16040 21736 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 563}
+INFO 2025-08-01 11:11:16,870 runserver 16040 13944 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.07, 127.0.0.1:52500][0m
+INFO 2025-08-01 11:12:29,977 server 16040 13944 Killed 0 pending application instances
+INFO 2025-08-01 11:13:08,079 server 2376 21516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:13:08,080 server 2376 21516 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:13:08,080 server 2376 21516 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:15:03,102 middleware 2376 15016 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.066, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 563}
+INFO 2025-08-01 11:15:03,109 runserver 2376 21516 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:53290][0m
+INFO 2025-08-01 11:18:04,911 middleware 2376 14584 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 536}
+INFO 2025-08-01 11:18:04,917 runserver 2376 21516 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:53413][0m
+INFO 2025-08-01 11:33:24,841 middleware 2376 20908 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 401, "duration": 0.007, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-08-01 11:33:24,846 log 2376 21948 Unauthorized: /api/channels/channels/
+WARNING 2025-08-01 11:33:24,847 runserver 2376 21516 [31;1mHTTP GET /api/channels/channels/ 401 [0.02, 127.0.0.1:53871][0m
+INFO 2025-08-01 11:33:35,600 middleware 2376 17540 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.897, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-08-01 11:33:35,604 runserver 2376 21516 [mHTTP POST /api/auth/login/ 200 [0.91, 127.0.0.1:53871][0m
+INFO 2025-08-01 11:33:57,677 middleware 2376 564 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 500, "duration": 0.081, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 187}
+ERROR 2025-08-01 11:33:57,681 log 2376 21948 Internal Server Error: /api/channels/channels/
+ERROR 2025-08-01 11:33:57,683 runserver 2376 21516 [35;1mHTTP GET /api/channels/channels/ 500 [0.09, 127.0.0.1:53871][0m
+INFO 2025-08-01 11:34:10,973 server 2376 21516 Killed 0 pending application instances
+INFO 2025-08-01 11:35:00,605 server 12892 21848 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:35:00,606 server 12892 21848 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:35:00,608 server 12892 21848 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:35:21,845 middleware 12892 20912 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 500, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 187}
+ERROR 2025-08-01 11:35:21,851 log 12892 18148 Internal Server Error: /api/channels/channels/
+ERROR 2025-08-01 11:35:21,852 runserver 12892 21848 [35;1mHTTP GET /api/channels/channels/ 500 [0.13, 127.0.0.1:54003][0m
+INFO 2025-08-01 11:37:37,268 server 12892 21848 Killed 0 pending application instances
+INFO 2025-08-01 11:37:54,710 server 20660 21564 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:37:54,711 server 20660 21564 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:37:54,712 server 20660 21564 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:37:58,983 middleware 20660 17216 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.123, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 787}
+INFO 2025-08-01 11:37:58,989 runserver 20660 21564 [mHTTP GET /api/channels/channels/ 200 [0.14, 127.0.0.1:54096][0m
+INFO 2025-08-01 11:40:42,631 middleware 20660 17724 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.094, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 515}
+INFO 2025-08-01 11:40:42,638 runserver 20660 21564 [mHTTP GET /api/channels/channels/1/ 200 [0.11, 127.0.0.1:54154][0m
+INFO 2025-08-01 11:40:57,378 middleware 20660 10160 API Request: {"method": "GET", "path": "/api/channels/channels/2/", "status_code": 200, "duration": 0.091, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 488}
+INFO 2025-08-01 11:40:57,384 runserver 20660 21564 [mHTTP GET /api/channels/channels/2/ 200 [0.10, 127.0.0.1:54154][0m
+INFO 2025-08-01 11:48:52,203 server 20660 21564 Killed 0 pending application instances
+INFO 2025-08-01 11:49:59,116 server 3788 13368 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:49:59,117 server 3788 13368 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:49:59,118 server 3788 13368 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:50:03,697 middleware 3788 16784 API Request: {"method": "PUT", "path": "/api/channels/channels/edit_channel/", "status_code": 200, "duration": 0.138, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 580}
+INFO 2025-08-01 11:50:03,709 runserver 3788 13368 [mHTTP PUT /api/channels/channels/edit_channel/ 200 [0.16, 127.0.0.1:54400][0m
+INFO 2025-08-01 11:58:35,058 server 3788 13368 Killed 0 pending application instances
+INFO 2025-08-01 11:59:24,983 server 1904 18944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 11:59:24,984 server 1904 18944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 11:59:24,985 server 1904 18944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 11:59:30,827 middleware 1904 21388 API Request: {"method": "PUT", "path": "/api/channels/channels/edit_channel/", "status_code": 200, "duration": 0.158, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 596}
+INFO 2025-08-01 11:59:30,837 runserver 1904 18944 [mHTTP PUT /api/channels/channels/edit_channel/ 200 [0.18, 127.0.0.1:55215][0m
+INFO 2025-08-01 12:03:51,463 middleware 1904 13688 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 529}
+INFO 2025-08-01 12:03:51,474 runserver 1904 18944 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.13, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:04:12,765 middleware 1904 18008 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.108, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1126}
+INFO 2025-08-01 12:04:12,770 runserver 1904 18944 [mHTTP GET /api/channels/channels/ 200 [0.12, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:04:24,982 middleware 1904 11820 API Request: {"method": "GET", "path": "/api/channels/channels/2/", "status_code": 200, "duration": 0.091, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 488}
+INFO 2025-08-01 12:04:24,990 runserver 1904 18944 [mHTTP GET /api/channels/channels/2/ 200 [0.10, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:04:30,775 middleware 1904 18836 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.092, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 548}
+INFO 2025-08-01 12:04:30,779 runserver 1904 18944 [mHTTP GET /api/channels/channels/1/ 200 [0.10, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:04:35,046 middleware 1904 15824 API Request: {"method": "GET", "path": "/api/channels/channels/3/", "status_code": 200, "duration": 0.089, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 481}
+INFO 2025-08-01 12:04:35,054 runserver 1904 18944 [mHTTP GET /api/channels/channels/3/ 200 [0.10, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:04:37,713 middleware 1904 22632 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.088, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 548}
+INFO 2025-08-01 12:04:37,718 runserver 1904 18944 [mHTTP GET /api/channels/channels/1/ 200 [0.10, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:05:34,605 middleware 1904 8020 API Request: {"method": "PUT", "path": "/api/channels/channels/edit_channel/", "status_code": 200, "duration": 0.126, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 569}
+INFO 2025-08-01 12:05:34,615 runserver 1904 18944 [mHTTP PUT /api/channels/channels/edit_channel/ 200 [0.14, 127.0.0.1:55508][0m
+INFO 2025-08-01 12:09:03,212 server 1904 18944 Killed 0 pending application instances
+INFO 2025-08-01 12:09:38,997 server 15756 22352 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:09:38,999 server 15756 22352 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:09:39,000 server 15756 22352 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:09:54,626 middleware 15756 1004 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 200, "duration": 0.128, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 157}
+INFO 2025-08-01 12:09:54,639 runserver 15756 22352 [mHTTP DELETE /api/channels/channels/delete_channel/ 200 [0.15, 127.0.0.1:56021][0m
+INFO 2025-08-01 12:11:09,646 server 15756 22352 Killed 0 pending application instances
+INFO 2025-08-01 12:11:14,449 server 20264 14872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:11:14,449 server 20264 14872 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:11:14,451 server 20264 14872 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:11:19,654 middleware 20264 19572 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 404, "duration": 0.113, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 90}
+WARNING 2025-08-01 12:11:19,658 log 20264 2700 Not Found: /api/channels/channels/delete_channel/
+WARNING 2025-08-01 12:11:19,659 runserver 20264 14872 [33mHTTP DELETE /api/channels/channels/delete_channel/ 404 [0.13, 127.0.0.1:56409][0m
+INFO 2025-08-01 12:11:41,155 middleware 20264 2232 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 809}
+INFO 2025-08-01 12:11:41,160 runserver 20264 14872 [mHTTP GET /api/channels/channels/ 200 [0.12, 127.0.0.1:56409][0m
+INFO 2025-08-01 12:14:53,085 server 20264 14872 Killed 0 pending application instances
+INFO 2025-08-01 12:15:21,039 server 15188 12804 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:15:21,040 server 15188 12804 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:15:21,041 server 15188 12804 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:15:50,008 middleware 15188 21676 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 400, "duration": 0.099, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 106}
+WARNING 2025-08-01 12:15:50,013 log 15188 23156 Bad Request: /api/channels/channels/delete_channel/
+WARNING 2025-08-01 12:15:50,015 runserver 15188 12804 [31;1mHTTP DELETE /api/channels/channels/delete_channel/ 400 [0.12, 127.0.0.1:56968][0m
+INFO 2025-08-01 12:19:13,865 server 15188 12804 Killed 0 pending application instances
+INFO 2025-08-01 12:19:44,993 server 20720 13472 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:19:44,995 server 20720 13472 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:19:44,996 server 20720 13472 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:20:00,747 middleware 20720 9872 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 200, "duration": 0.111, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 142}
+INFO 2025-08-01 12:20:00,760 runserver 20720 13472 [mHTTP DELETE /api/channels/channels/delete_channel/ 200 [0.14, 127.0.0.1:57322][0m
+INFO 2025-08-01 12:24:28,206 middleware 20720 21240 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 400, "duration": 0.102, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 106}
+WARNING 2025-08-01 12:24:28,213 log 20720 15756 Bad Request: /api/channels/channels/delete_channel/
+WARNING 2025-08-01 12:24:28,215 runserver 20720 13472 [31;1mHTTP DELETE /api/channels/channels/delete_channel/ 400 [0.12, 127.0.0.1:57909][0m
+INFO 2025-08-01 12:25:01,762 middleware 20720 22248 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 245}
+WARNING 2025-08-01 12:25:01,766 log 20720 15756 Unauthorized: /api/channels/channels/create_channel/
+WARNING 2025-08-01 12:25:01,767 runserver 20720 13472 [31;1mHTTP POST /api/channels/channels/create_channel/ 401 [0.01, 127.0.0.1:57909][0m
+INFO 2025-08-01 12:25:08,432 middleware 20720 12036 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.943, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 1020}
+INFO 2025-08-01 12:25:08,436 runserver 20720 13472 [mHTTP POST /api/auth/login/ 200 [0.95, 127.0.0.1:57909][0m
+INFO 2025-08-01 12:25:23,002 middleware 20720 23092 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 500, "duration": 0.083, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 198}
+ERROR 2025-08-01 12:25:23,007 log 20720 15756 Internal Server Error: /api/channels/channels/create_channel/
+ERROR 2025-08-01 12:25:23,008 runserver 20720 13472 [35;1mHTTP POST /api/channels/channels/create_channel/ 500 [0.09, 127.0.0.1:57909][0m
+INFO 2025-08-01 12:28:25,984 server 20720 13472 Killed 0 pending application instances
+INFO 2025-08-01 12:28:50,944 server 22248 19768 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:28:50,945 server 22248 19768 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:28:50,947 server 22248 19768 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:29:23,860 middleware 22248 1880 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.128, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 444}
+INFO 2025-08-01 12:29:23,873 runserver 22248 19768 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.15, 127.0.0.1:58619][0m
+INFO 2025-08-01 12:29:56,081 middleware 22248 3236 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.095, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 803}
+INFO 2025-08-01 12:29:56,087 runserver 22248 19768 [mHTTP GET /api/channels/channels/ 200 [0.11, 127.0.0.1:58619][0m
+INFO 2025-08-01 12:30:07,965 middleware 22248 15412 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.089, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 548}
+INFO 2025-08-01 12:30:07,971 runserver 22248 19768 [mHTTP GET /api/channels/channels/1/ 200 [0.10, 127.0.0.1:58619][0m
+INFO 2025-08-01 12:30:11,735 middleware 22248 12720 API Request: {"method": "GET", "path": "/api/channels/channels/4/", "status_code": 200, "duration": 0.096, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.44.1", "content_length": 481}
+INFO 2025-08-01 12:30:11,739 runserver 22248 19768 [mHTTP GET /api/channels/channels/4/ 200 [0.10, 127.0.0.1:58619][0m
+INFO 2025-08-01 12:37:38,833 server 22248 19768 Killed 0 pending application instances
+INFO 2025-08-01 12:38:17,940 server 1484 21968 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:38:17,940 server 1484 21968 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 12:38:17,942 server 1484 21968 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 12:38:26,618 middleware 1484 19564 API Request: {"method": "GET", "path": "/api/channels/channels/4/", "status_code": 401, "duration": 0.019, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-01 12:38:26,622 log 1484 17764 Unauthorized: /api/channels/channels/4/
+WARNING 2025-08-01 12:38:26,623 runserver 1484 21968 [31;1mHTTP GET /api/channels/channels/4/ 401 [0.04, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:38:33,534 middleware 1484 21936 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-01 12:38:33,538 log 1484 17764 Unauthorized: /api/channels/channels/
+WARNING 2025-08-01 12:38:33,539 runserver 1484 21968 [31;1mHTTP GET /api/channels/channels/ 401 [0.01, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:38:43,023 middleware 1484 2488 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.839, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-01 12:38:43,027 runserver 1484 21968 [mHTTP POST /api/auth/login/ 200 [0.85, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:38:54,992 middleware 1484 4816 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.094, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 688}
+INFO 2025-08-01 12:38:55,003 runserver 1484 21968 [mHTTP GET /api/channels/channels/ 200 [0.11, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:39:16,731 middleware 1484 10292 API Request: {"method": "GET", "path": "/api/channels/channels/4/", "status_code": 200, "duration": 0.09, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 396}
+INFO 2025-08-01 12:39:16,735 runserver 1484 21968 [mHTTP GET /api/channels/channels/4/ 200 [0.10, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:39:42,025 middleware 1484 3684 API Request: {"method": "PUT", "path": "/api/channels/channels/edit_channel/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-01 12:39:42,028 log 1484 17764 Unauthorized: /api/channels/channels/edit_channel/
+WARNING 2025-08-01 12:39:42,030 runserver 1484 21968 [31;1mHTTP PUT /api/channels/channels/edit_channel/ 401 [0.01, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:39:49,937 middleware 1484 23300 API Request: {"method": "PUT", "path": "/api/channels/channels/edit_channel/", "status_code": 200, "duration": 0.114, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 487}
+INFO 2025-08-01 12:39:49,950 runserver 1484 21968 [mHTTP PUT /api/channels/channels/edit_channel/ 200 [0.13, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:40:34,380 middleware 1484 15620 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-01 12:40:34,384 log 1484 17764 Unauthorized: /api/channels/channels/delete_channel/
+WARNING 2025-08-01 12:40:34,385 runserver 1484 21968 [31;1mHTTP DELETE /api/channels/channels/delete_channel/ 401 [0.01, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:40:40,479 middleware 1484 23436 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete_channel/", "status_code": 200, "duration": 0.106, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 161}
+INFO 2025-08-01 12:40:40,489 runserver 1484 21968 [mHTTP DELETE /api/channels/channels/delete_channel/ 200 [0.12, 127.0.0.1:59140][0m
+INFO 2025-08-01 12:47:20,829 autoreload 10100 18044 Watching for file changes with StatReloader
+INFO 2025-08-01 12:47:22,001 server 10100 12712 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 12:47:22,002 server 10100 12712 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-01 12:47:22,002 server 10100 12712 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-01 13:03:46,239 server 1484 21968 Killed 0 pending application instances
+INFO 2025-08-01 13:04:22,860 server 18040 3316 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 13:04:22,860 server 18040 3316 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 13:04:22,861 server 18040 3316 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 13:04:28,650 middleware 18040 21884 API Request: {"method": "PUT", "path": "/api/channels/channels/edit/4/", "status_code": 404, "duration": 0.065, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 90}
+WARNING 2025-08-01 13:04:28,652 log 18040 21284 Not Found: /api/channels/channels/edit/4/
+WARNING 2025-08-01 13:04:28,653 runserver 18040 3316 [33mHTTP PUT /api/channels/channels/edit/4/ 404 [0.10, 127.0.0.1:60900][0m
+INFO 2025-08-01 13:04:56,190 middleware 18040 9024 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.045, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 115}
+INFO 2025-08-01 13:04:56,192 runserver 18040 3316 [mHTTP GET /api/channels/channels/ 200 [0.05, 127.0.0.1:60909][0m
+INFO 2025-08-01 13:05:02,988 server 18040 3316 Killed 0 pending application instances
+INFO 2025-08-01 13:05:06,706 server 22248 19780 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 13:05:06,707 server 22248 19780 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 13:05:06,707 server 22248 19780 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 13:05:11,285 middleware 22248 13408 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 115}
+INFO 2025-08-01 13:05:11,287 runserver 22248 19780 [mHTTP GET /api/channels/channels/ 200 [0.07, 127.0.0.1:60949][0m
+INFO 2025-08-01 13:05:43,907 server 22248 19780 Killed 0 pending application instances
+INFO 2025-08-01 13:05:59,418 server 21812 564 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 13:05:59,418 server 21812 564 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 13:05:59,419 server 21812 564 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 13:06:14,411 middleware 21812 18880 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.069, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 448}
+INFO 2025-08-01 13:06:14,417 runserver 21812 564 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.08, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:06:42,572 middleware 21812 20348 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 378}
+INFO 2025-08-01 13:06:42,574 runserver 21812 564 [mHTTP GET /api/channels/channels/ 200 [0.06, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:06:54,368 middleware 21812 11600 API Request: {"method": "GET", "path": "/api/channels/channels/4/", "status_code": 404, "duration": 0.047, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-01 13:06:54,370 log 21812 8060 Not Found: /api/channels/channels/4/
+WARNING 2025-08-01 13:06:54,370 runserver 21812 564 [33mHTTP GET /api/channels/channels/4/ 404 [0.05, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:06:59,435 middleware 21812 2564 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 404, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-01 13:06:59,437 log 21812 8060 Not Found: /api/channels/channels/1/
+WARNING 2025-08-01 13:06:59,438 runserver 21812 564 [33mHTTP GET /api/channels/channels/1/ 404 [0.06, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:07:02,131 middleware 21812 22844 API Request: {"method": "GET", "path": "/api/channels/channels/16", "status_code": 404, "duration": 0.181, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 15417}
+INFO 2025-08-01 13:07:02,133 runserver 21812 564 [32mHTTP GET /api/channels/channels/16 301 [0.19, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:07:02,189 middleware 21812 20836 API Request: {"method": "GET", "path": "/api/channels/channels/16/", "status_code": 404, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-01 13:07:02,192 log 21812 8060 Not Found: /api/channels/channels/16/
+WARNING 2025-08-01 13:07:02,193 runserver 21812 564 [33mHTTP GET /api/channels/channels/16/ 404 [0.06, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:07:09,052 middleware 21812 6840 API Request: {"method": "GET", "path": "/api/channels/channels/6/", "status_code": 200, "duration": 0.046, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 400}
+INFO 2025-08-01 13:07:09,054 runserver 21812 564 [mHTTP GET /api/channels/channels/6/ 200 [0.05, 127.0.0.1:61221][0m
+INFO 2025-08-01 13:23:30,290 server 16928 16916 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 13:23:30,290 server 16928 16916 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 13:23:30,291 server 16928 16916 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-01 13:23:51,851 middleware 16928 22844 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.488, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-01 13:23:51,854 runserver 16928 16916 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:62849][0m
+INFO 2025-08-01 13:24:03,194 middleware 16928 17816 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.049, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 448}
+INFO 2025-08-01 13:24:03,200 runserver 16928 16916 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:62849][0m
+INFO 2025-08-01 13:25:35,749 middleware 16928 23212 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 448}
+INFO 2025-08-01 13:25:35,756 runserver 16928 16916 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:63060][0m
+INFO 2025-08-01 13:26:55,268 middleware 16928 11268 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.055, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 454}
+INFO 2025-08-01 13:26:55,273 runserver 16928 16916 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:27:04,686 middleware 16928 15412 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.049, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 910}
+INFO 2025-08-01 13:27:04,688 runserver 16928 16916 [mHTTP GET /api/channels/channels/ 200 [0.05, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:27:37,575 middleware 16928 17008 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.049, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 400}
+INFO 2025-08-01 13:27:37,577 runserver 16928 16916 [mHTTP GET /api/channels/channels/1/ 200 [0.05, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:27:47,737 middleware 16928 1180 API Request: {"method": "GET", "path": "/api/channels/channels/2/", "status_code": 200, "duration": 0.045, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 400}
+INFO 2025-08-01 13:27:47,739 runserver 16928 16916 [mHTTP GET /api/channels/channels/2/ 200 [0.05, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:27:53,219 middleware 16928 7692 API Request: {"method": "GET", "path": "/api/channels/channels/3/", "status_code": 200, "duration": 0.049, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 406}
+INFO 2025-08-01 13:27:53,221 runserver 16928 16916 [mHTTP GET /api/channels/channels/3/ 200 [0.05, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:27:55,771 middleware 16928 17976 API Request: {"method": "GET", "path": "/api/channels/channels/1/", "status_code": 200, "duration": 0.045, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 400}
+INFO 2025-08-01 13:27:55,773 runserver 16928 16916 [mHTTP GET /api/channels/channels/1/ 200 [0.05, 127.0.0.1:63246][0m
+INFO 2025-08-01 13:28:29,687 middleware 16928 13784 API Request: {"method": "PUT", "path": "/api/channels/channels/edit/1/", "status_code": 200, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 457}
+INFO 2025-08-01 13:28:29,692 runserver 16928 16916 [mHTTP PUT /api/channels/channels/edit/1/ 200 [0.07, 127.0.0.1:63396][0m
+INFO 2025-08-01 13:29:21,142 middleware 16928 21620 API Request: {"method": "DELETE", "path": "/api/channels/channels/delete/3/", "status_code": 200, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 187}
+INFO 2025-08-01 13:29:21,148 runserver 16928 16916 [mHTTP DELETE /api/channels/channels/delete/3/ 200 [0.06, 127.0.0.1:63557][0m
+INFO 2025-08-01 13:29:42,556 middleware 16928 23440 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.055, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 454}
+INFO 2025-08-01 13:29:42,563 runserver 16928 16916 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.06, 127.0.0.1:63557][0m
+INFO 2025-08-01 13:29:46,264 middleware 16928 14196 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.047, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 913}
+INFO 2025-08-01 13:29:46,265 runserver 16928 16916 [mHTTP GET /api/channels/channels/ 200 [0.05, 127.0.0.1:63557][0m
+INFO 2025-08-01 13:29:58,577 server 16928 16916 Killed 0 pending application instances

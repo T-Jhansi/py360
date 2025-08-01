@@ -31,6 +31,7 @@ api_patterns = [
     path('templates/', include('apps.templates.urls')),
     path('policy_data/', include('apps.policy_data.urls')),
     path('files_upload/', include('apps.files_upload.urls')),
+    path('channels/', include('apps.channels.urls')),
     
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),

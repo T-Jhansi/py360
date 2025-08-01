@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from apps.customers.models import Customer
 from apps.policies.models import Policy
 from apps.core.models import BaseModel
+from apps.channels.models import Channel
 
 User = get_user_model()
 
@@ -30,28 +31,6 @@ class RenewalCase(BaseModel):
         ('urgent', 'Urgent'),
     ]
 
-    CHANNEL_CHOICES = [
-        ('Online', 'Online'),
-        ('Telecalling', 'Telecalling'),
-        ('Partner', 'Partner'),
-        ('Call Center', 'Call Center'),
-        ('Branch', 'Branch'),
-        ('Walk-in', 'Walk-in'),
-        ('Referral', 'Referral'),
-    ]
-
-    CHANNEL_SOURCE_CHOICES = [
-        ('Website', 'Website'),
-        ('Mobile App', 'Mobile App'),
-        ('Outbound', 'Outbound'),
-        ('Inbound', 'Inbound'),
-        ('Bank Channel', 'Bank Channel'),
-        ('Travel Agent', 'Travel Agent'),
-        ('Corporate Broker', 'Corporate Broker'),
-        ('Direct Visit', 'Direct Visit'),
-        ('Phone Call', 'Phone Call'),
-    ]
-    
     case_number = models.CharField(max_length=100, unique=True)
     batch_code = models.CharField(max_length=50, help_text="Batch code for tracking Excel import batches (e.g., BATCH-2025-07-25-A)")
     policy = models.ForeignKey(Policy, on_delete=models.CASCADE, related_name='renewal_cases')
@@ -69,17 +48,14 @@ class RenewalCase(BaseModel):
     last_contact_date = models.DateTimeField(null=True, blank=True)
 
     # Channel tracking
-    channel = models.CharField(
-        max_length=50,
-        choices=CHANNEL_CHOICES,
-        default='Online',
-        help_text="Primary channel through which this renewal case was initiated"
-    )
-    channel_source = models.CharField(
-        max_length=100,
-        choices=CHANNEL_SOURCE_CHOICES,
-        default='Website',
-        help_text="Specific source within the channel"
+    channel_id = models.ForeignKey(
+        Channel,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='renewal_cases',
+        help_text="Channel through which this renewal case was initiated",
+        db_column='channel_id'
     )
 
     notes = models.TextField(blank=True)
@@ -91,8 +67,7 @@ class RenewalCase(BaseModel):
             models.Index(fields=['status']),
             models.Index(fields=['priority']),
             models.Index(fields=['assigned_to']),
-            models.Index(fields=['channel']),
-            models.Index(fields=['channel_source']),
+            models.Index(fields=['channel_id']),
             models.Index(fields=['batch_code']),
         ]
         
