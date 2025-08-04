@@ -8997,3 +8997,229 @@ INFO 2025-08-01 18:24:31,821 server 19736 20024 HTTP/2 support not enabled (inst
 INFO 2025-08-01 18:24:31,821 server 19736 20024 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-08-01 18:24:31,822 server 19736 20024 Listening on TCP address 127.0.0.1:8000
 INFO 2025-08-01 18:24:42,881 server 19736 20024 Killed 0 pending application instances
+INFO 2025-08-01 18:26:06,776 server 3688 17420 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-01 18:26:06,776 server 3688 17420 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-01 18:26:06,777 server 3688 17420 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-02 17:38:00,870 server 3688 17420 Killed 0 pending application instances
+INFO 2025-08-02 17:59:54,822 autoreload 20620 22732 Watching for file changes with StatReloader
+INFO 2025-08-02 17:59:58,152 server 20620 18228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 17:59:58,153 server 20620 18228 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 17:59:58,154 server 20620 18228 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:00:09,781 middleware 20620 14440 API Request: {"method": "GET", "path": "/api/hierarchy/api/units/", "status_code": 401, "duration": 0.012, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-02 18:00:09,790 log 20620 9856 Unauthorized: /api/hierarchy/api/units/
+WARNING 2025-08-02 18:00:09,793 runserver 20620 18228 [31;1mHTTP GET /api/hierarchy/api/units/ 401 [0.06, 127.0.0.1:63683][0m
+WARNING 2025-08-02 18:00:10,074 log 20620 9856 Not Found: /favicon.ico
+WARNING 2025-08-02 18:00:10,075 runserver 20620 18228 [33mHTTP GET /favicon.ico 404 [0.08, 127.0.0.1:63683][0m
+INFO 2025-08-02 18:11:08,529 autoreload 20620 22732 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:11:10,131 autoreload 23692 3252 Watching for file changes with StatReloader
+INFO 2025-08-02 18:11:11,647 server 23692 8480 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:11:11,647 server 23692 8480 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:11:11,648 server 23692 8480 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:11:21,513 autoreload 23692 3252 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:11:22,905 autoreload 18288 8664 Watching for file changes with StatReloader
+INFO 2025-08-02 18:11:24,363 server 18288 24648 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:11:24,363 server 18288 24648 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:11:24,364 server 18288 24648 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:11:34,141 autoreload 18288 8664 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:11:35,450 autoreload 19412 9940 Watching for file changes with StatReloader
+INFO 2025-08-02 18:11:36,975 server 19412 2280 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:11:36,976 server 19412 2280 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:11:36,977 server 19412 2280 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:11:49,590 autoreload 19412 9940 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:11:51,024 autoreload 10368 12268 Watching for file changes with StatReloader
+INFO 2025-08-02 18:11:52,402 server 10368 8376 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:11:52,402 server 10368 8376 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:11:52,404 server 10368 8376 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:11:59,346 autoreload 10368 12268 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:12:00,847 autoreload 17656 22312 Watching for file changes with StatReloader
+INFO 2025-08-02 18:12:02,436 server 17656 12372 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:12:02,437 server 17656 12372 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:12:02,438 server 17656 12372 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:12:12,533 autoreload 17656 22312 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:12:13,811 autoreload 11600 24208 Watching for file changes with StatReloader
+INFO 2025-08-02 18:12:15,223 server 11600 24032 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:12:15,223 server 11600 24032 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:12:15,224 server 11600 24032 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:12:23,977 autoreload 11600 24208 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\models.py changed, reloading.
+INFO 2025-08-02 18:12:25,452 autoreload 13916 8200 Watching for file changes with StatReloader
+INFO 2025-08-02 18:12:27,046 server 13916 21924 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:12:27,047 server 13916 21924 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:12:27,048 server 13916 21924 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:12:33,615 autoreload 13916 8200 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:12:34,846 autoreload 21472 16720 Watching for file changes with StatReloader
+INFO 2025-08-02 18:12:36,300 server 21472 17560 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:12:36,301 server 21472 17560 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:12:36,302 server 21472 17560 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:12:45,061 autoreload 21472 16720 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:12:46,529 autoreload 18184 25520 Watching for file changes with StatReloader
+INFO 2025-08-02 18:12:48,167 server 18184 4136 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:12:48,168 server 18184 4136 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:12:48,169 server 18184 4136 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:12:57,352 autoreload 18184 25520 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:12:58,823 autoreload 25408 17128 Watching for file changes with StatReloader
+INFO 2025-08-02 18:13:00,316 server 25408 10456 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:13:00,317 server 25408 10456 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:13:00,318 server 25408 10456 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:13:11,771 autoreload 25408 17128 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:13:13,104 autoreload 11992 10984 Watching for file changes with StatReloader
+INFO 2025-08-02 18:13:14,500 server 11992 23672 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:13:14,501 server 11992 23672 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:13:14,501 server 11992 23672 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:13:25,443 autoreload 11992 10984 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:13:26,656 autoreload 15004 9032 Watching for file changes with StatReloader
+INFO 2025-08-02 18:13:28,063 server 15004 22764 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:13:28,064 server 15004 22764 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:13:28,065 server 15004 22764 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:13:39,197 autoreload 15004 9032 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:13:40,439 autoreload 20572 22140 Watching for file changes with StatReloader
+INFO 2025-08-02 18:13:41,777 server 20572 11656 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:13:41,777 server 20572 11656 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:13:41,778 server 20572 11656 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:13:51,623 autoreload 20572 22140 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:13:52,786 autoreload 18220 24988 Watching for file changes with StatReloader
+INFO 2025-08-02 18:13:54,138 server 18220 23480 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:13:54,138 server 18220 23480 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:13:54,139 server 18220 23480 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:14:06,206 autoreload 18220 24988 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:14:07,453 autoreload 9820 21608 Watching for file changes with StatReloader
+INFO 2025-08-02 18:14:08,765 server 9820 24664 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:14:08,765 server 9820 24664 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:14:08,766 server 9820 24664 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:14:18,566 autoreload 9820 21608 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:14:19,768 autoreload 23136 14492 Watching for file changes with StatReloader
+INFO 2025-08-02 18:14:21,170 server 23136 5024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:14:21,170 server 23136 5024 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:14:21,171 server 23136 5024 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:14:32,079 autoreload 23136 14492 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:14:33,284 autoreload 7088 23768 Watching for file changes with StatReloader
+INFO 2025-08-02 18:14:34,855 server 7088 24760 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:14:34,856 server 7088 24760 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:14:34,856 server 7088 24760 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:14:46,097 autoreload 7088 23768 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:14:47,443 autoreload 25128 24312 Watching for file changes with StatReloader
+INFO 2025-08-02 18:14:48,838 server 25128 14872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:14:48,839 server 25128 14872 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:14:48,839 server 25128 14872 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:15:01,966 autoreload 25128 24312 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:15:03,120 autoreload 1460 7364 Watching for file changes with StatReloader
+INFO 2025-08-02 18:15:04,467 server 1460 13632 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:15:04,468 server 1460 13632 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:15:04,469 server 1460 13632 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:15:14,191 autoreload 1460 7364 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:15:15,691 autoreload 19672 1476 Watching for file changes with StatReloader
+INFO 2025-08-02 18:15:28,954 autoreload 19672 1476 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:15:30,156 autoreload 22000 21332 Watching for file changes with StatReloader
+INFO 2025-08-02 18:15:31,508 server 22000 19452 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:15:31,509 server 22000 19452 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:15:31,509 server 22000 19452 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:15:38,159 autoreload 22000 21332 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:15:39,438 autoreload 20612 23504 Watching for file changes with StatReloader
+INFO 2025-08-02 18:15:40,993 server 20612 18712 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:15:41,014 server 20612 18712 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:15:41,015 server 20612 18712 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:15:50,723 autoreload 20612 23504 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:15:51,915 autoreload 18488 17264 Watching for file changes with StatReloader
+INFO 2025-08-02 18:15:53,288 server 18488 24804 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:15:53,288 server 18488 24804 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:15:53,290 server 18488 24804 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:16:01,993 autoreload 18488 17264 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:16:03,225 autoreload 9932 16152 Watching for file changes with StatReloader
+INFO 2025-08-02 18:16:04,595 server 9932 21284 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:16:04,596 server 9932 21284 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:16:04,597 server 9932 21284 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:16:11,058 autoreload 9932 16152 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\admin.py changed, reloading.
+INFO 2025-08-02 18:16:12,298 autoreload 3812 24864 Watching for file changes with StatReloader
+INFO 2025-08-02 18:16:13,687 server 3812 18700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:16:13,688 server 3812 18700 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:16:13,689 server 3812 18700 Listening on TCP address 0.0.0.0:8000
+WARNING 2025-08-02 18:16:57,508 log 3812 14644 Not Found: /hierarchy/api/units/
+WARNING 2025-08-02 18:16:57,509 runserver 3812 18700 [33mHTTP GET /hierarchy/api/units/ 404 [0.03, 127.0.0.1:64742][0m
+INFO 2025-08-02 18:20:04,418 autoreload 3812 24864 C:\Users\Sahina1001\Downloads\Renewal_backend\renewal_backend\settings\base.py changed, reloading.
+INFO 2025-08-02 18:20:05,628 autoreload 21440 6136 Watching for file changes with StatReloader
+INFO 2025-08-02 18:21:14,639 autoreload 7708 6236 Watching for file changes with StatReloader
+INFO 2025-08-02 18:21:15,858 server 7708 22128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:21:15,859 server 7708 22128 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:21:15,860 server 7708 22128 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:22:59,075 server 15692 16892 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:22:59,075 server 15692 16892 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-02 18:22:59,076 server 15692 16892 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-02 18:29:28,953 autoreload 20156 17060 Watching for file changes with StatReloader
+INFO 2025-08-02 18:29:30,200 server 20156 24396 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:29:30,200 server 20156 24396 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:29:30,201 server 20156 24396 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:29:37,717 autoreload 20156 17060 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:29:39,123 autoreload 25088 19120 Watching for file changes with StatReloader
+INFO 2025-08-02 18:29:40,467 server 25088 25096 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:29:40,467 server 25088 25096 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:29:40,468 server 25088 25096 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:29:44,652 autoreload 25088 19120 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:29:46,062 autoreload 24232 23432 Watching for file changes with StatReloader
+INFO 2025-08-02 18:29:47,228 server 24232 13016 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:29:47,228 server 24232 13016 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:29:47,229 server 24232 13016 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:29:49,259 autoreload 24232 23432 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:29:50,663 autoreload 15732 17468 Watching for file changes with StatReloader
+WARNING 2025-08-02 18:29:51,751 log 15692 8316 Not Found: /hierarchy/api/units/
+WARNING 2025-08-02 18:29:51,752 runserver 15692 16892 [33mHTTP GET /hierarchy/api/units/ 404 [0.04, 127.0.0.1:49181][0m
+INFO 2025-08-02 18:29:52,129 server 15732 7172 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:29:52,130 server 15732 7172 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:29:52,130 server 15732 7172 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:29:59,702 autoreload 15732 17468 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:30:00,982 autoreload 22792 23160 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:02,395 server 22792 23876 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:02,396 server 22792 23876 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:02,396 server 22792 23876 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:04,583 autoreload 22792 23160 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\serializers.py changed, reloading.
+INFO 2025-08-02 18:30:05,898 autoreload 19040 19272 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:07,150 server 19040 21064 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:07,151 server 19040 21064 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:07,152 server 19040 21064 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:28,240 autoreload 19040 19272 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:29,632 autoreload 11868 8888 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:30,903 server 11868 15072 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:30,904 server 11868 15072 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:30,905 server 11868 15072 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:35,320 autoreload 11868 8888 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:36,754 autoreload 22500 24184 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:38,168 server 22500 17864 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:38,168 server 22500 17864 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:38,170 server 22500 17864 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:41,309 autoreload 22500 24184 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:42,693 autoreload 20628 24152 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:43,961 server 20628 4688 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:43,962 server 20628 4688 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:43,963 server 20628 4688 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:45,930 autoreload 20628 24152 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:47,431 autoreload 10836 22892 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:48,641 server 10836 13384 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:48,644 server 10836 13384 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:48,646 server 10836 13384 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:50,655 autoreload 10836 22892 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:52,028 autoreload 11496 6276 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:53,379 server 11496 9012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:53,380 server 11496 9012 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:53,380 server 11496 9012 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:30:55,415 autoreload 11496 6276 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:30:56,714 autoreload 17572 19776 Watching for file changes with StatReloader
+INFO 2025-08-02 18:30:58,052 server 17572 22956 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:30:58,052 server 17572 22956 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:30:58,054 server 17572 22956 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-02 18:31:00,082 autoreload 17572 19776 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\hierarchy\views.py changed, reloading.
+INFO 2025-08-02 18:31:01,438 autoreload 16316 23276 Watching for file changes with StatReloader
+INFO 2025-08-02 18:31:02,713 server 16316 17880 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-02 18:31:02,713 server 16316 17880 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-02 18:31:02,714 server 16316 17880 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-03 10:26:00,778 server 15692 16892 Killed 0 pending application instances
+INFO 2025-08-03 10:26:40,507 server 21880 20184 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-03 10:26:40,508 server 21880 20184 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-03 10:26:40,509 server 21880 20184 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-03 10:26:50,008 middleware 21880 15356 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.921, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-03 10:26:50,013 runserver 21880 20184 [mHTTP POST /api/auth/login/ 200 [0.94, 127.0.0.1:50270][0m
+INFO 2025-08-03 10:27:08,912 middleware 21880 20060 API Request: {"method": "POST", "path": "/api/hierarchy/api/units/", "status_code": 201, "duration": 0.12, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 206}
+INFO 2025-08-03 10:27:08,926 runserver 21880 20184 [mHTTP POST /api/hierarchy/api/units/ 201 [0.14, 127.0.0.1:50270][0m
+INFO 2025-08-03 10:32:19,709 server 21880 20184 Killed 0 pending application instances
+INFO 2025-08-03 10:32:53,955 server 22316 25524 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-03 10:32:53,956 server 22316 25524 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-03 10:32:53,957 server 22316 25524 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-03 10:32:58,042 middleware 22316 13924 API Request: {"method": "POST", "path": "/api/hierarchy/api/units/", "status_code": 201, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 469}
+INFO 2025-08-03 10:32:58,052 runserver 22316 25524 [mHTTP POST /api/hierarchy/api/units/ 201 [0.13, 127.0.0.1:50661][0m

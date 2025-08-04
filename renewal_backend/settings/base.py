@@ -52,6 +52,7 @@ LOCAL_APPS = [
     'apps.files_upload',
     'apps.renewals',
     'apps.channels',
+    'apps.hierarchy',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
