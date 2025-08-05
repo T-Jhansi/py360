@@ -1,0 +1,283 @@
+from rest_framework import viewsets, permissions, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from django.db.models import Q, Count
+from django.shortcuts import get_object_or_404
+from apps.renewals.models import RenewalCase
+from apps.core.pagination import StandardResultsSetPagination
+from .serializers import ClosedCasesListSerializer, ClosedCasesDetailSerializer
+from datetime import datetime, timedelta
+from django.utils import timezone
+from apps.files_upload.models import FileUpload
+
+
+class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet for handling closed cases (cases with 'completed' status).
+    Provides list, detail, search, filter, and statistics functionality.
+    """
+    
+    permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+    lookup_field = 'id'
+    lookup_url_kwarg = 'case_id'
+    
+    def get_queryset(self):
+        """
+        Get queryset for closed cases with optimized database queries.
+        Only returns cases with 'completed' or 'renewed' status (closed cases)
+        AND where the associated policy status is 'active'.
+        """
+        return RenewalCase.objects.filter(
+            status__in=['completed', 'renewed'],  # Only closed/renewed cases
+            policy__status='active'               # Only cases with active policies
+        ).select_related(
+            'customer',                   # Customer details
+            'policy',                     # Policy details
+            'policy__policy_type',        # Policy type details
+            'channel_id',                 # Channel details
+            'assigned_to',                # Assigned agent details
+        ).prefetch_related(
+            'customer__policies',         # Customer's other policies
+        ).order_by('-updated_at')  # Most recently closed first
+    
+    def get_serializer_class(self):
+        """Return appropriate serializer based on action"""
+        if self.action == 'retrieve':
+            return ClosedCasesDetailSerializer
+        return ClosedCasesListSerializer
+    
+    def list(self, request, *args, **kwargs):
+        """
+        List all closed cases with optional filtering and search.
+        
+        Query Parameters:
+        - search: Search in case number, customer name, policy number
+        - priority: Filter by priority (low, medium, high, urgent)
+        - channel: Filter by channel name
+        - agent: Filter by assigned agent
+        - date_from: Filter cases closed from this date
+        - date_to: Filter cases closed until this date
+        - batch_id: Filter by batch code
+        """
+        queryset = self.get_queryset()
+        
+        # Search functionality
+        search = request.query_params.get('search', None)
+        if search:
+            queryset = queryset.filter(
+                Q(case_number__icontains=search) |
+                Q(customer__first_name__icontains=search) |
+                Q(customer__last_name__icontains=search) |
+                Q(customer__company_name__icontains=search) |
+                Q(policy__policy_number__icontains=search) |
+                Q(customer__customer_code__icontains=search)
+            )
+        
+        # Priority filter
+        priority = request.query_params.get('priority', None)
+        if priority:
+            queryset = queryset.filter(priority=priority)
+        
+        # Channel filter
+        channel = request.query_params.get('channel', None)
+        if channel:
+            queryset = queryset.filter(channel_id__channel_name__icontains=channel)
+        
+        # Agent filter
+        agent = request.query_params.get('agent', None)
+        if agent:
+            queryset = queryset.filter(
+                Q(assigned_to__first_name__icontains=agent) |
+                Q(assigned_to__last_name__icontains=agent) |
+                Q(assigned_to__username__icontains=agent)
+            )
+        
+        # Date range filters
+        date_from = request.query_params.get('date_from', None)
+        date_to = request.query_params.get('date_to', None)
+        
+        if date_from:
+            try:
+                date_from = datetime.strptime(date_from, '%Y-%m-%d').date()
+                queryset = queryset.filter(updated_at__date__gte=date_from)
+            except ValueError:
+                pass
+        
+        if date_to:
+            try:
+                date_to = datetime.strptime(date_to, '%Y-%m-%d').date()
+                queryset = queryset.filter(updated_at__date__lte=date_to)
+            except ValueError:
+                pass
+        
+        # Batch ID filter
+        batch_id = request.query_params.get('batch_id', None)
+        if batch_id:
+            queryset = queryset.filter(batch_code__icontains=batch_id)
+        
+        # Policy category filter
+        category = request.query_params.get('category', None)
+        if category:
+            queryset = queryset.filter(policy__policy_type__category__icontains=category)
+        
+        # Customer profile filter
+        profile = request.query_params.get('profile', None)
+        if profile:
+            queryset = queryset.filter(customer__profile__icontains=profile)
+        
+        # Language filter
+        language = request.query_params.get('language', None)
+        if language:
+            queryset = queryset.filter(customer__language__icontains=language)
+        
+        # Sorting
+        sort_by = request.query_params.get('sort_by', '-updated_at')
+        valid_sort_fields = [
+            'case_number', '-case_number',
+            'customer__first_name', '-customer__first_name',
+            'policy__policy_number', '-policy__policy_number',
+            'priority', '-priority',
+            'updated_at', '-updated_at',
+            'created_at', '-created_at',
+            'renewal_amount', '-renewal_amount',
+            'payment_date', '-payment_date'
+        ]
+        
+        if sort_by in valid_sort_fields:
+            queryset = queryset.order_by(sort_by)
+        
+        # Pagination
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({
+            'closed_cases': serializer.data,
+            'total_count': queryset.count()
+        })
+    
+    def retrieve(self, request, case_id=None, *args, **kwargs):
+        """Get detailed information for a specific closed case"""
+        queryset = self.get_queryset()
+        case = get_object_or_404(queryset, id=case_id)
+        serializer = self.get_serializer(case)
+        
+        return Response({
+            'closed_case': serializer.data
+        })
+    
+    @action(detail=False, methods=['get'])
+    def stats(self, request):
+        """
+        Get statistics for closed cases.
+        Returns counts by priority, channel, agent, etc.
+        """
+        queryset = self.get_queryset()
+        
+        total_closed_cases = queryset.count()
+        
+        # Priority breakdown
+        priority_stats = {}
+        for priority_choice in RenewalCase.PRIORITY_CHOICES:
+            priority_code = priority_choice[0]
+            priority_label = priority_choice[1]
+            count = queryset.filter(priority=priority_code).count()
+            priority_stats[priority_code] = {
+                'label': priority_label,
+                'count': count
+            }
+        
+        # Channel breakdown
+        channel_stats = queryset.values(
+            'channel_id__channel_name'
+        ).annotate(
+            count=Count('id')
+        ).order_by('-count')[:10]  # Top 10 channels
+        
+        # Agent breakdown
+        agent_stats = queryset.values(
+            'assigned_to__first_name',
+            'assigned_to__last_name'
+        ).annotate(
+            count=Count('id')
+        ).order_by('-count')[:10]  # Top 10 agents
+        
+        # Category breakdown
+        category_stats = queryset.values(
+            'policy__policy_type__category'
+        ).annotate(
+            count=Count('id')
+        ).order_by('-count')
+        
+        # Recent closures (last 7 days)
+        seven_days_ago = timezone.now() - timedelta(days=7)
+        recent_closures = queryset.filter(updated_at__gte=seven_days_ago).count()
+        
+        # Monthly closures (last 30 days)
+        thirty_days_ago = timezone.now() - timedelta(days=30)
+        monthly_closures = queryset.filter(updated_at__gte=thirty_days_ago).count()
+        
+        # Total renewal amount
+        total_renewal_amount = sum(
+            case.renewal_amount for case in queryset if case.renewal_amount
+        )
+        
+        return Response({
+            'total_closed_cases': total_closed_cases,
+            'priority_breakdown': priority_stats,
+            'channel_breakdown': list(channel_stats),
+            'agent_breakdown': list(agent_stats),
+            'category_breakdown': list(category_stats),
+            'recent_closures_7_days': recent_closures,
+            'monthly_closures_30_days': monthly_closures,
+            'total_renewal_amount': total_renewal_amount,
+            'generated_at': timezone.now().isoformat()
+        })
+    
+    @action(detail=False, methods=['get'])
+    def export_data(self, request):
+        """
+        Export closed cases data for reporting.
+        Returns simplified data structure suitable for CSV/Excel export.
+        """
+        queryset = self.get_queryset()
+        
+        # Apply same filters as list view
+        search = request.query_params.get('search', None)
+        if search:
+            queryset = queryset.filter(
+                Q(case_number__icontains=search) |
+                Q(customer__first_name__icontains=search) |
+                Q(customer__last_name__icontains=search) |
+                Q(policy__policy_number__icontains=search)
+            )
+        
+        export_data = []
+        for case in queryset:
+            export_data.append({
+                'case_number': case.case_number,
+                'customer_name': case.customer.full_name if case.customer else '',
+                'customer_mobile': case.customer.phone if case.customer else '',
+                'customer_email': case.customer.email if case.customer else '',
+                'policy_number': case.policy.policy_number if case.policy else '',
+                'policy_type': case.policy.policy_type.name if case.policy and case.policy.policy_type else '',
+                'category': case.policy.policy_type.category if case.policy and case.policy.policy_type else '',
+                'premium_amount': str(case.policy.premium_amount) if case.policy else '',
+                'renewal_amount': str(case.renewal_amount) if case.renewal_amount else '',
+                'priority': case.get_priority_display(),
+                'channel': case.channel_id.channel_name if case.channel_id else '',
+                'agent': f"{case.assigned_to.first_name} {case.assigned_to.last_name}".strip() if case.assigned_to else '',
+                'batch_id': case.batch_code,
+                'closed_date': case.updated_at.strftime('%Y-%m-%d %H:%M:%S') if case.updated_at else '',
+                'payment_date': case.payment_date.strftime('%Y-%m-%d %H:%M:%S') if case.payment_date else '',
+                'communication_attempts': case.communication_attempts,
+            })
+        
+        return Response({
+            'export_data': export_data,
+            'total_records': len(export_data),
+            'exported_at': timezone.now().isoformat()
+        })

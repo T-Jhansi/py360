@@ -14,6 +14,7 @@ class RenewalCase(BaseModel):
         ('pending', 'Pending'),
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
+        ('renewed', 'Renewed'),
         ('cancelled', 'Cancelled'),
         ('expired', 'Expired'),
         ('due', 'Due'),

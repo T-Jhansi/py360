@@ -55,6 +55,7 @@ LOCAL_APPS = [
     'apps.hierarchy',
     'apps.case_tracking',
     'apps.case_logs',
+    'apps.closed_cases',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',

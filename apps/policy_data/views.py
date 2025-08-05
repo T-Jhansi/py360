@@ -13,7 +13,6 @@ from django.db import transaction, IntegrityError
 from django.db.models import Count
 from django.contrib.auth import get_user_model
 from django.core.files.storage import default_storage
-
 from apps.customers.models import Customer
 from apps.files_upload.models import FileUpload
 from apps.uploads.models import FileUpload as UploadsFileUpload
@@ -43,27 +42,105 @@ def get_next_available_agent():
         print(f"Error getting next available agent: {e}")
         return None
 
-def calculate_policy_and_renewal_status(end_date, grace_period_days=30):
+def get_customer_previous_policy_end_date(customer, current_policy_start_date=None, exclude_policy_id=None):
+    """
+    Helper function to find the most recent previous policy end_date for a customer.
+
+    Args:
+        customer: Customer instance or customer_id
+        current_policy_start_date: Start date of current policy to compare against
+        exclude_policy_id: Policy ID to exclude from search (useful when updating existing policy)
+
+    Returns:
+        date: End date of the most recent previous policy, or None if no previous policy found
+    """
+    from apps.policies.models import Policy
+
+    try:
+        # Handle both Customer instance and customer_id
+        customer_id = customer.id if hasattr(customer, 'id') else customer
+
+        # Build query to find previous policies
+        query = Policy.objects.filter(customer_id=customer_id)
+
+        # Exclude current policy if specified
+        if exclude_policy_id:
+            query = query.exclude(id=exclude_policy_id)
+
+        # If we have current policy start date, only look for policies that ended before it
+        if current_policy_start_date:
+            if isinstance(current_policy_start_date, datetime):
+                current_policy_start_date = current_policy_start_date.date()
+            query = query.filter(end_date__lt=current_policy_start_date)
+
+        # Get the most recent previous policy by end_date
+        previous_policy = query.order_by('-end_date').first()
+
+        if previous_policy:
+            return previous_policy.end_date
+
+        return None
+
+    except Exception as e:
+        # Log error but don't break the flow
+        print(f"Error getting previous policy end date: {e}")
+        return None
+
+
+def calculate_policy_and_renewal_status(end_date, start_date=None, grace_period_days=30,
+                                      customer=None, exclude_policy_id=None):
+    """
+    Enhanced function to calculate policy and renewal status.
+
+    Args:
+        end_date: Policy end date
+        start_date: Policy start date (optional)
+        grace_period_days: Grace period after expiry (default: 30)
+        customer: Customer instance or ID for checking previous policies (optional)
+        exclude_policy_id: Policy ID to exclude when looking for previous policies (optional)
+
+    Returns:
+        tuple: (policy_status, renewal_status)
+    """
     today = date.today()
 
     if isinstance(end_date, datetime):
         end_date = end_date.date()
 
+    if isinstance(start_date, datetime):
+        start_date = start_date.date()
+
     days_to_expiry = (end_date - today).days
-    pre_due_threshold = 60  
-    policy_due_threshold = 15  
+    pre_due_threshold = 60
+    policy_due_threshold = 15
     overdue_threshold = today - timedelta(days=grace_period_days)
 
+    # Enhanced renewal detection logic
+    # First check: Original logic for backward compatibility
+    if start_date and start_date > end_date:
+        return 'active', 'renewed'
+
+    # Second check: New logic - compare with previous policy end date
+    if customer and start_date:
+        previous_policy_end_date = get_customer_previous_policy_end_date(
+            customer, start_date, exclude_policy_id
+        )
+
+        if previous_policy_end_date and start_date > previous_policy_end_date:
+            # This is a renewal - new policy starts after previous policy ended
+            return 'active', 'renewed'
+
+    # Existing status calculation logic (unchanged)
     if end_date < today:
         if end_date >= overdue_threshold:
-            policy_status = 'expired'  
+            policy_status = 'expired'
             renewal_status = 'pending'
         else:
             policy_status = 'expired'
             renewal_status = 'overdue'
 
     elif 0 <= days_to_expiry <= policy_due_threshold:
-        policy_status = 'pending' 
+        policy_status = 'pending'
         renewal_status = 'due'
 
     elif policy_due_threshold < days_to_expiry <= grace_period_days:
@@ -71,7 +148,7 @@ def calculate_policy_and_renewal_status(end_date, grace_period_days=30):
         renewal_status = 'due'
 
     elif grace_period_days < days_to_expiry <= pre_due_threshold:
-        policy_status = 'active'  
+        policy_status = 'active'
         renewal_status = 'not_required'
 
     else:
@@ -624,7 +701,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 else:  
                     end_date = start_date + timedelta(days=365)
 
-            policy_status, _ = calculate_policy_and_renewal_status(end_date)
+            # Enhanced renewal detection: pass customer and start_date for cross-policy comparison
+            policy_status, _ = calculate_policy_and_renewal_status(
+                end_date,
+                start_date=start_date,
+                customer=customer
+            )
 
             policy = Policy.objects.create(
                 policy_number=policy_number,
@@ -662,7 +744,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             if attempt == max_retries - 1:
                 raise ValueError(f"Could not generate unique case number after {max_retries} attempts")
 
-        _, renewal_status = calculate_policy_and_renewal_status(policy.end_date)
+        # Enhanced renewal detection: pass customer and policy dates for cross-policy comparison
+        _, renewal_status = calculate_policy_and_renewal_status(
+            policy.end_date,
+            start_date=policy.start_date,
+            customer=customer
+        )
 
         renewal_priority = str(row.get('priority', 'medium')).lower()
         if renewal_priority not in ['low', 'medium', 'high', 'urgent']:

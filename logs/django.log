@@ -9980,3 +9980,166 @@ WARNING 2025-08-05 12:51:37,697 log 22848 17372 Method Not Allowed: /api/case-lo
 WARNING 2025-08-05 12:51:37,698 runserver 22848 20984 [31;1mHTTP PUT /api/case-logs/case-details/10/edit/ 405 [0.05, 127.0.0.1:53696][0m
 INFO 2025-08-05 12:51:42,113 middleware 22848 3404 API Request: {"method": "PATCH", "path": "/api/case-logs/case-details/10/edit/", "status_code": 200, "duration": 0.137, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 368}
 INFO 2025-08-05 12:51:42,119 runserver 22848 20984 [mHTTP PATCH /api/case-logs/case-details/10/edit/ 200 [0.15, 127.0.0.1:53696][0m
+INFO 2025-08-05 13:03:55,554 server 15096 18428 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 13:03:55,554 server 15096 18428 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 13:03:55,555 server 15096 18428 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 13:24:35,460 server 20584 19032 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 13:24:35,460 server 20584 19032 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 13:24:35,461 server 20584 19032 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 13:47:18,570 autoreload 26168 22808 Watching for file changes with StatReloader
+INFO 2025-08-05 13:47:19,750 server 26168 14992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 13:47:19,750 server 26168 14992 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-05 13:47:19,751 server 26168 14992 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-05 13:47:52,102 autoreload 19808 6524 Watching for file changes with StatReloader
+INFO 2025-08-05 13:47:53,364 server 19808 19184 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 13:47:53,364 server 19808 19184 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 13:47:53,365 server 19808 19184 Listening on TCP address 127.0.0.1:8001
+WARNING 2025-08-05 13:49:14,375 log 19808 23644 Not Found: /closed-cases/closed-cases/
+WARNING 2025-08-05 13:49:14,376 runserver 19808 19184 [33mHTTP GET /closed-cases/closed-cases/ 404 [0.03, 127.0.0.1:56628][0m
+INFO 2025-08-05 13:49:34,566 middleware 19808 19312 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-05 13:49:34,567 log 19808 23644 Unauthorized: /api/closed-cases/closed-cases/
+WARNING 2025-08-05 13:49:34,568 runserver 19808 19184 [31;1mHTTP GET /api/closed-cases/closed-cases/ 401 [0.01, 127.0.0.1:56655][0m
+INFO 2025-08-05 13:49:46,693 middleware 19808 22604 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/stats/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-05 13:49:46,695 log 19808 23644 Unauthorized: /api/closed-cases/closed-cases/stats/
+WARNING 2025-08-05 13:49:46,695 runserver 19808 19184 [31;1mHTTP GET /api/closed-cases/closed-cases/stats/ 401 [0.01, 127.0.0.1:56669][0m
+INFO 2025-08-05 13:50:03,161 middleware 19808 25376 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/stats/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-05 13:50:03,163 log 19808 23644 Unauthorized: /api/closed-cases/closed-cases/stats/
+WARNING 2025-08-05 13:50:03,164 runserver 19808 19184 [31;1mHTTP GET /api/closed-cases/closed-cases/stats/ 401 [0.01, 127.0.0.1:56690][0m
+INFO 2025-08-05 14:02:21,380 server 20584 19032 Killed 0 pending application instances
+INFO 2025-08-05 15:17:42,021 server 22480 25556 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 15:17:42,021 server 22480 25556 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 15:17:42,022 server 22480 25556 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 15:17:46,694 middleware 22480 25500 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.492, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 15:17:46,697 runserver 22480 25556 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:57910][0m
+INFO 2025-08-05 15:18:16,123 middleware 22480 25676 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 200, "duration": 0.069, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 115}
+INFO 2025-08-05 15:18:16,126 runserver 22480 25556 [mHTTP GET /api/closed-cases/closed-cases/ 200 [0.08, 127.0.0.1:57910][0m
+INFO 2025-08-05 15:24:39,484 middleware 22480 22932 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.504, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 15:24:39,487 runserver 22480 25556 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:59439][0m
+INFO 2025-08-05 15:25:04,380 middleware 22480 5312 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/10/", "status_code": 404, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-05 15:25:04,383 log 22480 25552 Not Found: /api/closed-cases/closed-cases/10/
+WARNING 2025-08-05 15:25:04,384 runserver 22480 25556 [33mHTTP GET /api/closed-cases/closed-cases/10/ 404 [0.07, 127.0.0.1:59439][0m
+INFO 2025-08-05 15:53:09,165 server 22480 25556 Killed 0 pending application instances
+INFO 2025-08-05 15:53:51,052 server 17872 3600 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 15:53:51,053 server 17872 3600 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 15:53:51,054 server 17872 3600 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 15:54:23,274 middleware 17872 22204 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.491, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 15:54:23,277 runserver 17872 3600 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:61631][0m
+INFO 2025-08-05 15:54:37,437 middleware 17872 10340 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.044, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 101}
+WARNING 2025-08-05 15:54:37,440 log 17872 21252 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-08-05 15:54:37,441 runserver 17872 3600 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.05, 127.0.0.1:61631][0m
+INFO 2025-08-05 15:55:26,241 middleware 17872 23792 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.053, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 101}
+WARNING 2025-08-05 15:55:26,243 log 17872 21252 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-08-05 15:55:26,243 runserver 17872 3600 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.06, 127.0.0.1:61631][0m
+INFO 2025-08-05 15:56:27,393 server 17872 3600 Killed 0 pending application instances
+INFO 2025-08-05 15:56:33,199 server 5124 25640 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 15:56:33,199 server 5124 25640 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 15:56:33,200 server 5124 25640 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 15:56:53,536 middleware 5124 17920 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 0.841, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 600}
+INFO 2025-08-05 15:56:53,542 runserver 5124 25640 [mHTTP POST /api/policy_data/file-uploads/ 201 [0.85, 127.0.0.1:61849][0m
+INFO 2025-08-05 15:57:10,431 middleware 5124 8004 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/5/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-05 15:57:10,433 log 5124 25608 Unauthorized: /api/files_upload/api/file-uploads/5/
+WARNING 2025-08-05 15:57:10,434 runserver 5124 25640 [31;1mHTTP GET /api/files_upload/api/file-uploads/5/ 401 [0.01, 127.0.0.1:61849][0m
+INFO 2025-08-05 16:34:52,108 server 5124 25640 Killed 0 pending application instances
+INFO 2025-08-05 16:35:56,434 server 18816 6880 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 16:35:56,435 server 18816 6880 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 16:35:56,438 server 18816 6880 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 16:36:05,433 middleware 18816 7116 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 1.509, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 4156}
+INFO 2025-08-05 16:36:05,446 runserver 18816 6880 [mHTTP POST /api/policy_data/file-uploads/ 201 [1.53, 127.0.0.1:51026][0m
+INFO 2025-08-05 16:47:09,807 server 19752 24964 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 16:47:09,808 server 19752 24964 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 16:47:09,809 server 19752 24964 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 16:47:14,409 middleware 19752 16968 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 400, "duration": 0.187, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 200}
+WARNING 2025-08-05 16:47:14,422 log 19752 668 Bad Request: /api/policy_data/file-uploads/
+WARNING 2025-08-05 16:47:14,425 runserver 19752 24964 [31;1mHTTP POST /api/policy_data/file-uploads/ 400 [0.25, 127.0.0.1:51886][0m
+INFO 2025-08-05 16:48:43,536 server 19752 24964 Killed 0 pending application instances
+INFO 2025-08-05 16:48:48,781 server 4860 20872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 16:48:48,782 server 4860 20872 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 16:48:48,783 server 4860 20872 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 16:48:51,311 middleware 4860 17596 API Request: {"method": "POST", "path": "/api/policy_data/file-uploads/", "status_code": 201, "duration": 1.876, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 600}
+INFO 2025-08-05 16:48:51,322 runserver 4860 20872 [mHTTP POST /api/policy_data/file-uploads/ 201 [1.90, 127.0.0.1:53928][0m
+INFO 2025-08-05 16:50:37,093 middleware 4860 17312 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/5/", "status_code": 401, "duration": 0.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-05 16:50:37,097 log 4860 18076 Unauthorized: /api/files_upload/api/file-uploads/5/
+WARNING 2025-08-05 16:50:37,098 runserver 4860 20872 [31;1mHTTP GET /api/files_upload/api/file-uploads/5/ 401 [0.01, 127.0.0.1:56044][0m
+INFO 2025-08-05 16:50:43,313 middleware 4860 17040 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 16:50:43,318 runserver 4860 20872 [mHTTP POST /api/auth/login/ 200 [1.01, 127.0.0.1:56044][0m
+INFO 2025-08-05 16:50:59,907 middleware 4860 18304 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/5/", "status_code": 200, "duration": 0.11, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1197}
+INFO 2025-08-05 16:50:59,915 runserver 4860 20872 [mHTTP GET /api/files_upload/api/file-uploads/5/ 200 [0.13, 127.0.0.1:56044][0m
+INFO 2025-08-05 16:51:19,341 middleware 4860 22792 API Request: {"method": "GET", "path": "/api/files_upload/api/file-uploads/", "status_code": 200, "duration": 0.102, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1100}
+INFO 2025-08-05 16:51:19,345 runserver 4860 20872 [mHTTP GET /api/files_upload/api/file-uploads/ 200 [0.11, 127.0.0.1:56044][0m
+INFO 2025-08-05 16:51:48,000 middleware 4860 20624 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 500, "duration": 0.144, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 110}
+ERROR 2025-08-05 16:51:48,004 log 4860 18076 Internal Server Error: /api/closed-cases/closed-cases/
+ERROR 2025-08-05 16:51:48,005 runserver 4860 20872 [35;1mHTTP GET /api/closed-cases/closed-cases/ 500 [0.15, 127.0.0.1:56044][0m
+INFO 2025-08-05 16:52:43,643 server 4860 20872 Killed 0 pending application instances
+INFO 2025-08-05 16:57:32,218 autoreload 25864 21448 Watching for file changes with StatReloader
+INFO 2025-08-05 16:57:34,516 server 25864 24636 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 16:57:34,517 server 25864 24636 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 16:57:34,518 server 25864 24636 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 16:58:50,553 server 25196 19620 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 16:58:50,554 server 25196 19620 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 16:58:50,555 server 25196 19620 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 16:58:55,459 middleware 25196 22452 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 500, "duration": 0.223, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 113}
+ERROR 2025-08-05 16:58:55,464 log 25196 20356 Internal Server Error: /api/closed-cases/closed-cases/
+ERROR 2025-08-05 16:58:55,466 runserver 25196 19620 [35;1mHTTP GET /api/closed-cases/closed-cases/ 500 [0.24, 127.0.0.1:58517][0m
+INFO 2025-08-05 17:00:42,791 autoreload 19028 17076 Watching for file changes with StatReloader
+INFO 2025-08-05 17:00:44,995 server 19028 3904 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:00:44,995 server 19028 3904 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-05 17:00:44,996 server 19028 3904 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-05 17:01:09,898 autoreload 19972 25128 Watching for file changes with StatReloader
+INFO 2025-08-05 17:01:12,273 server 19972 25104 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:01:12,274 server 19972 25104 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 17:01:12,275 server 19972 25104 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 17:01:48,962 server 25196 19620 Killed 0 pending application instances
+INFO 2025-08-05 17:01:57,113 server 16924 21456 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:01:57,115 server 16924 21456 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 17:01:57,125 server 16924 21456 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 17:02:01,328 middleware 16924 19752 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 200, "duration": 0.448, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 9413}
+INFO 2025-08-05 17:02:01,334 runserver 16924 21456 [mHTTP GET /api/closed-cases/closed-cases/ 200 [0.47, 127.0.0.1:59431][0m
+INFO 2025-08-05 17:02:52,298 middleware 16924 19716 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-05 17:02:52,304 log 16924 11128 Unauthorized: /api/closed-cases/closed-cases/40/
+WARNING 2025-08-05 17:02:52,305 runserver 16924 21456 [31;1mHTTP GET /api/closed-cases/closed-cases/40/ 401 [0.02, 127.0.0.1:59431][0m
+INFO 2025-08-05 17:03:11,097 middleware 16924 21676 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 500, "duration": 0.147, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+ERROR 2025-08-05 17:03:11,103 log 16924 11128 Internal Server Error: /api/closed-cases/closed-cases/40/
+ERROR 2025-08-05 17:03:11,105 runserver 16924 21456 [35;1mHTTP GET /api/closed-cases/closed-cases/40/ 500 [0.16, 127.0.0.1:59431][0m
+INFO 2025-08-05 17:06:10,622 middleware 16924 25524 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 500, "duration": 0.064, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+ERROR 2025-08-05 17:06:10,624 log 16924 11128 Internal Server Error: /api/closed-cases/closed-cases/40/
+ERROR 2025-08-05 17:06:10,624 runserver 16924 21456 [35;1mHTTP GET /api/closed-cases/closed-cases/40/ 500 [0.07, 127.0.0.1:59687][0m
+INFO 2025-08-05 17:07:09,725 autoreload 13636 3992 Watching for file changes with StatReloader
+INFO 2025-08-05 17:07:10,898 server 13636 23268 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:07:10,899 server 13636 23268 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 17:07:10,900 server 13636 23268 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 17:07:25,670 middleware 13636 15408 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-05 17:07:25,672 log 13636 15484 Unauthorized: /api/closed-cases/closed-cases/40/
+WARNING 2025-08-05 17:07:25,673 runserver 13636 23268 [31;1mHTTP GET /api/closed-cases/closed-cases/40/ 401 [0.01, 127.0.0.1:59836][0m
+WARNING 2025-08-05 17:07:25,779 log 13636 15484 Not Found: /favicon.ico
+WARNING 2025-08-05 17:07:25,780 runserver 13636 23268 [33mHTTP GET /favicon.ico 404 [0.04, 127.0.0.1:59836][0m
+INFO 2025-08-05 17:07:45,722 server 16924 21456 Killed 0 pending application instances
+INFO 2025-08-05 17:07:50,723 server 17272 21400 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:07:50,724 server 17272 21400 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 17:07:50,724 server 17272 21400 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 17:07:56,120 middleware 17272 11808 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 200, "duration": 0.104, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1389}
+INFO 2025-08-05 17:07:56,123 runserver 17272 21400 [mHTTP GET /api/closed-cases/closed-cases/40/ 200 [0.11, 127.0.0.1:59920][0m
+INFO 2025-08-05 17:18:34,659 server 17272 21400 Killed 0 pending application instances
+INFO 2025-08-05 17:20:37,281 server 17588 13516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:20:37,282 server 17588 13516 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 17:20:37,282 server 17588 13516 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 17:20:45,594 middleware 17588 16768 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 200, "duration": 0.081, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1389}
+INFO 2025-08-05 17:20:45,596 runserver 17588 13516 [mHTTP GET /api/closed-cases/closed-cases/40/ 200 [0.09, 127.0.0.1:60918][0m
+INFO 2025-08-05 17:21:19,683 middleware 17588 25824 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 200, "duration": 0.112, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8582}
+INFO 2025-08-05 17:21:19,684 runserver 17588 13516 [mHTTP GET /api/closed-cases/closed-cases/ 200 [0.12, 127.0.0.1:60918][0m
+INFO 2025-08-05 17:23:35,334 autoreload 24008 20636 Watching for file changes with StatReloader
+INFO 2025-08-05 17:23:36,524 server 24008 10736 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:23:36,525 server 24008 10736 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-05 17:23:36,525 server 24008 10736 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-05 17:23:58,455 autoreload 19152 9760 Watching for file changes with StatReloader
+INFO 2025-08-05 17:23:59,636 server 19152 22900 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:23:59,636 server 19152 22900 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 17:23:59,637 server 19152 22900 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 17:24:52,249 server 17588 13516 Killed 0 pending application instances
+INFO 2025-08-05 17:25:28,922 server 7348 25580 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 17:25:28,922 server 7348 25580 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 17:25:28,923 server 7348 25580 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 17:25:48,373 middleware 7348 21496 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/40/", "status_code": 200, "duration": 0.087, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1332}
+INFO 2025-08-05 17:25:48,376 runserver 7348 25580 [mHTTP GET /api/closed-cases/closed-cases/40/ 200 [0.10, 127.0.0.1:61159][0m
+INFO 2025-08-05 17:26:52,872 middleware 7348 19852 API Request: {"method": "GET", "path": "/api/closed-cases/closed-cases/", "status_code": 200, "duration": 0.127, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8582}
+INFO 2025-08-05 17:26:52,875 runserver 7348 25580 [mHTTP GET /api/closed-cases/closed-cases/ 200 [0.13, 127.0.0.1:61206][0m
+INFO 2025-08-05 18:30:08,680 server 7348 25580 Killed 0 pending application instances
