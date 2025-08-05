@@ -9223,3 +9223,760 @@ INFO 2025-08-03 10:32:53,956 server 22316 25524 Configuring endpoint tcp:port=80
 INFO 2025-08-03 10:32:53,957 server 22316 25524 Listening on TCP address 127.0.0.1:8000
 INFO 2025-08-03 10:32:58,042 middleware 22316 13924 API Request: {"method": "POST", "path": "/api/hierarchy/api/units/", "status_code": 201, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 469}
 INFO 2025-08-03 10:32:58,052 runserver 22316 25524 [mHTTP POST /api/hierarchy/api/units/ 201 [0.13, 127.0.0.1:50661][0m
+INFO 2025-08-04 09:52:36,407 server 13704 24264 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 09:52:36,407 server 13704 24264 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 09:52:36,408 server 13704 24264 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 10:54:06,426 server 18908 1432 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 10:54:06,427 server 18908 1432 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 10:54:06,427 server 18908 1432 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 10:55:33,222 middleware 18908 14312 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.512, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 10:55:33,225 runserver 18908 1432 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:51091][0m
+INFO 2025-08-04 10:56:02,319 middleware 18908 9380 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 500, "duration": 0.108, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 110}
+ERROR 2025-08-04 10:56:02,321 log 18908 10848 Internal Server Error: /api/case-tracking/cases/
+ERROR 2025-08-04 10:56:02,322 runserver 18908 1432 [35;1mHTTP GET /api/case-tracking/cases/ 500 [0.11, 127.0.0.1:51091][0m
+INFO 2025-08-04 10:56:51,537 server 18908 1432 Killed 0 pending application instances
+INFO 2025-08-04 11:01:05,543 server 8804 13144 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:01:05,543 server 8804 13144 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:01:05,544 server 8804 13144 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:04:01,867 server 8804 13144 Killed 0 pending application instances
+INFO 2025-08-04 11:04:15,555 server 17840 17904 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:04:15,555 server 17840 17904 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:04:15,556 server 17840 17904 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:04:18,068 middleware 17840 5560 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 500, "duration": 0.082, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 110}
+ERROR 2025-08-04 11:04:18,071 log 17840 18452 Internal Server Error: /api/case-tracking/cases/
+ERROR 2025-08-04 11:04:18,072 runserver 17840 17904 [35;1mHTTP GET /api/case-tracking/cases/ 500 [0.09, 127.0.0.1:51545][0m
+INFO 2025-08-04 11:07:27,936 server 17840 17904 Killed 0 pending application instances
+INFO 2025-08-04 11:07:31,808 server 6668 17424 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:07:31,809 server 6668 17424 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:07:31,809 server 6668 17424 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:07:33,070 middleware 6668 5216 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 500, "duration": 0.083, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 121}
+ERROR 2025-08-04 11:07:33,073 log 6668 17072 Internal Server Error: /api/case-tracking/cases/
+ERROR 2025-08-04 11:07:33,074 runserver 6668 17424 [35;1mHTTP GET /api/case-tracking/cases/ 500 [0.10, 127.0.0.1:51842][0m
+INFO 2025-08-04 11:09:18,207 server 6668 17424 Killed 0 pending application instances
+INFO 2025-08-04 11:09:21,993 server 3752 16284 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:09:21,994 server 3752 16284 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:09:21,994 server 3752 16284 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:09:24,546 middleware 3752 17944 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 500, "duration": 0.088, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 112}
+ERROR 2025-08-04 11:09:24,548 log 3752 18312 Internal Server Error: /api/case-tracking/cases/
+ERROR 2025-08-04 11:09:24,549 runserver 3752 16284 [35;1mHTTP GET /api/case-tracking/cases/ 500 [0.10, 127.0.0.1:51912][0m
+INFO 2025-08-04 11:10:36,277 server 3752 16284 Killed 0 pending application instances
+INFO 2025-08-04 11:19:23,873 autoreload 16500 16716 Watching for file changes with StatReloader
+INFO 2025-08-04 11:19:25,435 server 16500 4116 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:19:25,435 server 16500 4116 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:19:25,436 server 16500 4116 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:21:10,419 server 19364 16700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:21:10,419 server 19364 16700 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:21:10,420 server 19364 16700 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:21:35,059 middleware 19364 7068 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 500, "duration": 0.085, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 110}
+ERROR 2025-08-04 11:21:35,062 log 19364 18000 Internal Server Error: /api/case-tracking/cases/
+ERROR 2025-08-04 11:21:35,063 runserver 19364 16700 [35;1mHTTP GET /api/case-tracking/cases/ 500 [0.09, 127.0.0.1:52566][0m
+INFO 2025-08-04 11:24:08,783 server 19364 16700 Killed 0 pending application instances
+INFO 2025-08-04 11:24:55,157 server 19140 12012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:24:55,157 server 19140 12012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:24:55,158 server 19140 12012 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:24:59,384 middleware 19140 8544 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.126, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7944}
+INFO 2025-08-04 11:24:59,387 runserver 19140 12012 [mHTTP GET /api/case-tracking/cases/ 200 [0.14, 127.0.0.1:52715][0m
+INFO 2025-08-04 11:34:52,476 server 19140 12012 Killed 0 pending application instances
+INFO 2025-08-04 11:46:49,059 server 3276 18588 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:46:49,060 server 3276 18588 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:46:49,061 server 3276 18588 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:47:10,796 middleware 3276 18140 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.482, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 11:47:10,799 runserver 3276 18588 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:53261][0m
+INFO 2025-08-04 11:47:57,256 middleware 3276 13628 API Request: {"method": "GET", "path": "/api/case-tracking/cases/10/", "status_code": 404, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 114}
+WARNING 2025-08-04 11:47:57,258 log 3276 13240 Not Found: /api/case-tracking/cases/10/
+WARNING 2025-08-04 11:47:57,259 runserver 3276 18588 [33mHTTP GET /api/case-tracking/cases/10/ 404 [0.07, 127.0.0.1:53261][0m
+INFO 2025-08-04 11:48:43,503 server 3276 18588 Killed 0 pending application instances
+INFO 2025-08-04 11:52:56,921 server 2420 19072 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:52:56,923 server 2420 19072 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:52:56,926 server 2420 19072 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:53:00,430 middleware 2420 18032 API Request: {"method": "GET", "path": "/api/case-tracking/cases/10/", "status_code": 404, "duration": 0.137, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 114}
+WARNING 2025-08-04 11:53:00,435 log 2420 18332 Not Found: /api/case-tracking/cases/10/
+WARNING 2025-08-04 11:53:00,438 runserver 2420 19072 [33mHTTP GET /api/case-tracking/cases/10/ 404 [0.16, 127.0.0.1:53510][0m
+INFO 2025-08-04 11:53:03,843 middleware 2420 18916 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 404, "duration": 0.137, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 114}
+WARNING 2025-08-04 11:53:03,847 log 2420 18332 Not Found: /api/case-tracking/cases/1/
+WARNING 2025-08-04 11:53:03,848 runserver 2420 19072 [33mHTTP GET /api/case-tracking/cases/1/ 404 [0.15, 127.0.0.1:53510][0m
+INFO 2025-08-04 11:55:18,037 server 2420 19072 Killed 0 pending application instances
+INFO 2025-08-04 11:55:23,890 server 19256 17068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:55:23,891 server 19256 17068 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:55:23,892 server 19256 17068 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:56:01,298 middleware 19256 4328 API Request: {"method": "GET", "path": "/api/case-tracking/1/", "status_code": 404, "duration": 0.304, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7819}
+WARNING 2025-08-04 11:56:01,306 log 19256 13724 Not Found: /api/case-tracking/1/
+WARNING 2025-08-04 11:56:01,307 runserver 19256 17068 [33mHTTP GET /api/case-tracking/1/ 404 [0.33, 127.0.0.1:53599][0m
+INFO 2025-08-04 11:56:15,275 server 19256 17068 Killed 0 pending application instances
+INFO 2025-08-04 11:56:46,493 server 2544 9372 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 11:56:46,494 server 2544 9372 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 11:56:46,495 server 2544 9372 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 11:56:47,129 middleware 2544 17040 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 404, "duration": 0.15, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 114}
+WARNING 2025-08-04 11:56:47,135 log 2544 6444 Not Found: /api/case-tracking/cases/1/
+WARNING 2025-08-04 11:56:47,138 runserver 2544 9372 [33mHTTP GET /api/case-tracking/cases/1/ 404 [0.18, 127.0.0.1:53670][0m
+INFO 2025-08-04 11:59:23,655 server 2544 9372 Killed 0 pending application instances
+INFO 2025-08-04 12:00:08,472 server 8872 15220 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:00:08,473 server 8872 15220 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:00:08,475 server 8872 15220 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:00:13,919 middleware 8872 13748 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 500, "duration": 0.17, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+ERROR 2025-08-04 12:00:13,926 log 8872 13264 Internal Server Error: /api/case-tracking/cases/1/
+ERROR 2025-08-04 12:00:13,928 runserver 8872 15220 [35;1mHTTP GET /api/case-tracking/cases/1/ 500 [0.19, 127.0.0.1:53800][0m
+INFO 2025-08-04 12:01:07,966 server 8872 15220 Killed 0 pending application instances
+INFO 2025-08-04 12:01:13,242 server 12476 18960 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:01:13,242 server 12476 18960 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:01:13,244 server 12476 18960 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:01:17,688 middleware 12476 2836 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 500, "duration": 0.169, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 113}
+ERROR 2025-08-04 12:01:17,695 log 12476 9044 Internal Server Error: /api/case-tracking/cases/1/
+ERROR 2025-08-04 12:01:17,697 runserver 12476 18960 [35;1mHTTP GET /api/case-tracking/cases/1/ 500 [0.20, 127.0.0.1:53887][0m
+INFO 2025-08-04 12:01:35,318 server 12476 18960 Killed 0 pending application instances
+INFO 2025-08-04 12:02:00,197 server 11216 8432 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:02:00,198 server 11216 8432 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:02:00,199 server 11216 8432 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:02:14,003 middleware 11216 388 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 500, "duration": 0.15, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+ERROR 2025-08-04 12:02:14,009 log 11216 2860 Internal Server Error: /api/case-tracking/cases/1/
+ERROR 2025-08-04 12:02:14,011 runserver 11216 8432 [35;1mHTTP GET /api/case-tracking/cases/1/ 500 [0.18, 127.0.0.1:53935][0m
+INFO 2025-08-04 12:04:04,647 server 11216 8432 Killed 0 pending application instances
+INFO 2025-08-04 12:04:09,911 server 19132 15252 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:04:09,912 server 19132 15252 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:04:09,913 server 19132 15252 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:04:16,102 middleware 19132 18216 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.169, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1627}
+INFO 2025-08-04 12:04:16,112 runserver 19132 15252 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.19, 127.0.0.1:54265][0m
+INFO 2025-08-04 12:10:11,240 server 19132 15252 Killed 0 pending application instances
+INFO 2025-08-04 12:20:41,572 autoreload 9572 5488 Watching for file changes with StatReloader
+INFO 2025-08-04 12:20:43,789 server 9572 14260 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:20:43,793 server 9572 14260 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:20:43,796 server 9572 14260 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:21:06,377 middleware 9572 1508 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 401, "duration": 0.01, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-04 12:21:06,383 log 9572 13208 Unauthorized: /api/case-tracking/cases/1/
+WARNING 2025-08-04 12:21:06,385 runserver 9572 14260 [31;1mHTTP GET /api/case-tracking/cases/1/ 401 [0.06, 127.0.0.1:54667][0m
+WARNING 2025-08-04 12:21:06,593 log 9572 13208 Not Found: /favicon.ico
+WARNING 2025-08-04 12:21:06,594 runserver 9572 14260 [33mHTTP GET /favicon.ico 404 [0.08, 127.0.0.1:54667][0m
+INFO 2025-08-04 12:21:11,388 autoreload 9572 5488 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:21:14,573 autoreload 17260 10140 Watching for file changes with StatReloader
+INFO 2025-08-04 12:21:20,012 autoreload 17260 10140 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:21:23,027 autoreload 5672 3724 Watching for file changes with StatReloader
+INFO 2025-08-04 12:21:25,398 server 5672 18792 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:21:25,398 server 5672 18792 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:21:25,400 server 5672 18792 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:23:15,418 autoreload 5672 3724 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:23:18,022 autoreload 8204 2444 Watching for file changes with StatReloader
+INFO 2025-08-04 12:23:23,299 autoreload 8204 2444 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:23:25,686 autoreload 16404 5340 Watching for file changes with StatReloader
+INFO 2025-08-04 12:23:27,886 server 16404 19196 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:23:27,887 server 16404 19196 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:23:27,889 server 16404 19196 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:24:37,377 autoreload 16404 5340 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:24:40,417 autoreload 3724 5672 Watching for file changes with StatReloader
+INFO 2025-08-04 12:24:42,939 server 3724 18856 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:24:42,940 server 3724 18856 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:24:42,942 server 3724 18856 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:24:46,239 autoreload 3724 5672 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:24:48,234 autoreload 16992 19032 Watching for file changes with StatReloader
+INFO 2025-08-04 12:24:50,361 server 16992 4768 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:24:50,361 server 16992 4768 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:24:50,364 server 16992 4768 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:25:00,506 autoreload 16992 19032 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:25:03,293 autoreload 13872 16660 Watching for file changes with StatReloader
+INFO 2025-08-04 12:25:06,079 server 13872 15300 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:25:06,079 server 13872 15300 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:25:06,081 server 13872 15300 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:25:09,579 autoreload 13872 16660 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:25:12,007 autoreload 15332 17128 Watching for file changes with StatReloader
+INFO 2025-08-04 12:25:14,043 server 15332 6448 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:25:14,044 server 15332 6448 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:25:14,045 server 15332 6448 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:25:35,884 autoreload 15332 17128 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:25:38,359 autoreload 11700 16252 Watching for file changes with StatReloader
+INFO 2025-08-04 12:25:40,884 server 11700 17580 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:25:40,885 server 11700 17580 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:25:40,886 server 11700 17580 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:26:32,587 autoreload 11700 16252 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:26:35,564 autoreload 3724 9032 Watching for file changes with StatReloader
+INFO 2025-08-04 12:26:39,619 server 3724 12012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:26:39,620 server 3724 12012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:26:39,621 server 3724 12012 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:27:19,014 middleware 3724 332 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-04 12:27:19,018 log 3724 12196 Unauthorized: /api/case-tracking/cases/1/
+WARNING 2025-08-04 12:27:19,020 runserver 3724 12012 [31;1mHTTP GET /api/case-tracking/cases/1/ 401 [0.02, 127.0.0.1:55019][0m
+INFO 2025-08-04 12:27:34,650 autoreload 3724 9032 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:27:37,076 autoreload 17256 5672 Watching for file changes with StatReloader
+INFO 2025-08-04 12:27:39,686 server 17256 19416 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:27:39,687 server 17256 19416 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:27:39,688 server 17256 19416 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:27:45,168 middleware 17256 18476 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 500, "duration": 0.139, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 108}
+ERROR 2025-08-04 12:27:45,172 log 17256 13428 Internal Server Error: /api/case-tracking/cases/1/
+ERROR 2025-08-04 12:27:45,173 runserver 17256 19416 [35;1mHTTP GET /api/case-tracking/cases/1/ 500 [0.15, 127.0.0.1:55045][0m
+INFO 2025-08-04 12:28:27,994 autoreload 14708 16172 Watching for file changes with StatReloader
+INFO 2025-08-04 12:28:31,337 server 14708 18396 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:28:31,339 server 14708 18396 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:28:31,341 server 14708 18396 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:29:11,211 middleware 14708 19220 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 500, "duration": 0.16, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 108}
+ERROR 2025-08-04 12:29:11,217 log 14708 15628 Internal Server Error: /api/case-tracking/cases/1/
+ERROR 2025-08-04 12:29:11,219 runserver 14708 18396 [35;1mHTTP GET /api/case-tracking/cases/1/ 500 [0.18, 127.0.0.1:55115][0m
+INFO 2025-08-04 12:29:29,647 autoreload 14708 16172 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:29:32,325 autoreload 4216 16800 Watching for file changes with StatReloader
+INFO 2025-08-04 12:29:34,716 server 4216 1016 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:29:34,716 server 4216 1016 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:29:34,718 server 4216 1016 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:29:41,941 middleware 4216 8652 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.138, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 870}
+INFO 2025-08-04 12:29:41,946 runserver 4216 1016 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.15, 127.0.0.1:55153][0m
+INFO 2025-08-04 12:30:23,676 middleware 4216 8680 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.113, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 870}
+INFO 2025-08-04 12:30:23,680 runserver 4216 1016 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.12, 127.0.0.1:55182][0m
+INFO 2025-08-04 12:30:40,745 middleware 4216 9856 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.107, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 870}
+INFO 2025-08-04 12:30:40,750 runserver 4216 1016 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.11, 127.0.0.1:55194][0m
+INFO 2025-08-04 12:31:48,579 middleware 4216 13844 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.121, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 870}
+INFO 2025-08-04 12:31:48,583 runserver 4216 1016 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.13, 127.0.0.1:55239][0m
+INFO 2025-08-04 12:31:57,697 autoreload 4216 16800 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:31:59,836 autoreload 15120 18912 Watching for file changes with StatReloader
+INFO 2025-08-04 12:32:01,856 server 15120 4468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:32:01,857 server 15120 4468 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:32:01,858 server 15120 4468 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:35:10,023 server 1816 8248 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:35:10,024 server 1816 8248 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 12:35:10,025 server 1816 8248 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 12:35:18,272 middleware 1816 15328 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.883, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 12:35:18,278 runserver 1816 8248 [mHTTP POST /api/auth/login/ 200 [0.90, 127.0.0.1:55338][0m
+INFO 2025-08-04 12:35:29,279 middleware 1816 12160 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.129, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 870}
+INFO 2025-08-04 12:35:29,285 runserver 1816 8248 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.14, 127.0.0.1:55338][0m
+INFO 2025-08-04 12:36:41,075 middleware 1816 18900 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.218, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7944}
+INFO 2025-08-04 12:36:41,080 runserver 1816 8248 [mHTTP GET /api/case-tracking/cases/ 200 [0.23, 127.0.0.1:55399][0m
+INFO 2025-08-04 12:38:49,004 middleware 1816 19052 API Request: {"method": "GET", "path": "/api/case-tracking/cases/2/", "status_code": 200, "duration": 0.135, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 889}
+INFO 2025-08-04 12:38:49,009 runserver 1816 8248 [mHTTP GET /api/case-tracking/cases/2/ 200 [0.15, 127.0.0.1:55482][0m
+INFO 2025-08-04 12:39:07,690 middleware 1816 18236 API Request: {"method": "GET", "path": "/api/case-tracking/cases/10/", "status_code": 200, "duration": 0.173, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 895}
+INFO 2025-08-04 12:39:07,695 runserver 1816 8248 [mHTTP GET /api/case-tracking/cases/10/ 200 [0.23, 127.0.0.1:55482][0m
+INFO 2025-08-04 12:40:16,827 autoreload 17244 16132 Watching for file changes with StatReloader
+INFO 2025-08-04 12:40:19,218 server 17244 5468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:40:19,218 server 17244 5468 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:40:19,221 server 17244 5468 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:40:26,106 middleware 1816 3316 API Request: {"method": "GET", "path": "/api/case-tracking/cases/8/", "status_code": 200, "duration": 0.138, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 888}
+INFO 2025-08-04 12:40:26,110 runserver 1816 8248 [mHTTP GET /api/case-tracking/cases/8/ 200 [0.15, 127.0.0.1:55588][0m
+INFO 2025-08-04 12:40:45,902 middleware 17244 8520 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.16, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 894}
+INFO 2025-08-04 12:40:45,910 runserver 17244 5468 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.18, 127.0.0.1:55633][0m
+INFO 2025-08-04 12:41:31,344 autoreload 6592 11132 Watching for file changes with StatReloader
+INFO 2025-08-04 12:41:34,203 server 6592 18848 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:41:34,204 server 6592 18848 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:41:34,206 server 6592 18848 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:41:44,952 middleware 6592 1212 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.127, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 894}
+INFO 2025-08-04 12:41:44,957 runserver 6592 18848 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.14, 127.0.0.1:55837][0m
+INFO 2025-08-04 12:41:57,507 middleware 6592 13456 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.535, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 894}
+INFO 2025-08-04 12:41:57,535 runserver 6592 18848 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.70, 127.0.0.1:55860][0m
+INFO 2025-08-04 12:42:20,006 autoreload 6592 11132 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:42:22,458 autoreload 18176 9488 Watching for file changes with StatReloader
+INFO 2025-08-04 12:42:24,738 server 18176 10700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:42:24,739 server 18176 10700 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:42:24,741 server 18176 10700 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:45:37,150 autoreload 18176 9488 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:45:40,290 autoreload 1384 11592 Watching for file changes with StatReloader
+INFO 2025-08-04 12:45:42,821 server 1384 12612 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:45:42,822 server 1384 12612 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:45:42,823 server 1384 12612 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:45:49,510 autoreload 1384 11592 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:45:52,296 autoreload 1508 5736 Watching for file changes with StatReloader
+INFO 2025-08-04 12:45:54,398 server 1508 12528 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:45:54,399 server 1508 12528 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:45:54,400 server 1508 12528 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:46:16,358 autoreload 1508 5736 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:46:18,712 autoreload 1432 7224 Watching for file changes with StatReloader
+INFO 2025-08-04 12:46:20,991 server 1432 18596 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:46:20,992 server 1432 18596 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:46:20,994 server 1432 18596 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:46:37,239 autoreload 1432 7224 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:46:39,672 autoreload 8204 13764 Watching for file changes with StatReloader
+INFO 2025-08-04 12:46:41,763 server 8204 10488 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:46:41,763 server 8204 10488 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:46:41,765 server 8204 10488 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:46:49,218 middleware 8204 18616 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.12, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 892}
+INFO 2025-08-04 12:46:49,223 runserver 8204 10488 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.14, 127.0.0.1:56308][0m
+INFO 2025-08-04 12:50:14,460 autoreload 8204 13764 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:50:17,594 autoreload 8512 11964 Watching for file changes with StatReloader
+INFO 2025-08-04 12:50:20,555 server 8512 15024 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:50:20,556 server 8512 15024 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:50:20,558 server 8512 15024 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:50:25,108 autoreload 8512 11964 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:50:28,354 autoreload 11116 2212 Watching for file changes with StatReloader
+INFO 2025-08-04 12:50:31,475 server 11116 3904 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:50:31,476 server 11116 3904 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:50:31,477 server 11116 3904 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:50:39,147 autoreload 11116 2212 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:50:41,390 autoreload 9400 17288 Watching for file changes with StatReloader
+INFO 2025-08-04 12:50:43,513 server 9400 17620 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:50:43,516 server 9400 17620 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:50:43,518 server 9400 17620 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:50:47,133 autoreload 9400 17288 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:50:49,350 autoreload 14312 2260 Watching for file changes with StatReloader
+INFO 2025-08-04 12:50:51,998 server 14312 19068 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:50:52,001 server 14312 19068 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:50:52,003 server 14312 19068 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:50:55,806 middleware 14312 19248 API Request: {"method": "GET", "path": "/api/case-tracking/cases/1/", "status_code": 200, "duration": 0.222, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 904}
+INFO 2025-08-04 12:50:55,812 runserver 14312 19068 [mHTTP GET /api/case-tracking/cases/1/ 200 [0.25, 127.0.0.1:56639][0m
+INFO 2025-08-04 12:51:07,142 autoreload 14312 2260 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:51:10,078 autoreload 7052 12796 Watching for file changes with StatReloader
+INFO 2025-08-04 12:51:12,405 server 7052 17692 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:51:12,407 server 7052 17692 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:51:12,409 server 7052 17692 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:51:36,413 autoreload 7052 12796 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:51:38,536 autoreload 18600 15368 Watching for file changes with StatReloader
+INFO 2025-08-04 12:51:40,542 server 18600 5240 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:51:40,542 server 18600 5240 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:51:40,543 server 18600 5240 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:51:47,400 middleware 18600 17840 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.177, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8056}
+INFO 2025-08-04 12:51:47,403 runserver 18600 5240 [mHTTP GET /api/case-tracking/cases/ 200 [0.19, 127.0.0.1:56701][0m
+INFO 2025-08-04 12:52:03,222 autoreload 18600 15368 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:52:06,125 autoreload 18572 11996 Watching for file changes with StatReloader
+INFO 2025-08-04 12:52:12,024 autoreload 18572 11996 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:52:14,506 autoreload 6396 19128 Watching for file changes with StatReloader
+INFO 2025-08-04 12:52:16,537 server 6396 11668 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:52:16,538 server 6396 11668 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:52:16,539 server 6396 11668 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:52:30,059 autoreload 6396 19128 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\serializers.py changed, reloading.
+INFO 2025-08-04 12:52:32,954 autoreload 17328 4436 Watching for file changes with StatReloader
+INFO 2025-08-04 12:52:35,896 server 17328 18176 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:52:35,897 server 17328 18176 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:52:35,898 server 17328 18176 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 12:59:31,950 autoreload 17328 4436 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_tracking\views.py changed, reloading.
+INFO 2025-08-04 12:59:34,705 autoreload 18056 6396 Watching for file changes with StatReloader
+INFO 2025-08-04 12:59:37,075 server 18056 18468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 12:59:37,076 server 18056 18468 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 12:59:37,077 server 18056 18468 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 13:03:19,471 server 12076 16584 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 13:03:19,472 server 12076 16584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 13:03:19,473 server 12076 16584 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 13:03:28,727 middleware 12076 11340 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.005, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 13:03:28,731 runserver 12076 16584 [mHTTP POST /api/auth/login/ 200 [1.02, 127.0.0.1:57256][0m
+INFO 2025-08-04 13:03:40,632 middleware 12076 1976 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.209, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8056}
+INFO 2025-08-04 13:03:40,636 runserver 12076 16584 [mHTTP GET /api/case-tracking/cases/ 200 [0.22, 127.0.0.1:57256][0m
+INFO 2025-08-04 13:04:30,469 middleware 12076 4760 API Request: {"method": "GET", "path": "/api/case-tracking/cases/8/", "status_code": 200, "duration": 0.141, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 924}
+INFO 2025-08-04 13:04:30,473 runserver 12076 16584 [mHTTP GET /api/case-tracking/cases/8/ 200 [0.15, 127.0.0.1:57256][0m
+INFO 2025-08-04 13:23:15,290 server 12076 16584 Killed 0 pending application instances
+INFO 2025-08-04 13:24:07,867 server 2944 2940 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 13:24:07,867 server 2944 2940 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 13:24:07,868 server 2944 2940 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 13:24:12,272 middleware 2944 12012 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.235, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8056}
+INFO 2025-08-04 13:24:12,278 runserver 2944 2940 [mHTTP GET /api/case-tracking/cases/ 200 [0.25, 127.0.0.1:60219][0m
+INFO 2025-08-04 13:24:16,787 middleware 2944 17812 API Request: {"method": "GET", "path": "/api/case-tracking/cases/8/", "status_code": 200, "duration": 0.123, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 932}
+INFO 2025-08-04 13:24:16,794 runserver 2944 2940 [mHTTP GET /api/case-tracking/cases/8/ 200 [0.13, 127.0.0.1:60219][0m
+INFO 2025-08-04 15:17:37,939 server 2944 2940 Killed 0 pending application instances
+INFO 2025-08-04 15:18:29,182 server 6280 5468 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 15:18:29,183 server 6280 5468 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 15:18:29,184 server 6280 5468 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 15:33:49,490 server 6280 5468 Killed 0 pending application instances
+INFO 2025-08-04 15:55:25,211 server 6592 16900 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 15:55:25,212 server 6592 16900 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 15:55:25,213 server 6592 16900 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 16:48:27,733 server 6592 16900 Killed 0 pending application instances
+INFO 2025-08-04 16:53:49,412 server 23948 18612 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 16:53:49,412 server 23948 18612 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 16:53:49,413 server 23948 18612 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 17:13:02,382 server 23948 18612 Killed 0 pending application instances
+INFO 2025-08-04 17:14:05,103 server 24376 15484 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 17:14:05,103 server 24376 15484 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 17:14:05,104 server 24376 15484 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 17:16:52,757 middleware 24376 11824 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.497, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 17:16:52,760 runserver 24376 15484 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:52525][0m
+INFO 2025-08-04 17:17:08,011 middleware 24376 22964 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/10/quick-edit/", "status_code": 200, "duration": 0.086, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 367}
+INFO 2025-08-04 17:17:08,027 runserver 24376 15484 [mHTTP PATCH /api/case-tracking/cases/10/quick-edit/ 200 [0.10, 127.0.0.1:52525][0m
+INFO 2025-08-04 17:18:21,657 middleware 24376 9596 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/6/quick-edit/", "status_code": 200, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 366}
+INFO 2025-08-04 17:18:21,662 runserver 24376 15484 [mHTTP PATCH /api/case-tracking/cases/6/quick-edit/ 200 [0.08, 127.0.0.1:52746][0m
+INFO 2025-08-04 18:21:47,539 server 24376 15484 Killed 0 pending application instances
+INFO 2025-08-04 18:22:29,368 server 20152 20948 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:22:29,368 server 20152 20948 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 18:22:29,369 server 20152 20948 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 18:24:12,435 middleware 20152 5148 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.497, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 18:24:12,439 runserver 20152 20948 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:54198][0m
+INFO 2025-08-04 18:24:31,848 server 20152 20948 Killed 0 pending application instances
+INFO 2025-08-04 18:24:44,560 server 21944 24012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:24:44,560 server 21944 24012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 18:24:44,561 server 21944 24012 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 18:24:45,331 middleware 21944 22368 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/1/", "status_code": 404, "duration": 0.122, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8105}
+WARNING 2025-08-04 18:24:45,333 log 21944 22820 Not Found: /api/case-logs/comment-history/1/
+WARNING 2025-08-04 18:24:45,334 runserver 21944 24012 [33mHTTP GET /api/case-logs/comment-history/1/ 404 [0.13, 127.0.0.1:54239][0m
+INFO 2025-08-04 18:31:11,077 middleware 21944 8076 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.105, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:31:11,079 log 21944 22820 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:31:11,080 runserver 21944 24012 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.11, 127.0.0.1:54750][0m
+INFO 2025-08-04 18:31:56,580 autoreload 18840 12500 Watching for file changes with StatReloader
+INFO 2025-08-04 18:31:57,769 server 18840 18340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:31:57,770 server 18840 18340 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-04 18:31:57,770 server 18840 18340 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-04 18:32:27,389 autoreload 9420 10308 Watching for file changes with StatReloader
+INFO 2025-08-04 18:32:28,567 server 9420 5748 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:32:28,567 server 9420 5748 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 18:32:28,568 server 9420 5748 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 18:33:09,607 middleware 9420 23320 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.128, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:33:09,609 log 9420 12460 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:33:09,610 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.14, 127.0.0.1:54857][0m
+INFO 2025-08-04 18:33:11,766 middleware 9420 23804 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 404, "duration": 0.109, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:33:11,768 log 9420 12460 Not Found: /api/case-logs/comment-history/6/
+WARNING 2025-08-04 18:33:11,769 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/6/ 404 [0.11, 127.0.0.1:54859][0m
+INFO 2025-08-04 18:33:13,925 middleware 9420 15340 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 404, "duration": 0.107, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:33:13,926 log 9420 12460 Not Found: /api/case-logs/comment-history/7/
+WARNING 2025-08-04 18:33:13,927 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/7/ 404 [0.11, 127.0.0.1:54862][0m
+INFO 2025-08-04 18:33:16,082 middleware 9420 6596 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 404, "duration": 0.105, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:33:16,084 log 9420 12460 Not Found: /api/case-logs/comment-history/8/
+WARNING 2025-08-04 18:33:16,084 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/8/ 404 [0.11, 127.0.0.1:54864][0m
+INFO 2025-08-04 18:33:18,294 middleware 9420 19136 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 404, "duration": 0.163, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:33:18,297 log 9420 12460 Not Found: /api/case-logs/comment-history/9/
+WARNING 2025-08-04 18:33:18,298 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/9/ 404 [0.17, 127.0.0.1:54867][0m
+INFO 2025-08-04 18:33:20,429 middleware 9420 13744 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.104, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:33:20,431 log 9420 12460 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:33:20,432 runserver 9420 5748 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.11, 127.0.0.1:54869][0m
+INFO 2025-08-04 18:33:37,803 middleware 9420 14520 API Request: {"method": "GET", "path": "/api/case-logs/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 120}
+WARNING 2025-08-04 18:33:37,805 log 9420 12460 Unauthorized: /api/case-logs/
+WARNING 2025-08-04 18:33:37,805 runserver 9420 5748 [31;1mHTTP GET /api/case-logs/ 401 [0.01, 127.0.0.1:54880][0m
+INFO 2025-08-04 18:34:11,480 autoreload 9420 10308 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-04 18:34:12,780 autoreload 20672 13160 Watching for file changes with StatReloader
+INFO 2025-08-04 18:34:14,052 server 20672 4440 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:34:14,052 server 20672 4440 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 18:34:14,053 server 20672 4440 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 18:34:25,848 middleware 20672 11312 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.19, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:34:25,851 log 20672 18752 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:34:25,853 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.20, 127.0.0.1:54913][0m
+INFO 2025-08-04 18:34:28,068 middleware 20672 19004 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 404, "duration": 0.183, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:34:28,072 log 20672 18752 Not Found: /api/case-logs/comment-history/6/
+WARNING 2025-08-04 18:34:28,073 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/6/ 404 [0.19, 127.0.0.1:54915][0m
+INFO 2025-08-04 18:34:30,290 middleware 20672 24036 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 404, "duration": 0.179, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:34:30,294 log 20672 18752 Not Found: /api/case-logs/comment-history/7/
+WARNING 2025-08-04 18:34:30,295 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/7/ 404 [0.19, 127.0.0.1:54917][0m
+INFO 2025-08-04 18:34:32,523 middleware 20672 13516 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 404, "duration": 0.178, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:34:32,526 log 20672 18752 Not Found: /api/case-logs/comment-history/8/
+WARNING 2025-08-04 18:34:32,527 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/8/ 404 [0.19, 127.0.0.1:54919][0m
+INFO 2025-08-04 18:34:34,896 middleware 20672 23372 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 404, "duration": 0.323, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:34:34,900 log 20672 18752 Not Found: /api/case-logs/comment-history/9/
+WARNING 2025-08-04 18:34:34,901 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/9/ 404 [0.33, 127.0.0.1:54933][0m
+INFO 2025-08-04 18:34:37,185 middleware 20672 21760 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.246, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:34:37,188 log 20672 18752 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:34:37,189 runserver 20672 4440 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.26, 127.0.0.1:54940][0m
+INFO 2025-08-04 18:35:22,077 autoreload 20672 13160 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-04 18:35:25,369 autoreload 11496 11448 Watching for file changes with StatReloader
+INFO 2025-08-04 18:35:29,869 server 11496 21752 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:35:29,870 server 11496 21752 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 18:35:29,871 server 11496 21752 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 18:35:40,178 middleware 11496 5852 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.624, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:35:40,187 log 11496 18236 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:35:40,189 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.65, 127.0.0.1:55064][0m
+INFO 2025-08-04 18:35:42,443 middleware 11496 2764 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 404, "duration": 0.196, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:35:42,449 log 11496 18236 Not Found: /api/case-logs/comment-history/6/
+WARNING 2025-08-04 18:35:42,451 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/6/ 404 [0.21, 127.0.0.1:55075][0m
+INFO 2025-08-04 18:35:44,754 middleware 11496 18696 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 404, "duration": 0.259, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:35:44,757 log 11496 18236 Not Found: /api/case-logs/comment-history/7/
+WARNING 2025-08-04 18:35:44,758 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/7/ 404 [0.27, 127.0.0.1:55087][0m
+INFO 2025-08-04 18:35:47,071 middleware 11496 23208 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 404, "duration": 0.27, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:35:47,074 log 11496 18236 Not Found: /api/case-logs/comment-history/8/
+WARNING 2025-08-04 18:35:47,075 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/8/ 404 [0.28, 127.0.0.1:55103][0m
+INFO 2025-08-04 18:35:49,446 middleware 11496 20544 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 404, "duration": 0.314, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8105}
+WARNING 2025-08-04 18:35:49,452 log 11496 18236 Not Found: /api/case-logs/comment-history/9/
+WARNING 2025-08-04 18:35:49,454 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/9/ 404 [0.33, 127.0.0.1:55105][0m
+INFO 2025-08-04 18:35:51,841 middleware 11496 24216 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.345, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:35:51,845 log 11496 18236 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:35:51,846 runserver 11496 21752 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.35, 127.0.0.1:55110][0m
+INFO 2025-08-04 18:36:05,532 autoreload 11496 11448 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-04 18:36:08,689 autoreload 21444 20164 Watching for file changes with StatReloader
+INFO 2025-08-04 18:36:11,956 server 21444 11700 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:36:11,957 server 21444 11700 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 18:36:11,959 server 21444 11700 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 18:36:18,764 autoreload 21444 20164 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-04 18:36:21,373 autoreload 20948 18704 Watching for file changes with StatReloader
+INFO 2025-08-04 18:36:23,453 server 20948 12460 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:36:23,454 server 20948 12460 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 18:36:23,456 server 20948 12460 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 18:36:37,011 middleware 20948 18552 API Request: {"method": "GET", "path": "/api/case-logs/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-04 18:36:37,014 log 20948 18344 Unauthorized: /api/case-logs/
+WARNING 2025-08-04 18:36:37,015 runserver 20948 12460 [31;1mHTTP GET /api/case-logs/ 401 [0.02, 127.0.0.1:55176][0m
+INFO 2025-08-04 18:36:49,533 middleware 20948 3304 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.203, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 8108}
+WARNING 2025-08-04 18:36:49,537 log 20948 18344 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:36:49,539 runserver 20948 12460 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.21, 127.0.0.1:55183][0m
+INFO 2025-08-04 18:41:06,031 server 21944 24012 Killed 0 pending application instances
+INFO 2025-08-04 18:41:51,225 server 3432 16404 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 18:41:51,226 server 3432 16404 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 18:41:51,228 server 3432 16404 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 18:42:02,853 middleware 3432 23004 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.282, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7680}
+WARNING 2025-08-04 18:42:02,856 log 3432 16936 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 18:42:02,858 runserver 3432 16404 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.30, 127.0.0.1:55412][0m
+INFO 2025-08-04 19:44:16,315 server 3432 16404 Killed 0 pending application instances
+INFO 2025-08-04 21:03:08,859 autoreload 2544 5316 Watching for file changes with StatReloader
+INFO 2025-08-04 21:03:11,504 server 2544 22612 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:03:11,505 server 2544 22612 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 21:03:11,506 server 2544 22612 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 21:03:32,478 middleware 2544 13160 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.256, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7680}
+WARNING 2025-08-04 21:03:32,481 log 2544 21744 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 21:03:32,484 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.28, 127.0.0.1:57690][0m
+INFO 2025-08-04 21:03:34,781 middleware 2544 24472 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 404, "duration": 0.255, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7677}
+WARNING 2025-08-04 21:03:34,788 log 2544 21744 Not Found: /api/case-logs/comment-history/6/
+WARNING 2025-08-04 21:03:34,789 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/6/ 404 [0.27, 127.0.0.1:57692][0m
+INFO 2025-08-04 21:03:37,050 middleware 2544 22448 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 404, "duration": 0.22, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7677}
+WARNING 2025-08-04 21:03:37,053 log 2544 21744 Not Found: /api/case-logs/comment-history/7/
+WARNING 2025-08-04 21:03:37,054 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/7/ 404 [0.23, 127.0.0.1:57695][0m
+INFO 2025-08-04 21:03:39,400 middleware 2544 19996 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 404, "duration": 0.297, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7677}
+WARNING 2025-08-04 21:03:39,406 log 2544 21744 Not Found: /api/case-logs/comment-history/8/
+WARNING 2025-08-04 21:03:39,407 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/8/ 404 [0.31, 127.0.0.1:57697][0m
+INFO 2025-08-04 21:03:41,660 middleware 2544 19752 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 404, "duration": 0.207, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7677}
+WARNING 2025-08-04 21:03:41,663 log 2544 21744 Not Found: /api/case-logs/comment-history/9/
+WARNING 2025-08-04 21:03:41,664 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/9/ 404 [0.23, 127.0.0.1:57700][0m
+INFO 2025-08-04 21:03:43,925 middleware 2544 21920 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 404, "duration": 0.205, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 7680}
+WARNING 2025-08-04 21:03:43,928 log 2544 21744 Not Found: /api/case-logs/comment-history/10/
+WARNING 2025-08-04 21:03:43,929 runserver 2544 22612 [33mHTTP GET /api/case-logs/comment-history/10/ 404 [0.21, 127.0.0.1:57705][0m
+INFO 2025-08-04 21:04:04,593 autoreload 2544 5316 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\urls.py changed, reloading.
+INFO 2025-08-04 21:04:07,171 autoreload 13532 23284 Watching for file changes with StatReloader
+INFO 2025-08-04 21:04:09,585 server 13532 22348 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:04:09,586 server 13532 22348 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 21:04:09,588 server 13532 22348 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 21:04:29,621 middleware 13532 17076 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.128, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1852}
+INFO 2025-08-04 21:04:29,626 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.14, 127.0.0.1:57745][0m
+INFO 2025-08-04 21:04:31,824 middleware 13532 21844 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 200, "duration": 0.134, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 827}
+INFO 2025-08-04 21:04:31,827 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/6/ 200 [0.14, 127.0.0.1:57749][0m
+INFO 2025-08-04 21:04:34,000 middleware 13532 23644 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 200, "duration": 0.141, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1352}
+INFO 2025-08-04 21:04:34,006 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/7/ 200 [0.15, 127.0.0.1:57752][0m
+INFO 2025-08-04 21:04:36,195 middleware 13532 11044 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 200, "duration": 0.143, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1361}
+INFO 2025-08-04 21:04:36,200 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/8/ 200 [0.15, 127.0.0.1:57758][0m
+INFO 2025-08-04 21:04:38,390 middleware 13532 13132 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 200, "duration": 0.122, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1904}
+INFO 2025-08-04 21:04:38,394 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/9/ 200 [0.13, 127.0.0.1:57762][0m
+INFO 2025-08-04 21:04:40,561 middleware 13532 21324 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.118, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1852}
+INFO 2025-08-04 21:04:40,565 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.13, 127.0.0.1:57765][0m
+INFO 2025-08-04 21:04:54,209 middleware 13532 24404 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.129, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1852}
+INFO 2025-08-04 21:04:54,214 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.14, 127.0.0.1:57775][0m
+INFO 2025-08-04 21:04:56,367 middleware 13532 5672 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/6/", "status_code": 200, "duration": 0.102, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 827}
+INFO 2025-08-04 21:04:56,371 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/6/ 200 [0.11, 127.0.0.1:57779][0m
+INFO 2025-08-04 21:04:58,559 middleware 13532 16924 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/7/", "status_code": 200, "duration": 0.146, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1352}
+INFO 2025-08-04 21:04:58,565 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/7/ 200 [0.16, 127.0.0.1:57782][0m
+INFO 2025-08-04 21:05:00,729 middleware 13532 23360 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/8/", "status_code": 200, "duration": 0.13, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1361}
+INFO 2025-08-04 21:05:00,732 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/8/ 200 [0.14, 127.0.0.1:57785][0m
+INFO 2025-08-04 21:05:02,889 middleware 13532 8452 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 200, "duration": 0.125, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1904}
+INFO 2025-08-04 21:05:02,895 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/9/ 200 [0.14, 127.0.0.1:57788][0m
+INFO 2025-08-04 21:05:05,052 middleware 13532 23968 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.116, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1852}
+INFO 2025-08-04 21:05:05,057 runserver 13532 22348 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.12, 127.0.0.1:57794][0m
+INFO 2025-08-04 21:05:15,333 autoreload 13532 23284 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-04 21:05:17,709 autoreload 21936 22340 Watching for file changes with StatReloader
+INFO 2025-08-04 21:05:20,161 server 21936 23372 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:05:20,162 server 21936 23372 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 21:05:20,163 server 21936 23372 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 21:07:22,729 server 21632 18632 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:07:22,730 server 21632 18632 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 21:07:22,731 server 21632 18632 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 21:07:30,758 middleware 21632 256 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.952, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-04 21:07:30,764 runserver 21632 18632 [mHTTP POST /api/auth/login/ 200 [0.97, 127.0.0.1:57942][0m
+INFO 2025-08-04 21:09:18,618 server 21632 18632 Killed 0 pending application instances
+INFO 2025-08-04 21:09:25,983 server 3164 7004 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:09:25,983 server 3164 7004 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 21:09:25,984 server 3164 7004 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 21:11:52,150 server 3164 7004 Killed 0 pending application instances
+INFO 2025-08-04 21:11:57,310 server 22648 24072 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:11:57,311 server 22648 24072 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 21:11:57,312 server 22648 24072 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 21:12:55,321 autoreload 24092 7192 Watching for file changes with StatReloader
+INFO 2025-08-04 21:12:58,152 server 24092 22656 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:12:58,153 server 24092 22656 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-04 21:12:58,155 server 24092 22656 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-04 21:14:16,296 server 22648 24072 Killed 0 pending application instances
+INFO 2025-08-04 21:14:34,702 server 4900 19116 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:14:34,702 server 4900 19116 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 21:14:34,704 server 4900 19116 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-04 21:15:31,102 server 4900 19116 Killed 0 pending application instances
+INFO 2025-08-04 21:15:49,566 server 7896 16584 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-04 21:15:49,567 server 7896 16584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-04 21:15:49,568 server 7896 16584 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 09:06:00,127 server 7896 16584 Killed 0 pending application instances
+INFO 2025-08-05 09:06:44,635 server 18680 3856 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 09:06:44,636 server 18680 3856 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 09:06:44,637 server 18680 3856 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 09:06:54,782 middleware 18680 19288 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.953, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 09:06:54,787 runserver 18680 3856 [mHTTP POST /api/auth/login/ 200 [0.98, 127.0.0.1:59025][0m
+INFO 2025-08-05 09:09:41,311 server 18680 3856 Killed 0 pending application instances
+INFO 2025-08-05 09:09:52,853 server 21880 4452 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 09:09:52,853 server 21880 4452 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 09:09:52,855 server 21880 4452 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 10:06:52,093 server 21880 4452 Killed 0 pending application instances
+INFO 2025-08-05 10:07:23,068 server 24288 25820 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 10:07:23,068 server 24288 25820 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 10:07:23,069 server 24288 25820 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 10:07:31,809 middleware 24288 19216 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/6/quick-edit/", "status_code": 401, "duration": 0.018, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-05 10:07:31,812 log 24288 6656 Unauthorized: /api/case-tracking/cases/6/quick-edit/
+WARNING 2025-08-05 10:07:31,813 runserver 24288 25820 [31;1mHTTP PATCH /api/case-tracking/cases/6/quick-edit/ 401 [0.03, 127.0.0.1:60778][0m
+INFO 2025-08-05 10:07:40,212 middleware 24288 15368 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.501, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 10:07:40,215 runserver 24288 25820 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:60778][0m
+INFO 2025-08-05 10:07:54,980 middleware 24288 13360 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/6/quick-edit/", "status_code": 200, "duration": 0.08, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 370}
+INFO 2025-08-05 10:07:54,986 runserver 24288 25820 [mHTTP PATCH /api/case-tracking/cases/6/quick-edit/ 200 [0.09, 127.0.0.1:60778][0m
+INFO 2025-08-05 11:11:47,091 server 4984 26332 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:11:47,092 server 4984 26332 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:11:47,092 server 4984 26332 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:12:35,222 middleware 4984 24000 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.5, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 11:12:35,225 runserver 4984 26332 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:62829][0m
+INFO 2025-08-05 11:15:17,918 server 4984 26332 Killed 0 pending application instances
+INFO 2025-08-05 11:15:28,460 server 17196 23156 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:15:28,461 server 17196 23156 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:15:28,461 server 17196 23156 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:15:57,367 autoreload 23072 20764 Watching for file changes with StatReloader
+INFO 2025-08-05 11:15:58,637 server 23072 3684 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:15:58,637 server 23072 3684 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-05 11:15:58,638 server 23072 3684 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-05 11:16:30,797 autoreload 12236 24004 Watching for file changes with StatReloader
+INFO 2025-08-05 11:16:31,999 server 12236 12156 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:16:31,999 server 12236 12156 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 11:16:32,000 server 12236 12156 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 11:17:48,496 server 17196 23156 Killed 0 pending application instances
+INFO 2025-08-05 11:17:53,204 server 16752 21452 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:17:53,205 server 16752 21452 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:17:53,205 server 16752 21452 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:18:13,290 server 16752 21452 Killed 0 pending application instances
+INFO 2025-08-05 11:18:46,192 server 15152 22888 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:18:46,192 server 15152 22888 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:18:46,193 server 15152 22888 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:19:16,238 middleware 15152 5372 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/10/", "status_code": 400, "duration": 0.08, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 93}
+WARNING 2025-08-05 11:19:16,240 log 15152 16708 Bad Request: /api/case-logs/update-case-log/10/
+WARNING 2025-08-05 11:19:16,241 runserver 15152 22888 [31;1mHTTP PUT /api/case-logs/update-case-log/10/ 400 [0.09, 127.0.0.1:63390][0m
+INFO 2025-08-05 11:21:38,878 server 15152 22888 Killed 0 pending application instances
+INFO 2025-08-05 11:21:42,274 server 3800 22128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:21:42,275 server 3800 22128 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:21:42,276 server 3800 22128 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:21:44,732 middleware 3800 21224 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/10/", "status_code": 500, "duration": 0.109, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 100}
+ERROR 2025-08-05 11:21:44,735 log 3800 26604 Internal Server Error: /api/case-logs/update-case-log/10/
+ERROR 2025-08-05 11:21:44,735 runserver 3800 22128 [35;1mHTTP PUT /api/case-logs/update-case-log/10/ 500 [0.12, 127.0.0.1:63581][0m
+INFO 2025-08-05 11:22:23,008 middleware 3800 2204 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/10/quick-edit/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 234}
+WARNING 2025-08-05 11:22:23,023 log 3800 26604 Unauthorized: /api/case-tracking/cases/10/quick-edit/
+WARNING 2025-08-05 11:22:23,024 runserver 3800 22128 [31;1mHTTP PATCH /api/case-tracking/cases/10/quick-edit/ 401 [0.06, 127.0.0.1:63581][0m
+INFO 2025-08-05 11:22:28,005 middleware 3800 24328 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.474, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 11:22:28,007 runserver 3800 22128 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:63581][0m
+INFO 2025-08-05 11:22:50,042 middleware 3800 6908 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/10/quick-edit/", "status_code": 200, "duration": 0.067, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 369}
+INFO 2025-08-05 11:22:50,048 runserver 3800 22128 [mHTTP PATCH /api/case-tracking/cases/10/quick-edit/ 200 [0.08, 127.0.0.1:63581][0m
+INFO 2025-08-05 11:23:43,249 middleware 3800 21384 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/10/", "status_code": 500, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 100}
+ERROR 2025-08-05 11:23:43,254 log 3800 26604 Internal Server Error: /api/case-logs/update-case-log/10/
+ERROR 2025-08-05 11:23:43,254 runserver 3800 22128 [35;1mHTTP PUT /api/case-logs/update-case-log/10/ 500 [0.07, 127.0.0.1:63581][0m
+INFO 2025-08-05 11:31:24,455 server 3800 22128 Killed 0 pending application instances
+INFO 2025-08-05 11:32:18,853 server 9724 19864 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:32:18,853 server 9724 19864 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:32:18,854 server 9724 19864 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:32:25,511 middleware 9724 23088 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/10/", "status_code": 200, "duration": 0.313, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 359}
+INFO 2025-08-05 11:32:25,596 runserver 9724 19864 [mHTTP PUT /api/case-logs/update-case-log/10/ 200 [0.51, 127.0.0.1:59714][0m
+INFO 2025-08-05 11:35:22,175 server 9724 19864 Killed 0 pending application instances
+INFO 2025-08-05 11:35:53,009 server 11804 11808 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:35:53,009 server 11804 11808 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:35:53,010 server 11804 11808 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:35:59,247 middleware 11804 23940 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.499, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 11:35:59,250 runserver 11804 11808 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:60271][0m
+INFO 2025-08-05 11:36:09,481 middleware 11804 25992 API Request: {"method": "GET", "path": "/api/case-tracking/cases/", "status_code": 200, "duration": 0.113, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8062}
+INFO 2025-08-05 11:36:09,484 runserver 11804 11808 [mHTTP GET /api/case-tracking/cases/ 200 [0.12, 127.0.0.1:60271][0m
+INFO 2025-08-05 11:36:22,251 middleware 11804 24556 API Request: {"method": "GET", "path": "/api/case-tracking/cases/8/", "status_code": 200, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 932}
+INFO 2025-08-05 11:36:22,253 runserver 11804 11808 [mHTTP GET /api/case-tracking/cases/8/ 200 [0.07, 127.0.0.1:60271][0m
+INFO 2025-08-05 11:36:27,897 middleware 11804 1616 API Request: {"method": "GET", "path": "/api/case-tracking/cases/10/", "status_code": 200, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 941}
+INFO 2025-08-05 11:36:27,901 runserver 11804 11808 [mHTTP GET /api/case-tracking/cases/10/ 200 [0.08, 127.0.0.1:60271][0m
+INFO 2025-08-05 11:37:37,729 middleware 11804 20884 API Request: {"method": "PUT", "path": "/api/case-tracking/cases/9/quick-edit/", "status_code": 405, "duration": 0.044, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 102}
+WARNING 2025-08-05 11:37:37,732 log 11804 21924 Method Not Allowed: /api/case-tracking/cases/9/quick-edit/
+WARNING 2025-08-05 11:37:37,732 runserver 11804 11808 [31;1mHTTP PUT /api/case-tracking/cases/9/quick-edit/ 405 [0.05, 127.0.0.1:60301][0m
+INFO 2025-08-05 11:37:44,954 middleware 11804 24192 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/9/quick-edit/", "status_code": 400, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 195}
+WARNING 2025-08-05 11:37:44,956 log 11804 21924 Bad Request: /api/case-tracking/cases/9/quick-edit/
+WARNING 2025-08-05 11:37:44,957 runserver 11804 11808 [31;1mHTTP PATCH /api/case-tracking/cases/9/quick-edit/ 400 [0.07, 127.0.0.1:60301][0m
+INFO 2025-08-05 11:38:08,467 middleware 11804 24360 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/9/quick-edit/", "status_code": 400, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 117}
+WARNING 2025-08-05 11:38:08,470 log 11804 21924 Bad Request: /api/case-tracking/cases/9/quick-edit/
+WARNING 2025-08-05 11:38:08,475 runserver 11804 11808 [31;1mHTTP PATCH /api/case-tracking/cases/9/quick-edit/ 400 [0.07, 127.0.0.1:60301][0m
+INFO 2025-08-05 11:38:15,162 middleware 11804 24288 API Request: {"method": "PATCH", "path": "/api/case-tracking/cases/9/quick-edit/", "status_code": 200, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 364}
+INFO 2025-08-05 11:38:15,168 runserver 11804 11808 [mHTTP PATCH /api/case-tracking/cases/9/quick-edit/ 200 [0.08, 127.0.0.1:60301][0m
+INFO 2025-08-05 11:40:30,020 middleware 11804 11188 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/10/", "status_code": 200, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 357}
+INFO 2025-08-05 11:40:30,027 runserver 11804 11808 [mHTTP PUT /api/case-logs/update-case-log/10/ 200 [0.08, 127.0.0.1:61230][0m
+INFO 2025-08-05 11:40:40,287 middleware 11804 12036 API Request: {"method": "PUT", "path": "/api/case-logs/update-case-log/9/", "status_code": 200, "duration": 0.069, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 356}
+INFO 2025-08-05 11:40:40,292 runserver 11804 11808 [mHTTP PUT /api/case-logs/update-case-log/9/ 200 [0.08, 127.0.0.1:61230][0m
+INFO 2025-08-05 11:43:14,996 middleware 11804 15136 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.581, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 11:43:14,999 runserver 11804 11808 [mHTTP POST /api/auth/login/ 200 [0.59, 127.0.0.1:61815][0m
+INFO 2025-08-05 11:43:44,485 server 11804 11808 Killed 0 pending application instances
+INFO 2025-08-05 11:43:56,304 server 6640 9344 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:43:56,304 server 6640 9344 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:43:56,305 server 6640 9344 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:44:04,647 middleware 6640 18232 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.101, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3674}
+INFO 2025-08-05 11:44:04,651 runserver 6640 9344 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.11, 127.0.0.1:61884][0m
+INFO 2025-08-05 11:45:36,759 middleware 6640 7444 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3681}
+INFO 2025-08-05 11:45:36,762 runserver 6640 9344 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.06, 127.0.0.1:62264][0m
+INFO 2025-08-05 11:48:05,127 server 6640 9344 Killed 0 pending application instances
+INFO 2025-08-05 11:48:10,618 server 2352 26520 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:48:10,618 server 2352 26520 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:48:10,619 server 2352 26520 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:48:14,186 middleware 2352 2608 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.09, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3216}
+INFO 2025-08-05 11:48:14,189 runserver 2352 26520 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.10, 127.0.0.1:62378][0m
+INFO 2025-08-05 11:48:21,682 server 2352 26520 Killed 0 pending application instances
+INFO 2025-08-05 11:48:56,281 server 15440 25552 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:48:56,281 server 15440 25552 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:48:56,282 server 15440 25552 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:49:07,363 middleware 15440 9316 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3216}
+INFO 2025-08-05 11:49:07,365 runserver 15440 25552 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.08, 127.0.0.1:62419][0m
+INFO 2025-08-05 11:56:52,282 server 15440 25552 Killed 0 pending application instances
+INFO 2025-08-05 11:58:50,266 server 18320 26500 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 11:58:50,266 server 18320 26500 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 11:58:50,267 server 18320 26500 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 11:58:56,086 middleware 18320 22852 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.081, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3546}
+INFO 2025-08-05 11:58:56,089 runserver 18320 26500 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.10, 127.0.0.1:62742][0m
+INFO 2025-08-05 12:03:33,360 server 18320 26500 Killed 0 pending application instances
+INFO 2025-08-05 12:03:54,208 server 25700 21352 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:03:54,209 server 25700 21352 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 12:03:54,210 server 25700 21352 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 12:03:57,694 middleware 25700 4296 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.092, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3120}
+INFO 2025-08-05 12:03:57,697 runserver 25700 21352 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.10, 127.0.0.1:62934][0m
+INFO 2025-08-05 12:04:14,879 middleware 25700 23356 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/9/", "status_code": 200, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 2588}
+INFO 2025-08-05 12:04:14,881 runserver 25700 21352 [mHTTP GET /api/case-logs/comment-history/9/ 200 [0.06, 127.0.0.1:62934][0m
+INFO 2025-08-05 12:04:23,127 middleware 25700 22676 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/1/", "status_code": 200, "duration": 0.063, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 151}
+INFO 2025-08-05 12:04:23,129 runserver 25700 21352 [mHTTP GET /api/case-logs/comment-history/1/ 200 [0.07, 127.0.0.1:62934][0m
+INFO 2025-08-05 12:04:27,579 middleware 25700 8328 API Request: {"method": "GET", "path": "/api/case-logs/comment-history/10/", "status_code": 200, "duration": 0.06, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3120}
+INFO 2025-08-05 12:04:27,581 runserver 25700 21352 [mHTTP GET /api/case-logs/comment-history/10/ 200 [0.06, 127.0.0.1:62934][0m
+INFO 2025-08-05 12:27:10,909 autoreload 26568 16736 Watching for file changes with StatReloader
+INFO 2025-08-05 12:27:12,185 server 26568 13156 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:27:12,185 server 26568 13156 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-05 12:27:12,186 server 26568 13156 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-05 12:27:44,215 autoreload 10904 18696 Watching for file changes with StatReloader
+INFO 2025-08-05 12:27:45,453 server 10904 25844 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:27:45,454 server 10904 25844 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:27:45,455 server 10904 25844 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:31:37,873 autoreload 10904 18696 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:31:39,370 autoreload 22944 24612 Watching for file changes with StatReloader
+INFO 2025-08-05 12:31:40,718 server 22944 8200 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:31:40,718 server 22944 8200 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:31:40,719 server 22944 8200 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:31:48,453 autoreload 22944 24612 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:31:49,910 autoreload 22324 24104 Watching for file changes with StatReloader
+INFO 2025-08-05 12:31:51,196 server 22324 15244 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:31:51,197 server 22324 15244 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:31:51,198 server 22324 15244 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:31:54,496 autoreload 22324 24104 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:31:55,945 autoreload 24248 24740 Watching for file changes with StatReloader
+INFO 2025-08-05 12:31:57,260 server 24248 9044 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:31:57,260 server 24248 9044 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:31:57,261 server 24248 9044 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:32:02,721 autoreload 24248 24740 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:32:04,243 autoreload 12272 19564 Watching for file changes with StatReloader
+INFO 2025-08-05 12:32:05,602 server 12272 26276 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:32:05,603 server 12272 26276 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:32:05,604 server 12272 26276 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:32:11,105 autoreload 12272 19564 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:32:12,553 autoreload 26360 7416 Watching for file changes with StatReloader
+INFO 2025-08-05 12:32:13,794 server 26360 2352 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:32:13,795 server 26360 2352 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:32:13,796 server 26360 2352 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:32:16,985 autoreload 26360 7416 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_logs\views.py changed, reloading.
+INFO 2025-08-05 12:32:18,497 autoreload 23864 13664 Watching for file changes with StatReloader
+INFO 2025-08-05 12:32:19,854 server 23864 23872 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:32:19,854 server 23864 23872 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-05 12:32:19,855 server 23864 23872 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-05 12:34:03,844 middleware 25700 24360 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.51, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 12:34:03,846 runserver 25700 21352 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:52322][0m
+INFO 2025-08-05 12:34:33,614 middleware 25700 22800 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/", "status_code": 404, "duration": 0.134, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8221}
+WARNING 2025-08-05 12:34:33,616 log 25700 21024 Not Found: /api/case-logs/case-details/10/
+WARNING 2025-08-05 12:34:33,617 runserver 25700 21352 [33mHTTP GET /api/case-logs/case-details/10/ 404 [0.14, 127.0.0.1:52322][0m
+INFO 2025-08-05 12:35:25,673 server 16600 16692 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:35:25,673 server 16600 16692 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 12:35:25,674 server 16600 16692 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 12:35:29,443 middleware 16600 3000 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/", "status_code": 500, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 206}
+ERROR 2025-08-05 12:35:29,445 log 16600 20712 Internal Server Error: /api/case-logs/case-details/10/
+ERROR 2025-08-05 12:35:29,446 runserver 16600 16692 [35;1mHTTP GET /api/case-logs/case-details/10/ 500 [0.07, 127.0.0.1:52464][0m
+INFO 2025-08-05 12:41:09,006 server 16600 16692 Killed 0 pending application instances
+INFO 2025-08-05 12:41:32,519 server 22208 4868 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:41:32,519 server 22208 4868 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 12:41:32,520 server 22208 4868 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 12:41:37,564 middleware 22208 20292 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/", "status_code": 200, "duration": 0.087, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 357}
+INFO 2025-08-05 12:41:37,567 runserver 22208 4868 [mHTTP GET /api/case-logs/case-details/10/ 200 [0.10, 127.0.0.1:52960][0m
+INFO 2025-08-05 12:50:30,724 server 22848 20984 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-05 12:50:30,724 server 22848 20984 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-05 12:50:30,725 server 22848 20984 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-05 12:50:40,562 middleware 22848 20336 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/", "status_code": 200, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 316}
+INFO 2025-08-05 12:50:40,566 runserver 22848 20984 [mHTTP GET /api/case-logs/case-details/10/ 200 [0.08, 127.0.0.1:53696][0m
+INFO 2025-08-05 12:50:51,117 middleware 22848 14092 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/edit/", "status_code": 401, "duration": 0.014, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 120}
+WARNING 2025-08-05 12:50:51,119 log 22848 17372 Unauthorized: /api/case-logs/case-details/10/edit/
+WARNING 2025-08-05 12:50:51,120 runserver 22848 20984 [31;1mHTTP GET /api/case-logs/case-details/10/edit/ 401 [0.02, 127.0.0.1:53696][0m
+INFO 2025-08-05 12:51:00,608 middleware 22848 25344 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.488, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-05 12:51:00,611 runserver 22848 20984 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:53696][0m
+INFO 2025-08-05 12:51:31,625 middleware 22848 19460 API Request: {"method": "GET", "path": "/api/case-logs/case-details/10/edit/", "status_code": 405, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 102}
+WARNING 2025-08-05 12:51:31,628 log 22848 17372 Method Not Allowed: /api/case-logs/case-details/10/edit/
+WARNING 2025-08-05 12:51:31,629 runserver 22848 20984 [31;1mHTTP GET /api/case-logs/case-details/10/edit/ 405 [0.08, 127.0.0.1:53696][0m
+INFO 2025-08-05 12:51:37,696 middleware 22848 24868 API Request: {"method": "PUT", "path": "/api/case-logs/case-details/10/edit/", "status_code": 405, "duration": 0.043, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 102}
+WARNING 2025-08-05 12:51:37,697 log 22848 17372 Method Not Allowed: /api/case-logs/case-details/10/edit/
+WARNING 2025-08-05 12:51:37,698 runserver 22848 20984 [31;1mHTTP PUT /api/case-logs/case-details/10/edit/ 405 [0.05, 127.0.0.1:53696][0m
+INFO 2025-08-05 12:51:42,113 middleware 22848 3404 API Request: {"method": "PATCH", "path": "/api/case-logs/case-details/10/edit/", "status_code": 200, "duration": 0.137, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 368}
+INFO 2025-08-05 12:51:42,119 runserver 22848 20984 [mHTTP PATCH /api/case-logs/case-details/10/edit/ 200 [0.15, 127.0.0.1:53696][0m

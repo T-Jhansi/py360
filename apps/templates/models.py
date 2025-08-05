@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import User  # Adjust if your user model is in a different app
+from apps.users.models import User 
 
 class Template(models.Model):
     """Stores content templates used in campaigns (email, sms, whatsapp, etc.)"""

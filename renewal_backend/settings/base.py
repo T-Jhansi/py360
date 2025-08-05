@@ -53,6 +53,8 @@ LOCAL_APPS = [
     'apps.renewals',
     'apps.channels',
     'apps.hierarchy',
+    'apps.case_tracking',
+    'apps.case_logs',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
