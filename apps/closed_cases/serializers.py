@@ -9,7 +9,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 class ClosedCasesListSerializer(serializers.ModelSerializer):
     """Serializer for closed cases list view"""
     
@@ -190,7 +189,6 @@ class ClosedCasesDetailSerializer(serializers.ModelSerializer):
             'deleted_by',
             'created_by',
             'updated_by',
-            # Detailed nested objects
             'customer_details',
             'policy_details',
             'channel_details',
