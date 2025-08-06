@@ -56,6 +56,7 @@ LOCAL_APPS = [
     'apps.case_tracking',
     'apps.case_logs',
     'apps.closed_cases',
+    'apps.customer_financial_profile',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',

@@ -36,6 +36,7 @@ api_patterns = [
     path('case-tracking/', include('apps.case_tracking.urls')),
     path('case-logs/', include('apps.case_logs.urls')),
     path('closed-cases/', include('apps.closed_cases.urls')),
+    path('financial-profiles/', include('apps.customer_financial_profile.urls')),
     
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
