@@ -10170,3 +10170,7 @@ INFO 2025-08-06 10:28:29,404 middleware 26372 13840 API Request: {"method": "GET
 WARNING 2025-08-06 10:28:29,407 log 26372 540 Unauthorized: /api/closed-cases/closed-cases/40/
 WARNING 2025-08-06 10:28:29,408 runserver 26372 18700 [31;1mHTTP GET /api/closed-cases/closed-cases/40/ 401 [0.04, 127.0.0.1:55644][0m
 INFO 2025-08-06 11:35:29,670 server 26372 18700 Killed 0 pending application instances
+INFO 2025-08-06 17:10:49,641 autoreload 13784 16692 Watching for file changes with StatReloader
+INFO 2025-08-06 17:10:50,924 server 13784 15584 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-06 17:10:50,924 server 13784 15584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-06 17:10:50,925 server 13784 15584 Listening on TCP address 127.0.0.1:8000
