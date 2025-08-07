@@ -1,14 +1,9 @@
-"""
-Serializers for Customer Assets app.
-"""
-
 from rest_framework import serializers
 from .models import CustomerAssets
 from apps.customers.models import Customer
 
 
 class CustomerAssetsSerializer(serializers.ModelSerializer):
-    """Serializer for CustomerAssets model"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)
@@ -35,7 +30,6 @@ class CustomerAssetsSerializer(serializers.ModelSerializer):
 
 
 class CustomerAssetsCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating CustomerAssets"""
     
     class Meta:
         model = CustomerAssets
@@ -49,7 +43,6 @@ class CustomerAssetsCreateSerializer(serializers.ModelSerializer):
 
 
 class CustomerAssetsUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for updating CustomerAssets"""
     
     class Meta:
         model = CustomerAssets
@@ -62,7 +55,6 @@ class CustomerAssetsUpdateSerializer(serializers.ModelSerializer):
 
 
 class CustomerAssetsListSerializer(serializers.ModelSerializer):
-    """Serializer for listing CustomerAssets with minimal data"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)

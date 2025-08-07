@@ -1,12 +1,15 @@
+"""
+URL configuration for Other Insurance Policies app.
+"""
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 
-app_name = 'customer_family_medical_history'
+app_name = 'other_insurance_policies'
 
 router = DefaultRouter()
-router.register(r'', views.CustomerFamilyMedicalHistoryViewSet, basename='customer-family-medical-history')
+router.register(r'', views.OtherInsurancePolicyViewSet, basename='other-insurance-policy')
 
 urlpatterns = [
     path('', include(router.urls)),

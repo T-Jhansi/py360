@@ -1,7 +1,3 @@
-"""
-Customer Family Medical History models for the Intelipro Insurance Policy Renewal System.
-"""
-
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from apps.core.models import BaseModel
@@ -9,9 +5,6 @@ from apps.customers.models import Customer
 
 
 class CustomerFamilyMedicalHistory(BaseModel):
-    """
-    Customer family medical history for insurance risk assessment and premium calculation.
-    """
     
     CONDITION_CATEGORY_CHOICES = [
         ('cardiovascular', 'Cardiovascular Disease'),
@@ -81,7 +74,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
         ('decline', 'Decline Coverage'),
     ]
     
-    # Foreign Keys
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
@@ -89,7 +81,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
         help_text="Customer this medical history belongs to"
     )
     
-    # Medical History Fields
     condition_category = models.CharField(
         max_length=100,
         choices=CONDITION_CATEGORY_CHOICES,
@@ -194,7 +185,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def risk_score(self):
-        """Calculate risk score based on condition severity and family relation"""
         severity_scores = {
             'mild': 1,
             'moderate': 2,
@@ -231,7 +221,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def is_high_risk(self):
-        """Determine if this condition represents high risk"""
         high_risk_conditions = [
             'cardiovascular', 'diabetes', 'cancer', 'neurological', 'genetic'
         ]
@@ -247,7 +236,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def requires_medical_exam(self):
-        """Determine if this condition requires medical examination"""
         exam_required_conditions = [
             'cardiovascular', 'diabetes', 'cancer', 'neurological'
         ]
@@ -261,7 +249,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def suggested_premium_loading(self):
-        """Suggest premium loading based on risk assessment"""
         if self.premium_loading:
             return self.premium_loading
         
@@ -281,7 +268,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def condition_summary(self):
-        """Return a summary of the condition"""
         parts = []
         parts.append(f"{self.get_family_relation_display()}")
         parts.append(f"{self.condition_name}")
@@ -292,7 +278,6 @@ class CustomerFamilyMedicalHistory(BaseModel):
     
     @property
     def treatment_summary(self):
-        """Return a summary of treatment information"""
         parts = []
         if self.doctor_name:
             parts.append(f"Dr. {self.doctor_name}")

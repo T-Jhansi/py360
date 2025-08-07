@@ -4,7 +4,6 @@ from apps.customers.models import Customer
 
 
 class CustomerFinancialProfileSerializer(serializers.ModelSerializer):
-    """Serializer for CustomerFinancialProfile model"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)
@@ -36,11 +35,9 @@ class CustomerFinancialProfileSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at', 'updated_at']
     
     def get_recommended_premium(self, obj):
-        """Get calculated recommended premium"""
         return obj.calculate_recommended_premium()
     
     def validate_customer(self, value):
-        """Validate that customer doesn't already have a financial profile"""
         if self.instance is None:  # Creating new profile
             if CustomerFinancialProfile.objects.filter(customer=value, is_deleted=False).exists():
                 raise serializers.ValidationError(
@@ -50,7 +47,6 @@ class CustomerFinancialProfileSerializer(serializers.ModelSerializer):
 
 
 class CustomerFinancialProfileCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating CustomerFinancialProfile"""
     
     class Meta:
         model = CustomerFinancialProfile
@@ -67,7 +63,6 @@ class CustomerFinancialProfileCreateSerializer(serializers.ModelSerializer):
         ]
     
     def validate_customer(self, value):
-        """Validate that customer doesn't already have a financial profile"""
         if CustomerFinancialProfile.objects.filter(customer=value, is_deleted=False).exists():
             raise serializers.ValidationError(
                 "Customer already has a financial profile."
@@ -76,7 +71,6 @@ class CustomerFinancialProfileCreateSerializer(serializers.ModelSerializer):
 
 
 class CustomerFinancialProfileUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for updating CustomerFinancialProfile"""
     
     class Meta:
         model = CustomerFinancialProfile
@@ -93,7 +87,6 @@ class CustomerFinancialProfileUpdateSerializer(serializers.ModelSerializer):
 
 
 class CustomerFinancialProfileListSerializer(serializers.ModelSerializer):
-    """Serializer for listing CustomerFinancialProfile with minimal data"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)

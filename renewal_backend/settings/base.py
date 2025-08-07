@@ -66,6 +66,7 @@ LOCAL_APPS = [
     'apps.ai_insights',
     'apps.ai_policy_recommendations',
     'apps.policy_timeline',
+    'apps.other_insurance_policies',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
