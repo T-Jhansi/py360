@@ -1,7 +1,3 @@
-"""
-Serializers for Customer Payment Schedule app.
-"""
-
 from rest_framework import serializers
 from decimal import Decimal
 from django.utils import timezone
@@ -11,9 +7,9 @@ from .models import PaymentSchedule
 class PaymentScheduleSerializer(serializers.ModelSerializer):
     """Serializer for PaymentSchedule model"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
-    case_number = serializers.CharField(source='case_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
+    case_number = serializers.CharField(read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_overdue = serializers.IntegerField(read_only=True)
     is_due_today = serializers.BooleanField(read_only=True)
@@ -309,9 +305,9 @@ class PaymentScheduleUpdateSerializer(serializers.ModelSerializer):
 class PaymentScheduleListSerializer(serializers.ModelSerializer):
     """Serializer for listing PaymentSchedule with minimal data"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
-    case_number = serializers.CharField(source='case_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
+    case_number = serializers.CharField(read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_until_due = serializers.IntegerField(read_only=True)
     schedule_summary = serializers.CharField(read_only=True)
@@ -343,9 +339,9 @@ class PaymentScheduleListSerializer(serializers.ModelSerializer):
 class PaymentScheduleSummarySerializer(serializers.ModelSerializer):
     """Serializer for payment schedule summary and analytics"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
-    case_number = serializers.CharField(source='case_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
+    case_number = serializers.CharField(read_only=True)
     schedule_summary = serializers.CharField(read_only=True)
     status_display = serializers.CharField(read_only=True)
     

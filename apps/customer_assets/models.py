@@ -1,7 +1,3 @@
-"""
-Customer Assets models for the Intelipro Insurance Policy Renewal System.
-"""
-
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from apps.core.models import BaseModel
@@ -9,10 +5,6 @@ from apps.customers.models import Customer
 
 
 class CustomerAssets(BaseModel):
-    """
-    Customer assets information including residence and property details.
-    """
-    
     RESIDENCE_TYPE_CHOICES = [
         ('apartment', 'Apartment'),
         ('house', 'House'),
@@ -42,7 +34,6 @@ class CustomerAssets(BaseModel):
         ('poor', 'Poor'),
     ]
     
-    # Foreign Key to Customer
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
@@ -50,7 +41,6 @@ class CustomerAssets(BaseModel):
         help_text="Customer who owns these assets"
     )
     
-    # Residence Information
     residence_type = models.CharField(
         max_length=50,
         choices=RESIDENCE_TYPE_CHOICES,
@@ -105,10 +95,8 @@ class CustomerAssets(BaseModel):
     
     @property
     def asset_score(self):
-        """Calculate a simple asset score based on residence details"""
         score = 0
         
-        # Score based on residence type
         type_scores = {
             'penthouse': 10,
             'villa': 9,
@@ -121,7 +109,6 @@ class CustomerAssets(BaseModel):
         }
         score += type_scores.get(self.residence_type, 0)
         
-        # Score based on ownership status
         status_scores = {
             'owned': 10,
             'family_owned': 8,
@@ -132,7 +119,6 @@ class CustomerAssets(BaseModel):
         }
         score += status_scores.get(self.residence_status, 0)
         
-        # Score based on rating
         rating_scores = {
             'excellent': 10,
             'very_good': 8,
@@ -143,4 +129,4 @@ class CustomerAssets(BaseModel):
         }
         score += rating_scores.get(self.residence_rating, 0)
         
-        return min(score, 30)  # Cap at 30
+        return min(score, 30) 

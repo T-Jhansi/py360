@@ -1,7 +1,3 @@
-"""
-AI Policy Recommendations models for the Intelipro Insurance Policy Renewal System.
-"""
-
 from django.db import models
 from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel
@@ -10,9 +6,7 @@ from apps.policies.models import Policy, PolicyType
 
 User = get_user_model()
 
-
 class AIPolicyRecommendation(BaseModel):
-    """Model for storing AI-generated policy recommendations for customers"""
     
     PRIORITY_LEVEL_CHOICES = [
         ('high', 'High'),
@@ -137,14 +131,12 @@ class AIPolicyRecommendation(BaseModel):
         return f"{self.recommendation_title} for {self.customer.name}"
     
     def is_expired(self):
-        """Check if this recommendation has expired"""
         if self.expires_at:
             from django.utils import timezone
             return timezone.now() > self.expires_at
         return False
     
     def days_until_expiry(self):
-        """Get number of days until this recommendation expires"""
         if self.expires_at:
             from django.utils import timezone
             delta = self.expires_at - timezone.now()
@@ -153,7 +145,6 @@ class AIPolicyRecommendation(BaseModel):
 
 
 class AIPolicyRecommendationInteraction(BaseModel):
-    """Model for tracking customer interactions with AI policy recommendations"""
     
     INTERACTION_TYPE_CHOICES = [
         ('viewed', 'Viewed'),

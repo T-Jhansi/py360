@@ -1,7 +1,3 @@
-"""
-AI Insights models for the Intelipro Insurance Policy Renewal System.
-"""
-
 from django.db import models
 from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel
@@ -12,7 +8,6 @@ User = get_user_model()
 
 
 class AIInsight(BaseModel):
-    """Model for storing AI-generated insights about customers and policies"""
     
     INSIGHT_TYPE_CHOICES = [
         ('claim_likelihood', 'Claim Likelihood'),
@@ -89,7 +84,6 @@ class AIInsight(BaseModel):
 
 
 class AIInsightHistory(BaseModel):
-    """Model for tracking changes to AI insights"""
     
     insight = models.ForeignKey(
         AIInsight,

@@ -1,13 +1,8 @@
-"""
-Serializers for Customer Family Medical History app.
-"""
-
 from rest_framework import serializers
 from .models import CustomerFamilyMedicalHistory
 
 
 class CustomerFamilyMedicalHistorySerializer(serializers.ModelSerializer):
-    """Serializer for CustomerFamilyMedicalHistory model"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)
@@ -54,7 +49,6 @@ class CustomerFamilyMedicalHistorySerializer(serializers.ModelSerializer):
 
 
 class CustomerFamilyMedicalHistoryCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating CustomerFamilyMedicalHistory"""
     
     class Meta:
         model = CustomerFamilyMedicalHistory
@@ -77,15 +71,12 @@ class CustomerFamilyMedicalHistoryCreateSerializer(serializers.ModelSerializer):
         ]
     
     def validate(self, data):
-        """Validate the medical history data"""
-        # Validate age diagnosed
         age_diagnosed = data.get('age_diagnosed')
         if age_diagnosed is not None and (age_diagnosed < 0 or age_diagnosed > 120):
             raise serializers.ValidationError(
                 "Age diagnosed must be between 0 and 120 years."
             )
         
-        # Validate premium loading
         premium_loading = data.get('premium_loading')
         if premium_loading is not None and (premium_loading < 0 or premium_loading > 100):
             raise serializers.ValidationError(
@@ -96,7 +87,6 @@ class CustomerFamilyMedicalHistoryCreateSerializer(serializers.ModelSerializer):
 
 
 class CustomerFamilyMedicalHistoryUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for updating CustomerFamilyMedicalHistory"""
     
     class Meta:
         model = CustomerFamilyMedicalHistory
@@ -118,15 +108,13 @@ class CustomerFamilyMedicalHistoryUpdateSerializer(serializers.ModelSerializer):
         ]
     
     def validate(self, data):
-        """Validate the medical history data"""
-        # Validate age diagnosed
+       
         age_diagnosed = data.get('age_diagnosed', self.instance.age_diagnosed if self.instance else None)
         if age_diagnosed is not None and (age_diagnosed < 0 or age_diagnosed > 120):
             raise serializers.ValidationError(
                 "Age diagnosed must be between 0 and 120 years."
             )
         
-        # Validate premium loading
         premium_loading = data.get('premium_loading', self.instance.premium_loading if self.instance else None)
         if premium_loading is not None and (premium_loading < 0 or premium_loading > 100):
             raise serializers.ValidationError(
@@ -137,7 +125,6 @@ class CustomerFamilyMedicalHistoryUpdateSerializer(serializers.ModelSerializer):
 
 
 class CustomerFamilyMedicalHistoryListSerializer(serializers.ModelSerializer):
-    """Serializer for listing CustomerFamilyMedicalHistory with minimal data"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)
@@ -170,7 +157,6 @@ class CustomerFamilyMedicalHistoryListSerializer(serializers.ModelSerializer):
 
 
 class CustomerFamilyMedicalHistoryRiskAssessmentSerializer(serializers.ModelSerializer):
-    """Serializer for medical history risk assessment"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)
@@ -203,7 +189,6 @@ class CustomerFamilyMedicalHistoryRiskAssessmentSerializer(serializers.ModelSeri
 
 
 class CustomerFamilyMedicalHistorySummarySerializer(serializers.ModelSerializer):
-    """Serializer for medical history summary and analytics"""
     
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_code = serializers.CharField(source='customer.customer_code', read_only=True)

@@ -10,8 +10,8 @@ from .models import CustomerPayment
 class CustomerPaymentSerializer(serializers.ModelSerializer):
     """Serializer for CustomerPayment model"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
     case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_overdue = serializers.IntegerField(read_only=True)
@@ -254,8 +254,8 @@ class CustomerPaymentUpdateSerializer(serializers.ModelSerializer):
 class CustomerPaymentListSerializer(serializers.ModelSerializer):
     """Serializer for listing CustomerPayment with minimal data"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
     case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_overdue = serializers.IntegerField(read_only=True)
@@ -286,8 +286,8 @@ class CustomerPaymentListSerializer(serializers.ModelSerializer):
 class CustomerPaymentSummarySerializer(serializers.ModelSerializer):
     """Serializer for payment summary and analytics"""
     
-    customer_name = serializers.CharField(source='customer_name', read_only=True)
-    policy_number = serializers.CharField(source='policy_number', read_only=True)
+    customer_name = serializers.CharField(read_only=True)
+    policy_number = serializers.CharField(read_only=True)
     case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
     payment_summary = serializers.CharField(read_only=True)
     transaction_summary = serializers.CharField(read_only=True)

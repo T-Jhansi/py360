@@ -1,13 +1,6 @@
-"""
-Views for Customer Assets app.
-"""
-
-from rest_framework import generics, status
-from rest_framework.decorators import api_view
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 from django.db.models import Q
-from apps.core.pagination import StandardResultsSetPagination
 from .models import CustomerAssets
 from .serializers import (
     CustomerAssetsSerializer,
@@ -17,42 +10,37 @@ from .serializers import (
 )
 
 
-class CustomerAssetsListCreateView(generics.ListCreateAPIView):
-    """
-    List all customer assets or create a new one.
-    """
+class CustomerAssetsViewSet(viewsets.ModelViewSet):
     queryset = CustomerAssets.objects.filter(is_deleted=False)
-    pagination_class = StandardResultsSetPagination
-    
+
     def get_serializer_class(self):
-        if self.request.method == 'POST':
+        if self.action == 'create':
             return CustomerAssetsCreateSerializer
-        return CustomerAssetsListSerializer
-    
+        elif self.action == 'list':
+            return CustomerAssetsListSerializer
+        elif self.action in ['update', 'partial_update']:
+            return CustomerAssetsUpdateSerializer
+        return CustomerAssetsSerializer
+
     def get_queryset(self):
         queryset = CustomerAssets.objects.filter(is_deleted=False)
-        
-        # Filter by customer
+
         customer_id = self.request.query_params.get('customer_id')
         if customer_id:
             queryset = queryset.filter(customer_id=customer_id)
-        
-        # Filter by residence type
+
         residence_type = self.request.query_params.get('residence_type')
         if residence_type:
             queryset = queryset.filter(residence_type=residence_type)
-        
-        # Filter by residence status
+
         residence_status = self.request.query_params.get('residence_status')
         if residence_status:
             queryset = queryset.filter(residence_status=residence_status)
-        
-        # Filter by residence rating
+
         residence_rating = self.request.query_params.get('residence_rating')
         if residence_rating:
             queryset = queryset.filter(residence_rating=residence_rating)
-        
-        # Search by customer name, code, or location
+
         search = self.request.query_params.get('search')
         if search:
             queryset = queryset.filter(
@@ -62,87 +50,59 @@ class CustomerAssetsListCreateView(generics.ListCreateAPIView):
                 Q(customer__customer_code__icontains=search) |
                 Q(residence_location__icontains=search)
             )
-        
+
         return queryset.select_related('customer').order_by('-created_at')
-    
+
+    def create(self, request, *args, **kwargs):
+        try:
+            serializer = self.get_serializer(data=request.data)
+            if serializer.is_valid():
+                customer_assets = serializer.save(created_by=request.user)
+
+                response_serializer = CustomerAssetsSerializer(customer_assets)
+                return Response({
+                    'success': True,
+                    'message': 'Customer assets stored successfully',
+                    'data': response_serializer.data
+                }, status=status.HTTP_201_CREATED)
+            else:
+                return Response({
+                    'success': False,
+                    'message': 'Validation failed',
+                    'errors': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error storing customer assets: {str(e)}',
+                'errors': {}
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def list(self, request, *args, **kwargs):
+        try:
+            queryset = self.get_queryset()
+            serializer = self.get_serializer(queryset, many=True)
+
+            return Response({
+                'success': True,
+                'message': 'Customer assets retrieved successfully',
+                'count': queryset.count(),
+                'data': serializer.data
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error retrieving customer assets: {str(e)}',
+                'data': []
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     def perform_create(self, serializer):
-        """Create customer assets"""
         serializer.save(created_by=self.request.user)
 
-
-class CustomerAssetsDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Retrieve, update or delete customer assets.
-    """
-    queryset = CustomerAssets.objects.filter(is_deleted=False)
-    
-    def get_serializer_class(self):
-        if self.request.method in ['PUT', 'PATCH']:
-            return CustomerAssetsUpdateSerializer
-        return CustomerAssetsSerializer
-    
     def perform_update(self, serializer):
-        """Update customer assets"""
         serializer.save(updated_by=self.request.user)
-    
+
     def perform_destroy(self, instance):
-        """Soft delete the customer assets"""
         instance.delete(user=self.request.user)
-
-
-@api_view(['GET'])
-def customer_assets_by_customer(request, customer_id):
-    """
-    Get all assets for a specific customer.
-    """
-    assets = CustomerAssets.objects.filter(
-        customer_id=customer_id,
-        is_deleted=False
-    )
-    serializer = CustomerAssetsListSerializer(assets, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def customer_assets_statistics(request):
-    """
-    Get statistics about customer assets.
-    """
-    assets = CustomerAssets.objects.filter(is_deleted=False)
-    
-    # Residence type distribution
-    type_distribution = {}
-    for choice in CustomerAssets.RESIDENCE_TYPE_CHOICES:
-        type_key = choice[0]
-        count = assets.filter(residence_type=type_key).count()
-        type_distribution[type_key] = count
-    
-    # Residence status distribution
-    status_distribution = {}
-    for choice in CustomerAssets.RESIDENCE_STATUS_CHOICES:
-        status_key = choice[0]
-        count = assets.filter(residence_status=status_key).count()
-        status_distribution[status_key] = count
-    
-    # Residence rating distribution
-    rating_distribution = {}
-    for choice in CustomerAssets.RESIDENCE_RATING_CHOICES:
-        rating_key = choice[0]
-        count = assets.filter(residence_rating=rating_key).count()
-        rating_distribution[rating_key] = count
-    
-    # Asset score distribution
-    asset_scores = [asset.asset_score for asset in assets]
-    score_ranges = {
-        'low': len([s for s in asset_scores if s < 10]),
-        'medium': len([s for s in asset_scores if 10 <= s < 20]),
-        'high': len([s for s in asset_scores if s >= 20]),
-    }
-    
-    return Response({
-        'total_assets': assets.count(),
-        'residence_type_distribution': type_distribution,
-        'residence_status_distribution': status_distribution,
-        'residence_rating_distribution': rating_distribution,
-        'asset_score_distribution': score_ranges,
-    })
