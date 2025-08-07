@@ -37,7 +37,14 @@ api_patterns = [
     path('case-logs/', include('apps.case_logs.urls')),
     path('closed-cases/', include('apps.closed_cases.urls')),
     path('financial-profiles/', include('apps.customer_financial_profile.urls')),
-    
+    path('customer-assets/', include('apps.customer_assets.urls')),
+    path('customer-vehicles/', include('apps.customer_vehicle.urls')),
+    path('customer-policy-preferences/', include('apps.customer_policy_preferences.urls')),
+    path('customer-family-medical-history/', include('apps.customer_family_medical_history.urls')),
+    path('customer-payments/', include('apps.customer_payments.urls')),
+    path('customer-payment-schedule/', include('apps.customer_payment_schedule.urls')),
+    path('policy-timeline/', include('apps.policy_timeline.urls')),
+
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
