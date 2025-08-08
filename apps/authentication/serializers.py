@@ -1,6 +1,3 @@
-"""
-Authentication serializers for the Intelipro Insurance Policy Renewal System.
-"""
 
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -28,7 +25,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         if email and password:
             user = authenticate(
                 request=self.context.get('request'),
-                username=email,  # important: pass as username
+                username=email, 
                 password=password
             )
 
@@ -148,7 +145,6 @@ class PasswordResetRequestSerializer(serializers.Serializer):
         try:
             User.objects.get(email=value, is_active=True)
         except User.DoesNotExist:
-            # Don't reveal if email exists or not for security
             pass
         return value
 

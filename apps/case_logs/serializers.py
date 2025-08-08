@@ -129,8 +129,6 @@ class CaseLogSerializer(serializers.ModelSerializer):
         return None
 
 
-# Edit Case Details Serializers
-
 class CaseDetailsSerializer(serializers.Serializer):
     """Serializer for fetching case details for editing"""
 

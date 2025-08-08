@@ -104,28 +104,23 @@ class Campaign(BaseModel):
         """Update campaign statistics based on recipient data"""
         recipients = self.recipients.all()
 
-        # Count sent emails (status = 'sent' OR 'delivered')
         self.sent_count = recipients.filter(
             email_status__in=['sent', 'delivered']
         ).count()
 
-        # Count delivered emails (status = 'delivered' OR has delivered timestamp)
         self.delivered_count = recipients.filter(
             Q(email_status='delivered') |
             Q(email_delivered_at__isnull=False)
         ).count()
 
-        # Count opened emails (opened, clicked, replied, forwarded)
         self.opened_count = recipients.filter(
             email_engagement__in=['opened', 'clicked', 'replied', 'forwarded']
         ).count()
 
-        # Count clicked emails (clicked, replied, forwarded)
         self.clicked_count = recipients.filter(
             email_engagement__in=['clicked', 'replied', 'forwarded']
         ).count()
 
-        # Count total responses (replied, forwarded, etc.)
         self.total_responses = recipients.filter(
             email_engagement__in=['replied', 'forwarded']
         ).count()
@@ -449,7 +444,6 @@ class CampaignTemplate(BaseModel):
     
     # Template variables
     variables = models.JSONField(default=list, help_text="List of template variables")
-    # Example: ["customer_name", "policy_number", "expiry_date", "premium_amount"]
     
     # Usage tracking
     usage_count = models.PositiveIntegerField(default=0)
@@ -589,8 +583,6 @@ class CampaignAutomation(BaseModel):
     
     # Trigger conditions
     trigger_conditions = models.JSONField(default=dict)
-    # Example for policy_expiry: {"days_before_expiry": 30}
-    # Example for payment_due: {"days_after_due": 7}
     
     # Timing
     delay_days = models.PositiveIntegerField(default=0)

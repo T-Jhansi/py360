@@ -24,11 +24,8 @@ class Dashboard(BaseModel):
     dashboard_type = models.CharField(max_length=20, choices=DASHBOARD_TYPE_CHOICES)
     description = models.TextField(blank=True)
     
-    # Layout configuration
     layout_config = models.JSONField(default=dict)
-    # Example: {"columns": 3, "widgets": [{"id": "widget1", "position": {"x": 0, "y": 0, "w": 1, "h": 1}}]}
     
-    # Access control
     is_public = models.BooleanField(default=False)
     allowed_roles = models.JSONField(default=list, blank=True)
     allowed_users = models.ManyToManyField(User, blank=True, related_name='accessible_dashboards')
@@ -94,16 +91,13 @@ class Widget(BaseModel):
     
     # Query configuration
     query_config = models.JSONField(default=dict)
-    # Example: {"filters": {"status": "active"}, "group_by": "policy_type", "date_range": "last_30_days"}
     
     custom_query = models.TextField(blank=True, help_text="Custom SQL query for advanced widgets")
     api_endpoint = models.URLField(blank=True, help_text="External API endpoint for data")
     
     # Display configuration
     display_config = models.JSONField(default=dict)
-    # Example: {"title": "Active Policies", "color": "#007bff", "show_legend": true}
     
-    # Size and position (managed by dashboard layout)
     default_width = models.PositiveIntegerField(default=1)
     default_height = models.PositiveIntegerField(default=1)
     
@@ -264,7 +258,6 @@ class Report(BaseModel):
     
     # Report configuration
     parameters = models.JSONField(default=dict)
-    # Example: {"date_range": "last_30_days", "policy_types": ["LIFE", "HEALTH"], "include_charts": true}
     
     # Scheduling
     frequency = models.CharField(max_length=20, choices=FREQUENCY_CHOICES, default='on_demand')
@@ -273,7 +266,6 @@ class Report(BaseModel):
     
     # Recipients
     recipients = models.JSONField(default=list, blank=True)
-    # Example: [{"email": "manager@company.com", "type": "email"}, {"user_id": 123, "type": "user"}]
     
     # Template
     template_config = models.JSONField(default=dict)
@@ -378,7 +370,6 @@ class AnalyticsEvent(BaseModel):
     
     # Event data
     event_data = models.JSONField(default=dict, blank=True)
-    # Example: {"button_text": "Export Report", "report_id": 123, "format": "pdf"}
     
     # Technical details
     ip_address = models.GenericIPAddressField(null=True, blank=True)
@@ -429,12 +420,10 @@ class AlertRule(BaseModel):
     # Condition
     condition_type = models.CharField(max_length=20, choices=CONDITION_TYPE_CHOICES)
     condition_config = models.JSONField(default=dict)
-    # Example: {"operator": "greater_than", "value": 100, "duration": "5_minutes"}
     
     # Notification settings
     notification_types = models.JSONField(default=list)
     recipients = models.JSONField(default=list)
-    # Example: [{"type": "email", "address": "admin@company.com"}, {"type": "user", "user_id": 123}]
     
     # Alert frequency
     check_frequency = models.PositiveIntegerField(default=300, help_text="Check frequency in seconds")

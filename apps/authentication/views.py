@@ -1,7 +1,3 @@
-"""
-Authentication views for the Intelipro Insurance Policy Renewal System.
-"""
-
 from urllib import request
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
@@ -245,7 +241,7 @@ class LogoutView(APIView):
 class UserRegistrationView(APIView):
     """User registration view"""
     
-    permission_classes = [permissions.AllowAny]  # Allow registration without auth
+    permission_classes = [permissions.AllowAny] 
     
     @extend_schema(
         summary="User Registration",

@@ -8,8 +8,6 @@ from apps.policies.models import Policy
 from apps.renewals.models import RenewalCase
 
 class CampaignSerializer(serializers.ModelSerializer):
-    # created_by_name = serializers.CharField(source='created_by.get_full_name', read_only=True)
-    # assigned_to_name = serializers.CharField(source='assigned_to.get_full_name', read_only=True)
 
     class Meta:
         model = Campaign
@@ -89,7 +87,6 @@ class CampaignCreateSerializer(serializers.Serializer):
         try:
             template = Template.objects.get(id=value)
             print(f"Template found: ID={template.id}, Name={template.name}, Channel={template.channel}, Active={template.is_active}")
-            # Allow None or 'email' for channel (temporary fix)
             if template.channel is not None and template.channel != 'email':
                 raise serializers.ValidationError(f"Template must be an email template. Found channel: {template.channel}")
             if not template.is_active:
@@ -114,14 +111,11 @@ class CampaignCreateSerializer(serializers.Serializer):
         campaign_type = CampaignType.objects.get(id=validated_data['campaign_type_id'])
         template = Template.objects.get(id=validated_data['template_id'])
 
-        # Use file name as campaign name if not provided
         campaign_name = validated_data.get('campaign_name', file_upload.original_filename)
 
-        # Get or create target audience based on type (handle permissions gracefully)
         try:
             target_audience = self._get_or_create_target_audience(validated_data['target_audience_type'], file_upload)
         except Exception as e:
-            # If target audience creation fails due to permissions, create campaign without it
             print(f"Warning: Could not create target audience due to permissions: {e}")
             target_audience = None
 
@@ -132,30 +126,26 @@ class CampaignCreateSerializer(serializers.Serializer):
             'template': template,
             'description': validated_data.get('description', f"Campaign created from file: {file_upload.original_filename}"),
             'status': 'draft',
-            'upload': file_upload,  # Properly set the upload relationship
+            'upload': file_upload, 
             'channels': ['email'],
             'schedule_type': validated_data.get('schedule_type', 'immediate'),
             'scheduled_at': validated_data.get('scheduled_at'),
             'started_at': validated_data.get('scheduled_at', timezone.now()),
             'subject_line': validated_data.get('subject_line', template.subject),
             'created_by': self.context['request'].user,
-            'assigned_to': self._get_assigned_agent()  # Auto-assign agent
+            'assigned_to': self._get_assigned_agent() 
         }
 
-        # Only add target_audience if it was created successfully
         if target_audience:
             campaign_data['target_audience'] = target_audience
 
         campaign = Campaign.objects.create(**campaign_data)
 
-        # Create campaign recipients based on target audience
         target_count = self._create_campaign_recipients(campaign, validated_data['target_audience_type'], file_upload)
 
-        # Update campaign target count
         campaign.target_count = target_count
         campaign.save()
 
-        # Send emails immediately if requested
         if validated_data.get('send_immediately', False):
             try:
                 from .services import EmailCampaignService
@@ -164,19 +154,17 @@ class CampaignCreateSerializer(serializers.Serializer):
                 logger = logging.getLogger(__name__)
                 logger.info(f"Starting immediate email sending for campaign {campaign.pk}")
 
-                # Send emails synchronously but don't raise exceptions
                 result = EmailCampaignService.send_campaign_emails(campaign.pk)
 
                 if "error" in result:
                     logger.error(f"Email sending failed: {result['error']}")
-                    campaign.status = 'draft'  # Keep as draft so user can retry
+                    campaign.status = 'draft'  
                     campaign.description += f" [Email Error: {result['error']}]"
                 elif "message" in result and "No pending recipients found" in str(result.get("message", "")):
                     logger.warning(f"No recipients found: {result['message']}")
                     campaign.status = 'draft'
                     campaign.description += f" [Warning: {result['message']}]"
                 elif "success" in result:
-                    # Check if any emails were actually sent
                     sent_count = int(result.get('sent_count', 0))
                     failed_count = int(result.get('failed_count', 0))
 
@@ -196,7 +184,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                 import logging
                 logger = logging.getLogger(__name__)
                 logger.error(f"Exception during email sending: {str(e)}")
-                campaign.status = 'draft'  # Keep as draft so user can retry
+                campaign.status = 'draft'  
                 campaign.description += f" [Exception: {str(e)}]"
 
             campaign.save()
@@ -207,7 +195,6 @@ class CampaignCreateSerializer(serializers.Serializer):
         """Get or create target audience based on type"""
         from apps.TargetAudience.models import TargetAudience
 
-        # Create audience name based on type and file
         audience_name_map = {
             'pending_renewals': f"Pending Renewals - {file_upload.original_filename}",
             'expired_policies': f"Expired Policies - {file_upload.original_filename}",
@@ -252,7 +239,6 @@ class CampaignCreateSerializer(serializers.Serializer):
 
         User = get_user_model()
 
-        # Get users who can be assigned campaigns (staff users)
         available_agents = User.objects.filter(
             is_staff=True,
             is_active=True
@@ -260,7 +246,6 @@ class CampaignCreateSerializer(serializers.Serializer):
             campaign_count=Count('assigned_campaigns')
         ).order_by('campaign_count')
 
-        # Return the agent with least campaigns, or None if no agents available
         return available_agents.first() if available_agents.exists() else None
 
     def _create_campaign_recipients(self, campaign, target_audience_type, file_upload):
@@ -282,17 +267,13 @@ class CampaignCreateSerializer(serializers.Serializer):
             recipients_to_create = []
 
             if target_audience_type == 'pending_renewals':
-                # Get customers with pending renewal cases - IMPROVED LOGIC
-                # First try to get renewal cases from the specific file upload
                 renewal_cases = RenewalCase.objects.filter(
                     status='pending',
                     customer__email__isnull=False,
                     customer__email__gt=''
                 ).select_related('customer', 'policy')
 
-                # If we have a file upload, try to match by upload date or get recent records
                 if file_upload:
-                    # Try to get renewal cases created around the file upload time (within 1 hour)
                     from datetime import timedelta
                     upload_time = file_upload.created_at
                     time_window_start = upload_time - timedelta(hours=1)
@@ -306,7 +287,6 @@ class CampaignCreateSerializer(serializers.Serializer):
                     if file_related_cases.exists():
                         renewal_cases = file_related_cases
                     else:
-                        # Otherwise, get the most recent cases up to successful_records count
                         renewal_cases = renewal_cases.order_by('-created_at')[:file_upload.successful_records]
 
                 logger.info(f"Found {renewal_cases.count()} pending renewal cases for campaign {campaign.id}")
@@ -334,7 +314,6 @@ class CampaignCreateSerializer(serializers.Serializer):
 
                 # If we have a file upload, try to match policies from that upload
                 if file_upload:
-                    # Try to get policies created around the file upload time (within 1 hour)
                     from datetime import timedelta
                     upload_time = file_upload.created_at
                     time_window_start = upload_time - timedelta(hours=1)
@@ -348,7 +327,6 @@ class CampaignCreateSerializer(serializers.Serializer):
                     if file_related_policies.exists():
                         expired_policies = file_related_policies
                     else:
-                        # Otherwise, get the most recent expired policies up to successful_records count
                         expired_policies = expired_policies.order_by('-created_at')[:file_upload.successful_records]
 
                 logger.info(f"Found {expired_policies.count()} expired policies for campaign {campaign.id}")
@@ -374,9 +352,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                     email__gt=''
                 )
 
-                # If we have a file upload, try to match customers from that upload
                 if file_upload:
-                    # Try to get customers created around the file upload time (within 2 hours for safety)
                     from datetime import timedelta
                     upload_time = file_upload.created_at
                     time_window_start = upload_time - timedelta(hours=1)
@@ -391,7 +367,6 @@ class CampaignCreateSerializer(serializers.Serializer):
                         customers = file_related_customers
                         logger.info(f"Found {customers.count()} customers from file upload time window")
                     else:
-                        # Otherwise, get the most recent customers up to successful_records count
                         target_count = file_upload.successful_records if file_upload.successful_records > 0 else 10
                         customers = customers.order_by('-created_at')[:target_count]
                         logger.info(f"Using {customers.count()} most recent customers (target: {target_count})")
@@ -401,27 +376,21 @@ class CampaignCreateSerializer(serializers.Serializer):
 
                 logger.info(f"Total customers selected for campaign {campaign.id}: {customers.count()}")
 
-                # Get customer IDs for bulk policy lookup
                 customer_ids = list(customers.values_list('id', flat=True))
 
-                # Get latest policies for all customers - simplified approach
                 latest_policies = {}
                 if customer_ids:
-                    # Get all policies for these customers, ordered by customer and creation date
                     all_policies = Policy.objects.filter(
                         customer__in=customer_ids
                     ).select_related('customer').order_by('customer', '-created_at')
 
-                    # Keep only the latest policy for each customer
                     seen_customers = set()
                     for policy in all_policies:
                         if policy.customer.pk not in seen_customers:
                             latest_policies[policy.customer.pk] = policy
                             seen_customers.add(policy.customer.pk)
 
-                # Prepare bulk recipients with latest policies
                 for customer in customers:
-                    # Get latest policy from lookup dict
                     latest_policy = latest_policies.get(customer.pk)
 
                     recipients_to_create.append(
@@ -435,22 +404,18 @@ class CampaignCreateSerializer(serializers.Serializer):
                         )
                     )
 
-            # Create recipients individually to handle unique constraints properly
             if recipients_to_create:
                 recipients_created = 0
 
-                # Get existing recipient customer IDs to avoid duplicates
                 existing_customer_ids = set(
                     CampaignRecipient.objects.filter(campaign=campaign).values_list('customer_id', flat=True)
                 )
 
                 for recipient_data in recipients_to_create:
-                    # Skip if customer is already a recipient
                     if recipient_data.customer.id in existing_customer_ids:
                         continue
 
                     try:
-                        # Generate tracking ID manually to avoid conflicts
                         import uuid
                         import hashlib
                         unique_string = f"{campaign.id}-{recipient_data.customer.id}-{uuid.uuid4()}"
@@ -469,7 +434,6 @@ class CampaignCreateSerializer(serializers.Serializer):
                         recipients_created += 1
                         logger.debug(f"Created recipient for customer {recipient_data.customer.email}")
 
-                        # Add tracking pixels and links to email content
                         self._add_email_tracking(recipient)
 
                     except Exception as e:
@@ -487,16 +451,12 @@ class CampaignCreateSerializer(serializers.Serializer):
         try:
             from django.conf import settings
 
-            # Get the base URL for tracking
             base_url = getattr(settings, 'BASE_URL', 'http://localhost:8000')
 
-            # Create tracking pixel URL
             tracking_pixel_url = f"{base_url}/api/campaigns/track-open/?t={recipient.tracking_id}"
 
-            # Add tracking pixel to email content (1x1 transparent image)
             tracking_pixel = f'<img src="{tracking_pixel_url}" width="1" height="1" style="display:none;" alt="" />'
 
-            # Store tracking info in recipient (you can extend this as needed)
             logger.debug(f"Added tracking pixel for recipient {recipient.id}: {tracking_pixel_url}")
 
         except Exception as e:

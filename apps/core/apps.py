@@ -10,6 +10,6 @@ class CoreConfig(AppConfig):
         """Initialize app when Django starts"""
         # Import signal handlers
         try:
-            import apps.core.signals  # noqa
+            import apps.core.signals
         except ImportError:
             pass 
