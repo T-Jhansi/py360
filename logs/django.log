@@ -10488,3 +10488,175 @@ INFO 2025-08-07 18:27:09,861 runserver 10396 17396 [mHTTP POST /api/financial-p
 INFO 2025-08-07 18:27:17,127 middleware 10396 12368 API Request: {"method": "GET", "path": "/api/financial-profiles/", "status_code": 200, "duration": 0.067, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 886}
 INFO 2025-08-07 18:27:17,129 runserver 10396 17396 [mHTTP GET /api/financial-profiles/ 200 [0.07, 127.0.0.1:51045][0m
 INFO 2025-08-07 18:28:04,635 server 10396 17396 Killed 0 pending application instances
+INFO 2025-08-08 13:25:37,746 autoreload 20272 12740 Watching for file changes with StatReloader
+INFO 2025-08-08 13:25:39,182 server 20272 7428 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 13:25:39,183 server 20272 7428 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 13:25:39,185 server 20272 7428 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 13:26:00,682 middleware 20272 13680 API Request: {"method": "GET", "path": "/api/customer-communication-preferences/preferences/", "status_code": 401, "duration": 0.003, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-08 13:26:00,685 log 20272 23184 Unauthorized: /api/customer-communication-preferences/preferences/
+WARNING 2025-08-08 13:26:00,686 runserver 20272 7428 [31;1mHTTP GET /api/customer-communication-preferences/preferences/ 401 [0.03, 127.0.0.1:59597][0m
+WARNING 2025-08-08 13:26:00,795 log 20272 23184 Not Found: /favicon.ico
+WARNING 2025-08-08 13:26:00,796 runserver 20272 7428 [33mHTTP GET /favicon.ico 404 [0.04, 127.0.0.1:59597][0m
+INFO 2025-08-08 13:28:36,499 server 8232 20648 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 13:28:36,500 server 8232 20648 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 13:28:36,501 server 8232 20648 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 13:36:57,886 middleware 8232 18104 API Request: {"method": "GET", "path": "/api/customer-communication-preferences/preferences/", "status_code": 401, "duration": 0.004, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-08 13:36:57,888 log 8232 12008 Unauthorized: /api/customer-communication-preferences/preferences/
+WARNING 2025-08-08 13:36:57,889 runserver 8232 20648 [31;1mHTTP GET /api/customer-communication-preferences/preferences/ 401 [0.01, 127.0.0.1:60095][0m
+INFO 2025-08-08 13:38:28,271 server 8232 20648 Killed 0 pending application instances
+INFO 2025-08-08 13:39:53,419 autoreload 16364 11812 Watching for file changes with StatReloader
+INFO 2025-08-08 13:39:54,680 server 16364 560 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 13:39:54,681 server 16364 560 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 13:39:54,682 server 16364 560 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:04:00,314 server 14292 9588 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:04:00,315 server 14292 9588 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:04:00,316 server 14292 9588 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:05:34,922 middleware 14292 25448 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.494, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-08 15:05:34,925 runserver 14292 9588 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:60701][0m
+INFO 2025-08-08 15:08:55,117 middleware 14292 15512 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences/", "status_code": 500, "duration": 0.041, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 141}
+ERROR 2025-08-08 15:08:55,119 log 14292 2256 Internal Server Error: /api/customer-communication-preferences/preferences/
+ERROR 2025-08-08 15:08:55,120 runserver 14292 9588 [35;1mHTTP POST /api/customer-communication-preferences/preferences/ 500 [0.05, 127.0.0.1:60839][0m
+INFO 2025-08-08 15:09:51,367 server 14292 9588 Killed 0 pending application instances
+INFO 2025-08-08 15:10:07,475 server 2612 6980 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:10:07,475 server 2612 6980 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:10:07,476 server 2612 6980 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:10:10,500 middleware 2612 25272 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences/", "status_code": 500, "duration": 0.053, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 141}
+ERROR 2025-08-08 15:10:10,502 log 2612 20476 Internal Server Error: /api/customer-communication-preferences/preferences/
+ERROR 2025-08-08 15:10:10,503 runserver 2612 6980 [35;1mHTTP POST /api/customer-communication-preferences/preferences/ 500 [0.06, 127.0.0.1:60889][0m
+INFO 2025-08-08 15:11:13,992 middleware 2612 16556 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences/", "status_code": 400, "duration": 0.041, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 146}
+WARNING 2025-08-08 15:11:13,994 log 2612 20476 Bad Request: /api/customer-communication-preferences/preferences/
+WARNING 2025-08-08 15:11:13,995 runserver 2612 6980 [31;1mHTTP POST /api/customer-communication-preferences/preferences/ 400 [0.05, 127.0.0.1:60916][0m
+INFO 2025-08-08 15:11:29,008 server 2612 6980 Killed 0 pending application instances
+INFO 2025-08-08 15:12:42,005 server 22480 20124 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:12:42,005 server 22480 20124 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:12:42,005 server 22480 20124 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:12:47,717 middleware 22480 12152 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences/", "status_code": 500, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 141}
+ERROR 2025-08-08 15:12:47,720 log 22480 19844 Internal Server Error: /api/customer-communication-preferences/preferences/
+ERROR 2025-08-08 15:12:47,720 runserver 22480 20124 [35;1mHTTP POST /api/customer-communication-preferences/preferences/ 500 [0.06, 127.0.0.1:60965][0m
+INFO 2025-08-08 15:15:43,321 middleware 22480 26040 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences", "status_code": 404, "duration": 0.201, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8864}
+ERROR 2025-08-08 15:15:43,372 log 22480 19844 Internal Server Error: /api/customer-communication-preferences/preferences
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/customer-communication-preferences/preferences/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-08-08 15:15:43,377 runserver 22480 20124 [35;1mHTTP POST /api/customer-communication-preferences/preferences 500 [0.26, 127.0.0.1:61026][0m
+INFO 2025-08-08 15:15:50,515 server 22480 20124 Killed 0 pending application instances
+INFO 2025-08-08 15:15:54,594 server 26512 11632 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:15:54,595 server 26512 11632 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:15:54,595 server 26512 11632 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:16:08,600 middleware 26512 22944 API Request: {"method": "POST", "path": "/api/customer-communication-preferences/preferences/", "status_code": 201, "duration": 0.087, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 915}
+INFO 2025-08-08 15:16:08,608 runserver 26512 11632 [mHTTP POST /api/customer-communication-preferences/preferences/ 201 [0.10, 127.0.0.1:61050][0m
+INFO 2025-08-08 15:20:03,239 middleware 26512 3360 API Request: {"method": "GET", "path": "/api/customer-communication-preferences/preferences/", "status_code": 200, "duration": 0.063, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1043}
+INFO 2025-08-08 15:20:03,241 runserver 26512 11632 [mHTTP GET /api/customer-communication-preferences/preferences/ 200 [0.07, 127.0.0.1:61289][0m
+INFO 2025-08-08 15:26:14,764 server 26512 11632 Killed 0 pending application instances
+INFO 2025-08-08 15:49:59,572 server 7160 22056 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:49:59,572 server 7160 22056 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:49:59,573 server 7160 22056 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:51:41,282 server 7160 22056 Killed 0 pending application instances
+INFO 2025-08-08 15:51:46,440 server 17940 6432 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 15:51:46,441 server 17940 6432 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 15:51:46,441 server 17940 6432 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 15:51:56,554 middleware 17940 1872 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.487, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-08 15:51:56,556 runserver 17940 6432 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:62474][0m
+INFO 2025-08-08 15:52:19,277 middleware 17940 19148 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 400, "duration": 0.041, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 86}
+WARNING 2025-08-08 15:52:19,279 log 17940 8048 Bad Request: /api/case-logs/search/case-number/
+WARNING 2025-08-08 15:52:19,280 runserver 17940 6432 [31;1mHTTP GET /api/case-logs/search/case-number/ 400 [0.05, 127.0.0.1:62474][0m
+INFO 2025-08-08 15:53:35,840 middleware 17940 2944 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/case-010", "status_code": 404, "duration": 2.403, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 12041}
+WARNING 2025-08-08 15:53:35,881 log 17940 8048 Not Found: /api/case-logs/search/case-number/case-010
+WARNING 2025-08-08 15:53:35,905 runserver 17940 6432 [33mHTTP GET /api/case-logs/search/case-number/case-010 404 [2.50, 127.0.0.1:62659][0m
+INFO 2025-08-08 15:55:31,629 middleware 17940 5060 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.112, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3539}
+INFO 2025-08-08 15:55:31,632 runserver 17940 6432 [mHTTP GET /api/case-logs/search/case-number/?case_number=CASE-010 200 [0.12, 127.0.0.1:62783][0m
+INFO 2025-08-08 15:57:01,710 middleware 17940 6060 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.075, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3006}
+INFO 2025-08-08 15:57:01,713 runserver 17940 6432 [mHTTP GET /api/case-logs/search/case-number/?case_number=CASE-009 200 [0.08, 127.0.0.1:62819][0m
+INFO 2025-08-08 15:57:10,485 middleware 17940 24620 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.07, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1466}
+INFO 2025-08-08 15:57:10,487 runserver 17940 6432 [mHTTP GET /api/case-logs/search/case-number/?case_number=CASE-005 200 [0.07, 127.0.0.1:62819][0m
+INFO 2025-08-08 15:58:02,026 middleware 17940 3140 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.07, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 559}
+INFO 2025-08-08 15:58:02,029 runserver 17940 6432 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-001 200 [0.07, 127.0.0.1:62819][0m
+INFO 2025-08-08 15:59:57,721 middleware 17940 16884 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.088, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3006}
+INFO 2025-08-08 15:59:57,724 runserver 17940 6432 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-009 200 [0.09, 127.0.0.1:63124][0m
+INFO 2025-08-08 16:06:12,305 server 17940 6432 Killed 0 pending application instances
+INFO 2025-08-08 16:07:10,231 server 10388 4452 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 16:07:10,232 server 10388 4452 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 16:07:10,232 server 10388 4452 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 16:07:16,224 middleware 10388 21876 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.09, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3006}
+INFO 2025-08-08 16:07:16,226 runserver 10388 4452 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-009 200 [0.10, 127.0.0.1:63288][0m
+INFO 2025-08-08 16:07:26,408 middleware 10388 5224 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.071, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3539}
+INFO 2025-08-08 16:07:26,410 runserver 10388 4452 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-010 200 [0.08, 127.0.0.1:63288][0m
+INFO 2025-08-08 16:07:29,552 middleware 10388 24068 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.069, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 603}
+INFO 2025-08-08 16:07:29,555 runserver 10388 4452 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-001 200 [0.07, 127.0.0.1:63288][0m
+INFO 2025-08-08 16:09:59,612 server 10388 4452 Killed 0 pending application instances
+INFO 2025-08-08 16:10:40,610 server 25360 25336 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 16:10:40,611 server 25360 25336 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 16:10:40,611 server 25360 25336 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 16:10:47,680 middleware 25360 16760 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+INFO 2025-08-08 16:10:47,681 runserver 25360 25336 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-001 200 [0.08, 127.0.0.1:63423][0m
+INFO 2025-08-08 16:10:53,116 middleware 25360 18108 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.08, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3539}
+INFO 2025-08-08 16:10:53,118 runserver 25360 25336 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-010 200 [0.09, 127.0.0.1:63423][0m
+INFO 2025-08-08 16:12:59,294 middleware 25360 4216 API Request: {"method": "GET", "path": "/api/case-logs/search/case-number/", "status_code": 200, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 109}
+INFO 2025-08-08 16:12:59,298 runserver 25360 25336 [mHTTP GET /api/case-logs/search/case-number/?case_number=case-001 200 [0.06, 127.0.0.1:63876][0m
+INFO 2025-08-08 16:16:01,207 server 25360 25336 Killed 0 pending application instances
+INFO 2025-08-08 16:17:05,414 server 15880 13360 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 16:17:05,414 server 15880 13360 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 16:17:05,415 server 15880 13360 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 16:17:12,563 middleware 15880 5748 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.483, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-08 16:17:12,566 runserver 15880 13360 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:64016][0m
+INFO 2025-08-08 16:17:30,901 middleware 15880 12972 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.474, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-08 16:17:30,903 runserver 15880 13360 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:64016][0m
+INFO 2025-08-08 16:17:54,131 middleware 15880 12632 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 404, "duration": 0.059, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 89}
+WARNING 2025-08-08 16:17:54,134 log 15880 8488 Not Found: /api/case-logs/search/policy-number/
+WARNING 2025-08-08 16:17:54,135 runserver 15880 13360 [33mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-12345 404 [0.07, 127.0.0.1:64016][0m
+INFO 2025-08-08 16:18:43,594 middleware 15880 21288 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 133}
+INFO 2025-08-08 16:18:43,596 runserver 15880 13360 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00001 200 [0.06, 127.0.0.1:64016][0m
+INFO 2025-08-08 16:18:51,452 middleware 15880 16832 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 500, "duration": 0.059, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 126}
+ERROR 2025-08-08 16:18:51,454 log 15880 8488 Internal Server Error: /api/case-logs/search/policy-number/
+ERROR 2025-08-08 16:18:51,455 runserver 15880 13360 [35;1mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00010 500 [0.06, 127.0.0.1:64016][0m
+INFO 2025-08-08 16:23:17,557 middleware 15880 23968 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 133}
+INFO 2025-08-08 16:23:17,559 runserver 15880 13360 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00001 200 [0.06, 127.0.0.1:64425][0m
+INFO 2025-08-08 16:23:27,014 middleware 15880 12680 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.078, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1459}
+INFO 2025-08-08 16:23:27,016 runserver 15880 13360 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00002 200 [0.08, 127.0.0.1:64425][0m
+INFO 2025-08-08 16:28:12,628 middleware 15880 13244 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 500, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 126}
+ERROR 2025-08-08 16:28:12,629 log 15880 8488 Internal Server Error: /api/case-logs/search/policy-number/
+ERROR 2025-08-08 16:28:12,630 runserver 15880 13360 [35;1mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00010 500 [0.06, 127.0.0.1:64696][0m
+INFO 2025-08-08 16:30:10,377 server 15880 13360 Killed 0 pending application instances
+INFO 2025-08-08 16:30:12,985 autoreload 9752 22348 Watching for file changes with StatReloader
+INFO 2025-08-08 16:30:14,382 server 9752 21368 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 16:30:14,382 server 9752 21368 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 16:30:14,383 server 9752 21368 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 16:30:29,027 middleware 9752 24796 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/POL-00010", "status_code": 404, "duration": 0.244, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 12050}
+WARNING 2025-08-08 16:30:29,029 log 9752 17628 Not Found: /api/case-logs/search/policy-number/POL-00010
+WARNING 2025-08-08 16:30:29,030 runserver 9752 21368 [33mHTTP GET /api/case-logs/search/policy-number/POL-00010 404 [0.25, 127.0.0.1:65010][0m
+INFO 2025-08-08 16:36:29,292 server 22480 25884 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-08 16:36:29,292 server 22480 25884 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-08 16:36:29,293 server 22480 25884 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-08 16:36:33,570 middleware 22480 13276 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.129, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3438}
+INFO 2025-08-08 16:36:33,572 runserver 22480 25884 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00010 200 [0.14, 127.0.0.1:65131][0m
+INFO 2025-08-08 16:43:57,573 middleware 22480 11272 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.057, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 111}
+INFO 2025-08-08 16:43:57,575 runserver 22480 25884 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00001 200 [0.06, 127.0.0.1:65328][0m
+INFO 2025-08-08 16:44:00,839 middleware 22480 23996 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.092, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1321}
+INFO 2025-08-08 16:44:00,841 runserver 22480 25884 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00002 200 [0.10, 127.0.0.1:65328][0m
+INFO 2025-08-08 16:45:03,245 middleware 22480 21236 API Request: {"method": "GET", "path": "/api/case-logs/search/policy-number/", "status_code": 200, "duration": 0.093, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 2891}
+INFO 2025-08-08 16:45:03,247 runserver 22480 25884 [mHTTP GET /api/case-logs/search/policy-number/?policy_number=POL-00009 200 [0.10, 127.0.0.1:65437][0m
+INFO 2025-08-08 16:45:10,364 server 22480 25884 Killed 0 pending application instances

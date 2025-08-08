@@ -43,6 +43,7 @@ api_patterns = [
     path('customer-family-medical-history/', include('apps.customer_family_medical_history.urls')),
     path('customer-payments/', include('apps.customer_payments.urls')),
     path('customer-payment-schedule/', include('apps.customer_payment_schedule.urls')),
+    path('customer-communication-preferences/', include('apps.customer_communication_preferences.urls')),
     path('policy-timeline/', include('apps.policy_timeline.urls')),
     path('other-insurance-policies/', include('apps.other_insurance_policies.urls')),
 

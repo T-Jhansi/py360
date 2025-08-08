@@ -3,7 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     CaseLogViewSet, update_case_log_api, comment_history_api,
     get_case_details_api, edit_case_details_api, get_case_edit_form_data_api,
-    get_policy_types_dropdown_api, get_agents_dropdown_api
+    get_policy_types_dropdown_api, get_agents_dropdown_api,
+    search_case_logs_by_case_number_api, search_case_logs_by_policy_number_api
 )
 
 router = DefaultRouter()
@@ -24,4 +25,8 @@ urlpatterns = [
 
     path('case-details/policy-types/', get_policy_types_dropdown_api, name='get-policy-types-dropdown'),
     path('case-details/agents/', get_agents_dropdown_api, name='get-agents-dropdown'),
+
+    # Search APIs
+    path('search/case-number/', search_case_logs_by_case_number_api, name='search-case-logs-by-case-number'),
+    path('search/policy-number/', search_case_logs_by_policy_number_api, name='search-case-logs-by-policy-number'),
 ]

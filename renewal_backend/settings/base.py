@@ -63,6 +63,7 @@ LOCAL_APPS = [
     'apps.customer_family_medical_history',
     'apps.customer_payments',
     'apps.customer_payment_schedule',
+    'apps.customer_communication_preferences',
     'apps.ai_insights',
     'apps.ai_policy_recommendations',
     'apps.policy_timeline',
