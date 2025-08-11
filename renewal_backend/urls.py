@@ -44,8 +44,13 @@ api_patterns = [
     path('customer-payments/', include('apps.customer_payments.urls')),
     path('customer-payment-schedule/', include('apps.customer_payment_schedule.urls')),
     path('customer-communication-preferences/', include('apps.customer_communication_preferences.urls')),
+    path('customers-files/', include('apps.customers_files.urls')),
+    path('customers-documents/', include('apps.customers_documents.urls')),
     path('policy-timeline/', include('apps.policy_timeline.urls')),
     path('other-insurance-policies/', include('apps.other_insurance_policies.urls')),
+    path('policy-features/', include('apps.policy_features.urls')),
+    path('policy-additional-benefits/', include('apps.policy_additional_benefits.urls')),
+    path('policy-coverages/', include('apps.policy_coverages.urls')),
 
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
