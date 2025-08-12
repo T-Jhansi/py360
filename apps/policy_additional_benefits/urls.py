@@ -4,8 +4,8 @@ from .views import PolicyAdditionalBenefitViewSet
 
 # Create router and register viewsets
 router = DefaultRouter()
-router.register(r'policy-additional-benefits', PolicyAdditionalBenefitViewSet, basename='policy-additional-benefits')
+router.register(r'', PolicyAdditionalBenefitViewSet, basename='policy-additional-benefits')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

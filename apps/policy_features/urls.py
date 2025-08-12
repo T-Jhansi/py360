@@ -4,8 +4,8 @@ from .views import PolicyFeatureViewSet
 
 # Create router and register viewsets
 router = DefaultRouter()
-router.register(r'policy-features', PolicyFeatureViewSet, basename='policy-features')
+router.register(r'', PolicyFeatureViewSet, basename='policy-features')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

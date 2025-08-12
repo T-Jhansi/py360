@@ -10929,3 +10929,471 @@ INFO 2025-08-11 17:41:44,612 server 22780 15792 HTTP/2 support not enabled (inst
 INFO 2025-08-11 17:41:44,612 server 22780 15792 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-08-11 17:41:44,613 server 22780 15792 Listening on TCP address 127.0.0.1:8000
 INFO 2025-08-11 18:15:48,485 server 22780 15792 Killed 0 pending application instances
+INFO 2025-08-11 18:22:18,749 server 2300 6584 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-11 18:22:18,750 server 2300 6584 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-11 18:22:18,750 server 2300 6584 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 09:44:38,276 server 2300 6584 Killed 0 pending application instances
+INFO 2025-08-12 10:50:41,932 server 3632 15116 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 10:50:41,933 server 3632 15116 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 10:50:41,934 server 3632 15116 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 10:59:40,455 middleware 3632 8712 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.528, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 10:59:40,458 runserver 3632 15116 [mHTTP POST /api/auth/login/ 200 [0.54, 127.0.0.1:53180][0m
+INFO 2025-08-12 11:01:11,232 server 3632 15116 Killed 0 pending application instances
+INFO 2025-08-12 11:01:47,858 server 24092 4280 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 11:01:47,858 server 24092 4280 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 11:01:47,859 server 24092 4280 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 11:01:52,572 middleware 24092 6556 API Request: {"method": "POST", "path": "/api/policy-coverages/", "status_code": 404, "duration": 0.293, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7798}
+WARNING 2025-08-12 11:01:52,574 log 24092 23992 Not Found: /api/policy-coverages/
+WARNING 2025-08-12 11:01:52,575 runserver 24092 4280 [33mHTTP POST /api/policy-coverages/ 404 [0.30, 127.0.0.1:53246][0m
+INFO 2025-08-12 11:02:33,641 middleware 24092 17308 API Request: {"method": "POST", "path": "/api/policy-coverages/", "status_code": 404, "duration": 0.282, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7798}
+WARNING 2025-08-12 11:02:33,643 log 24092 23992 Not Found: /api/policy-coverages/
+WARNING 2025-08-12 11:02:33,644 runserver 24092 4280 [33mHTTP POST /api/policy-coverages/ 404 [0.29, 127.0.0.1:53246][0m
+INFO 2025-08-12 11:05:05,159 server 24092 4280 Killed 0 pending application instances
+INFO 2025-08-12 11:19:02,827 server 6088 2088 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 11:19:02,827 server 6088 2088 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 11:19:02,828 server 6088 2088 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 11:19:19,390 middleware 6088 25804 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 400, "duration": 0.065, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 100}
+WARNING 2025-08-12 11:19:19,393 log 6088 9792 Bad Request: /api/policy-coverages/api/policy-coverages/
+WARNING 2025-08-12 11:19:19,394 runserver 6088 2088 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/ 400 [0.08, 127.0.0.1:53555][0m
+INFO 2025-08-12 11:20:58,430 server 6088 2088 Killed 0 pending application instances
+INFO 2025-08-12 11:26:07,845 server 10356 19836 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 11:26:07,846 server 10356 19836 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 11:26:07,846 server 10356 19836 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 11:26:10,544 middleware 10356 23872 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.092, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 682}
+INFO 2025-08-12 11:26:10,551 runserver 10356 19836 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.10, 127.0.0.1:53720][0m
+INFO 2025-08-12 11:29:48,316 server 10356 19836 Killed 0 pending application instances
+INFO 2025-08-12 11:29:52,741 server 20284 22752 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 11:29:52,742 server 20284 22752 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 11:29:52,742 server 20284 22752 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 11:29:55,082 middleware 20284 11740 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.093, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 671}
+INFO 2025-08-12 11:29:55,089 runserver 20284 22752 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.11, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:30:49,604 middleware 20284 17656 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 400, "duration": 0.041, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 146}
+WARNING 2025-08-12 11:30:49,606 log 20284 3532 Bad Request: /api/policy-coverages/api/policy-coverages/
+WARNING 2025-08-12 11:30:49,607 runserver 20284 22752 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/ 400 [0.05, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:31:01,860 middleware 20284 17460 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 675}
+INFO 2025-08-12 11:31:01,865 runserver 20284 22752 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.08, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:31:51,804 middleware 20284 7828 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.066, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 679}
+INFO 2025-08-12 11:31:51,808 runserver 20284 22752 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.07, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:32:23,956 middleware 20284 11248 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.064, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 676}
+INFO 2025-08-12 11:32:23,960 runserver 20284 22752 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.07, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:33:09,144 middleware 20284 25396 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.068, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 685}
+INFO 2025-08-12 11:33:09,149 runserver 20284 22752 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.08, 127.0.0.1:53887][0m
+INFO 2025-08-12 11:57:12,324 server 20284 22752 Killed 0 pending application instances
+INFO 2025-08-12 11:57:45,482 server 6940 24728 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 11:57:45,482 server 6940 24728 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 11:57:45,483 server 6940 24728 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 11:57:50,825 middleware 6940 7780 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.074, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1296}
+INFO 2025-08-12 11:57:50,832 runserver 6940 24728 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.09, 127.0.0.1:55304][0m
+INFO 2025-08-12 11:58:52,468 middleware 6940 896 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.052, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1192}
+INFO 2025-08-12 11:58:52,474 runserver 6940 24728 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.06, 127.0.0.1:55560][0m
+INFO 2025-08-12 11:59:01,208 middleware 6940 10720 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 400, "duration": 0.045, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 122}
+WARNING 2025-08-12 11:59:01,209 log 6940 15276 Bad Request: /api/policy-coverages/api/policy-coverages/
+WARNING 2025-08-12 11:59:01,210 runserver 6940 24728 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/ 400 [0.05, 127.0.0.1:55560][0m
+INFO 2025-08-12 11:59:50,041 middleware 6940 24368 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 401, "duration": 0.012, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-12 11:59:50,043 log 6940 15276 Unauthorized: /api/policy-coverages/api/policy-coverages/
+WARNING 2025-08-12 11:59:50,044 runserver 6940 24728 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/ 401 [0.02, 127.0.0.1:55560][0m
+INFO 2025-08-12 11:59:54,884 middleware 6940 6960 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.473, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 11:59:54,886 runserver 6940 24728 [mHTTP POST /api/auth/login/ 200 [0.48, 127.0.0.1:55560][0m
+INFO 2025-08-12 12:00:06,125 middleware 6940 16520 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.055, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1353}
+INFO 2025-08-12 12:00:06,131 runserver 6940 24728 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.06, 127.0.0.1:55560][0m
+INFO 2025-08-12 12:00:22,713 middleware 6940 15932 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 400, "duration": 0.043, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 128}
+WARNING 2025-08-12 12:00:22,715 log 6940 15276 Bad Request: /api/policy-coverages/api/policy-coverages/
+WARNING 2025-08-12 12:00:22,715 runserver 6940 24728 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/ 400 [0.05, 127.0.0.1:55560][0m
+INFO 2025-08-12 12:00:45,733 middleware 6940 16120 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1290}
+INFO 2025-08-12 12:00:45,738 runserver 6940 24728 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.06, 127.0.0.1:55560][0m
+INFO 2025-08-12 12:01:04,198 middleware 6940 26336 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.058, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1382}
+INFO 2025-08-12 12:01:04,202 runserver 6940 24728 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.07, 127.0.0.1:55560][0m
+INFO 2025-08-12 12:01:09,792 server 6940 24728 Killed 0 pending application instances
+INFO 2025-08-12 12:01:16,281 server 24348 23040 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 12:01:16,282 server 24348 23040 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 12:01:16,283 server 24348 23040 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 12:02:09,621 middleware 24348 11796 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/1/", "status_code": 401, "duration": 0.012, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-12 12:02:09,623 log 24348 19972 Unauthorized: /api/policy-coverages/api/policy-coverages/1/
+WARNING 2025-08-12 12:02:09,624 runserver 24348 23040 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/1/ 401 [0.02, 127.0.0.1:55878][0m
+INFO 2025-08-12 12:02:27,707 middleware 24348 7736 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/1/", "status_code": 405, "duration": 0.044, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 103}
+WARNING 2025-08-12 12:02:27,709 log 24348 19972 Method Not Allowed: /api/policy-coverages/api/policy-coverages/1/
+WARNING 2025-08-12 12:02:27,709 runserver 24348 23040 [31;1mHTTP POST /api/policy-coverages/api/policy-coverages/1/ 405 [0.05, 127.0.0.1:55878][0m
+INFO 2025-08-12 12:02:31,415 middleware 24348 14304 API Request: {"method": "GET", "path": "/api/policy-coverages/api/policy-coverages/1/", "status_code": 404, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-12 12:02:31,417 log 24348 19972 Not Found: /api/policy-coverages/api/policy-coverages/1/
+WARNING 2025-08-12 12:02:31,418 runserver 24348 23040 [33mHTTP GET /api/policy-coverages/api/policy-coverages/1/ 404 [0.05, 127.0.0.1:55878][0m
+INFO 2025-08-12 12:02:35,147 middleware 24348 18596 API Request: {"method": "GET", "path": "/api/policy-coverages/api/policy-coverages/11/", "status_code": 200, "duration": 0.053, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1309}
+INFO 2025-08-12 12:02:35,151 runserver 24348 23040 [mHTTP GET /api/policy-coverages/api/policy-coverages/11/ 200 [0.06, 127.0.0.1:55878][0m
+INFO 2025-08-12 12:03:35,980 middleware 24348 14372 API Request: {"method": "GET", "path": "/api/policy-coverages/api/policy-coverages/10/", "status_code": 200, "duration": 0.051, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1217}
+INFO 2025-08-12 12:03:35,981 runserver 24348 23040 [mHTTP GET /api/policy-coverages/api/policy-coverages/10/ 200 [0.06, 127.0.0.1:55926][0m
+INFO 2025-08-12 12:03:58,482 middleware 24348 10912 API Request: {"method": "GET", "path": "/api/policy-coverages/api/policy-coverages/11/", "status_code": 200, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1309}
+INFO 2025-08-12 12:03:58,484 runserver 24348 23040 [mHTTP GET /api/policy-coverages/api/policy-coverages/11/ 200 [0.05, 127.0.0.1:55926][0m
+INFO 2025-08-12 12:09:29,528 server 24348 23040 Killed 0 pending application instances
+INFO 2025-08-12 12:09:35,702 server 23692 2232 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 12:09:35,702 server 23692 2232 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 12:09:35,703 server 23692 2232 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 12:09:49,395 middleware 23692 11572 API Request: {"method": "POST", "path": "/api/policy-coverages/api/policy-coverages/", "status_code": 201, "duration": 0.067, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3475}
+INFO 2025-08-12 12:09:49,400 runserver 23692 2232 [mHTTP POST /api/policy-coverages/api/policy-coverages/ 201 [0.08, 127.0.0.1:56089][0m
+INFO 2025-08-12 12:10:17,882 middleware 23692 17244 API Request: {"method": "GET", "path": "/api/policy-coverages/api/policy-coverages/12/", "status_code": 200, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 3402}
+INFO 2025-08-12 12:10:17,884 runserver 23692 2232 [mHTTP GET /api/policy-coverages/api/policy-coverages/12/ 200 [0.06, 127.0.0.1:56089][0m
+INFO 2025-08-12 12:29:55,225 server 23692 2232 Killed 0 pending application instances
+INFO 2025-08-12 12:33:39,937 server 16020 14004 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 12:33:39,937 server 16020 14004 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 12:33:39,938 server 16020 14004 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 12:54:47,072 server 16020 14004 Killed 0 pending application instances
+INFO 2025-08-12 12:56:19,704 server 3296 1516 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 12:56:19,704 server 3296 1516 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 12:56:19,705 server 3296 1516 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 13:00:09,329 autoreload 24844 24132 Watching for file changes with StatReloader
+INFO 2025-08-12 13:00:10,645 server 24844 21308 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:00:10,645 server 24844 21308 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 13:00:10,646 server 24844 21308 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 13:04:20,556 middleware 3296 10316 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.502, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 13:04:20,559 runserver 3296 1516 [mHTTP POST /api/auth/login/ 200 [0.52, 127.0.0.1:58306][0m
+INFO 2025-08-12 13:05:22,632 server 3296 1516 Killed 0 pending application instances
+INFO 2025-08-12 13:05:59,114 server 12676 26568 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:05:59,115 server 12676 26568 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 13:05:59,115 server 12676 26568 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 13:07:18,478 middleware 12676 16128 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/store/", "status_code": 404, "duration": 0.338, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7846}
+WARNING 2025-08-12 13:07:18,480 log 12676 13376 Not Found: /api/policy-additional-benefits/store/
+WARNING 2025-08-12 13:07:18,481 runserver 12676 26568 [33mHTTP POST /api/policy-additional-benefits/store/ 404 [0.35, 127.0.0.1:58427][0m
+INFO 2025-08-12 13:08:40,470 middleware 12676 716 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 404, "duration": 0.328, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7828}
+WARNING 2025-08-12 13:08:40,473 log 12676 13376 Not Found: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:08:40,473 runserver 12676 26568 [33mHTTP POST /api/policy-additional-benefits/ 404 [0.33, 127.0.0.1:58475][0m
+INFO 2025-08-12 13:08:49,737 server 12676 26568 Killed 0 pending application instances
+INFO 2025-08-12 13:09:09,318 server 18084 14128 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:09:09,319 server 18084 14128 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 13:09:09,319 server 18084 14128 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 13:09:12,863 middleware 18084 18152 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 404, "duration": 0.347, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7828}
+WARNING 2025-08-12 13:09:12,865 log 18084 9504 Not Found: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:09:12,866 runserver 18084 14128 [33mHTTP POST /api/policy-additional-benefits/ 404 [0.36, 127.0.0.1:58507][0m
+INFO 2025-08-12 13:09:58,741 middleware 18084 23448 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 404, "duration": 0.373, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7828}
+WARNING 2025-08-12 13:09:58,745 log 18084 9504 Not Found: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:09:58,745 runserver 18084 14128 [33mHTTP POST /api/policy-additional-benefits/ 404 [0.38, 127.0.0.1:58507][0m
+INFO 2025-08-12 13:12:16,654 server 18084 14128 Killed 0 pending application instances
+INFO 2025-08-12 13:12:34,689 server 4052 22968 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:12:34,689 server 4052 22968 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 13:12:34,690 server 4052 22968 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 13:12:43,498 middleware 4052 22404 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 400, "duration": 0.083, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 113}
+WARNING 2025-08-12 13:12:43,501 log 4052 26152 Bad Request: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:12:43,502 runserver 4052 22968 [31;1mHTTP POST /api/policy-additional-benefits/ 400 [0.09, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:12:55,861 middleware 4052 4280 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 400, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 141}
+WARNING 2025-08-12 13:12:55,863 log 4052 26152 Bad Request: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:12:55,864 runserver 4052 22968 [31;1mHTTP POST /api/policy-additional-benefits/ 400 [0.05, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:13:16,840 middleware 4052 19056 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.075, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1049}
+INFO 2025-08-12 13:13:16,848 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.09, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:14:16,750 middleware 4052 10664 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 400, "duration": 0.043, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 113}
+WARNING 2025-08-12 13:14:16,751 log 4052 26152 Bad Request: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:14:16,752 runserver 4052 22968 [31;1mHTTP POST /api/policy-additional-benefits/ 400 [0.05, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:14:27,495 middleware 4052 11420 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.127, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1034}
+INFO 2025-08-12 13:14:27,507 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.14, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:14:53,010 middleware 4052 24888 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 400, "duration": 0.042, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 113}
+WARNING 2025-08-12 13:14:53,012 log 4052 26152 Bad Request: /api/policy-additional-benefits/
+WARNING 2025-08-12 13:14:53,016 runserver 4052 22968 [31;1mHTTP POST /api/policy-additional-benefits/ 400 [0.05, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:14:58,471 middleware 4052 4508 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.064, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 923}
+INFO 2025-08-12 13:14:58,476 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.07, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:15:53,342 middleware 4052 22396 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 978}
+INFO 2025-08-12 13:15:53,347 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.06, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:16:19,998 middleware 4052 4312 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1004}
+INFO 2025-08-12 13:16:20,005 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.07, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:16:53,328 middleware 4052 13900 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 934}
+INFO 2025-08-12 13:16:53,332 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.06, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:17:14,381 middleware 4052 17724 API Request: {"method": "POST", "path": "/api/policy-additional-benefits/", "status_code": 201, "duration": 0.07, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 924}
+INFO 2025-08-12 13:17:14,386 runserver 4052 22968 [mHTTP POST /api/policy-additional-benefits/ 201 [0.08, 127.0.0.1:58648][0m
+INFO 2025-08-12 13:17:19,517 server 4052 22968 Killed 0 pending application instances
+INFO 2025-08-12 13:44:09,789 autoreload 7888 8680 Watching for file changes with StatReloader
+INFO 2025-08-12 13:44:11,165 server 7888 11328 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:44:11,166 server 7888 11328 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 13:44:11,166 server 7888 11328 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 13:46:02,719 server 25264 19284 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 13:46:02,719 server 25264 19284 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 13:46:02,720 server 25264 19284 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 14:57:02,517 server 25264 19284 Killed 0 pending application instances
+INFO 2025-08-12 14:57:41,463 server 1456 14616 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 14:57:41,463 server 1456 14616 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 14:57:41,464 server 1456 14616 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:02:04,441 autoreload 20756 23248 Watching for file changes with StatReloader
+INFO 2025-08-12 15:02:06,088 server 20756 3724 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:02:06,088 server 20756 3724 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 15:02:06,089 server 20756 3724 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 15:09:55,683 server 1456 14616 Killed 0 pending application instances
+INFO 2025-08-12 15:10:04,838 server 16564 3336 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:10:04,966 server 16564 3336 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:10:04,998 server 16564 3336 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:14:16,003 middleware 16564 7768 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.501, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 15:14:16,006 runserver 16564 3336 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:54506][0m
+INFO 2025-08-12 15:14:39,780 server 16564 3336 Killed 0 pending application instances
+INFO 2025-08-12 15:15:20,267 server 8652 26432 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:15:20,267 server 8652 26432 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:15:20,268 server 8652 26432 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:15:24,479 middleware 8652 4348 API Request: {"method": "POST", "path": "/api/policy-exclusions/", "status_code": 404, "duration": 0.365, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 7970}
+WARNING 2025-08-12 15:15:24,481 log 8652 11908 Not Found: /api/policy-exclusions/
+WARNING 2025-08-12 15:15:24,482 runserver 8652 26432 [33mHTTP POST /api/policy-exclusions/ 404 [0.37, 127.0.0.1:54559][0m
+INFO 2025-08-12 15:16:47,364 autoreload 17864 528 Watching for file changes with StatReloader
+INFO 2025-08-12 15:16:49,034 server 17864 23460 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:16:49,035 server 17864 23460 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:16:49,036 server 17864 23460 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:17:43,309 server 8652 26432 Killed 0 pending application instances
+INFO 2025-08-12 15:18:03,758 server 16828 14320 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:18:03,759 server 16828 14320 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:18:03,760 server 16828 14320 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:18:14,844 server 16828 14320 Killed 0 pending application instances
+INFO 2025-08-12 15:18:25,096 server 10180 12676 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:18:25,097 server 10180 12676 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:18:25,098 server 10180 12676 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:18:28,504 middleware 10180 11184 API Request: {"method": "POST", "path": "/api/policy-exclusions/", "status_code": 400, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 105}
+WARNING 2025-08-12 15:18:28,506 log 10180 25472 Bad Request: /api/policy-exclusions/
+WARNING 2025-08-12 15:18:28,507 runserver 10180 12676 [31;1mHTTP POST /api/policy-exclusions/ 400 [0.07, 127.0.0.1:54736][0m
+INFO 2025-08-12 15:23:50,126 autoreload 23748 4660 Watching for file changes with StatReloader
+INFO 2025-08-12 15:23:51,598 server 23748 9876 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:23:51,598 server 23748 9876 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 15:23:51,598 server 23748 9876 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 15:24:20,148 autoreload 9956 14168 Watching for file changes with StatReloader
+INFO 2025-08-12 15:24:21,552 server 9956 22332 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:24:21,552 server 9956 22332 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:24:21,554 server 9956 22332 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:28:22,517 autoreload 11380 7828 Watching for file changes with StatReloader
+INFO 2025-08-12 15:28:23,951 server 11380 21660 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:28:23,951 server 11380 21660 Configuring endpoint tcp:port=8002:interface=127.0.0.1
+INFO 2025-08-12 15:28:23,952 server 11380 21660 Listening on TCP address 127.0.0.1:8002
+INFO 2025-08-12 15:30:23,020 server 10180 12676 Killed 0 pending application instances
+INFO 2025-08-12 15:30:59,437 server 15924 16096 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:30:59,438 server 15924 16096 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:30:59,438 server 15924 16096 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:31:16,224 middleware 15924 23132 API Request: {"method": "POST", "path": "/api/policy-exclusions/", "status_code": 400, "duration": 0.057, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 101}
+WARNING 2025-08-12 15:31:16,227 log 15924 14624 Bad Request: /api/policy-exclusions/
+WARNING 2025-08-12 15:31:16,227 runserver 15924 16096 [31;1mHTTP POST /api/policy-exclusions/ 400 [0.07, 127.0.0.1:55581][0m
+INFO 2025-08-12 15:33:37,333 autoreload 23736 24492 Watching for file changes with StatReloader
+INFO 2025-08-12 15:33:38,722 server 23736 6812 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:33:38,722 server 23736 6812 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 15:33:38,723 server 23736 6812 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 15:34:01,354 autoreload 25388 6124 Watching for file changes with StatReloader
+INFO 2025-08-12 15:34:02,772 server 25388 14728 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:34:02,772 server 25388 14728 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:34:02,773 server 25388 14728 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:34:17,840 middleware 25388 21132 API Request: {"method": "GET", "path": "/api/policy-exclusions/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-12 15:34:17,842 log 25388 12504 Unauthorized: /api/policy-exclusions/
+WARNING 2025-08-12 15:34:17,843 runserver 25388 14728 [31;1mHTTP GET /api/policy-exclusions/ 401 [0.01, 127.0.0.1:55742][0m
+WARNING 2025-08-12 15:34:17,952 log 25388 12504 Not Found: /favicon.ico
+WARNING 2025-08-12 15:34:17,953 runserver 25388 14728 [33mHTTP GET /favicon.ico 404 [0.04, 127.0.0.1:55742][0m
+INFO 2025-08-12 15:35:10,183 server 15924 16096 Killed 0 pending application instances
+INFO 2025-08-12 15:35:54,943 server 6884 25528 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:35:54,943 server 6884 25528 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:35:54,944 server 6884 25528 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:35:59,516 middleware 6884 11468 API Request: {"method": "POST", "path": "/api/policy-exclusions/", "status_code": 201, "duration": 0.076, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 437}
+INFO 2025-08-12 15:35:59,524 runserver 6884 25528 [mHTTP POST /api/policy-exclusions/ 201 [0.09, 127.0.0.1:55858][0m
+INFO 2025-08-12 15:48:14,328 autoreload 7428 708 Watching for file changes with StatReloader
+INFO 2025-08-12 15:48:15,813 server 7428 16588 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:48:15,814 server 7428 16588 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 15:48:15,814 server 7428 16588 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 15:48:47,286 autoreload 17888 14588 Watching for file changes with StatReloader
+INFO 2025-08-12 15:48:48,683 server 17888 21728 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:48:48,683 server 17888 21728 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:48:48,684 server 17888 21728 Listening on TCP address 127.0.0.1:8001
+WARNING 2025-08-12 15:49:51,935 log 17888 20900 Not Found: /policy-conditions/
+WARNING 2025-08-12 15:49:51,936 runserver 17888 21728 [33mHTTP GET /policy-conditions/ 404 [0.03, 127.0.0.1:56664][0m
+WARNING 2025-08-12 15:49:51,960 log 17888 20900 Not Found: /policy-conditions/
+WARNING 2025-08-12 15:49:51,961 runserver 17888 21728 [33mHTTP POST /policy-conditions/ 404 [0.02, 127.0.0.1:56665][0m
+WARNING 2025-08-12 15:49:51,982 log 17888 20900 Not Found: /policy-conditions/
+WARNING 2025-08-12 15:49:51,983 runserver 17888 21728 [33mHTTP POST /policy-conditions/ 404 [0.02, 127.0.0.1:56666][0m
+WARNING 2025-08-12 15:49:52,007 log 17888 20900 Not Found: /policy-conditions/
+WARNING 2025-08-12 15:49:52,007 runserver 17888 21728 [33mHTTP POST /policy-conditions/ 404 [0.02, 127.0.0.1:56667][0m
+WARNING 2025-08-12 15:49:59,746 log 17888 20900 Not Found: /policy-conditions/
+WARNING 2025-08-12 15:49:59,746 runserver 17888 21728 [33mHTTP GET /policy-conditions/ 404 [0.02, 127.0.0.1:56675][0m
+INFO 2025-08-12 15:50:39,015 middleware 17888 21520 API Request: {"method": "GET", "path": "/api/policy-conditions/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-12 15:50:39,017 log 17888 20900 Unauthorized: /api/policy-conditions/
+WARNING 2025-08-12 15:50:39,017 runserver 17888 21728 [31;1mHTTP GET /api/policy-conditions/ 401 [0.01, 127.0.0.1:56712][0m
+INFO 2025-08-12 15:50:39,025 middleware 17888 19736 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-12 15:50:39,027 log 17888 20900 Unauthorized: /api/policy-conditions/
+WARNING 2025-08-12 15:50:39,028 runserver 17888 21728 [31;1mHTTP POST /api/policy-conditions/ 401 [0.01, 127.0.0.1:56713][0m
+INFO 2025-08-12 15:50:39,035 middleware 17888 15976 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 401, "duration": 0.002, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-12 15:50:39,037 log 17888 20900 Unauthorized: /api/policy-conditions/
+WARNING 2025-08-12 15:50:39,038 runserver 17888 21728 [31;1mHTTP POST /api/policy-conditions/ 401 [0.01, 127.0.0.1:56714][0m
+INFO 2025-08-12 15:50:39,046 middleware 17888 10952 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 401, "duration": 0.001, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 120}
+WARNING 2025-08-12 15:50:39,048 log 17888 20900 Unauthorized: /api/policy-conditions/
+WARNING 2025-08-12 15:50:39,048 runserver 17888 21728 [31;1mHTTP POST /api/policy-conditions/ 401 [0.01, 127.0.0.1:56715][0m
+INFO 2025-08-12 15:51:12,661 autoreload 17888 14588 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:51:14,098 autoreload 528 24676 Watching for file changes with StatReloader
+INFO 2025-08-12 15:51:15,595 server 528 24008 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:51:15,596 server 528 24008 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:51:15,597 server 528 24008 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:51:27,495 autoreload 528 24676 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:51:29,017 autoreload 24168 7452 Watching for file changes with StatReloader
+INFO 2025-08-12 15:51:30,648 server 24168 13228 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:51:30,648 server 24168 13228 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:51:30,649 server 24168 13228 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:51:39,410 autoreload 24168 7452 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:51:40,693 autoreload 16956 16152 Watching for file changes with StatReloader
+INFO 2025-08-12 15:51:42,129 server 16956 26280 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:51:42,129 server 16956 26280 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:51:42,130 server 16956 26280 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:51:50,573 middleware 16956 16260 API Request: {"method": "GET", "path": "/api/policy-conditions/", "status_code": 200, "duration": 0.054, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 192}
+INFO 2025-08-12 15:51:50,577 runserver 16956 26280 [mHTTP GET /api/policy-conditions/ 200 [0.06, 127.0.0.1:56795][0m
+INFO 2025-08-12 15:51:50,650 middleware 16956 22704 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 201, "duration": 0.066, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 350}
+INFO 2025-08-12 15:51:50,652 runserver 16956 26280 [mHTTP POST /api/policy-conditions/ 201 [0.07, 127.0.0.1:56797][0m
+INFO 2025-08-12 15:51:50,700 middleware 16956 4824 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 400, "duration": 0.043, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 122}
+WARNING 2025-08-12 15:51:50,703 log 16956 19956 Bad Request: /api/policy-conditions/
+WARNING 2025-08-12 15:51:50,703 runserver 16956 26280 [31;1mHTTP POST /api/policy-conditions/ 400 [0.05, 127.0.0.1:56799][0m
+INFO 2025-08-12 15:51:50,755 middleware 16956 26212 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 400, "duration": 0.045, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 110}
+WARNING 2025-08-12 15:51:50,757 log 16956 19956 Bad Request: /api/policy-conditions/
+WARNING 2025-08-12 15:51:50,758 runserver 16956 26280 [31;1mHTTP POST /api/policy-conditions/ 400 [0.05, 127.0.0.1:56801][0m
+INFO 2025-08-12 15:51:50,825 middleware 16956 21412 API Request: {"method": "GET", "path": "/api/policy-conditions/", "status_code": 200, "duration": 0.06, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 389}
+INFO 2025-08-12 15:51:50,828 runserver 16956 26280 [mHTTP GET /api/policy-conditions/ 200 [0.07, 127.0.0.1:56803][0m
+INFO 2025-08-12 15:52:02,398 autoreload 16956 16152 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:52:03,882 autoreload 18028 26376 Watching for file changes with StatReloader
+INFO 2025-08-12 15:52:12,357 autoreload 18028 26376 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:52:13,846 autoreload 12124 20420 Watching for file changes with StatReloader
+INFO 2025-08-12 15:52:15,298 server 12124 18992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:52:15,298 server 12124 18992 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:52:15,299 server 12124 18992 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:52:24,055 autoreload 12124 20420 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\policy_conditions\views.py changed, reloading.
+INFO 2025-08-12 15:52:25,873 autoreload 23092 25976 Watching for file changes with StatReloader
+INFO 2025-08-12 15:52:27,319 server 23092 4012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:52:27,319 server 23092 4012 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 15:52:27,320 server 23092 4012 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 15:54:48,627 middleware 6884 20292 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.468, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 15:54:48,629 runserver 6884 25528 [mHTTP POST /api/auth/login/ 200 [0.47, 127.0.0.1:56934][0m
+INFO 2025-08-12 15:58:10,997 server 6884 25528 Killed 0 pending application instances
+INFO 2025-08-12 15:58:57,564 server 1188 16116 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 15:58:57,564 server 1188 16116 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 15:58:57,565 server 1188 16116 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 15:59:42,715 middleware 1188 13896 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 415, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 124}
+WARNING 2025-08-12 15:59:42,718 log 1188 21632 Unsupported Media Type: /api/policy-conditions/
+WARNING 2025-08-12 15:59:42,718 runserver 1188 16116 [31;1mHTTP POST /api/policy-conditions/ 415 [0.07, 127.0.0.1:57110][0m
+INFO 2025-08-12 15:59:58,733 middleware 1188 1008 API Request: {"method": "POST", "path": "/api/policy-conditions", "status_code": 404, "duration": 0.337, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 8085}
+ERROR 2025-08-12 15:59:58,830 log 1188 21632 Internal Server Error: /api/policy-conditions
+Traceback (most recent call last):
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\utils\deprecation.py", line 152, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Sahina1001\Downloads\Renewal_backend\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/policy-conditions/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-08-12 15:59:58,836 runserver 1188 16116 [35;1mHTTP POST /api/policy-conditions 500 [0.44, 127.0.0.1:57110][0m
+INFO 2025-08-12 16:00:00,966 middleware 1188 6852 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 415, "duration": 0.042, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 124}
+WARNING 2025-08-12 16:00:00,968 log 1188 21632 Unsupported Media Type: /api/policy-conditions/
+WARNING 2025-08-12 16:00:00,968 runserver 1188 16116 [31;1mHTTP POST /api/policy-conditions/ 415 [0.05, 127.0.0.1:57110][0m
+INFO 2025-08-12 16:00:21,767 middleware 1188 1544 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 400, "duration": 0.043, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 101}
+WARNING 2025-08-12 16:00:21,769 log 1188 21632 Bad Request: /api/policy-conditions/
+WARNING 2025-08-12 16:00:21,769 runserver 1188 16116 [31;1mHTTP POST /api/policy-conditions/ 400 [0.05, 127.0.0.1:57110][0m
+INFO 2025-08-12 16:05:03,958 middleware 1188 484 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 400, "duration": 0.042, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 101}
+WARNING 2025-08-12 16:05:03,960 log 1188 21632 Bad Request: /api/policy-conditions/
+WARNING 2025-08-12 16:05:03,960 runserver 1188 16116 [31;1mHTTP POST /api/policy-conditions/ 400 [0.05, 127.0.0.1:57358][0m
+INFO 2025-08-12 16:06:02,932 autoreload 7688 25328 Watching for file changes with StatReloader
+INFO 2025-08-12 16:06:04,340 server 7688 9812 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 16:06:04,341 server 7688 9812 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 16:06:04,341 server 7688 9812 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 16:06:43,624 autoreload 4044 11080 Watching for file changes with StatReloader
+INFO 2025-08-12 16:06:45,119 server 4044 15472 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 16:06:45,120 server 4044 15472 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 16:06:45,121 server 4044 15472 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 16:07:16,905 middleware 4044 17896 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 201, "duration": 0.074, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 436}
+INFO 2025-08-12 16:07:16,910 runserver 4044 15472 [mHTTP POST /api/policy-conditions/ 201 [0.08, 127.0.0.1:57561][0m
+INFO 2025-08-12 16:08:00,111 middleware 4044 11660 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 201, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 367}
+INFO 2025-08-12 16:08:00,115 runserver 4044 15472 [mHTTP POST /api/policy-conditions/ 201 [0.07, 127.0.0.1:57590][0m
+INFO 2025-08-12 16:08:25,985 middleware 4044 724 API Request: {"method": "GET", "path": "/api/policy-conditions/", "status_code": 200, "duration": 0.066, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "python-requests/2.32.4", "content_length": 1179}
+INFO 2025-08-12 16:08:25,987 runserver 4044 15472 [mHTTP GET /api/policy-conditions/ 200 [0.07, 127.0.0.1:57610][0m
+INFO 2025-08-12 16:09:18,717 server 1188 16116 Killed 0 pending application instances
+INFO 2025-08-12 16:09:51,396 server 13008 18340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 16:09:51,397 server 13008 18340 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 16:09:51,397 server 13008 18340 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 16:09:59,672 middleware 13008 1812 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.485, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 16:09:59,675 runserver 13008 18340 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:57675][0m
+INFO 2025-08-12 16:10:10,003 middleware 13008 26592 API Request: {"method": "POST", "path": "/api/policy-conditions/", "status_code": 201, "duration": 0.062, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 435}
+INFO 2025-08-12 16:10:10,012 runserver 13008 18340 [mHTTP POST /api/policy-conditions/ 201 [0.07, 127.0.0.1:57675][0m
+INFO 2025-08-12 16:12:01,046 server 13008 18340 Killed 0 pending application instances
+INFO 2025-08-12 17:25:26,991 server 1508 22360 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 17:25:26,992 server 1508 22360 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 17:25:26,995 server 1508 22360 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 17:25:34,561 middleware 1508 12732 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.208, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 17:25:34,565 runserver 1508 22360 [mHTTP POST /api/auth/login/ 200 [1.23, 127.0.0.1:54641][0m
+INFO 2025-08-12 17:25:52,377 middleware 1508 11816 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 500, "duration": 0.159, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 186}
+ERROR 2025-08-12 17:25:52,381 log 1508 21332 Internal Server Error: /api/case-details/combined-policy-data/1/
+ERROR 2025-08-12 17:25:52,383 runserver 1508 22360 [35;1mHTTP GET /api/case-details/combined-policy-data/1/ 500 [0.17, 127.0.0.1:54641][0m
+INFO 2025-08-12 17:40:46,783 server 1508 22360 Killed 0 pending application instances
+INFO 2025-08-12 17:43:45,055 server 21064 11944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 17:43:45,055 server 21064 11944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 17:43:45,056 server 21064 11944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 17:43:50,979 middleware 21064 4720 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 500, "duration": 0.207, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 204}
+ERROR 2025-08-12 17:43:50,983 log 21064 13180 Internal Server Error: /api/case-details/combined-policy-data/1/
+ERROR 2025-08-12 17:43:50,984 runserver 21064 11944 [35;1mHTTP GET /api/case-details/combined-policy-data/1/ 500 [0.23, 127.0.0.1:57173][0m
+INFO 2025-08-12 18:00:48,874 server 21064 11944 Killed 0 pending application instances
+INFO 2025-08-12 18:01:32,265 server 1976 11528 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:01:32,266 server 1976 11528 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 18:01:32,267 server 1976 11528 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 18:01:36,723 middleware 1976 21180 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 500, "duration": 0.195, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 241}
+ERROR 2025-08-12 18:01:36,728 log 1976 21096 Internal Server Error: /api/case-details/combined-policy-data/1/
+ERROR 2025-08-12 18:01:36,729 runserver 1976 11528 [35;1mHTTP GET /api/case-details/combined-policy-data/1/ 500 [0.21, 127.0.0.1:58653][0m
+INFO 2025-08-12 18:04:54,746 server 1976 11528 Killed 0 pending application instances
+INFO 2025-08-12 18:05:37,655 server 4816 24740 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:05:37,656 server 4816 24740 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 18:05:37,657 server 4816 24740 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 18:05:42,775 middleware 4816 9636 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 500, "duration": 0.206, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 206}
+ERROR 2025-08-12 18:05:42,780 log 4816 18312 Internal Server Error: /api/case-details/combined-policy-data/1/
+ERROR 2025-08-12 18:05:42,781 runserver 4816 24740 [35;1mHTTP GET /api/case-details/combined-policy-data/1/ 500 [0.22, 127.0.0.1:59548][0m
+INFO 2025-08-12 18:08:54,258 autoreload 22004 18832 Watching for file changes with StatReloader
+INFO 2025-08-12 18:08:57,428 server 22004 12384 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:08:57,428 server 22004 12384 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+CRITICAL 2025-08-12 18:08:57,429 server 22004 12384 Listen failure: Couldn't listen on 127.0.0.1:8000: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.
+INFO 2025-08-12 18:09:35,713 autoreload 24008 22972 Watching for file changes with StatReloader
+INFO 2025-08-12 18:09:38,693 server 24008 14000 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:09:38,694 server 24008 14000 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 18:09:38,695 server 24008 14000 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 18:09:52,458 middleware 24008 9604 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 401, "duration": 0.006, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 120}
+WARNING 2025-08-12 18:09:52,462 log 24008 20240 Unauthorized: /api/case-details/combined-policy-data/1/
+WARNING 2025-08-12 18:09:52,463 runserver 24008 14000 [31;1mHTTP GET /api/case-details/combined-policy-data/1/ 401 [0.02, 127.0.0.1:60096][0m
+INFO 2025-08-12 18:10:45,330 autoreload 24008 22972 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_details\views.py changed, reloading.
+INFO 2025-08-12 18:10:47,679 autoreload 10392 25332 Watching for file changes with StatReloader
+INFO 2025-08-12 18:10:50,073 server 10392 25340 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:10:50,073 server 10392 25340 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 18:10:50,075 server 10392 25340 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 18:10:55,914 autoreload 10392 25332 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_details\views.py changed, reloading.
+INFO 2025-08-12 18:10:58,170 autoreload 4252 15504 Watching for file changes with StatReloader
+INFO 2025-08-12 18:11:00,520 server 4252 17992 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:11:00,520 server 4252 17992 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 18:11:00,522 server 4252 17992 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 18:11:34,266 middleware 4252 10628 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 500, "duration": 0.191, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.19041.6093", "content_length": 506}
+ERROR 2025-08-12 18:11:34,270 log 4252 19596 Internal Server Error: /api/case-details/combined-policy-data/1/
+ERROR 2025-08-12 18:11:34,272 runserver 4252 17992 [35;1mHTTP GET /api/case-details/combined-policy-data/1/ 500 [0.21, 127.0.0.1:60191][0m
+INFO 2025-08-12 18:12:25,421 autoreload 4252 15504 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_details\serializers.py changed, reloading.
+INFO 2025-08-12 18:12:27,780 autoreload 3640 22412 Watching for file changes with StatReloader
+INFO 2025-08-12 18:12:30,118 server 3640 17256 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:12:30,119 server 3640 17256 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 18:12:30,120 server 3640 17256 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 18:12:42,981 middleware 3640 11224 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 200, "duration": 0.367, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0", "content_length": 24011}
+INFO 2025-08-12 18:12:42,987 runserver 3640 17256 [mHTTP GET /api/case-details/combined-policy-data/1/ 200 [0.43, 127.0.0.1:60264][0m
+WARNING 2025-08-12 18:12:43,164 log 3640 24424 Not Found: /favicon.ico
+WARNING 2025-08-12 18:12:43,166 runserver 3640 17256 [33mHTTP GET /favicon.ico 404 [0.07, 127.0.0.1:60264][0m
+INFO 2025-08-12 18:13:13,170 autoreload 3640 22412 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_details\views.py changed, reloading.
+INFO 2025-08-12 18:13:15,462 autoreload 19300 17104 Watching for file changes with StatReloader
+INFO 2025-08-12 18:13:27,112 autoreload 19300 17104 C:\Users\Sahina1001\Downloads\Renewal_backend\apps\case_details\views.py changed, reloading.
+INFO 2025-08-12 18:13:29,433 autoreload 12496 18624 Watching for file changes with StatReloader
+INFO 2025-08-12 18:13:31,728 server 12496 14680 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:13:31,729 server 12496 14680 Configuring endpoint tcp:port=8001:interface=127.0.0.1
+INFO 2025-08-12 18:13:31,730 server 12496 14680 Listening on TCP address 127.0.0.1:8001
+INFO 2025-08-12 18:44:41,190 server 4816 24740 Killed 0 pending application instances
+INFO 2025-08-12 18:45:21,761 server 11704 6600 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-12 18:45:21,762 server 11704 6600 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-12 18:45:21,763 server 11704 6600 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-12 18:45:26,015 middleware 11704 25304 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 401, "duration": 0.021, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-12 18:45:26,019 log 11704 16208 Unauthorized: /api/case-details/combined-policy-data/1/
+WARNING 2025-08-12 18:45:26,020 runserver 11704 6600 [31;1mHTTP GET /api/case-details/combined-policy-data/1/ 401 [0.04, 127.0.0.1:60530][0m
+INFO 2025-08-12 18:45:32,498 middleware 11704 1588 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 1.068, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-12 18:45:32,502 runserver 11704 6600 [mHTTP POST /api/auth/login/ 200 [1.08, 127.0.0.1:60530][0m
+INFO 2025-08-12 18:45:44,816 middleware 11704 23772 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 200, "duration": 0.3, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 24011}
+INFO 2025-08-12 18:45:44,820 runserver 11704 6600 [mHTTP GET /api/case-details/combined-policy-data/1/ 200 [0.31, 127.0.0.1:60530][0m
+INFO 2025-08-12 18:46:09,150 server 11704 6600 Killed 0 pending application instances

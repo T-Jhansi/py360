@@ -17,7 +17,7 @@ class PolicyCoverageViewSet(viewsets.ModelViewSet):
     """ViewSet for managing policy coverages"""
     
     queryset = PolicyCoverage.objects.select_related(
-        'policy', 'policy__customer', 'policy__policy_type'
+        'policy_type'
     ).filter(is_deleted=False)
     
     serializer_class = PolicyCoverageSerializer
@@ -25,12 +25,12 @@ class PolicyCoverageViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     
     filterset_fields = [
-        'policy', 'coverage_type', 'coverage_category', 'is_included', 'is_optional'
+        'policy_type', 'coverage_type', 'coverage_category', 'is_included', 'is_optional'
     ]
-    
+
     search_fields = [
-        'coverage_name', 'coverage_description', 'policy__policy_number',
-        'policy__customer__name', 'policy__customer__email'
+        'coverage_name', 'coverage_description', 'policy_type__name',
+        'policy_type__code', 'policy_type__category'
     ]
     
     ordering_fields = [

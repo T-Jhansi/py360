@@ -37,6 +37,14 @@ class Channel(BaseModel):
     description = models.TextField(blank=True, help_text="Channel description")
     
     # Relationships
+    customer = models.ForeignKey(
+        'customers.Customer',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='channels',
+        help_text="Customer associated with this channel"
+    )
     target_audience = models.ForeignKey(
         TargetAudience,
         on_delete=models.SET_NULL,
@@ -101,6 +109,7 @@ class Channel(BaseModel):
             models.Index(fields=['status']),
             models.Index(fields=['priority']),
             models.Index(fields=['manager_name']),
+            models.Index(fields=['customer']),
             models.Index(fields=['target_audience']),
         ]
         constraints = [

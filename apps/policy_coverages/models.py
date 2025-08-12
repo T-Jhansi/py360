@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel
-from apps.policies.models import Policy
+from apps.policies.models import PolicyType
 
 User = get_user_model()
 
@@ -34,11 +34,11 @@ class PolicyCoverage(BaseModel):
         ('conditions_apply', 'Conditions Apply'),
     ]
     
-    policy = models.ForeignKey(
-        Policy, 
-        on_delete=models.CASCADE, 
+    policy_type = models.ForeignKey(
+        PolicyType,
+        on_delete=models.CASCADE,
         related_name='policy_coverages',
-        help_text="Policy this coverage belongs to"
+        help_text="Policy type this coverage belongs to"
     )
     
     coverage_type = models.CharField(
@@ -127,27 +127,32 @@ class PolicyCoverage(BaseModel):
         blank=True,
         help_text="Additional information about the coverage"
     )
-    
+
+    support_coverage = models.BooleanField(
+        default=False,
+        help_text="Whether this coverage includes 24/7 support services"
+    )
+
     class Meta:
         db_table = 'policy_coverages'
         ordering = ['coverage_type', 'display_order', 'coverage_name']
         indexes = [
-            models.Index(fields=['policy', 'coverage_type']),
+            models.Index(fields=['policy_type', 'coverage_type']),
             models.Index(fields=['coverage_type', 'coverage_category']),
-            models.Index(fields=['policy', 'is_included']),
+            models.Index(fields=['policy_type', 'is_included']),
             models.Index(fields=['display_order']),
         ]
-        unique_together = ['policy', 'coverage_name', 'coverage_type']
-    
+        unique_together = ['policy_type', 'coverage_name', 'coverage_type']
+
     def __str__(self):
-        return f"{self.policy.policy_number} - {self.coverage_name}"
-    
+        return f"{self.policy_type.name} - {self.coverage_name}"
+
     @property
-    def policy_number(self):
-        """Return the policy number for easy access"""
-        return self.policy.policy_number if self.policy else None
-    
+    def policy_type_name(self):
+        """Return the policy type name for easy access"""
+        return self.policy_type.name if self.policy_type else None
+
     @property
-    def customer_name(self):
-        """Return the customer name for easy access"""
-        return self.policy.customer.name if self.policy and self.policy.customer else None
+    def policy_type_category(self):
+        """Return the policy type category for easy access"""
+        return self.policy_type.category if self.policy_type else None

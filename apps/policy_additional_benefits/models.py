@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from apps.core.models import BaseModel
 from apps.policies.models import Policy
+from apps.policy_coverages.models import PolicyCoverage
 
 User = get_user_model()
 
@@ -27,19 +28,28 @@ class PolicyAdditionalBenefit(BaseModel):
         ('general', 'General'),
     ]
     
-    policy = models.ForeignKey(
-        Policy, 
-        on_delete=models.CASCADE, 
-        related_name='policy_additional_benefits',
-        help_text="Policy this benefit belongs to"
+    # Replace policy FK with policy_coverages FK
+    policy_coverages = models.ForeignKey(
+        PolicyCoverage,
+        on_delete=models.CASCADE,
+        related_name='additional_benefits',
+        help_text="Policy coverage this benefit belongs to"
     )
-    
+
+    # New benefit_category CharField
+    benefit_category = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Category of the benefit"
+    )
+
+    # Keep existing benefit_type for backward compatibility
     benefit_type = models.CharField(
-        max_length=50, 
+        max_length=50,
         choices=BENEFIT_TYPE_CHOICES,
         default='general',
         db_index=True,
-        help_text="Type of additional benefit"
+        help_text="Type of additional benefit (legacy field)"
     )
     
     benefit_name = models.CharField(
@@ -103,22 +113,24 @@ class PolicyAdditionalBenefit(BaseModel):
         db_table = 'policy_additional_benefits'
         ordering = ['display_order', 'benefit_name']
         indexes = [
-            models.Index(fields=['policy', 'is_active']),
+            models.Index(fields=['policy_coverages', 'is_active']),
             models.Index(fields=['benefit_type', 'is_active']),
-            models.Index(fields=['policy', 'benefit_type']),
+            models.Index(fields=['policy_coverages', 'benefit_type']),
+            models.Index(fields=['benefit_category']),
+            models.Index(fields=['policy_coverages', 'benefit_category']),
             models.Index(fields=['display_order']),
         ]
-        unique_together = ['policy', 'benefit_name']
+        unique_together = ['policy_coverages', 'benefit_name']
     
     def __str__(self):
-        return f"{self.policy.policy_number} - {self.benefit_name}"
-    
+        return f"{self.policy_coverages.policy_type.name} - {self.benefit_name}"
+
     @property
-    def policy_number(self):
-        """Return the policy number for easy access"""
-        return self.policy.policy_number if self.policy else None
-    
+    def policy_type_name(self):
+        """Return the policy type name for easy access"""
+        return self.policy_coverages.policy_type.name if self.policy_coverages and self.policy_coverages.policy_type else None
+
     @property
-    def customer_name(self):
-        """Return the customer name for easy access"""
-        return self.policy.customer.name if self.policy and self.policy.customer else None
+    def coverage_name(self):
+        """Return the coverage name for easy access"""
+        return self.policy_coverages.coverage_name if self.policy_coverages else None

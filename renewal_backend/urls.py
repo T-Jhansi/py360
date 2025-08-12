@@ -35,6 +35,7 @@ api_patterns = [
     path('hierarchy/', include('apps.hierarchy.urls')),
     path('case-tracking/', include('apps.case_tracking.urls')),
     path('case-logs/', include('apps.case_logs.urls')),
+    path('case-details/', include('apps.case_details.urls')),
     path('closed-cases/', include('apps.closed_cases.urls')),
     path('financial-profiles/', include('apps.customer_financial_profile.urls')),
     path('customer-assets/', include('apps.customer_assets.urls')),
@@ -51,6 +52,8 @@ api_patterns = [
     path('policy-features/', include('apps.policy_features.urls')),
     path('policy-additional-benefits/', include('apps.policy_additional_benefits.urls')),
     path('policy-coverages/', include('apps.policy_coverages.urls')),
+    path('policy-exclusions/', include('apps.policy_exclusions.urls')),
+    path('policy-conditions/', include('apps.policy_conditions.urls')),
 
     # API Documentation
     path('schema/', SpectacularAPIView.as_view(), name='schema'),

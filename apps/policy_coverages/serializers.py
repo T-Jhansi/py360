@@ -1,32 +1,46 @@
 from rest_framework import serializers
 from .models import PolicyCoverage
-from apps.policies.models import Policy
+from apps.policies.models import PolicyType
 
 
 class PolicyCoverageSerializer(serializers.ModelSerializer):
     """Serializer for PolicyCoverage model"""
-    
-    policy_number = serializers.CharField(source='policy.policy_number', read_only=True)
-    customer_name = serializers.CharField(source='policy.customer.name', read_only=True)
-    policy_type_name = serializers.CharField(source='policy.policy_type.name', read_only=True)
-    
+
+    policy_type_id = serializers.IntegerField(write_only=True)
+    policy_type_name = serializers.CharField(source='policy_type.name', read_only=True)
+    policy_type_code = serializers.CharField(source='policy_type.code', read_only=True)
+    policy_type_category = serializers.CharField(source='policy_type.category', read_only=True)
+
     class Meta:
         model = PolicyCoverage
         fields = [
-            'id', 'policy', 'policy_number', 'customer_name', 'policy_type_name',
+            'id', 'policy_type_id', 'policy_type_name', 'policy_type_code', 'policy_type_category',
             'coverage_type', 'coverage_category', 'coverage_name', 'coverage_description',
             'coverage_amount', 'deductible_amount', 'coverage_percentage',
             'is_included', 'is_optional', 'premium_impact', 'display_order',
-            'terms_conditions', 'exclusions', 'additional_info',
+            'terms_conditions', 'exclusions', 'additional_info', 'support_coverage',
             'created_at', 'updated_at', 'created_by', 'updated_by'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
     
-    def validate_policy(self, value):
-        """Validate that the policy exists and is active"""
-        if not Policy.objects.filter(id=value.id, is_deleted=False).exists():
-            raise serializers.ValidationError("Policy does not exist or has been deleted.")
+    def validate_policy_type_id(self, value):
+        """Validate that the policy type exists and is active"""
+        if not PolicyType.objects.filter(id=value, is_deleted=False).exists():
+            raise serializers.ValidationError("Policy type does not exist or has been deleted.")
         return value
+
+    def create(self, validated_data):
+        """Create policy coverage with policy_type_id"""
+        policy_type_id = validated_data.pop('policy_type_id')
+        validated_data['policy_type_id'] = policy_type_id
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        """Update policy coverage with policy_type_id"""
+        if 'policy_type_id' in validated_data:
+            policy_type_id = validated_data.pop('policy_type_id')
+            validated_data['policy_type_id'] = policy_type_id
+        return super().update(instance, validated_data)
     
     def validate_coverage_name(self, value):
         """Validate coverage name is not empty"""
@@ -67,17 +81,17 @@ class PolicyCoverageSerializer(serializers.ModelSerializer):
 
 class PolicyCoverageListSerializer(serializers.ModelSerializer):
     """Simplified serializer for listing policy coverages"""
-    
-    policy_number = serializers.CharField(source='policy.policy_number', read_only=True)
-    customer_name = serializers.CharField(source='policy.customer.name', read_only=True)
-    
+
+    policy_type_name = serializers.CharField(source='policy_type.name', read_only=True)
+    policy_type_category = serializers.CharField(source='policy_type.category', read_only=True)
+
     class Meta:
         model = PolicyCoverage
         fields = [
-            'id', 'policy_number', 'customer_name', 'coverage_type', 
+            'id', 'policy_type_name', 'policy_type_category', 'coverage_type',
             'coverage_category', 'coverage_name', 'coverage_description',
             'coverage_amount', 'deductible_amount', 'coverage_percentage',
-            'is_included', 'is_optional', 'premium_impact', 'created_at'
+            'is_included', 'is_optional', 'premium_impact', 'support_coverage', 'created_at'
         ]
 
 
@@ -88,5 +102,5 @@ class PolicyCoverageSummarySerializer(serializers.ModelSerializer):
         model = PolicyCoverage
         fields = [
             'id', 'coverage_type', 'coverage_name', 'coverage_amount',
-            'deductible_amount', 'coverage_percentage', 'is_included'
+            'deductible_amount', 'coverage_percentage', 'is_included', 'support_coverage'
         ]
