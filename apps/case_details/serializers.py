@@ -8,7 +8,9 @@ from apps.policy_features.models import PolicyFeature
 from apps.policy_coverages.models import PolicyCoverage
 from apps.policy_additional_benefits.models import PolicyAdditionalBenefit
 from apps.policy_exclusions.models import PolicyExclusion
+from apps.customer_communication_preferences.models import CustomerCommunicationPreference
 
+# OverView & Policy
 
 class CustomerDocumentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,7 +32,6 @@ class PolicyCoverageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_additional_benefits(self, obj):
-        # Get additional benefits for this coverage
         benefits = PolicyAdditionalBenefit.objects.filter(policy_coverages=obj)
         return PolicyAdditionalBenefitSerializer(benefits, many=True).data
 
@@ -87,3 +88,10 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
+
+# Preferences
+
+class CustomerCommunicationPreferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerCommunicationPreference
+        fields = "__all__"

@@ -14,7 +14,6 @@ from .serializers import (
     CustomerPaymentListSerializer
 )
 
-
 class CustomerPaymentViewSet(viewsets.ModelViewSet):
     """
     ViewSet for Customer Payment operations.

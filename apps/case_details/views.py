@@ -2,12 +2,14 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-
 from apps.customers.models import Customer
 from apps.renewals.models import RenewalCase
-
 from .serializers import CustomerSerializer
+from apps.customers.models import Customer
+from apps.customer_communication_preferences.models import CustomerCommunicationPreference
+from .serializers import CustomerCommunicationPreferenceSerializer
 
+# OverView & Policy
 
 class CombinedPolicyDataAPIView(APIView):
     """
@@ -36,12 +38,12 @@ class CombinedPolicyDataAPIView(APIView):
                     'financial_profile'
                 ).prefetch_related(
                     'documents_new',
+                    'channels',
                     'policies__policy_type',
-                    'policies__channel',
                     'policies__policy_type__policy_features',
-                    'policies__policy_coverages',
-                    'policies__policy_additional_benefits',
-                    'policies__policy_exclusions'
+                    'policies__policy_type__policy_coverages',
+                    'policies__policy_type__policy_coverages__additional_benefits',
+                    'policies__exclusions'
                 ),
                 id=renewal_case.policy.customer.id
             )
@@ -75,3 +77,17 @@ class CombinedPolicyDataAPIView(APIView):
                 'message': f'Error retrieving combined policy data: {str(e)}',
                 'data': None
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+# Preferences
+
+class CustomerCommunicationPreferencesAPIView(APIView):
+    def get(self, request, case_number):
+        try:
+            renewal_case = RenewalCase.objects.get(case_number=case_number)
+            preferences = CustomerCommunicationPreference.objects.filter(case=renewal_case)
+            serializer = CustomerCommunicationPreferenceSerializer(preferences, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except RenewalCase.DoesNotExist:
+            return Response({"error": "Case not found"}, status=status.HTTP_404_NOT_FOUND)
+        
