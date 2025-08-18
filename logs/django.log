@@ -11397,3 +11397,33 @@ INFO 2025-08-12 18:45:32,502 runserver 11704 6600 [mHTTP POST /api/auth/login/ 
 INFO 2025-08-12 18:45:44,816 middleware 11704 23772 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 200, "duration": 0.3, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 24011}
 INFO 2025-08-12 18:45:44,820 runserver 11704 6600 [mHTTP GET /api/case-details/combined-policy-data/1/ 200 [0.31, 127.0.0.1:60530][0m
 INFO 2025-08-12 18:46:09,150 server 11704 6600 Killed 0 pending application instances
+INFO 2025-08-14 15:14:33,274 server 2560 20636 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-14 15:14:33,276 server 2560 20636 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-14 15:14:33,279 server 2560 20636 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-14 15:14:48,070 middleware 2560 26232 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.906, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-14 15:14:48,075 runserver 2560 20636 [mHTTP POST /api/auth/login/ 200 [0.93, 127.0.0.1:61298][0m
+INFO 2025-08-14 15:15:11,142 middleware 2560 23700 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/1/", "status_code": 200, "duration": 0.326, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 24011}
+INFO 2025-08-14 15:15:11,146 runserver 2560 20636 [mHTTP GET /api/case-details/combined-policy-data/1/ 200 [0.34, 127.0.0.1:61298][0m
+INFO 2025-08-14 18:19:41,592 server 2560 20636 Killed 0 pending application instances
+INFO 2025-08-14 18:21:40,254 server 10628 12484 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-14 18:21:40,254 server 10628 12484 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-14 18:21:40,255 server 10628 12484 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-14 18:21:44,667 middleware 10628 22600 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/001/", "status_code": 401, "duration": 0.039, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-14 18:21:44,672 log 10628 3252 Unauthorized: /api/case-details/combined-policy-data/001/
+WARNING 2025-08-14 18:21:44,674 runserver 10628 12484 [31;1mHTTP GET /api/case-details/combined-policy-data/001/ 401 [0.06, 127.0.0.1:62468][0m
+INFO 2025-08-14 18:21:51,773 middleware 10628 18776 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.985, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-14 18:21:51,778 runserver 10628 12484 [mHTTP POST /api/auth/login/ 200 [0.99, 127.0.0.1:62468][0m
+INFO 2025-08-14 18:22:07,397 middleware 10628 484 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/001/", "status_code": 200, "duration": 0.283, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 24011}
+INFO 2025-08-14 18:22:07,403 runserver 10628 12484 [mHTTP GET /api/case-details/combined-policy-data/001/ 200 [0.29, 127.0.0.1:62468][0m
+INFO 2025-08-14 18:40:55,072 middleware 10628 9432 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/020/", "status_code": 500, "duration": 0.118, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 120}
+ERROR 2025-08-14 18:40:55,076 log 10628 3252 Internal Server Error: /api/case-details/combined-policy-data/020/
+ERROR 2025-08-14 18:40:55,078 runserver 10628 12484 [35;1mHTTP GET /api/case-details/combined-policy-data/020/ 500 [0.13, 127.0.0.1:61310][0m
+INFO 2025-08-14 18:41:05,974 middleware 10628 22680 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/019/", "status_code": 500, "duration": 0.107, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 120}
+ERROR 2025-08-14 18:41:05,977 log 10628 3252 Internal Server Error: /api/case-details/combined-policy-data/019/
+ERROR 2025-08-14 18:41:05,979 runserver 10628 12484 [35;1mHTTP GET /api/case-details/combined-policy-data/019/ 500 [0.12, 127.0.0.1:61310][0m
+INFO 2025-08-14 18:41:10,768 middleware 10628 18772 API Request: {"method": "GET", "path": "/api/case-details/combined-policy-data/005/", "status_code": 200, "duration": 0.208, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 2698}
+INFO 2025-08-14 18:41:10,774 runserver 10628 12484 [mHTTP GET /api/case-details/combined-policy-data/005/ 200 [0.22, 127.0.0.1:61310][0m
+INFO 2025-08-18 10:35:05,369 autoreload 19720 17044 Watching for file changes with StatReloader
+INFO 2025-08-18 10:35:06,723 server 19720 18672 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-18 10:35:06,724 server 19720 18672 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-18 10:35:06,725 server 19720 18672 Listening on TCP address 127.0.0.1:8000
