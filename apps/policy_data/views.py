@@ -43,17 +43,6 @@ def get_next_available_agent():
         return None
 
 def get_customer_previous_policy_end_date(customer, current_policy_start_date=None, exclude_policy_id=None):
-    """
-    Helper function to find the most recent previous policy end_date for a customer.
-
-    Args:
-        customer: Customer instance or customer_id
-        current_policy_start_date: Start date of current policy to compare against
-        exclude_policy_id: Policy ID to exclude from search (useful when updating existing policy)
-
-    Returns:
-        date: End date of the most recent previous policy, or None if no previous policy found
-    """
     from apps.policies.models import Policy
 
     try:
@@ -89,19 +78,6 @@ def get_customer_previous_policy_end_date(customer, current_policy_start_date=No
 
 def calculate_policy_and_renewal_status(end_date, start_date=None, grace_period_days=30,
                                       customer=None, exclude_policy_id=None):
-    """
-    Enhanced function to calculate policy and renewal status.
-
-    Args:
-        end_date: Policy end date
-        start_date: Policy start date (optional)
-        grace_period_days: Grace period after expiry (default: 30)
-        customer: Customer instance or ID for checking previous policies (optional)
-        exclude_policy_id: Policy ID to exclude when looking for previous policies (optional)
-
-    Returns:
-        tuple: (policy_status, renewal_status)
-    """
     today = date.today()
 
     if isinstance(end_date, datetime):
