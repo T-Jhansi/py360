@@ -11977,3 +11977,305 @@ INFO 2025-08-21 12:26:13,466 server 24312 22844 HTTP/2 support not enabled (inst
 INFO 2025-08-21 12:26:13,466 server 24312 22844 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-08-21 12:26:13,467 server 24312 22844 Listening on TCP address 127.0.0.1:8000
 INFO 2025-08-21 12:33:02,612 server 24312 22844 Killed 0 pending application instances
+INFO 2025-08-21 12:34:45,278 autoreload 14500 24208 Watching for file changes with StatReloader
+INFO 2025-08-21 12:34:46,703 server 14500 10944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 12:34:46,703 server 14500 10944 Configuring endpoint tcp:port=8000:interface=0.0.0.0
+INFO 2025-08-21 12:34:46,704 server 14500 10944 Listening on TCP address 0.0.0.0:8000
+INFO 2025-08-21 12:37:04,786 server 22100 11512 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 12:37:04,786 server 22100 11512 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 12:37:04,787 server 22100 11512 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 12:42:45,436 server 22100 11512 Killed 0 pending application instances
+INFO 2025-08-21 12:45:05,618 server 18812 21316 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 12:45:05,618 server 18812 21316 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 12:45:05,619 server 18812 21316 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 12:45:16,516 middleware 18812 10368 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.485, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-21 12:45:16,518 runserver 18812 21316 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:51525][0m
+INFO 2025-08-21 12:45:37,933 middleware 18812 3024 API Request: {"method": "POST", "path": "/api/channels/channels/create_channel/", "status_code": 201, "duration": 0.063, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 456}
+INFO 2025-08-21 12:45:37,938 runserver 18812 21316 [mHTTP POST /api/channels/channels/create_channel/ 201 [0.07, 127.0.0.1:51525][0m
+INFO 2025-08-21 12:47:22,141 middleware 18812 10024 API Request: {"method": "GET", "path": "/api/channels/channels/", "status_code": 200, "duration": 0.055, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 2597}
+INFO 2025-08-21 12:47:22,143 runserver 18812 21316 [mHTTP GET /api/channels/channels/ 200 [0.06, 127.0.0.1:51724][0m
+INFO 2025-08-21 12:48:33,067 middleware 18812 6660 API Request: {"method": "GET", "path": "/api/channels/channels/17/", "status_code": 404, "duration": 0.048, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 85}
+WARNING 2025-08-21 12:48:33,069 log 18812 9168 Not Found: /api/channels/channels/17/
+WARNING 2025-08-21 12:48:33,071 runserver 18812 21316 [33mHTTP GET /api/channels/channels/17/ 404 [0.05, 127.0.0.1:51779][0m
+INFO 2025-08-21 12:48:41,801 middleware 18812 11936 API Request: {"method": "GET", "path": "/api/channels/channels/9/", "status_code": 200, "duration": 0.05, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 408}
+INFO 2025-08-21 12:48:41,803 runserver 18812 21316 [mHTTP GET /api/channels/channels/9/ 200 [0.05, 127.0.0.1:51779][0m
+INFO 2025-08-21 12:49:10,099 middleware 18812 14140 API Request: {"method": "PUT", "path": "/api/channels/channels/edit/9/", "status_code": 200, "duration": 0.053, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 464}
+INFO 2025-08-21 12:49:10,105 runserver 18812 21316 [mHTTP PUT /api/channels/channels/edit/9/ 200 [0.07, 127.0.0.1:51807][0m
+INFO 2025-08-21 13:16:48,902 server 18812 21316 Killed 0 pending application instances
+INFO 2025-08-21 13:40:19,968 server 20948 23392 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 13:40:19,969 server 20948 23392 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 13:40:19,969 server 20948 23392 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 14:56:56,152 server 20948 23392 Killed 0 pending application instances
+INFO 2025-08-21 14:58:54,899 server 23752 24784 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 14:58:54,900 server 23752 24784 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 14:58:54,901 server 23752 24784 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 15:00:21,140 middleware 23752 15388 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.959, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-21 15:00:21,148 runserver 23752 24784 [mHTTP POST /api/auth/login/ 200 [0.98, 127.0.0.1:56809][0m
+INFO 2025-08-21 15:02:53,171 serializers 23752 23400 Found 10 customers from file upload time window
+INFO 2025-08-21 15:02:53,175 serializers 23752 23400 Total customers selected for campaign 2: 10
+INFO 2025-08-21 15:02:53,290 serializers 23752 23400 Successfully created 10 recipients for campaign 2
+INFO 2025-08-21 15:02:53,308 serializers 23752 23400 Starting immediate email sending for campaign 2
+INFO 2025-08-21 15:02:53,309 services 23752 23400 Starting email sending for campaign 2
+INFO 2025-08-21 15:02:53,315 services 23752 23400 Found campaign: Policy Renewal Campaign
+INFO 2025-08-21 15:02:53,319 services 23752 23400 Found 10 pending recipients
+INFO 2025-08-21 15:02:53,341 services 23752 23400 Processing recipient 20: zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:53,347 services 23752 23400 Starting email send to zcaldwell@clements-cannon.info for campaign 2
+INFO 2025-08-21 15:02:53,355 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:02:53,355 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:02:53,401 services 23752 23400 Added tracking to email for recipient 20, campaign 2
+INFO 2025-08-21 15:02:53,402 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=40a4a0ecfacb41530b9ac759c6c5c909
+INFO 2025-08-21 15:02:53,403 services 23752 23400 Creating email message for zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:53,403 services 23752 23400 Attempting to send email to zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:57,065 services 23752 23400 Email sent successfully to zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:57,114 services 23752 23400 Email sent and delivered successfully to zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:57,115 services 23752 23400 Email sent successfully to zcaldwell@clements-cannon.info
+INFO 2025-08-21 15:02:57,115 services 23752 23400 Processing recipient 19: nbrooks@steele.com
+INFO 2025-08-21 15:02:57,119 services 23752 23400 Starting email send to nbrooks@steele.com for campaign 2
+INFO 2025-08-21 15:02:57,127 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:02:57,128 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:02:57,166 services 23752 23400 Added tracking to email for recipient 19, campaign 2
+INFO 2025-08-21 15:02:57,166 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=2fd8e3ac30c952ec887829991209b3d8
+INFO 2025-08-21 15:02:57,167 services 23752 23400 Creating email message for nbrooks@steele.com
+INFO 2025-08-21 15:02:57,167 services 23752 23400 Attempting to send email to nbrooks@steele.com
+INFO 2025-08-21 15:03:00,172 services 23752 23400 Email sent successfully to nbrooks@steele.com
+INFO 2025-08-21 15:03:00,231 services 23752 23400 Email sent and delivered successfully to nbrooks@steele.com
+INFO 2025-08-21 15:03:00,232 services 23752 23400 Email sent successfully to nbrooks@steele.com
+INFO 2025-08-21 15:03:00,232 services 23752 23400 Processing recipient 18: brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:00,235 services 23752 23400 Starting email send to brandon40@jones-mahoney.info for campaign 2
+INFO 2025-08-21 15:03:00,243 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:00,244 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:00,274 services 23752 23400 Added tracking to email for recipient 18, campaign 2
+INFO 2025-08-21 15:03:00,275 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=4a5464e8ba44e810bf5ddc845f6129dc
+INFO 2025-08-21 15:03:00,276 services 23752 23400 Creating email message for brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:00,276 services 23752 23400 Attempting to send email to brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:03,333 services 23752 23400 Email sent successfully to brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:03,389 services 23752 23400 Email sent and delivered successfully to brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:03,390 services 23752 23400 Email sent successfully to brandon40@jones-mahoney.info
+INFO 2025-08-21 15:03:03,390 services 23752 23400 Processing recipient 17: jasonknox@hotmail.com
+INFO 2025-08-21 15:03:03,395 services 23752 23400 Starting email send to jasonknox@hotmail.com for campaign 2
+INFO 2025-08-21 15:03:03,403 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:03,404 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:03,435 services 23752 23400 Added tracking to email for recipient 17, campaign 2
+INFO 2025-08-21 15:03:03,435 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=4cb5782c1715fff389ca208e99c8e6d3
+INFO 2025-08-21 15:03:03,436 services 23752 23400 Creating email message for jasonknox@hotmail.com
+INFO 2025-08-21 15:03:03,436 services 23752 23400 Attempting to send email to jasonknox@hotmail.com
+INFO 2025-08-21 15:03:06,366 services 23752 23400 Email sent successfully to jasonknox@hotmail.com
+INFO 2025-08-21 15:03:06,421 services 23752 23400 Email sent and delivered successfully to jasonknox@hotmail.com
+INFO 2025-08-21 15:03:06,422 services 23752 23400 Email sent successfully to jasonknox@hotmail.com
+INFO 2025-08-21 15:03:06,422 services 23752 23400 Processing recipient 16: mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:06,427 services 23752 23400 Starting email send to mccarthymichele@hotmail.com for campaign 2
+INFO 2025-08-21 15:03:06,436 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:06,436 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:06,467 services 23752 23400 Added tracking to email for recipient 16, campaign 2
+INFO 2025-08-21 15:03:06,467 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=cdc6d38e8eed6045ccc8c5cebc3dec57
+INFO 2025-08-21 15:03:06,468 services 23752 23400 Creating email message for mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:06,469 services 23752 23400 Attempting to send email to mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:09,284 services 23752 23400 Email sent successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:09,340 services 23752 23400 Email sent and delivered successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:09,341 services 23752 23400 Email sent successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 15:03:09,341 services 23752 23400 Processing recipient 15: goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:09,346 services 23752 23400 Starting email send to goldenbenjamin@gmail.com for campaign 2
+INFO 2025-08-21 15:03:09,355 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:09,355 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:09,390 services 23752 23400 Added tracking to email for recipient 15, campaign 2
+INFO 2025-08-21 15:03:09,391 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=7b3b4ddb1d4f2154752d9b5e6e0ca2a0
+INFO 2025-08-21 15:03:09,392 services 23752 23400 Creating email message for goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:09,393 services 23752 23400 Attempting to send email to goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:12,356 services 23752 23400 Email sent successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:12,416 services 23752 23400 Email sent and delivered successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:12,417 services 23752 23400 Email sent successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 15:03:12,417 services 23752 23400 Processing recipient 14: goulddaniel@austin.com
+INFO 2025-08-21 15:03:12,421 services 23752 23400 Starting email send to goulddaniel@austin.com for campaign 2
+INFO 2025-08-21 15:03:12,430 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:12,431 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:12,466 services 23752 23400 Added tracking to email for recipient 14, campaign 2
+INFO 2025-08-21 15:03:12,467 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=4e8ec66c5cce99ae29f158a7e86d9908
+INFO 2025-08-21 15:03:12,467 services 23752 23400 Creating email message for goulddaniel@austin.com
+INFO 2025-08-21 15:03:12,468 services 23752 23400 Attempting to send email to goulddaniel@austin.com
+INFO 2025-08-21 15:03:15,238 services 23752 23400 Email sent successfully to goulddaniel@austin.com
+INFO 2025-08-21 15:03:15,302 services 23752 23400 Email sent and delivered successfully to goulddaniel@austin.com
+INFO 2025-08-21 15:03:15,303 services 23752 23400 Email sent successfully to goulddaniel@austin.com
+INFO 2025-08-21 15:03:15,304 services 23752 23400 Processing recipient 13: cooperjacob@gmail.com
+INFO 2025-08-21 15:03:15,307 services 23752 23400 Starting email send to cooperjacob@gmail.com for campaign 2
+INFO 2025-08-21 15:03:15,318 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:15,319 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:15,354 services 23752 23400 Added tracking to email for recipient 13, campaign 2
+INFO 2025-08-21 15:03:15,354 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=e59670e3c29f3b9d76d3024bc0aec3aa
+INFO 2025-08-21 15:03:15,355 services 23752 23400 Creating email message for cooperjacob@gmail.com
+INFO 2025-08-21 15:03:15,356 services 23752 23400 Attempting to send email to cooperjacob@gmail.com
+INFO 2025-08-21 15:03:18,493 services 23752 23400 Email sent successfully to cooperjacob@gmail.com
+INFO 2025-08-21 15:03:18,550 services 23752 23400 Email sent and delivered successfully to cooperjacob@gmail.com
+INFO 2025-08-21 15:03:18,550 services 23752 23400 Email sent successfully to cooperjacob@gmail.com
+INFO 2025-08-21 15:03:18,551 services 23752 23400 Processing recipient 12: xhorn@ryan.biz
+INFO 2025-08-21 15:03:18,554 services 23752 23400 Starting email send to xhorn@ryan.biz for campaign 2
+INFO 2025-08-21 15:03:18,566 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:18,566 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:18,601 services 23752 23400 Added tracking to email for recipient 12, campaign 2
+INFO 2025-08-21 15:03:18,601 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=0319f1d154f1d5544908970615e67800
+INFO 2025-08-21 15:03:18,602 services 23752 23400 Creating email message for xhorn@ryan.biz
+INFO 2025-08-21 15:03:18,602 services 23752 23400 Attempting to send email to xhorn@ryan.biz
+INFO 2025-08-21 15:03:21,534 services 23752 23400 Email sent successfully to xhorn@ryan.biz
+INFO 2025-08-21 15:03:21,575 services 23752 23400 Email sent and delivered successfully to xhorn@ryan.biz
+INFO 2025-08-21 15:03:21,576 services 23752 23400 Email sent successfully to xhorn@ryan.biz
+INFO 2025-08-21 15:03:21,577 services 23752 23400 Processing recipient 11: joseph68@jones.com
+INFO 2025-08-21 15:03:21,582 services 23752 23400 Starting email send to joseph68@jones.com for campaign 2
+INFO 2025-08-21 15:03:21,589 services 23752 23400 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 15:03:21,589 services 23752 23400 Template content length: 8778
+INFO 2025-08-21 15:03:21,621 services 23752 23400 Added tracking to email for recipient 11, campaign 2
+INFO 2025-08-21 15:03:21,622 services 23752 23400 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=cbb9677da3b4d48571bcf1649c99b69f
+INFO 2025-08-21 15:03:21,622 services 23752 23400 Creating email message for joseph68@jones.com
+INFO 2025-08-21 15:03:21,623 services 23752 23400 Attempting to send email to joseph68@jones.com
+INFO 2025-08-21 15:03:24,730 services 23752 23400 Email sent successfully to joseph68@jones.com
+INFO 2025-08-21 15:03:24,773 services 23752 23400 Email sent and delivered successfully to joseph68@jones.com
+INFO 2025-08-21 15:03:24,774 services 23752 23400 Email sent successfully to joseph68@jones.com
+INFO 2025-08-21 15:03:24,798 services 23752 23400 Campaign 2 email sending completed: 10 sent, 0 failed
+ERROR 2025-08-21 15:03:24,798 services 23752 23400 Error scheduling delivery status update: 'function' object has no attribute 'apply_async'
+INFO 2025-08-21 15:03:24,799 serializers 23752 23400 Email sending completed: 10 sent, 0 failed
+INFO 2025-08-21 15:03:24,805 middleware 23752 23400 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 31.809, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 383}
+INFO 2025-08-21 15:03:24,817 runserver 23752 24784 [mHTTP POST /api/campaigns/create-from-file/ 201 [31.83, 127.0.0.1:56846][0m
+INFO 2025-08-21 15:35:31,156 server 23752 24784 Killed 0 pending application instances
+INFO 2025-08-21 15:36:10,505 server 13036 19956 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 15:36:10,505 server 13036 19956 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 15:36:10,505 server 13036 19956 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 16:08:12,013 server 13036 19956 Killed 0 pending application instances
+INFO 2025-08-21 16:08:58,461 server 17616 17012 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 16:08:58,461 server 17616 17012 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 16:08:58,462 server 17616 17012 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 16:30:25,093 server 17616 17012 Killed 0 pending application instances
+INFO 2025-08-21 16:32:49,787 server 21340 17780 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 16:32:49,788 server 21340 17780 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 16:32:49,789 server 21340 17780 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 16:33:00,063 middleware 21340 20416 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.485, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-21 16:33:00,065 runserver 21340 17780 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:60023][0m
+INFO 2025-08-21 16:33:27,295 serializers 21340 1700 Found 10 customers from file upload time window
+INFO 2025-08-21 16:33:27,297 serializers 21340 1700 Total customers selected for campaign 1: 10
+INFO 2025-08-21 16:33:27,346 serializers 21340 1700 Successfully created 10 recipients for campaign 1
+INFO 2025-08-21 16:33:27,350 serializers 21340 1700 Starting immediate email sending for campaign 1
+INFO 2025-08-21 16:33:27,350 services 21340 1700 Starting email sending for campaign 1
+INFO 2025-08-21 16:33:27,352 services 21340 1700 Found campaign: Policy Renewal Campaign
+INFO 2025-08-21 16:33:27,354 services 21340 1700 Found 10 pending recipients
+INFO 2025-08-21 16:33:27,365 services 21340 1700 Processing recipient 10: joseph68@jones.com
+INFO 2025-08-21 16:33:27,368 services 21340 1700 Starting email send to joseph68@jones.com for campaign 1
+INFO 2025-08-21 16:33:27,373 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:27,373 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:27,391 services 21340 1700 Added tracking to email for recipient 10, campaign 1
+INFO 2025-08-21 16:33:27,391 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=0d75f4fc945c820825f429e375c5f40e
+INFO 2025-08-21 16:33:27,392 services 21340 1700 Creating email message for joseph68@jones.com
+INFO 2025-08-21 16:33:27,392 services 21340 1700 Attempting to send email to joseph68@jones.com
+INFO 2025-08-21 16:33:30,393 services 21340 1700 Email sent successfully to joseph68@jones.com
+INFO 2025-08-21 16:33:30,431 services 21340 1700 Email sent and delivered successfully to joseph68@jones.com
+INFO 2025-08-21 16:33:30,431 services 21340 1700 Email sent successfully to joseph68@jones.com
+INFO 2025-08-21 16:33:30,431 services 21340 1700 Processing recipient 9: xhorn@ryan.biz
+INFO 2025-08-21 16:33:30,433 services 21340 1700 Starting email send to xhorn@ryan.biz for campaign 1
+INFO 2025-08-21 16:33:30,437 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:30,437 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:30,457 services 21340 1700 Added tracking to email for recipient 9, campaign 1
+INFO 2025-08-21 16:33:30,457 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=1efff381ff099045a566d121dd20516a
+INFO 2025-08-21 16:33:30,457 services 21340 1700 Creating email message for xhorn@ryan.biz
+INFO 2025-08-21 16:33:30,457 services 21340 1700 Attempting to send email to xhorn@ryan.biz
+INFO 2025-08-21 16:33:33,775 services 21340 1700 Email sent successfully to xhorn@ryan.biz
+INFO 2025-08-21 16:33:33,801 services 21340 1700 Email sent and delivered successfully to xhorn@ryan.biz
+INFO 2025-08-21 16:33:33,801 services 21340 1700 Email sent successfully to xhorn@ryan.biz
+INFO 2025-08-21 16:33:33,801 services 21340 1700 Processing recipient 8: cooperjacob@gmail.com
+INFO 2025-08-21 16:33:33,803 services 21340 1700 Starting email send to cooperjacob@gmail.com for campaign 1
+INFO 2025-08-21 16:33:33,809 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:33,809 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:33,825 services 21340 1700 Added tracking to email for recipient 8, campaign 1
+INFO 2025-08-21 16:33:33,825 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=18e77f4d7d4d284c2032582117c328d9
+INFO 2025-08-21 16:33:33,825 services 21340 1700 Creating email message for cooperjacob@gmail.com
+INFO 2025-08-21 16:33:33,826 services 21340 1700 Attempting to send email to cooperjacob@gmail.com
+INFO 2025-08-21 16:33:36,628 services 21340 1700 Email sent successfully to cooperjacob@gmail.com
+INFO 2025-08-21 16:33:36,657 services 21340 1700 Email sent and delivered successfully to cooperjacob@gmail.com
+INFO 2025-08-21 16:33:36,658 services 21340 1700 Email sent successfully to cooperjacob@gmail.com
+INFO 2025-08-21 16:33:36,658 services 21340 1700 Processing recipient 7: goulddaniel@austin.com
+INFO 2025-08-21 16:33:36,661 services 21340 1700 Starting email send to goulddaniel@austin.com for campaign 1
+INFO 2025-08-21 16:33:36,665 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:36,666 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:36,682 services 21340 1700 Added tracking to email for recipient 7, campaign 1
+INFO 2025-08-21 16:33:36,682 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=66ad5344bc503de063727fced31f78f3
+INFO 2025-08-21 16:33:36,683 services 21340 1700 Creating email message for goulddaniel@austin.com
+INFO 2025-08-21 16:33:36,683 services 21340 1700 Attempting to send email to goulddaniel@austin.com
+INFO 2025-08-21 16:33:39,435 services 21340 1700 Email sent successfully to goulddaniel@austin.com
+INFO 2025-08-21 16:33:39,467 services 21340 1700 Email sent and delivered successfully to goulddaniel@austin.com
+INFO 2025-08-21 16:33:39,468 services 21340 1700 Email sent successfully to goulddaniel@austin.com
+INFO 2025-08-21 16:33:39,468 services 21340 1700 Processing recipient 6: goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:39,470 services 21340 1700 Starting email send to goldenbenjamin@gmail.com for campaign 1
+INFO 2025-08-21 16:33:39,475 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:39,475 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:39,491 services 21340 1700 Added tracking to email for recipient 6, campaign 1
+INFO 2025-08-21 16:33:39,491 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=84f6e566014b47a5271c59b189adce5b
+INFO 2025-08-21 16:33:39,491 services 21340 1700 Creating email message for goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:39,492 services 21340 1700 Attempting to send email to goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:42,205 services 21340 1700 Email sent successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:42,235 services 21340 1700 Email sent and delivered successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:42,236 services 21340 1700 Email sent successfully to goldenbenjamin@gmail.com
+INFO 2025-08-21 16:33:42,236 services 21340 1700 Processing recipient 5: mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:42,238 services 21340 1700 Starting email send to mccarthymichele@hotmail.com for campaign 1
+INFO 2025-08-21 16:33:42,242 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:42,242 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:42,257 services 21340 1700 Added tracking to email for recipient 5, campaign 1
+INFO 2025-08-21 16:33:42,257 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=f173d02dc49dd72efd88111d25f92d23
+INFO 2025-08-21 16:33:42,257 services 21340 1700 Creating email message for mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:42,258 services 21340 1700 Attempting to send email to mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:45,559 services 21340 1700 Email sent successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:45,582 services 21340 1700 Email sent and delivered successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:45,583 services 21340 1700 Email sent successfully to mccarthymichele@hotmail.com
+INFO 2025-08-21 16:33:45,583 services 21340 1700 Processing recipient 4: jasonknox@hotmail.com
+INFO 2025-08-21 16:33:45,585 services 21340 1700 Starting email send to jasonknox@hotmail.com for campaign 1
+INFO 2025-08-21 16:33:45,589 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:45,589 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:45,604 services 21340 1700 Added tracking to email for recipient 4, campaign 1
+INFO 2025-08-21 16:33:45,604 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=cd1a6d23458866621a5c8b421d60a8d6
+INFO 2025-08-21 16:33:45,605 services 21340 1700 Creating email message for jasonknox@hotmail.com
+INFO 2025-08-21 16:33:45,605 services 21340 1700 Attempting to send email to jasonknox@hotmail.com
+INFO 2025-08-21 16:33:48,424 services 21340 1700 Email sent successfully to jasonknox@hotmail.com
+INFO 2025-08-21 16:33:48,451 services 21340 1700 Email sent and delivered successfully to jasonknox@hotmail.com
+INFO 2025-08-21 16:33:48,451 services 21340 1700 Email sent successfully to jasonknox@hotmail.com
+INFO 2025-08-21 16:33:48,451 services 21340 1700 Processing recipient 3: banuyasin401@gmail.com
+INFO 2025-08-21 16:33:48,453 services 21340 1700 Starting email send to banuyasin401@gmail.com for campaign 1
+INFO 2025-08-21 16:33:48,457 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:48,457 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:48,472 services 21340 1700 Added tracking to email for recipient 3, campaign 1
+INFO 2025-08-21 16:33:48,472 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=9329822abecd862958280a7a183a0e2c
+INFO 2025-08-21 16:33:48,472 services 21340 1700 Creating email message for banuyasin401@gmail.com
+INFO 2025-08-21 16:33:48,473 services 21340 1700 Attempting to send email to banuyasin401@gmail.com
+INFO 2025-08-21 16:33:51,183 services 21340 1700 Email sent successfully to banuyasin401@gmail.com
+INFO 2025-08-21 16:33:51,217 services 21340 1700 Email sent and delivered successfully to banuyasin401@gmail.com
+INFO 2025-08-21 16:33:51,218 services 21340 1700 Email sent successfully to banuyasin401@gmail.com
+INFO 2025-08-21 16:33:51,218 services 21340 1700 Processing recipient 2: developt60@gmail.com
+INFO 2025-08-21 16:33:51,220 services 21340 1700 Starting email send to developt60@gmail.com for campaign 1
+INFO 2025-08-21 16:33:51,225 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:51,225 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:51,240 services 21340 1700 Added tracking to email for recipient 2, campaign 1
+INFO 2025-08-21 16:33:51,240 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=b8888d513582307e75d9f224092b9060
+INFO 2025-08-21 16:33:51,240 services 21340 1700 Creating email message for developt60@gmail.com
+INFO 2025-08-21 16:33:51,241 services 21340 1700 Attempting to send email to developt60@gmail.com
+INFO 2025-08-21 16:33:53,995 services 21340 1700 Email sent successfully to developt60@gmail.com
+INFO 2025-08-21 16:33:54,022 services 21340 1700 Email sent and delivered successfully to developt60@gmail.com
+INFO 2025-08-21 16:33:54,022 services 21340 1700 Email sent successfully to developt60@gmail.com
+INFO 2025-08-21 16:33:54,022 services 21340 1700 Processing recipient 1: sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:54,024 services 21340 1700 Starting email send to sahinayasin17@gmail.com for campaign 1
+INFO 2025-08-21 16:33:54,030 services 21340 1700 Email subject: 🛡️ Your Policy Renewal is Due Soon - Action Required
+INFO 2025-08-21 16:33:54,030 services 21340 1700 Template content length: 8778
+INFO 2025-08-21 16:33:54,045 services 21340 1700 Added tracking to email for recipient 1, campaign 1
+INFO 2025-08-21 16:33:54,045 services 21340 1700 Tracking pixel URL: http://localhost:8000/api/campaigns/track-open/?t=f852d985dbea4814e8613efc9e885e85
+INFO 2025-08-21 16:33:54,045 services 21340 1700 Creating email message for sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:54,046 services 21340 1700 Attempting to send email to sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:56,948 services 21340 1700 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:56,970 services 21340 1700 Email sent and delivered successfully to sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:56,971 services 21340 1700 Email sent successfully to sahinayasin17@gmail.com
+INFO 2025-08-21 16:33:56,982 services 21340 1700 Campaign 1 email sending completed: 10 sent, 0 failed
+ERROR 2025-08-21 16:33:56,982 services 21340 1700 Error scheduling delivery status update: 'function' object has no attribute 'apply_async'
+INFO 2025-08-21 16:33:56,982 serializers 21340 1700 Email sending completed: 10 sent, 0 failed
+INFO 2025-08-21 16:33:56,986 middleware 21340 1700 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 29.778, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 383}
+INFO 2025-08-21 16:33:56,991 runserver 21340 17780 [mHTTP POST /api/campaigns/create-from-file/ 201 [29.79, 127.0.0.1:60023][0m
+INFO 2025-08-21 16:35:11,935 views 21340 10804 Email click tracked: developt60@gmail.com, Campaign: Policy Renewal Campaign
+INFO 2025-08-21 16:35:11,961 views 21340 10804 Email clicked: Campaign Policy Renewal Campaign, Customer: developt60@gmail.com
+INFO 2025-08-21 16:35:11,961 views 21340 10804 Campaign stats updated - Sent: 10, Delivered: 10, Opened: 1, Clicked: 1
+INFO 2025-08-21 16:35:11,962 middleware 21340 10804 API Request: {"method": "GET", "path": "/api/campaigns/track-click/", "status_code": 302, "duration": 0.08, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36", "content_length": 0}
+INFO 2025-08-21 16:35:11,964 runserver 21340 17780 [32mHTTP GET /api/campaigns/track-click/?t=b8888d513582307e75d9f224092b9060&url=http%3A//localhost%3A8000/renew/POL-00002/ 302 [0.09, 127.0.0.1:60084][0m
+WARNING 2025-08-21 16:35:11,998 log 21340 24832 Not Found: /renew/POL-00002/
+WARNING 2025-08-21 16:35:11,999 runserver 21340 17780 [33mHTTP GET /renew/POL-00002/ 404 [0.03, 127.0.0.1:60084][0m
+WARNING 2025-08-21 16:35:12,075 log 21340 24832 Not Found: /favicon.ico
+WARNING 2025-08-21 16:35:12,076 runserver 21340 17780 [33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:60084][0m
+INFO 2025-08-21 17:09:01,979 server 21340 17780 Killed 0 pending application instances

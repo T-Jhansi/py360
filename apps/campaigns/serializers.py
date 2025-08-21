@@ -126,14 +126,14 @@ class CampaignCreateSerializer(serializers.Serializer):
             'template': template,
             'description': validated_data.get('description', f"Campaign created from file: {file_upload.original_filename}"),
             'status': 'draft',
-            'upload': file_upload, 
+            'upload': file_upload,
             'channels': ['email'],
             'schedule_type': validated_data.get('schedule_type', 'immediate'),
             'scheduled_at': validated_data.get('scheduled_at'),
             'started_at': validated_data.get('scheduled_at', timezone.now()),
             'subject_line': validated_data.get('subject_line', template.subject),
             'created_by': self.context['request'].user,
-            'assigned_to': self._get_assigned_agent() 
+            'assigned_to': self._get_assigned_agent()
         }
 
         if target_audience:
@@ -158,7 +158,7 @@ class CampaignCreateSerializer(serializers.Serializer):
 
                 if "error" in result:
                     logger.error(f"Email sending failed: {result['error']}")
-                    campaign.status = 'draft'  
+                    campaign.status = 'draft'
                     campaign.description += f" [Email Error: {result['error']}]"
                 elif "message" in result and "No pending recipients found" in str(result.get("message", "")):
                     logger.warning(f"No recipients found: {result['message']}")
@@ -184,7 +184,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                 import logging
                 logger = logging.getLogger(__name__)
                 logger.error(f"Exception during email sending: {str(e)}")
-                campaign.status = 'draft'  
+                campaign.status = 'draft'
                 campaign.description += f" [Exception: {str(e)}]"
 
             campaign.save()
@@ -406,6 +406,19 @@ class CampaignCreateSerializer(serializers.Serializer):
 
             if recipients_to_create:
                 recipients_created = 0
+
+
+                # Ensure ascending insertion order without changing selection logic
+                # Sort by customer.id then policy.id (None treated as 0)
+                try:
+                    recipients_to_create.sort(
+                        key=lambda r: (
+                            getattr(r.customer, 'id', 0) or 0,
+                            (getattr(getattr(r, 'policy', None), 'id', 0) or 0)
+                        )
+                    )
+                except Exception:
+                    pass
 
                 existing_customer_ids = set(
                     CampaignRecipient.objects.filter(campaign=campaign).values_list('customer_id', flat=True)
