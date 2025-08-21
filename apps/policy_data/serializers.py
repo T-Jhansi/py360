@@ -254,6 +254,7 @@ class FileUploadRequestSerializer(serializers.Serializer):
         default='bulk_import',
         help_text="Category of the import"
     )
+    
 
     def validate_file(self, value):
         """Validate uploaded file"""

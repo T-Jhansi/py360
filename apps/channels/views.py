@@ -15,10 +15,6 @@ from .serializers import (
 
 
 class ChannelViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for managing channels.
-    Provides CRUD operations for Channel model.
-    """
     queryset = Channel.objects.select_related('target_audience').filter(is_deleted=False)
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]

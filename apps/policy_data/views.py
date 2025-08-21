@@ -179,14 +179,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             except Exception as process_error:
                 uploads_record.status = 'failed'
                 uploads_record.error_message = str(process_error)
-                uploads_record.updated_by = request.user
+
                 uploads_record.save()
 
                 if file_upload_record:
                     file_upload_record.upload_status = 'failed'
                     file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
                     file_upload_record.processing_completed_at = timezone.now()
-                    file_upload_record.updated_by = request.user
+
                     file_upload_record.save()
                 raise process_error
 
@@ -429,7 +429,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     'errors': processing_result.get('errors', [])
                 }
                 file_upload_record.processing_result = json.dumps(processing_summary)
-                file_upload_record.updated_by = user
+
                 file_upload_record.save()
 
 
@@ -618,7 +618,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                             priority=priority,
                             assigned_agent=assigned_agent,
                             created_by=user,
-                            updated_by=user
+                            updated_by=None
                         )
                     customer_created = True
 
@@ -672,7 +672,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                             'push_notification_enabled': push_notification_enabled,
                             'preferred_language': getattr(customer, 'preferred_language', 'en') or 'en',
                             'created_by': user,
-                            'updated_by': user,
+                            'updated_by': None,
                         }
                     )
 
@@ -852,7 +852,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             from uuid import uuid4
             from apps.customer_payments.models import CustomerPayment
 
-            payment_date_parsed = self._parse_datetime(row.get('payment_date'))
+            # Accept payment_date from either 'payment_date' or fallback to 'last_contact_date' if provided
+            payment_date_raw = row.get('payment_date') or row.get('last_contact_date')
+            payment_date_parsed = self._parse_datetime(payment_date_raw)
             if payment_date_parsed:
                 with transaction.atomic():
                     payment_mode_value = str(row.get('payment_mode', 'cash')).lower() or 'cash'
@@ -888,7 +890,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             notes=str(row.get('notes', '')),
             assigned_to=assigned_user,
             created_by=user,
-            updated_by=user,
+            updated_by=None,
             customer_payment=customer_payment_obj
         )
 
@@ -907,20 +909,20 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         combined_name = f"{channel_name} - {channel_source}"
 
         channel_type_mapping = {
-            'online': 'online',
-            'mobile': 'mobile',
-            'offline': 'offline',
-            'phone': 'phone',
-            'agent': 'agent',
-            'telecalling': 'phone',
-            'call center': 'phone',
-            'partner': 'agent',
-            'branch': 'offline',
-            'website': 'online',
-            'mobile app': 'mobile'
+            'online': 'Online',
+            'mobile': 'Mobile',
+            'offline': 'Offline',
+            'phone': 'Phone',
+            'agent': 'Agent',
+            'telecalling': 'Phone',
+            'call center': 'Phone',
+            'partner': 'Agent',
+            'branch': 'Offline',
+            'website': 'Online',
+            'mobile app': 'Mobile'
         }
 
-        channel_type = 'online'
+        channel_type = 'Online'
         for key, value in channel_type_mapping.items():
             if key in channel_name_normalized:
                 channel_type = value
@@ -941,8 +943,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     description=f"Auto-created from Excel upload - Channel: {channel_name}, Source: {channel_source}",
                     status='active',
                     priority='medium',
-                    created_by=user,
-                    updated_by=user
+                    created_by=user
                 )
             return new_channel
         except Exception as e:
@@ -952,12 +953,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
             default_channel = Channel.objects.create(
                 name='Online - Website',
-                channel_type='online',
+                channel_type='Online',
                 description='Default channel for online website traffic',
                 status='active',
                 priority='medium',
-                created_by=user,
-                updated_by=user
+                created_by=user
             )
             return default_channel
 
@@ -996,7 +996,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_upload_record.failed_records = result['failed_records']
         file_upload_record.upload_status = 'completed' if result['failed_records'] == 0 else 'partial'
         file_upload_record.processing_completed_at = timezone.now()
-        file_upload_record.updated_by = user  
+
 
         import json
 
@@ -1019,8 +1019,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         uploads_record.status = 'completed' if result['failed_records'] == 0 else 'failed'
         uploads_record.error_message = result_summary['processing_summary']
         uploads_record.processing_result = json.dumps(result_summary) 
-        uploads_record.updated_by = user 
-        uploads_record.save(update_fields=['status', 'error_message', 'processing_result', 'updated_by'])
+
+        uploads_record.save(update_fields=['status', 'error_message', 'processing_result'])
 
     def _mark_processing_failed(self, file_upload_record, uploads_record, error_msg, user):
        
@@ -1042,14 +1042,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_upload_record.error_details = failure_result
         file_upload_record.processing_result = json.dumps(failure_result)
         file_upload_record.processing_completed_at = timezone.now()
-        file_upload_record.updated_by = user 
+
         file_upload_record.save()
 
         uploads_record.status = 'failed'
         uploads_record.error_message = error_msg
         uploads_record.processing_result = json.dumps(failure_result)
-        uploads_record.updated_by = user 
-        uploads_record.save(update_fields=['status', 'error_message', 'processing_result', 'updated_by'])
+
+        uploads_record.save(update_fields=['status', 'error_message', 'processing_result'])
 
     @action(detail=True, methods=['get'])
     def status(self, request, pk=None):
