@@ -4,6 +4,7 @@ from apps.customers.models import Customer
 from apps.policies.models import Policy
 from apps.core.models import BaseModel
 from apps.channels.models import Channel
+from apps.customer_payments.models import CustomerPayment
 
 User = get_user_model()
 
@@ -42,8 +43,8 @@ class RenewalCase(BaseModel):
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_renewal_cases', db_column='assigned_to')
     
     renewal_amount = models.DecimalField(max_digits=12, decimal_places=2)
-    payment_status = models.CharField(max_length=20, default='pending')
-    payment_date = models.DateTimeField(null=True, blank=True)
+    # payment_status = models.CharField(max_length=20, default='pending')
+    # payment_date = models.DateTimeField(null=True, blank=True)
     
     communication_attempts = models.IntegerField(default=0)
     last_contact_date = models.DateTimeField(null=True, blank=True)
@@ -58,6 +59,17 @@ class RenewalCase(BaseModel):
         help_text="Channel through which this renewal case was initiated",
         db_column='channel_id'
     )
+
+    customer_payment = models.ForeignKey(
+        CustomerPayment,
+        on_delete=models.SET_NULL,  
+        null=True,
+        blank=True,
+        related_name='renewal_cases',
+        db_column='customer_payment_id',
+        help_text="Payment record associated with this renewal case"
+    )
+    
 
     notes = models.TextField(blank=True)
     

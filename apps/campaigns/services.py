@@ -1,5 +1,3 @@
-# services.py
-
 import logging
 from django.core.mail import send_mail
 from django.conf import settings
@@ -11,7 +9,6 @@ from apps.policies.models import Policy
 
 logger = logging.getLogger(__name__)
 
-# Check if Celery is available
 try:
     from celery import shared_task
     CELERY_AVAILABLE = True
@@ -66,8 +63,6 @@ class EmailCampaignService:
                     success = EmailCampaignService._send_individual_email(recipient)
 
                     if success:
-                        # The _send_individual_email method already updates the recipient status
-                        # Just increment our local counter
                         sent_count += 1
                         logger.info(f"Email sent successfully to {recipient.customer.email}")
                     else:
@@ -147,10 +142,8 @@ class EmailCampaignService:
                 recipient  # Pass recipient for tracking
             )
 
-            # Add tracking pixel and wrap URLs with click tracking
             tracked_content = EmailCampaignService._add_email_tracking(email_content, recipient, campaign)
 
-            # Create plain text version (without HTML tags)
             import re
             plain_text = re.sub(r'<[^>]+>', '', tracked_content)
             plain_text = plain_text.replace('&nbsp;', ' ').strip()
@@ -160,7 +153,7 @@ class EmailCampaignService:
             # Create email message with HTML content
             msg = EmailMultiAlternatives(
                 subject=subject,
-                body=plain_text,  # Plain text version without HTML
+                body=plain_text,  
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[customer.email]
             )
@@ -186,11 +179,10 @@ class EmailCampaignService:
                 logger.error(f"Email send traceback: {traceback.format_exc()}")
                 raise send_error
 
-            # Update recipient status to sent (and assume delivered for testing)
             current_time = timezone.now()
-            recipient.email_status = 'delivered'  # Changed from 'sent' to 'delivered'
+            recipient.email_status = 'delivered'  
             recipient.email_sent_at = current_time
-            recipient.email_delivered_at = current_time  # Set delivered timestamp
+            recipient.email_delivered_at = current_time  
             recipient.save()
 
             # Update campaign statistics immediately
@@ -254,7 +246,6 @@ class EmailCampaignService:
 
         except Exception as e:
             logger.error(f"Error processing template: {str(e)}")
-            # Fallback to simple string replacement
             processed_content = template_content
             context_data = {
                 'customer_name': f"{customer.first_name} {customer.last_name}",
@@ -281,7 +272,7 @@ class EmailCampaignService:
 
             # Ensure recipient has tracking ID
             if not recipient.tracking_id:
-                recipient.save()  # This will generate tracking_id
+                recipient.save()  
 
             # Get base URL from settings or use localhost for development
             base_url = getattr(settings, 'BASE_URL', "http://localhost:8000")
@@ -404,8 +395,6 @@ class EmailCampaignService:
                         recipients_created += 1
             
             elif target_audience_type == 'file_customers' and file_upload:
-                # Get customers from uploaded file
-                # This would need to be implemented based on your file upload logic
                 pass
             
             return recipients_created
@@ -420,10 +409,10 @@ class EmailCampaignService:
         Schedule delivery status update for sent emails
         """
         try:
-            # Schedule task to run after 2 minutes (simulate email delivery time)
+           
             update_delivery_status_task.apply_async(
                 args=[campaign_id],
-                countdown=120  # 2 minutes delay
+                countdown=120 
             )
 
         except Exception as e:
@@ -448,8 +437,7 @@ class EmailCampaignService:
             bounced_count = 0
 
             for recipient in sent_recipients:
-                # Simulate delivery success rate (90% success, 10% bounce)
-                if random.random() < 0.9:  # 90% delivery success
+                if random.random() < 0.9:  
                     recipient.mark_delivered('email')
                     delivered_count += 1
                 else:
@@ -471,7 +459,7 @@ class EmailCampaignService:
             logger.error(f"Error updating delivery status: {str(e)}")
             return {"error": str(e)}
 
-# Celery task for async email sending
+
 @shared_task(bind=True, max_retries=3)
 def send_campaign_emails_async(self, campaign_id):
     """

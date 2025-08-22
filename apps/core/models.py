@@ -1,7 +1,3 @@
-"""
-Core models for the Intelipro Insurance Policy Renewal System.
-Contains base models and utility classes used across the application.
-"""
 
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -160,7 +156,7 @@ class APIRateLimit(TimestampedModel):
     """
     Model to track API rate limiting.
     """
-    identifier = models.CharField(max_length=255, db_index=True)  # IP or user ID
+    identifier = models.CharField(max_length=255, db_index=True)  
     endpoint = models.CharField(max_length=255, db_index=True)
     request_count = models.PositiveIntegerField(default=1)
     window_start = models.DateTimeField(default=timezone.now)

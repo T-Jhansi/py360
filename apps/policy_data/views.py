@@ -43,17 +43,6 @@ def get_next_available_agent():
         return None
 
 def get_customer_previous_policy_end_date(customer, current_policy_start_date=None, exclude_policy_id=None):
-    """
-    Helper function to find the most recent previous policy end_date for a customer.
-
-    Args:
-        customer: Customer instance or customer_id
-        current_policy_start_date: Start date of current policy to compare against
-        exclude_policy_id: Policy ID to exclude from search (useful when updating existing policy)
-
-    Returns:
-        date: End date of the most recent previous policy, or None if no previous policy found
-    """
     from apps.policies.models import Policy
 
     try:
@@ -89,19 +78,6 @@ def get_customer_previous_policy_end_date(customer, current_policy_start_date=No
 
 def calculate_policy_and_renewal_status(end_date, start_date=None, grace_period_days=30,
                                       customer=None, exclude_policy_id=None):
-    """
-    Enhanced function to calculate policy and renewal status.
-
-    Args:
-        end_date: Policy end date
-        start_date: Policy start date (optional)
-        grace_period_days: Grace period after expiry (default: 30)
-        customer: Customer instance or ID for checking previous policies (optional)
-        exclude_policy_id: Policy ID to exclude when looking for previous policies (optional)
-
-    Returns:
-        tuple: (policy_status, renewal_status)
-    """
     today = date.today()
 
     if isinstance(end_date, datetime):
@@ -203,14 +179,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             except Exception as process_error:
                 uploads_record.status = 'failed'
                 uploads_record.error_message = str(process_error)
-                uploads_record.updated_by = request.user
+
                 uploads_record.save()
 
                 if file_upload_record:
                     file_upload_record.upload_status = 'failed'
                     file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
                     file_upload_record.processing_completed_at = timezone.now()
-                    file_upload_record.updated_by = request.user
+
                     file_upload_record.save()
                 raise process_error
 
@@ -453,7 +429,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     'errors': processing_result.get('errors', [])
                 }
                 file_upload_record.processing_result = json.dumps(processing_summary)
-                file_upload_record.updated_by = user
+
                 file_upload_record.save()
 
 
@@ -620,28 +596,30 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
                     assigned_agent = get_next_available_agent()
 
-                    customer = Customer.objects.create(
-                        customer_code=customer_code,
-                        first_name=row['first_name'],
-                        last_name=row['last_name'],
-                        email=email,
-                        phone=phone,
-                        date_of_birth=self._parse_date(row.get('date_of_birth')),
-                        gender=row.get('gender', 'male').lower() if row.get('gender') else 'male',
-                        address_line1=str(row.get('address_line1', '') or row.get('address', '')),
-                        address_line2=str(row.get('address_line2', '')),
-                        city=str(row.get('city', '')),
-                        state=str(row.get('state', '')),
-                        postal_code=str(row.get('postalcode', '') or row.get('postal_code', '')),
-                        country=str(row.get('country', 'India')),
-                        kyc_status=row.get('kyc_status', 'pending').lower(),
-                        kyc_documents=str(row.get('kyc_documents', '')),
-                        communication_preferences=str(row.get('communication_preferences', '')),
-                        priority=priority,
-                        assigned_agent=assigned_agent, 
-                        created_by=user,
-                        updated_by=user
-                    )
+                    # Use a savepoint so duplicate key errors don't poison the outer transaction
+                    with transaction.atomic():
+                        customer = Customer.objects.create(
+                            customer_code=customer_code,
+                            first_name=row['first_name'],
+                            last_name=row['last_name'],
+                            email=email,
+                            phone=phone,
+                            date_of_birth=self._parse_date(row.get('date_of_birth')),
+                            gender=row.get('gender', 'male').lower() if row.get('gender') else 'male',
+                            address_line1=str(row.get('address_line1', '') or row.get('address', '')),
+                            address_line2=str(row.get('address_line2', '')),
+                            city=str(row.get('city', '')),
+                            state=str(row.get('state', '')),
+                            postal_code=str(row.get('postalcode', '') or row.get('postal_code', '')),
+                            country=str(row.get('country', 'India')),
+                            kyc_status=row.get('kyc_status', 'pending').lower(),
+                            kyc_documents=str(row.get('kyc_documents', '')),
+                            communication_preferences=str(row.get('communication_preferences', '')),
+                            priority=priority,
+                            assigned_agent=assigned_agent,
+                            created_by=user,
+                            updated_by=None
+                        )
                     customer_created = True
 
                     if assigned_agent:
@@ -655,6 +633,68 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         continue
                     else:
                         raise
+
+        # Also store communication preferences into the dedicated table without changing existing logic
+        try:
+            comm_pref_raw = str(row.get('communication_preferences', '') or '').strip()
+            if comm_pref_raw and customer:
+                # Use a savepoint so any error here won't poison the outer atomic block
+                with transaction.atomic():
+                    tokens = [t.strip().lower() for t in comm_pref_raw.replace(';', ',').split(',') if t and t.strip()]
+                    # Determine channel flags
+                    email_enabled = 'email' in tokens
+                    sms_enabled = 'sms' in tokens
+                    phone_enabled = ('phone' in tokens) or ('call' in tokens)
+                    whatsapp_enabled = 'whatsapp' in tokens
+                    postal_mail_enabled = ('postal' in tokens) or ('postal_mail' in tokens) or ('mail' in tokens)
+                    push_notification_enabled = ('push' in tokens) or ('in_app' in tokens) or ('notification' in tokens)
+
+                    # Choose a preferred channel
+                    valid_channels = ['email', 'sms', 'phone', 'whatsapp', 'postal_mail', 'push_notification']
+                    preferred_channel = next((t for t in tokens if t in valid_channels), 'email')
+                    if preferred_channel == 'mail':
+                        preferred_channel = 'postal_mail'
+                    if preferred_channel == 'push':
+                        preferred_channel = 'push_notification'
+
+                    from apps.customer_communication_preferences.models import CustomerCommunicationPreference
+
+                    comm_obj, created = CustomerCommunicationPreference.objects.get_or_create(
+                        customer=customer,
+                        communication_type='policy_renewal',  # default context for imported renewals
+                        defaults={
+                            'preferred_channel': preferred_channel,
+                            'email_enabled': email_enabled,
+                            'sms_enabled': sms_enabled,
+                            'phone_enabled': phone_enabled,
+                            'whatsapp_enabled': whatsapp_enabled,
+                            'postal_mail_enabled': postal_mail_enabled,
+                            'push_notification_enabled': push_notification_enabled,
+                            'preferred_language': getattr(customer, 'preferred_language', 'en') or 'en',
+                            'created_by': user,
+                            'updated_by': None,
+                        }
+                    )
+
+                    if not created:
+                        # Update fields if the record already exists
+                        comm_obj.preferred_channel = preferred_channel or comm_obj.preferred_channel
+                        comm_obj.email_enabled = email_enabled or comm_obj.email_enabled
+                        comm_obj.sms_enabled = sms_enabled or comm_obj.sms_enabled
+                        comm_obj.phone_enabled = phone_enabled or comm_obj.phone_enabled
+                        comm_obj.whatsapp_enabled = whatsapp_enabled or comm_obj.whatsapp_enabled
+                        comm_obj.postal_mail_enabled = postal_mail_enabled or comm_obj.postal_mail_enabled
+                        comm_obj.push_notification_enabled = push_notification_enabled or comm_obj.push_notification_enabled
+                        # Keep frequency/time defaults unless explicitly provided in future
+                        comm_obj.updated_by = user
+                        comm_obj.save(update_fields=[
+                            'preferred_channel','email_enabled','sms_enabled','phone_enabled',
+                            'whatsapp_enabled','postal_mail_enabled','push_notification_enabled','updated_by'
+                        ])
+        except Exception:
+            # Do not fail the import due to preference issues; keep existing workflow untouched
+            pass
+
         return customer, customer_created
 
     def _process_policy_data(self, row, customer, user):
@@ -804,6 +844,38 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
         channel_id = self._get_or_create_channel(row, user)
 
+        # Create a CustomerPayment record (if payment info is provided) and link it to the renewal case.
+        # Wrap DB writes in a nested atomic block so any DB error rolls back to a savepoint
+        # without breaking the outer transaction for this row.
+        customer_payment_obj = None
+        try:
+            from uuid import uuid4
+            from apps.customer_payments.models import CustomerPayment
+
+            # Accept payment_date from either 'payment_date' or fallback to 'last_contact_date' if provided
+            payment_date_raw = row.get('payment_date') or row.get('last_contact_date')
+            payment_date_parsed = self._parse_datetime(payment_date_raw)
+            if payment_date_parsed:
+                with transaction.atomic():
+                    payment_mode_value = str(row.get('payment_mode', 'cash')).lower() or 'cash'
+                    payment_amount_value = renewal_amount  # Use renewal amount as the payment amount
+                    transaction_id_value = f"IMP-{batch_code}-{case_number}-{uuid4().hex[:8]}"
+
+                    # net_amount is required; since fees/taxes/discounts have defaults, set it equal to payment_amount
+                    customer_payment_obj = CustomerPayment.objects.create(
+                        payment_amount=payment_amount_value,
+                        payment_status=payment_status,
+                        payment_date=payment_date_parsed,
+                        payment_mode=payment_mode_value,
+                        transaction_id=transaction_id_value,
+                        net_amount=payment_amount_value,
+                        created_by=user,
+                        updated_by=user
+                    )
+        except Exception:
+            # If payment creation fails, proceed without linking a payment to avoid breaking other logic
+            customer_payment_obj = None
+
         renewal_case = RenewalCase.objects.create(
             case_number=case_number,
             batch_code=batch_code,
@@ -812,15 +884,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             status=renewal_status,
             priority=renewal_priority,
             renewal_amount=renewal_amount,
-            payment_status=payment_status,
-            payment_date=self._parse_datetime(row.get('payment_date')),
             communication_attempts=int(row.get('communication_attempts') or row.get('communications_attempts', 0)) if (row.get('communication_attempts') or row.get('communications_attempts')) else 0,
             last_contact_date=self._parse_datetime(row.get('last_contact_date')),
             channel_id=channel_id,
             notes=str(row.get('notes', '')),
             assigned_to=assigned_user,
             created_by=user,
-            updated_by=user
+            updated_by=None,
+            customer_payment=customer_payment_obj
         )
 
         return renewal_case
@@ -838,20 +909,20 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         combined_name = f"{channel_name} - {channel_source}"
 
         channel_type_mapping = {
-            'online': 'online',
-            'mobile': 'mobile',
-            'offline': 'offline',
-            'phone': 'phone',
-            'agent': 'agent',
-            'telecalling': 'phone',
-            'call center': 'phone',
-            'partner': 'agent',
-            'branch': 'offline',
-            'website': 'online',
-            'mobile app': 'mobile'
+            'online': 'Online',
+            'mobile': 'Mobile',
+            'offline': 'Offline',
+            'phone': 'Phone',
+            'agent': 'Agent',
+            'telecalling': 'Phone',
+            'call center': 'Phone',
+            'partner': 'Agent',
+            'branch': 'Offline',
+            'website': 'Online',
+            'mobile app': 'Mobile'
         }
 
-        channel_type = 'online'
+        channel_type = 'Online'
         for key, value in channel_type_mapping.items():
             if key in channel_name_normalized:
                 channel_type = value
@@ -865,15 +936,15 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             return existing_channel
 
         try:
-            new_channel = Channel.objects.create(
-                name=combined_name,
-                channel_type=channel_type,
-                description=f"Auto-created from Excel upload - Channel: {channel_name}, Source: {channel_source}",
-                status='active',
-                priority='medium',
-                created_by=user,
-                updated_by=user
-            )
+            with transaction.atomic():
+                new_channel = Channel.objects.create(
+                    name=combined_name,
+                    channel_type=channel_type,
+                    description=f"Auto-created from Excel upload - Channel: {channel_name}, Source: {channel_source}",
+                    status='active',
+                    priority='medium',
+                    created_by=user
+                )
             return new_channel
         except Exception as e:
             default_channel = Channel.objects.filter(name__iexact='Online - Website').first()
@@ -882,12 +953,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
             default_channel = Channel.objects.create(
                 name='Online - Website',
-                channel_type='online',
+                channel_type='Online',
                 description='Default channel for online website traffic',
                 status='active',
                 priority='medium',
-                created_by=user,
-                updated_by=user
+                created_by=user
             )
             return default_channel
 
@@ -926,7 +996,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_upload_record.failed_records = result['failed_records']
         file_upload_record.upload_status = 'completed' if result['failed_records'] == 0 else 'partial'
         file_upload_record.processing_completed_at = timezone.now()
-        file_upload_record.updated_by = user  
+
 
         import json
 
@@ -949,8 +1019,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         uploads_record.status = 'completed' if result['failed_records'] == 0 else 'failed'
         uploads_record.error_message = result_summary['processing_summary']
         uploads_record.processing_result = json.dumps(result_summary) 
-        uploads_record.updated_by = user 
-        uploads_record.save(update_fields=['status', 'error_message', 'processing_result', 'updated_by'])
+
+        uploads_record.save(update_fields=['status', 'error_message', 'processing_result'])
 
     def _mark_processing_failed(self, file_upload_record, uploads_record, error_msg, user):
        
@@ -972,14 +1042,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_upload_record.error_details = failure_result
         file_upload_record.processing_result = json.dumps(failure_result)
         file_upload_record.processing_completed_at = timezone.now()
-        file_upload_record.updated_by = user 
+
         file_upload_record.save()
 
         uploads_record.status = 'failed'
         uploads_record.error_message = error_msg
         uploads_record.processing_result = json.dumps(failure_result)
-        uploads_record.updated_by = user 
-        uploads_record.save(update_fields=['status', 'error_message', 'processing_result', 'updated_by'])
+
+        uploads_record.save(update_fields=['status', 'error_message', 'processing_result'])
 
     @action(detail=True, methods=['get'])
     def status(self, request, pk=None):

@@ -12,34 +12,24 @@ from apps.files_upload.models import FileUpload
 
 
 class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    ViewSet for handling closed cases (cases with 'completed' status).
-    Provides list, detail, search, filter, and statistics functionality.
-    """
-    
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
     lookup_field = 'id'
     lookup_url_kwarg = 'case_id'
     
     def get_queryset(self):
-        """
-        Get queryset for closed cases with optimized database queries.
-        Only returns cases with 'completed' or 'renewed' status (closed cases)
-        AND where the associated policy status is 'active'.
-        """
         return RenewalCase.objects.filter(
-            status__in=['completed', 'renewed'],  # Only closed/renewed cases
-            policy__status='active'               # Only cases with active policies
+            status__in=['completed', 'renewed'], 
+            policy__status='active'              
         ).select_related(
-            'customer',                   # Customer details
-            'policy',                     # Policy details
-            'policy__policy_type',        # Policy type details
-            'channel_id',                 # Channel details
-            'assigned_to',                # Assigned agent details
+            'customer',                  
+            'policy',                     
+            'policy__policy_type',        
+            'channel_id',                 
+            'assigned_to',                
         ).prefetch_related(
-            'customer__policies',         # Customer's other policies
-        ).order_by('-updated_at')  # Most recently closed first
+            'customer__policies',         
+        ).order_by('-updated_at') 
     
     def get_serializer_class(self):
         """Return appropriate serializer based on action"""
@@ -48,21 +38,8 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
         return ClosedCasesListSerializer
     
     def list(self, request, *args, **kwargs):
-        """
-        List all closed cases with optional filtering and search.
-        
-        Query Parameters:
-        - search: Search in case number, customer name, policy number
-        - priority: Filter by priority (low, medium, high, urgent)
-        - channel: Filter by channel name
-        - agent: Filter by assigned agent
-        - date_from: Filter cases closed from this date
-        - date_to: Filter cases closed until this date
-        - batch_id: Filter by batch code
-        """
         queryset = self.get_queryset()
         
-        # Search functionality
         search = request.query_params.get('search', None)
         if search:
             queryset = queryset.filter(
@@ -74,7 +51,6 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
                 Q(customer__customer_code__icontains=search)
             )
         
-        # Priority filter
         priority = request.query_params.get('priority', None)
         if priority:
             queryset = queryset.filter(priority=priority)
@@ -171,10 +147,6 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
     
     @action(detail=False, methods=['get'])
     def stats(self, request):
-        """
-        Get statistics for closed cases.
-        Returns counts by priority, channel, agent, etc.
-        """
         queryset = self.get_queryset()
         
         total_closed_cases = queryset.count()
@@ -195,7 +167,7 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
             'channel_id__channel_name'
         ).annotate(
             count=Count('id')
-        ).order_by('-count')[:10]  # Top 10 channels
+        ).order_by('-count')[:10] 
         
         # Agent breakdown
         agent_stats = queryset.values(
@@ -203,7 +175,7 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
             'assigned_to__last_name'
         ).annotate(
             count=Count('id')
-        ).order_by('-count')[:10]  # Top 10 agents
+        ).order_by('-count')[:10]  
         
         # Category breakdown
         category_stats = queryset.values(
@@ -239,10 +211,6 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
     
     @action(detail=False, methods=['get'])
     def export_data(self, request):
-        """
-        Export closed cases data for reporting.
-        Returns simplified data structure suitable for CSV/Excel export.
-        """
         queryset = self.get_queryset()
         
         # Apply same filters as list view

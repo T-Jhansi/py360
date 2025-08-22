@@ -123,7 +123,6 @@ class ClosedCasesListSerializer(serializers.ModelSerializer):
         return None
     
     def get_upload_date(self, obj):
-        # Try to get upload date from file_uploads table using batch_code
         try:
             file_upload = FileUpload.objects.filter(
                 processing_result__batch_code=obj.batch_code

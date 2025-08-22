@@ -15,10 +15,6 @@ from .serializers import (
 
 
 class ChannelViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for managing channels.
-    Provides CRUD operations for Channel model.
-    """
     queryset = Channel.objects.select_related('target_audience').filter(is_deleted=False)
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -550,11 +546,9 @@ class ChannelViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_404_NOT_FOUND
                 )
 
-            # Store channel info before deletion for response
             channel_name = channel.name
             channel_type = channel.channel_type
 
-            # Perform hard delete - permanently remove from database
             channel.hard_delete()
 
             return Response(

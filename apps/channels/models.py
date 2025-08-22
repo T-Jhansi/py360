@@ -8,12 +8,13 @@ from decimal import Decimal
 class Channel(BaseModel):
     
     CHANNEL_TYPE_CHOICES = [
-        ('online', 'Online'),
-        ('mobile', 'Mobile'),
-        ('offline', 'Offline'),
-        ('phone', 'Phone'),
-        ('agent', 'Agent'),
+        ('Online', 'Online'),
+        ('Mobile', 'Mobile'),
+        ('Offline', 'Offline'),
+        ('Phone', 'Phone'),
+        ('Agent', 'Agent'),
     ]
+
     
     STATUS_CHOICES = [
         ('active', 'Active'),
@@ -36,7 +37,6 @@ class Channel(BaseModel):
     )
     description = models.TextField(blank=True, help_text="Channel description")
     
-    # Relationships
     target_audience = models.ForeignKey(
         TargetAudience,
         on_delete=models.SET_NULL,

@@ -6,7 +6,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 from apps.core.models import BaseModel
-from apps.renewals.models import RenewalCase
+# from apps.renewals.models import RenewalCase
 
 
 class CustomerPayment(BaseModel):
@@ -39,12 +39,12 @@ class CustomerPayment(BaseModel):
     ]
     
     # Foreign Keys
-    renewal_case = models.ForeignKey(
-        RenewalCase,
-        on_delete=models.CASCADE,
-        related_name='payments',
-        help_text="Renewal case this payment belongs to"
-    )
+    # renewal_case = models.ForeignKey(
+    #     RenewalCase,
+    #     on_delete=models.CASCADE,
+    #     related_name='payments',
+    #     help_text="Renewal case this payment belongs to"
+    # )
     
     # Payment Details
     payment_amount = models.DecimalField(
@@ -218,7 +218,7 @@ class CustomerPayment(BaseModel):
         db_table = 'customer_payments'
         ordering = ['-payment_date', '-created_at']
         indexes = [
-            models.Index(fields=['renewal_case']),
+            # models.Index(fields=['renewal_case']),
             models.Index(fields=['payment_status']),
             models.Index(fields=['payment_mode']),
             models.Index(fields=['payment_date']),
@@ -244,23 +244,23 @@ class CustomerPayment(BaseModel):
             ),
         ]
     
-    def __str__(self):
-        return f"Payment {self.transaction_id} - {self.renewal_case.case_number} - ₹{self.payment_amount}"
+    # def __str__(self):
+    #     return f"Payment {self.transaction_id} - {self.renewal_case.case_number} - ₹{self.payment_amount}"
     
-    @property
-    def customer(self):
-        """Get customer from renewal case"""
-        return self.renewal_case.customer if self.renewal_case else None
+    # @property
+    # def customer(self):
+    #     """Get customer from renewal case"""
+    #     return self.renewal_case.customer if self.renewal_case else None
     
-    @property
-    def customer_name(self):
-        """Get customer name"""
-        return self.customer.full_name if self.customer else "Unknown"
+    # @property
+    # def customer_name(self):
+    #     """Get customer name"""
+    #     return self.customer.full_name if self.customer else "Unknown"
     
-    @property
-    def policy_number(self):
-        """Get policy number from renewal case"""
-        return self.renewal_case.policy.policy_number if self.renewal_case and self.renewal_case.policy else "Unknown"
+    # @property
+    # def policy_number(self):
+    #     """Get policy number from renewal case"""
+    #     return self.renewal_case.policy.policy_number if self.renewal_case and self.renewal_case.policy else "Unknown"
     
     @property
     def is_overdue(self):

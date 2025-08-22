@@ -1,7 +1,3 @@
-"""
-Custom middleware for the Intelipro Insurance Policy Renewal System.
-"""
-
 import time
 import logging
 import json
@@ -15,10 +11,6 @@ User = get_user_model()
 
 
 class RequestLoggingMiddleware(MiddlewareMixin):
-    """
-    Middleware to log API requests for auditing and monitoring.
-    """
-    
     def process_request(self, request):
         """Start timing the request"""
         request.start_time = time.time()
@@ -54,9 +46,6 @@ class RequestLoggingMiddleware(MiddlewareMixin):
                     'user_agent': request.META.get('HTTP_USER_AGENT', ''),
                     'content_length': len(response.content) if hasattr(response, 'content') else 0,
                 }
-                
-                # Log request body for POST/PUT/PATCH (excluding sensitive data)
-                # Skip body logging for file uploads to avoid "body already read" error
                 if (request.method in ['POST', 'PUT', 'PATCH'] and
                     'multipart/form-data' not in request.content_type and
                     'application/octet-stream' not in request.content_type):
@@ -218,7 +207,7 @@ class RateLimitMiddleware(MiddlewareMixin):
                 )
             
             # Increment counter
-            cache.set(cache_key, current_requests + 1, 60)  # 60 seconds
+            cache.set(cache_key, current_requests + 1, 60) 
             
         except Exception as e:
             logger.error(f"Error in RateLimitMiddleware: {str(e)}")

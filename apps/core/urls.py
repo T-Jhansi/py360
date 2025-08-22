@@ -1,6 +1,4 @@
-"""
-Core URL patterns for health checks, utilities, and system endpoints.
-"""
+
 
 from django.urls import path
 from . import views
