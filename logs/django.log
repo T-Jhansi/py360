@@ -12279,3 +12279,74 @@ WARNING 2025-08-21 16:35:11,999 runserver 21340 17780 [33mHTTP GET /renew/POL-0
 WARNING 2025-08-21 16:35:12,075 log 21340 24832 Not Found: /favicon.ico
 WARNING 2025-08-21 16:35:12,076 runserver 21340 17780 [33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:60084][0m
 INFO 2025-08-21 17:09:01,979 server 21340 17780 Killed 0 pending application instances
+INFO 2025-08-21 17:51:34,571 server 19324 19488 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-21 17:51:34,571 server 19324 19488 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-21 17:51:34,572 server 19324 19488 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-21 17:51:46,642 middleware 19324 23520 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.487, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-21 17:51:46,644 runserver 19324 19488 [mHTTP POST /api/auth/login/ 200 [0.50, 127.0.0.1:61904][0m
+INFO 2025-08-21 17:51:56,364 middleware 19324 11912 API Request: {"method": "GET", "path": "/api/campaigns/1/", "status_code": 200, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 778}
+INFO 2025-08-21 17:51:56,367 runserver 19324 19488 [mHTTP GET /api/campaigns/1/ 200 [0.06, 127.0.0.1:61904][0m
+INFO 2025-08-22 10:02:24,523 server 19324 19488 Killed 0 pending application instances
+INFO 2025-08-22 10:04:24,560 server 5592 26564 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 10:04:24,561 server 5592 26564 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 10:04:24,562 server 5592 26564 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 10:04:28,081 middleware 5592 26896 API Request: {"method": "GET", "path": "/api/campaigns/1/", "status_code": 401, "duration": 0.017, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 245}
+WARNING 2025-08-22 10:04:28,083 log 5592 15404 Unauthorized: /api/campaigns/1/
+WARNING 2025-08-22 10:04:28,084 runserver 5592 26564 [31;1mHTTP GET /api/campaigns/1/ 401 [0.03, 127.0.0.1:63074][0m
+INFO 2025-08-22 10:04:31,660 middleware 5592 6876 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.489, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-22 10:04:31,662 runserver 5592 26564 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:63074][0m
+INFO 2025-08-22 10:04:41,110 middleware 5592 16020 API Request: {"method": "GET", "path": "/api/campaigns/1/", "status_code": 200, "duration": 0.056, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 778}
+INFO 2025-08-22 10:04:41,113 runserver 5592 26564 [mHTTP GET /api/campaigns/1/ 200 [0.06, 127.0.0.1:63074][0m
+INFO 2025-08-22 10:05:15,445 middleware 5592 26312 API Request: {"method": "GET", "path": "/api/campaigns/list/", "status_code": 200, "duration": 0.054, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 447}
+INFO 2025-08-22 10:05:15,448 runserver 5592 26564 [mHTTP GET /api/campaigns/list/ 200 [0.06, 127.0.0.1:63074][0m
+INFO 2025-08-22 10:21:08,120 server 5592 26564 Killed 0 pending application instances
+INFO 2025-08-22 11:31:48,265 server 23308 20592 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 11:31:48,266 server 23308 20592 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 11:31:48,266 server 23308 20592 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 11:33:58,963 server 23308 20592 Killed 0 pending application instances
+INFO 2025-08-22 11:34:05,762 server 27496 11500 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 11:34:05,762 server 27496 11500 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 11:34:05,763 server 27496 11500 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 11:34:14,081 middleware 27496 21820 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.497, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-22 11:34:14,084 runserver 27496 11500 [mHTTP POST /api/auth/login/ 200 [0.51, 127.0.0.1:65344][0m
+ERROR 2025-08-22 11:37:04,467 views 27496 21472 Error creating campaign: new row for relation "campaigns" violates check constraint "campaigns_schedule_type_check"
+DETAIL:  Failing row contains (1, Policy Renewal Campaign, Campaign created from file: upload-file1.xlsx, scheduled, 1, 13, 0, 0, 0, 0, 0, schedule later, 2025-08-23 06:08:00, 2025-08-23 06:08:00, null, null, 2025-08-22 06:07:04.464237, 2025-08-22 06:07:04.464254, f, {}, 🛡️ Your Policy Renewal is Due Soon - Action Required, t, [], 0, ["email"], f, null, null, 5, null, 3, 16, 4).
+
+INFO 2025-08-22 11:37:04,469 middleware 27496 21472 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 500, "duration": 0.081, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 525}
+ERROR 2025-08-22 11:37:04,471 log 27496 20096 Internal Server Error: /api/campaigns/create-from-file/
+ERROR 2025-08-22 11:37:04,471 runserver 27496 11500 [35;1mHTTP POST /api/campaigns/create-from-file/ 500 [0.09, 127.0.0.1:65395][0m
+INFO 2025-08-22 11:40:55,022 server 27496 11500 Killed 0 pending application instances
+INFO 2025-08-22 11:42:01,943 server 8548 17136 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 11:42:01,943 server 8548 17136 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 11:42:01,944 server 8548 17136 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 11:42:10,721 middleware 8548 18624 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.483, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-22 11:42:10,723 runserver 8548 17136 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:49315][0m
+INFO 2025-08-22 11:42:36,208 serializers 8548 20548 Found 10 customers from file upload time window
+INFO 2025-08-22 11:42:36,210 serializers 8548 20548 Total customers selected for campaign 2: 10
+INFO 2025-08-22 11:42:36,254 serializers 8548 20548 Successfully created 10 recipients for campaign 2
+ERROR 2025-08-22 11:42:36,255 serializers 8548 20548 Failed to schedule campaign 2: 'function' object has no attribute 'apply_async'
+INFO 2025-08-22 11:42:36,261 middleware 8548 20548 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 0.146, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 397}
+INFO 2025-08-22 11:42:36,267 runserver 8548 17136 [mHTTP POST /api/campaigns/create-from-file/ 201 [0.15, 127.0.0.1:49315][0m
+INFO 2025-08-22 11:47:00,953 serializers 8548 16844 Found 10 customers from file upload time window
+INFO 2025-08-22 11:47:00,955 serializers 8548 16844 Total customers selected for campaign 1: 10
+INFO 2025-08-22 11:47:00,998 serializers 8548 16844 Successfully created 10 recipients for campaign 1
+ERROR 2025-08-22 11:47:00,999 serializers 8548 16844 Failed to schedule campaign 1: 'function' object has no attribute 'apply_async'
+INFO 2025-08-22 11:47:01,004 middleware 8548 16844 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 0.134, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 397}
+INFO 2025-08-22 11:47:01,010 runserver 8548 17136 [mHTTP POST /api/campaigns/create-from-file/ 201 [0.14, 127.0.0.1:50306][0m
+INFO 2025-08-22 12:00:56,828 server 8548 17136 Killed 0 pending application instances
+INFO 2025-08-22 12:04:10,584 server 17980 6744 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 12:04:10,584 server 17980 6744 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 12:04:10,585 server 17980 6744 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 12:04:20,186 middleware 17980 16644 API Request: {"method": "POST", "path": "/api/auth/login/", "status_code": 200, "duration": 0.478, "user_id": null, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 1020}
+INFO 2025-08-22 12:04:20,188 runserver 17980 6744 [mHTTP POST /api/auth/login/ 200 [0.49, 127.0.0.1:50940][0m
+INFO 2025-08-22 12:05:43,697 serializers 17980 21264 Found 10 customers from file upload time window
+INFO 2025-08-22 12:05:43,698 serializers 17980 21264 Total customers selected for campaign 1: 10
+INFO 2025-08-22 12:05:43,738 serializers 17980 21264 Successfully created 10 recipients for campaign 1
+ERROR 2025-08-22 12:05:43,739 serializers 17980 21264 Failed to schedule campaign 1: 'function' object has no attribute 'apply_async'
+INFO 2025-08-22 12:05:43,743 middleware 17980 21264 API Request: {"method": "POST", "path": "/api/campaigns/create-from-file/", "status_code": 201, "duration": 0.122, "user_id": 5, "ip_address": "127.0.0.1", "user_agent": "PostmanRuntime/7.45.0", "content_length": 397}
+INFO 2025-08-22 12:05:43,748 runserver 17980 6744 [mHTTP POST /api/campaigns/create-from-file/ 201 [0.13, 127.0.0.1:50990][0m
+INFO 2025-08-22 12:35:48,957 server 17980 6744 Killed 0 pending application instances
+INFO 2025-08-22 16:20:06,370 server 23832 26944 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-22 16:20:06,370 server 23832 26944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-22 16:20:06,371 server 23832 26944 Listening on TCP address 127.0.0.1:8000
+INFO 2025-08-22 16:20:11,419 server 23832 26944 Killed 0 pending application instances
