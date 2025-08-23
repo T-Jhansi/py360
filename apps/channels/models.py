@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from apps.core.models import BaseModel
-from apps.TargetAudience.models import TargetAudience
+from apps.target_audience.models import TargetAudience
 from decimal import Decimal
 
 
@@ -38,7 +38,8 @@ class Channel(BaseModel):
     description = models.TextField(blank=True, help_text="Channel description")
     
     target_audience = models.ForeignKey(
-        TargetAudience,
+        # TargetAudience,
+        'target_audience.TargetAudience',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

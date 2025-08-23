@@ -8,11 +8,10 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     initial = True
-
     dependencies = [
         ('business_channels', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('TargetAudience', '__first__'),
+        ('target_audience', '__first__'),
     ]
 
     operations = [
@@ -34,7 +33,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='channel',
             name='target_audience',
-            field=models.ForeignKey(blank=True, help_text='Target audience for this channel', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='channels', to='TargetAudience.targetaudience'),
+            field=models.ForeignKey(blank=True, help_text='Target audience for this channel', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='channels', to='target_audience.targetaudience'
+),
         ),
         migrations.AddField(
             model_name='channel',
