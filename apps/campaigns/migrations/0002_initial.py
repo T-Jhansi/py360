@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         ('policies', '0002_initial'),
         ('customers', '0002_initial'),
         ('campaigns', '0001_initial'),
-        ('TargetAudience', '__first__'),
+        ('target_audience', '__first__'),
     ]
 
     operations = [
@@ -208,7 +208,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='campaign',
             name='target_audience',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='campaigns', to='TargetAudience.targetaudience'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='campaigns', to='target_audience.targetaudience'
+),
         ),
         migrations.AddField(
             model_name='campaign',

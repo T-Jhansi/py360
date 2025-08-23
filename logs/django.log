@@ -12350,3 +12350,11 @@ INFO 2025-08-22 16:20:06,370 server 23832 26944 HTTP/2 support not enabled (inst
 INFO 2025-08-22 16:20:06,370 server 23832 26944 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2025-08-22 16:20:06,371 server 23832 26944 Listening on TCP address 127.0.0.1:8000
 INFO 2025-08-22 16:20:11,419 server 23832 26944 Killed 0 pending application instances
+INFO 2025-08-23 11:59:33,730 server 13208 18036 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2025-08-23 11:59:33,731 server 13208 18036 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2025-08-23 11:59:33,733 server 13208 18036 Listening on TCP address 127.0.0.1:8000
+WARNING 2025-08-23 12:19:34,294 log 13208 14500 Not Found: /
+WARNING 2025-08-23 12:19:34,298 runserver 13208 18036 [33mHTTP GET / 404 [0.10, 127.0.0.1:56963][0m
+WARNING 2025-08-23 12:19:34,457 log 13208 14500 Not Found: /favicon.ico
+WARNING 2025-08-23 12:19:34,459 runserver 13208 18036 [33mHTTP GET /favicon.ico 404 [0.05, 127.0.0.1:56963][0m
+INFO 2025-08-23 13:04:17,437 server 13208 18036 Killed 0 pending application instances

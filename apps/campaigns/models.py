@@ -6,7 +6,7 @@ from apps.customers.models import Customer
 from apps.policies.models import Policy
 from apps.templates.models import Template
 from apps.files_upload.models import FileUpload
-from apps.TargetAudience.models import TargetAudience
+from apps.target_audience.models import TargetAudience
 from decimal import Decimal
 import uuid
 import json

@@ -193,7 +193,7 @@ class CampaignCreateSerializer(serializers.Serializer):
 
     def _get_or_create_target_audience(self, target_audience_type, file_upload):
         """Get or create target audience based on type"""
-        from apps.TargetAudience.models import TargetAudience
+        from apps.target_audience.models import TargetAudience
 
         audience_name_map = {
             'pending_renewals': f"Pending Renewals - {file_upload.original_filename}",

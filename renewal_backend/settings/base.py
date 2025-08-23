@@ -47,7 +47,7 @@ LOCAL_APPS = [
     'apps.uploads',
     'apps.campaigns',
     'apps.templates',
-    'apps.TargetAudience',
+    'apps.target_audience',
     'apps.policy_data',
     'apps.files_upload',
     'apps.renewals',

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Channel
-from apps.TargetAudience.models import TargetAudience
+from apps.target_audience.models import TargetAudience
 
 
 class ChannelSerializer(serializers.ModelSerializer):
