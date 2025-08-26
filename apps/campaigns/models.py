@@ -47,6 +47,7 @@ class Campaign(BaseModel):
         ('push', 'Push Notification'),
     ]
     
+    
     name = models.CharField(max_length=200)
     campaign_type = models.ForeignKey(CampaignType, on_delete=models.CASCADE, related_name='campaigns')
     template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns')
