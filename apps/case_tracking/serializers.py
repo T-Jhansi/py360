@@ -3,17 +3,31 @@ from apps.renewals.models import RenewalCase
 from apps.customers.models import Customer
 from apps.policies.models import Policy, PolicyType
 from apps.channels.models import Channel
+from apps.customer_payments.models import CustomerPayment
 from apps.files_upload.models import FileUpload
 from apps.case_logs.models import CaseLog
 from django.contrib.auth import get_user_model
 from datetime import timedelta
-
 User = get_user_model()
 
+class PolicySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Policy
+        fields = '__all__'   
 
-# Case Management Serializers (moved from case_logs)
+
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+
+class CustomerPaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerPayment
+        fields = '__all__'
+
 class QuickEditCaseSerializer(serializers.Serializer):
-
     status = serializers.ChoiceField(
         choices=RenewalCase.STATUS_CHOICES,
         required=True,
@@ -93,6 +107,13 @@ class QuickEditCaseSerializer(serializers.Serializer):
             raise serializers.ValidationError("Comment cannot exceed 1000 characters.")
         return value.strip() if value else ""
 
+class UpdateCaseLogSerializer(serializers.Serializer):
+    status = serializers.ChoiceField(choices=RenewalCase.STATUS_CHOICES, required=False)
+    sub_status = serializers.ChoiceField(choices=CaseLog.SUB_STATUS_CHOICES, required=False)
+    current_work_step = serializers.ChoiceField(choices=CaseLog.WORK_STEP_CHOICES, required=False)
+    next_follow_up_date = serializers.DateTimeField(required=False, allow_null=True)
+    next_action_plan = serializers.CharField(required=False, allow_blank=True, max_length=1000)
+    comment = serializers.CharField(required=False, allow_blank=True, max_length=1000)
 
 class CaseLogSerializer(serializers.ModelSerializer):
 
@@ -241,39 +262,16 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
     
     calls_count = serializers.SerializerMethodField()
     last_action = serializers.SerializerMethodField()
+
+    policy = PolicySerializer(read_only=True)
+    customer = CustomerSerializer(read_only=True)
+    customer_payment = CustomerPaymentSerializer(read_only=True)
+    channel = serializers.StringRelatedField()
     batch_id = serializers.CharField(source='batch_code', read_only=True)
     
     class Meta:
         model = RenewalCase
-        fields = [
-            'id',
-            'case_number',
-            'batch_id',
-            'status',
-            'priority',
-            'renewal_amount',
-            'payment_status',
-            'communication_attempts',
-            'last_contact_date',
-            'notes',
-            'created_at',
-            'updated_at',
-            'customer_name',
-            'customer_profile',
-            'customer_mobile',
-            'customer_language',
-            'policy_number',
-            'product_name',
-            'policy_category',
-            'renewal_date',
-            'policy_status',
-            'channel_name',
-            'agent_name',
-            'upload_date',
-            'upload_filename',
-            'calls_count',
-            'last_action',
-        ]
+        fields = '__all__' 
     
     def get_customer_name(self, obj):
         return obj.customer.full_name if obj.customer else None
@@ -309,7 +307,8 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
         return obj.policy.status if obj.policy else None
     
     def get_channel_name(self, obj):
-        return obj.channel_id.name if obj.channel_id else None
+        return obj.channel.name if obj.channel else None
+
     
     def get_agent_name(self, obj):
         return obj.policy.agent_name if obj.policy and obj.policy.agent_name else None
@@ -343,6 +342,9 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
         elif obj.updated_at:
             return obj.updated_at.strftime('%d/%m/%Y')
         return None
+    def get_payment_status(self, obj):
+        payment = obj.customer.payments.first()  
+        return payment.status if payment else None
 
 
 class CaseDetailSerializer(serializers.ModelSerializer):
@@ -379,8 +381,6 @@ class CaseDetailSerializer(serializers.ModelSerializer):
             'status',
             'priority',
             'renewal_amount',
-            'payment_status',
-            'payment_date',
             'communication_attempts',
             'last_contact_date',
             'notes',
@@ -450,7 +450,8 @@ class CaseDetailSerializer(serializers.ModelSerializer):
         return str(obj.policy.sum_assured) if obj.policy and obj.policy.sum_assured else None
 
     def get_channel_name(self, obj):
-        return obj.channel_id.name if obj.channel_id else None
+        return obj.channel.name if obj.channel else None
+
 
     def get_agent_name(self, obj):
         return obj.policy.agent_name if obj.policy and obj.policy.agent_name else None

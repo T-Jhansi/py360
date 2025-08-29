@@ -5,7 +5,6 @@ from apps.renewals.models import RenewalCase
 
 User = get_user_model()
 
-
 class CaseLog(BaseModel):
     """Model for tracking case activities, status changes, and follow-ups"""
     
@@ -102,3 +101,4 @@ class CaseLog(BaseModel):
         from django.utils import timezone
         delta = self.next_follow_up_date - timezone.now()
         return delta.days
+

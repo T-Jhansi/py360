@@ -5,11 +5,12 @@ Serializers for Customer Payments app.
 from rest_framework import serializers
 from decimal import Decimal
 from .models import CustomerPayment
-
+from apps.customers.models import Customer
 
 class CustomerPaymentSerializer(serializers.ModelSerializer):
     """Serializer for CustomerPayment model"""
     
+    customer_id = serializers.IntegerField(source="customer.id", read_only=True)
     customer_name = serializers.CharField(read_only=True)
     policy_number = serializers.CharField(read_only=True)
     case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
@@ -28,7 +29,7 @@ class CustomerPaymentSerializer(serializers.ModelSerializer):
         model = CustomerPayment
         fields = [
             'id',
-            'renewal_case',
+            'customer_id',
             'customer_name',
             'policy_number',
             'case_number',
@@ -77,11 +78,14 @@ class CustomerPaymentSerializer(serializers.ModelSerializer):
 
 class CustomerPaymentCreateSerializer(serializers.ModelSerializer):
     """Serializer for creating CustomerPayment"""
-    
+    customer_id = serializers.PrimaryKeyRelatedField(
+        queryset=Customer.objects.all(),
+        source="customer"   
+    )
     class Meta:
         model = CustomerPayment
         fields = [
-            'renewal_case',
+            'customer_id',
             'payment_amount',
             'payment_status',
             'payment_date',
@@ -256,7 +260,7 @@ class CustomerPaymentListSerializer(serializers.ModelSerializer):
     
     customer_name = serializers.CharField(read_only=True)
     policy_number = serializers.CharField(read_only=True)
-    case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
+    # case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_overdue = serializers.IntegerField(read_only=True)
     payment_summary = serializers.CharField(read_only=True)
@@ -265,7 +269,7 @@ class CustomerPaymentListSerializer(serializers.ModelSerializer):
         model = CustomerPayment
         fields = [
             'id',
-            'renewal_case',
+            'customer_id',
             'customer_name',
             'policy_number',
             'case_number',
