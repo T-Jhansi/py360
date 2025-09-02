@@ -15,18 +15,18 @@ from apps.case_logs.models import CaseLog
 from apps.core.pagination import StandardResultsSetPagination
 from .serializers import (
     CaseTrackingSerializer, CaseDetailSerializer, QuickEditCaseSerializer,
-    CaseLogSerializer, CaseDetailsSerializer, EditCaseDetailsSerializer
+    CaseLogSerializer, CaseDetailsSerializer, EditCaseDetailsSerializer, UpdateCaseLogSerializer
 )
 from datetime import datetime, timedelta
 from django.utils import timezone
 from apps.files_upload.models import FileUpload
 
 User = get_user_model()
-
 class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
 
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated] 
     pagination_class = StandardResultsSetPagination
+    
     lookup_field = 'id'
     lookup_url_kwarg = 'case_id'
     
@@ -38,7 +38,8 @@ class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
             'channel_id',                  
             'assigned_to',                 
         ).prefetch_related(
-            'customer__policies',          
+            'customer__policies',    
+            'customer__payments',      
         ).order_by('-created_at')
     
     def get_serializer_class(self):
@@ -95,7 +96,6 @@ class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
                 'count': count
             }
         
-    
         
         seven_days_ago = timezone.now() - timedelta(days=7)
         recent_cases = queryset.filter(created_at__gte=seven_days_ago).count()
@@ -170,7 +170,64 @@ class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
 
     @action(detail=True, methods=['patch'], url_path='quick-edit')
     def quick_edit(self, request, case_id=None):
-        return quick_edit_case_api(request, case_id)
+        try:
+            case = get_object_or_404(
+                RenewalCase.objects.select_related('customer', 'policy'),
+                id=case_id
+            )
+
+            serializer = QuickEditCaseSerializer(data=request.data)
+            if not serializer.is_valid():
+                return Response({
+                    'error': 'Invalid data provided',
+                    'details': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            validated_data = serializer.validated_data or {}
+
+            with transaction.atomic():
+                old_status = case.status
+                case.status = validated_data.get('status', case.status)
+                case.updated_by = request.user
+                case.save(update_fields=['status', 'updated_at', 'updated_by'])
+
+                case_log = CaseLog.objects.create(
+                    renewal_case=case,
+                    sub_status=validated_data.get('sub_status', None),
+                    current_work_step=validated_data.get('current_work_step', None),
+                    next_follow_up_date=validated_data.get('next_follow_up_date', None),
+                    next_action_plan=validated_data.get('next_action_plan', ''),
+                    comment=validated_data.get('comment', ''),
+                    created_by=request.user,
+                    updated_by=request.user
+                )
+
+            # Defensive: check for attribute existence before calling
+            sub_status_display = getattr(case_log, 'get_sub_status_display', lambda: None)()
+            work_step_display = getattr(case_log, 'get_current_work_step_display', lambda: None)()
+
+            return Response({
+                'success': True,
+                'message': 'Case updated successfully',
+                'data': {
+                    'case_id': getattr(case, 'id', None),
+                    'case_number': getattr(case, 'case_number', None),
+                    'old_status': old_status,
+                    'new_status': case.status,
+                    'case_log_id': getattr(case_log, 'id', None),
+                    'sub_status': sub_status_display,
+                    'current_work_step': work_step_display,
+                    'next_follow_up_date': getattr(case_log, 'next_follow_up_date', None),
+                    'updated_at': getattr(case, 'updated_at', None),
+                    'updated_by': request.user.get_full_name() if hasattr(request.user, 'get_full_name') else getattr(request.user, 'username', None)
+                }
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({
+                'error': 'Failed to update case',
+                'message': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @action(detail=True, methods=['get'], url_path='case-logs')
     def case_logs(self, request, case_id=None):
@@ -289,19 +346,18 @@ class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
                 'error': 'Failed to retrieve comment history',
                 'message': str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-# Case Management APIs (moved from case_logs)
+        
 @api_view(['PATCH', 'PUT'])
 @permission_classes([permissions.IsAuthenticated])
-def quick_edit_case_api(request: Union[Request, HttpRequest], case_id: int) -> Response:
+def quick_edit_case_api(request: Request, case_id: int) -> Response:
+    django_request = get_django_request(request)
     try:
         case = get_object_or_404(
             RenewalCase.objects.select_related('customer', 'policy'),
             id=case_id
         )
 
-        serializer = QuickEditCaseSerializer(data=request.data)  # type: ignore
+        serializer = QuickEditCaseSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({
                 'error': 'Invalid data provided',
@@ -312,19 +368,19 @@ def quick_edit_case_api(request: Union[Request, HttpRequest], case_id: int) -> R
 
         with transaction.atomic():
             old_status = case.status
-            case.status = validated_data['status']  # type: ignore
-            case.updated_by = request.user  # type: ignore
+            case.status = validated_data['status']
+            case.updated_by = django_request.user
             case.save(update_fields=['status', 'updated_at', 'updated_by'])
 
             case_log = CaseLog.objects.create(
                 renewal_case=case,
-                sub_status=validated_data['sub_status'],  # type: ignore
-                current_work_step=validated_data['current_work_step'],  # type: ignore
+                sub_status=validated_data['sub_status'],
+                current_work_step=validated_data['current_work_step'],
                 next_follow_up_date=validated_data.get('next_follow_up_date'),
                 next_action_plan=validated_data.get('next_action_plan', ''),
                 comment=validated_data.get('comment', ''),
-                created_by=request.user,  # type: ignore
-                updated_by=request.user  # type: ignore
+                created_by=django_request.user,
+                updated_by=django_request.user
             )
 
         return Response({
@@ -340,7 +396,7 @@ def quick_edit_case_api(request: Union[Request, HttpRequest], case_id: int) -> R
                 'current_work_step': case_log.get_current_work_step_display(),
                 'next_follow_up_date': case_log.next_follow_up_date,
                 'updated_at': case.updated_at,
-                'updated_by': request.user.get_full_name() or request.user.username  # type: ignore
+                'updated_by': django_request.user.get_full_name() or django_request.user.username
             }
         }, status=status.HTTP_200_OK)
 
@@ -349,19 +405,20 @@ def quick_edit_case_api(request: Union[Request, HttpRequest], case_id: int) -> R
             'error': 'Failed to update case',
             'message': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+def get_django_request(request):
+    return request._request if hasattr(request, "_request") else request
 
-
-@api_view(['PATCH', 'PUT'])
+@api_view(['PUT', 'PATCH'])
 @permission_classes([permissions.IsAuthenticated])
-def update_case_log_api(request: Union[Request, HttpRequest], case_id: int) -> Response:
-
+def update_case_log_api(request: Union[Request, HttpRequest], case_log_id: int) -> Response:
     try:
-        renewal_case = get_object_or_404(
-            RenewalCase.objects.select_related('customer', 'policy'),
-            id=case_id
-        )
+        django_request = get_django_request(request)
 
-        serializer = QuickEditCaseSerializer(data=request.data)  # type: ignore
+        case_log = get_object_or_404(CaseLog.objects.select_related('renewal_case'), id=case_log_id)
+        case = case_log.renewal_case
+
+        serializer = UpdateCaseLogSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({
                 'error': 'Invalid data provided',
@@ -371,43 +428,35 @@ def update_case_log_api(request: Union[Request, HttpRequest], case_id: int) -> R
         validated_data = serializer.validated_data
 
         with transaction.atomic():
-            old_status = renewal_case.status
+            # Update case log fields
+            for field, value in validated_data.items():
+                setattr(case_log, field, value)
+            case_log.updated_by = django_request.user   
+            case_log.save()
 
-            renewal_case.status = validated_data['status']  # type: ignore
-            renewal_case.updated_by = request.user  # type: ignore
-            renewal_case.save(update_fields=['status', 'updated_by', 'updated_at'])
-
-            case_log = CaseLog.objects.create(
-                renewal_case=renewal_case,
-                sub_status=validated_data['sub_status'],  # type: ignore
-                current_work_step=validated_data['current_work_step'],  # type: ignore
-                next_follow_up_date=validated_data.get('next_follow_up_date'),
-                next_action_plan=validated_data.get('next_action_plan', ''),
-                comment=validated_data.get('comment', ''),
-                created_by=request.user,  # type: ignore
-                updated_by=request.user  # type: ignore
-            )
+            # Only update fields that exist on RenewalCase
+            if 'status' in validated_data:
+                case.status = validated_data['status']
+                case.updated_by = django_request.user       
+                case.save(update_fields=['status', 'updated_at', 'updated_by'])
 
         return Response({
             'success': True,
-            'message': 'Case updated successfully',
+            'message': 'Case log updated successfully',
             'data': {
-                'case_id': renewal_case.id,
-                'case_number': renewal_case.case_number,
-                'old_status': old_status,
-                'new_status': renewal_case.status,
                 'case_log_id': case_log.id,
+                'case_id': case.id,
+                'case_number': case.case_number,
+                'status': case.get_status_display(),
                 'sub_status': case_log.get_sub_status_display(),
-                'current_work_step': case_log.get_current_work_step_display(),
-                'next_follow_up_date': case_log.next_follow_up_date,
-                'updated_at': renewal_case.updated_at,
-                'updated_by': request.user.get_full_name() or request.user.username  # type: ignore
+                'updated_at': case_log.updated_at,
+                'updated_by': django_request.user.get_full_name() or django_request.user.username
             }
         }, status=status.HTTP_200_OK)
 
     except Exception as e:
         return Response({
-            'error': 'Failed to update case',
+            'error': 'Failed to update case log',
             'message': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -415,7 +464,6 @@ def update_case_log_api(request: Union[Request, HttpRequest], case_id: int) -> R
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def comment_history_api(request: Union[Request, HttpRequest], case_id: int) -> Response:
-
     try:
         renewal_case = get_object_or_404(RenewalCase, id=case_id)
 
@@ -526,6 +574,7 @@ def get_case_edit_form_data_api(request: Union[Request, HttpRequest], case_id: i
 @permission_classes([permissions.IsAuthenticated])
 def edit_case_details_api(request: Union[Request, HttpRequest], case_id: int) -> Response:
     try:
+        django_request: HttpRequest = request._request if hasattr(request, "_request") else request  
         renewal_case = get_object_or_404(
             RenewalCase.objects.select_related(
                 'customer',
@@ -536,7 +585,7 @@ def edit_case_details_api(request: Union[Request, HttpRequest], case_id: int) ->
             id=case_id
         )
 
-        serializer = EditCaseDetailsSerializer(data=request.data)  # type: ignore
+        serializer = EditCaseDetailsSerializer(renewal_case, data=request.data, partial=True)  
         if not serializer.is_valid():
             return Response({
                 'error': 'Invalid data provided',
@@ -550,51 +599,52 @@ def edit_case_details_api(request: Union[Request, HttpRequest], case_id: int) ->
             customer_updated = False
 
             if 'customer_name' in validated_data:
-                name_parts = validated_data['customer_name'].strip().split(' ', 1)  # type: ignore
+                name_parts = validated_data['customer_name'].strip().split(' ', 1)
                 customer.first_name = name_parts[0]
                 customer.last_name = name_parts[1] if len(name_parts) > 1 else ''
                 customer_updated = True
 
             if 'email' in validated_data:
-                customer.email = validated_data['email']  # type: ignore
+                customer.email = validated_data['email']
                 customer_updated = True
 
             if 'phone' in validated_data:
-                customer.phone = validated_data['phone']  # type: ignore
+                customer.phone = validated_data['phone']
                 customer_updated = True
 
             if customer_updated:
-                customer.updated_by = request.user  # type: ignore
+                customer.updated_by = django_request.user  
                 customer.save()
 
             policy = renewal_case.policy
             policy_updated = False
 
             if 'policy_type' in validated_data:
-                policy_type = PolicyType.objects.get(id=validated_data['policy_type'])  # type: ignore
+                policy_type = PolicyType.objects.get(id=validated_data['policy_type'])
                 policy.policy_type = policy_type
                 policy_updated = True
 
             if 'premium_amount' in validated_data:
-                policy.premium_amount = validated_data['premium_amount']  # type: ignore
+                policy.premium_amount = validated_data['premium_amount']
                 policy_updated = True
 
             if 'expiry_date' in validated_data:
-                policy.end_date = validated_data['expiry_date']  # type: ignore
+                policy.end_date = validated_data['expiry_date']
                 policy_updated = True
 
             if 'assigned_agent' in validated_data:
-                if validated_data['assigned_agent']:  # type: ignore
-                    assigned_agent = get_object_or_404(User, id=validated_data['assigned_agent'])  # type: ignore
+                if validated_data['assigned_agent']:
+                    assigned_agent = get_object_or_404(User, id=validated_data['assigned_agent'])
                     renewal_case.assigned_to = assigned_agent
                 else:
                     renewal_case.assigned_to = None
-                renewal_case.updated_by = request.user  # type: ignore
+                renewal_case.updated_by = django_request.user   
                 renewal_case.save(update_fields=['assigned_to', 'updated_by', 'updated_at'])
 
             if policy_updated:
-                policy.last_modified_by = request.user  # type: ignore
+                policy.last_modified_by = django_request.user  
                 policy.save()
+
 
         updated_renewal_case = RenewalCase.objects.select_related(
             'customer',

@@ -596,7 +596,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
                     assigned_agent = get_next_available_agent()
 
-                    # Use a savepoint so duplicate key errors don't poison the outer transaction
                     with transaction.atomic():
                         customer = Customer.objects.create(
                             customer_code=customer_code,
@@ -614,7 +613,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                             country=str(row.get('country', 'India')),
                             kyc_status=row.get('kyc_status', 'pending').lower(),
                             kyc_documents=str(row.get('kyc_documents', '')),
-                            communication_preferences=str(row.get('communication_preferences', '')),
                             priority=priority,
                             assigned_agent=assigned_agent,
                             created_by=user,
@@ -623,9 +621,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     customer_created = True
 
                     if assigned_agent:
-                        print(f"✅ Auto-assigned agent {assigned_agent.get_full_name()} to customer {customer.customer_code}")
+                        print(f" Auto-assigned agent {assigned_agent.get_full_name()} to customer {customer.customer_code}")
                     else:
-                        print(f"⚠️  No agents available for auto-assignment to customer {customer.customer_code}")
+                        print(f"  No agents available for auto-assignment to customer {customer.customer_code}")
 
                     break
                 except IntegrityError as e:

@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Customer
+from apps.channels.serializers import ChannelSerializer
 
 User = get_user_model()
 
@@ -20,6 +21,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     """Enhanced Customer serializer with agent information"""
     assigned_agent_details = AgentSerializer(source='assigned_agent', read_only=True)
     full_name = serializers.CharField(source='get_full_name', read_only=True)
+    channels = ChannelSerializer(many=True, read_only=True)
 
     class Meta:
         model = Customer

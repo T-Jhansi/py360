@@ -5,7 +5,6 @@ from .models import CaseLog
 
 User = get_user_model()
 
-
 # Search-specific serializers for case_logs module
 class CaseLogSerializer(serializers.ModelSerializer):
     """Serializer for case logs - used in search functionality"""
@@ -15,7 +14,6 @@ class CaseLogSerializer(serializers.ModelSerializer):
     current_work_step = serializers.CharField(source='get_current_work_step_display', read_only=True)
     created_by_name = serializers.SerializerMethodField()
     updated_by_name = serializers.SerializerMethodField()
-
     class Meta:
         model = CaseLog
         fields = [

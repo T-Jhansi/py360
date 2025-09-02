@@ -19,7 +19,6 @@ class CombinedPolicyDataAPIView(APIView):
     def get(self, request, case_id=None):
 
         try:
-            # If case_id is provided in URL path, use it; otherwise get from query params
             if case_id is None:
                 case_id = request.query_params.get('case_id')
                 if not case_id:

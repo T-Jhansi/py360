@@ -76,6 +76,7 @@ LOCAL_APPS = [
     'apps.policy_coverages',
     'apps.policy_exclusions',
     'apps.policy_conditions',
+    'apps.renewal_timeline',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
@@ -285,7 +286,7 @@ SIMPLE_JWT = {
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000',
+    default='http://localhost:3000,http://127.0.0.1:3000,http://13.233.6.207:8000',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
@@ -295,7 +296,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 # CSRF Configuration
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000',
+    default='http://localhost:3000,http://127.0.0.1:3000,http://13.233.6.207:8000',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
