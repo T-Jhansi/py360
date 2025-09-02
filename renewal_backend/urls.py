@@ -48,6 +48,7 @@ api_patterns = [
     path('customers-files/', include('apps.customers_files.urls')),
     path('customers-documents/', include('apps.customers_documents.urls')),
     path('policy-timeline/', include('apps.policy_timeline.urls')),
+    path('renewal-timeline/', include('apps.renewal_timeline.urls')),
     path('other-insurance-policies/', include('apps.other_insurance_policies.urls')),
     path('policy-features/', include('apps.policy_features.urls')),
     path('policy-additional-benefits/', include('apps.policy_additional_benefits.urls')),

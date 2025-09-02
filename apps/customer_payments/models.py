@@ -46,7 +46,13 @@ class CustomerPayment(BaseModel):
             on_delete=models.CASCADE,
             related_name="payments"   
         )
-    
+
+    renewal_case = models.ForeignKey(
+        "renewals.RenewalCase",
+        on_delete=models.CASCADE,
+        related_name="payments"
+    )
+
     # Payment Details
     payment_amount = models.DecimalField(
         max_digits=12,

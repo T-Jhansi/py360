@@ -307,7 +307,7 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
         return obj.policy.status if obj.policy else None
     
     def get_channel_name(self, obj):
-        return obj.channel.name if obj.channel else None
+        return obj.channel_id.name if obj.channel_id else None
 
     
     def get_agent_name(self, obj):
@@ -450,7 +450,7 @@ class CaseDetailSerializer(serializers.ModelSerializer):
         return str(obj.policy.sum_assured) if obj.policy and obj.policy.sum_assured else None
 
     def get_channel_name(self, obj):
-        return obj.channel.name if obj.channel else None
+        return obj.channel_id.name if obj.channel_id else None
 
 
     def get_agent_name(self, obj):

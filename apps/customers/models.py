@@ -143,7 +143,6 @@ class Customer(BaseModel):
     timezone = models.CharField(max_length=50, default='Asia/Kolkata')
     
     # Communication Preferences
-    communication_preferences = models.CharField(max_length=50, blank=True, help_text="Communication preferences from Excel")
     email_notifications = models.BooleanField(default=True)
     sms_notifications = models.BooleanField(default=True)
     whatsapp_notifications = models.BooleanField(default=False)

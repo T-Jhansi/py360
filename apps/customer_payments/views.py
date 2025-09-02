@@ -15,10 +15,6 @@ from .serializers import (
 )
 
 class CustomerPaymentViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for Customer Payment operations.
-    Provides store (create) and list operations with success response format.
-    """
     queryset = CustomerPayment.objects.filter(is_deleted=False)
 
     def get_serializer_class(self):

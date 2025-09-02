@@ -6,7 +6,7 @@ from rest_framework import serializers
 from decimal import Decimal
 from .models import CustomerPayment
 from apps.customers.models import Customer
-
+from apps.renewals.models import RenewalCase
 class CustomerPaymentSerializer(serializers.ModelSerializer):
     """Serializer for CustomerPayment model"""
     
@@ -82,10 +82,15 @@ class CustomerPaymentCreateSerializer(serializers.ModelSerializer):
         queryset=Customer.objects.all(),
         source="customer"   
     )
+    renewal_case_id = serializers.PrimaryKeyRelatedField(
+        queryset=RenewalCase.objects.all(),
+        source="renewal_case"
+    )
     class Meta:
         model = CustomerPayment
         fields = [
             'customer_id',
+            'renewal_case_id',
             'payment_amount',
             'payment_status',
             'payment_date',
@@ -260,7 +265,7 @@ class CustomerPaymentListSerializer(serializers.ModelSerializer):
     
     customer_name = serializers.CharField(read_only=True)
     policy_number = serializers.CharField(read_only=True)
-    # case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
+    case_number = serializers.CharField(source='renewal_case.case_number', read_only=True)
     is_overdue = serializers.BooleanField(read_only=True)
     days_overdue = serializers.IntegerField(read_only=True)
     payment_summary = serializers.CharField(read_only=True)
