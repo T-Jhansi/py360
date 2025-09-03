@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Channel
 from apps.target_audience.models import TargetAudience
 
@@ -11,7 +12,7 @@ class ChannelSerializer(serializers.ModelSerializer):
     is_active = serializers.BooleanField(read_only=True)
 
     target_audience_id = serializers.PrimaryKeyRelatedField(
-        queryset=TargetAudience.objects.all(),
+        queryset=TargetAudience.objects.all(),  # type: ignore[attr-defined]
         source='target_audience',
         required=False,
         allow_null=True
@@ -118,7 +119,7 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
     """Serializer specifically for the new channel creation API"""
 
     target_audience_id = serializers.PrimaryKeyRelatedField(
-        queryset=TargetAudience.objects.all(),
+        queryset=TargetAudience.objects.all(),  # type: ignore[attr-defined]
         source='target_audience',
         required=False,
         allow_null=True,
@@ -162,7 +163,7 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at',
         ]
-        read_only_fields = ['id', 'status', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
     def validate_name(self, value):
         """Validate channel name is not empty"""
@@ -187,6 +188,20 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
         valid_types = [choice[0] for choice in Channel.CHANNEL_TYPE_CHOICES]
         if value not in valid_types:
             raise serializers.ValidationError(f"Invalid channel type. Valid options are: {', '.join(valid_types)}")
+        return value
+
+    def validate_status(self, value):
+        """Validate status is one of allowed choices"""
+        valid_status = [choice[0] for choice in Channel.STATUS_CHOICES]
+        if value not in valid_status:
+            raise serializers.ValidationError(f"Invalid status. Valid options are: {', '.join(valid_status)}")
+        return value
+
+    def validate_priority(self, value):
+        """Validate priority is one of allowed choices"""
+        valid_priority = [choice[0] for choice in Channel.PRIORITY_CHOICES]
+        if value not in valid_priority:
+            raise serializers.ValidationError(f"Invalid priority. Valid options are: {', '.join(valid_priority)}")
         return value
 
     def validate(self, attrs):
@@ -218,6 +233,32 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         if hasattr(instance, 'description'):
             data['description'] = instance.description
+        
+        # Computed metrics for frontend display (read-only, non-breaking)
+        # Cases: total renewal cases linked to this channel
+        total_cases = instance.renewal_cases.count()
+        renewed_cases = instance.renewal_cases.filter(status='renewed').count()
+        total_revenue = instance.renewal_cases.filter(status='renewed').aggregate(total=Sum('renewal_amount')).get('total')
+
+        # Safe conversions
+        total_cases = int(total_cases or 0)
+        renewed_cases = int(renewed_cases or 0)
+        revenue_value = float(total_revenue or 0)
+
+        # Conversion rate: renewed / total
+        conversion_rate = round((renewed_cases / total_cases) * 100, 1) if total_cases > 0 else 0.0
+
+        # Efficiency: revenue vs budget (capped at 100%). If no budget, show 0 when revenue is 0 else 100
+        budget_value = float(instance.budget) if getattr(instance, 'budget', None) else 0.0
+        if budget_value > 0:
+            efficiency_pct = round(min(100.0, (revenue_value / budget_value) * 100.0), 1)
+        else:
+            efficiency_pct = 100.0 if revenue_value > 0 else 0.0
+
+        data['cases'] = total_cases
+        data['conversion'] = conversion_rate
+        data['efficiency'] = efficiency_pct
+        data['revenue'] = f"{revenue_value:.2f}"
         return data
 
     def validate_cost_per_lead(self, value):
@@ -239,7 +280,7 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
         if target_audience_name_input:
             target_audience_name_input = target_audience_name_input.strip()
             if target_audience_name_input:
-                target_audience, created = TargetAudience.objects.get_or_create(
+                target_audience, created = TargetAudience.objects.get_or_create(  # type: ignore[attr-defined]
                     name__iexact=target_audience_name_input,
                     defaults={
                         'name': target_audience_name_input,
@@ -259,7 +300,7 @@ class ChannelCreateAPISerializer(serializers.ModelSerializer):
         if target_audience_name_input:
             target_audience_name_input = target_audience_name_input.strip()
             if target_audience_name_input:
-                target_audience, created = TargetAudience.objects.get_or_create(
+                target_audience, created = TargetAudience.objects.get_or_create(  # type: ignore[attr-defined]
                     name__iexact=target_audience_name_input,
                     defaults={
                         'name': target_audience_name_input,
