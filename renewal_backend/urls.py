@@ -11,7 +11,13 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import permission_classes
 from django.http import JsonResponse
+
+# Public schema view (allow docs without auth)
+class PublicSchemaView(SpectacularAPIView):
+    permission_classes = [AllowAny]
 
 # API URL patterns
 api_patterns = [
@@ -57,7 +63,7 @@ api_patterns = [
     path('policy-conditions/', include('apps.policy_conditions.urls')),
 
     # API Documentation
-    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('schema/', PublicSchemaView.as_view(), name='schema'),
     path('docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
