@@ -1,3 +1,4 @@
+# pyright: reportAttributeAccessIssue=false
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -113,9 +114,8 @@ class ChannelViewSet(viewsets.ModelViewSet):
         serializer = ChannelCreateAPISerializer(data=request.data, context={'request': request})
 
         if serializer.is_valid():
-            # Set default status to active and created_by
+            # Respect provided status/priority; fall back to model defaults
             channel = serializer.save(
-                status='active',
                 created_by=request.user
             )
 

@@ -7,9 +7,6 @@ from apps.channels.models import Channel
 from apps.customer_payments.models import CustomerPayment
 
 class RenewalTimeline(models.Model):
-    class Meta:
-        app_label = "renewal_timeline"
-
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="renewal_timelines"
     )
@@ -27,13 +24,8 @@ class RenewalTimeline(models.Model):
     )
 
     # Core preferences
-    renewal_pattern = models.CharField(
-        max_length=100,
-        help_text="e.g., 'Pays 7–14 days before due date'"
-    )
-    reminder_days = models.JSONField(
-        help_text="Days before due date to send reminders, e.g. [-30, -14, -7]"
-    )
+    renewal_pattern = models.CharField(max_length=100, help_text="e.g., 'Pays 7–14 days before due date'")
+    reminder_days = models.JSONField(help_text="Days before due date to send reminders, e.g. [-30, -14, -7]")
     next_due_date = models.DateField(null=True, blank=True)
     auto_renewal_enabled = models.BooleanField(default=False)
 
@@ -63,6 +55,7 @@ class RenewalTimeline(models.Model):
         db_table = "renewal_timelines"
         verbose_name = "Renewal Timeline"
         verbose_name_plural = "Renewal Timelines"
-        unique_together = ("customer", "policy")  
+        unique_together = ("customer", "policy")
+
     def __str__(self):
         return f"{self.customer} - {self.policy} Timeline"
