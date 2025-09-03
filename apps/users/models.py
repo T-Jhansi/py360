@@ -45,11 +45,11 @@ class Role(models.Model):
     display_name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     permissions = models.JSONField(default=dict, help_text="Permission mappings for this role")
-    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
+        db_table = 'roles'
         ordering = ['name']
         
     def __str__(self):
@@ -58,11 +58,21 @@ class Role(models.Model):
     @property
     def permission_list(self):
         """Return list of permissions for this role"""
-        return list(self.permissions.keys()) if self.permissions else []
+        if isinstance(self.permissions, list):
+            return self.permissions
+        elif isinstance(self.permissions, dict):
+            return list(self.permissions.keys())
+        else:
+            return []
     
     def has_permission(self, permission):
         """Check if role has specific permission"""
-        return self.permissions.get(permission, False) if self.permissions else False
+        if isinstance(self.permissions, list):
+            return permission in self.permissions
+        elif isinstance(self.permissions, dict):
+            return self.permissions.get(permission, False)
+        else:
+            return False
 
 
 class User(AbstractUser):
@@ -177,8 +187,33 @@ class User(AbstractUser):
         if self.is_superuser:
             return ['*']  # Superuser has all permissions
         if not self.role:
+            # Try to assign default role if none exists
+            self.assign_default_role()
+            if self.role:
+                return self.role.permission_list
             return []
         return self.role.permission_list
+    
+    def assign_default_role(self):
+        """Assign default role if user doesn't have one"""
+        if not self.role:
+            try:
+                # Try to get agent role first (most common for regular users)
+                default_role = Role.objects.get(name='agent')
+                self.role = default_role
+                self.save(update_fields=['role'])
+                return True
+            except Role.DoesNotExist:
+                # If agent role doesn't exist, try any available role
+                try:
+                    default_role = Role.objects.first()
+                    if default_role:
+                        self.role = default_role
+                        self.save(update_fields=['role'])
+                        return True
+                except Exception:
+                    pass
+        return False
     
     def is_account_locked(self):
         """Check if account is currently locked"""

@@ -85,7 +85,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if User.objects.filter(email=attrs['email']).exists():
             raise serializers.ValidationError("User with this email already exists.")
         
-        # Validate role if provided
+        # Validate role if provided, otherwise use default
         role_name = attrs.pop('role_name', None)
         if role_name:
             try:
@@ -93,6 +93,20 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
                 attrs['role'] = role
             except Role.DoesNotExist:
                 raise serializers.ValidationError(f"Role '{role_name}' not found.")
+        else:
+            # Assign default role (agent) if no role specified
+            try:
+                default_role = Role.objects.get(name='agent')
+                attrs['role'] = default_role
+            except Role.DoesNotExist:
+                # If agent role doesn't exist, try to get any available role
+                try:
+                    default_role = Role.objects.first()
+                    if default_role:
+                        attrs['role'] = default_role
+                except Exception:
+                    # If no roles exist, continue without role (fallback)
+                    pass
         
         attrs.pop('password_confirm')
         return attrs
