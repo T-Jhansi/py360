@@ -43,9 +43,9 @@ class HierarchyManagementViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
 
-        # Get the full serializer data for response
+        # Use List serializer for response
         instance = serializer.instance
-        response_serializer = HierarchyManagementSerializer(instance, context={'request': request})
+        response_serializer = HierarchyManagementListSerializer(instance, context={'request': request})
 
         response_data = {
             'success': True,
@@ -64,8 +64,8 @@ class HierarchyManagementViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        # Get the full serializer data for response
-        response_serializer = HierarchyManagementSerializer(instance, context={'request': request})
+        # Use List serializer for response
+        response_serializer = HierarchyManagementListSerializer(instance, context={'request': request})
 
         response_data = {
             'success': True,
