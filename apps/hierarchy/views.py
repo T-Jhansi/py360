@@ -75,9 +75,14 @@ class HierarchyManagementViewSet(viewsets.ModelViewSet):
         return Response(response_data)
     
     def perform_destroy(self, instance):
-        instance.is_deleted = True
-        instance.updated_by = self.request.user
-        instance.save()
+        # Store info before deletion for response
+        self.deleted_unit_info = {
+            'id': instance.id,
+            'unit_name': instance.unit_name,
+            'unit_type': instance.unit_type
+        }
+        # Perform hard delete - permanently remove from database
+        instance.hard_delete()
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -85,7 +90,7 @@ class HierarchyManagementViewSet(viewsets.ModelViewSet):
 
         response_data = {
             'success': True,
-            'message': 'Hierarchy unit deleted successfully'
+            'message': 'Hierarchy unit deleted permanently from database'
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
