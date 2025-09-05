@@ -10,7 +10,10 @@ def upload_to_path(instance, filename):
 
 class FileUpload(models.Model):
     """Model to store uploaded Excel file info and processing results."""
-    uploaded_file = models.FileField(upload_to='uploads/')
+    uploaded_file = models.FileField(
+        upload_to='uploads/',
+        validators=[FileExtensionValidator(allowed_extensions=['csv', 'xlsx'])]
+    )
     filename = models.CharField(max_length=255)
     original_filename = models.CharField(max_length=255)
     file_size = models.BigIntegerField()

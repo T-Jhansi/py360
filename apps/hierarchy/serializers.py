@@ -44,12 +44,8 @@ class HierarchyManagementSerializer(serializers.ModelSerializer):
     
     def get_cases(self, obj):
         """Get total cases assigned to this hierarchy unit's manager"""
-        # Try to find user by employee_id matching manager_id pattern
-        # For now, we'll use a simple approach - you may need to adjust this logic
         try:
-            # Extract number from manager_id (e.g., "mgr-002" -> "002")
             manager_number = obj.manager_id.split('-')[1] if '-' in obj.manager_id else obj.manager_id
-            # Find user with employee_id matching this pattern
             user = User.objects.filter(employee_id__icontains=manager_number).first()
             if user:
                 return RenewalCase.objects.filter(assigned_to=user).count()
@@ -60,9 +56,7 @@ class HierarchyManagementSerializer(serializers.ModelSerializer):
     def get_revenue(self, obj):
         """Get total revenue from renewed cases assigned to this hierarchy unit's manager"""
         try:
-            # Extract number from manager_id (e.g., "mgr-001" -> "001")
             manager_number = obj.manager_id.split('-')[1] if '-' in obj.manager_id else obj.manager_id
-            # Find user with employee_id matching this pattern (e.g., "EMP001" contains "001")
             user = User.objects.filter(employee_id__icontains=manager_number).first()
             if user:
                 result = RenewalCase.objects.filter(
@@ -77,9 +71,7 @@ class HierarchyManagementSerializer(serializers.ModelSerializer):
     def get_efficiency(self, obj):
         """Calculate efficiency as percentage of renewed cases"""
         try:
-            # Extract number from manager_id (e.g., "mgr-001" -> "001")
             manager_number = obj.manager_id.split('-')[1] if '-' in obj.manager_id else obj.manager_id
-            # Find user with employee_id matching this pattern (e.g., "EMP001" contains "001")
             user = User.objects.filter(employee_id__icontains=manager_number).first()
             if user:
                 total_cases = RenewalCase.objects.filter(assigned_to=user).count()

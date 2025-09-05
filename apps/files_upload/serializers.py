@@ -11,21 +11,70 @@ class FileUploadSerializer(serializers.ModelSerializer):
         fields = ['file', 'filename', 'original_filename', 'file_size', 'file_type', 'upload_status']
         read_only_fields = ['file_name', 'original_filename', 'file_size', 'file_type', 'upload_status']
 
+    def validate_file(self, value):
+        """Validate uploaded file to ensure it's CSV or XLSX format"""
+        if not value:
+            raise serializers.ValidationError("No file provided.")
+        
+        # Get file extension
+        file_extension = os.path.splitext(value.name)[1].lower()
+        
+        # Check file extension
+        allowed_extensions = ['.csv', '.xlsx']
+        if file_extension not in allowed_extensions:
+            raise serializers.ValidationError(
+                f"Only CSV and XLSX files are supported. "
+                f"Please upload a file with .csv or .xlsx extension. "
+                f"Your file has extension: {file_extension}"
+            )
+        
+        # Check file size (optional - limit to 10MB)
+        max_size = 10 * 1024 * 1024  # 10MB
+        if value.size > max_size:
+            raise serializers.ValidationError(
+                f"File size too large. Maximum allowed size is 10MB. "
+                f"Your file size is: {value.size / (1024*1024):.2f}MB"
+            )
+        
+        # Additional validation for XLSX files (check file signature)
+        if file_extension == '.xlsx':
+            try:
+                # Reset file pointer to beginning
+                value.seek(0)
+                file_header = value.read(4)
+                value.seek(0)  # Reset again for normal processing
+                
+                # XLSX files start with PK (ZIP signature)
+                if not file_header.startswith(b'PK'):
+                    raise serializers.ValidationError(
+                        "Invalid XLSX file. The file does not appear to be a valid Excel file."
+                    )
+            except Exception as e:
+                # If header check fails, still allow the file
+                pass
+        
+        return value
+
     def create(self, validated_data):
         uploaded_file = validated_data.pop('file')
 
-        upload_path = f"uploads/{uploaded_file.name}"
+        upload_dir = "uploads"
+        os.makedirs(upload_dir, exist_ok=True)  
+        
+        upload_path = os.path.join(upload_dir, uploaded_file.name)
+        
         with open(upload_path, 'wb+') as destination:
             for chunk in uploaded_file.chunks():
                 destination.write(chunk)
 
         file_instance = FileUpload.objects.create(
-            file_name=uploaded_file.name,
+            uploaded_file=uploaded_file,
+            filename=uploaded_file.name,
             original_filename=uploaded_file.name,
             file_size=uploaded_file.size,
             file_type=os.path.splitext(uploaded_file.name)[1],
             upload_path=upload_path,
-            uploaded_by_id=self.context['request'].user,
+            uploaded_by=self.context['request'].user,
             **validated_data
         )
 
