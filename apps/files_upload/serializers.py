@@ -2,10 +2,8 @@ from rest_framework import serializers
 from .models import FileUpload
 import os
 
-
 class FileUploadSerializer(serializers.ModelSerializer):
     file = serializers.FileField(write_only=True)
-
     class Meta:
         model = FileUpload
         fields = [
@@ -42,12 +40,12 @@ class FileUploadSerializer(serializers.ModelSerializer):
         uploaded_file = validated_data.pop('file')
 
         file_instance = FileUpload.objects.create(
-            uploaded_file=uploaded_file,   # ✅ Django saves this in MEDIA_ROOT/uploads/
+            uploaded_file=uploaded_file,  
             filename=uploaded_file.name,
             original_filename=uploaded_file.name,
             file_size=uploaded_file.size,
             file_type=os.path.splitext(uploaded_file.name)[1],
-            upload_path=uploaded_file.name,   # optional (Django can give path via `uploaded_file.url`)
+            upload_path=uploaded_file.name,   
             uploaded_by=self.context['request'].user,
             **validated_data
         )

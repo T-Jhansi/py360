@@ -20,14 +20,12 @@ class CampaignType(BaseModel):
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     default_channels = models.JSONField(default=list, help_text="Default communication channels for this campaign type")
-    
     class Meta:
         db_table = 'campaign_types'
         ordering = ['name']
     
     def __str__(self):
         return self.name
-
 class Campaign(BaseModel):
     """Main campaign model"""
     CAMPAIGN_STATUS_CHOICES = [
