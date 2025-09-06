@@ -8,75 +8,51 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FileUpload
-        fields = ['file', 'filename', 'original_filename', 'file_size', 'file_type', 'upload_status']
-        read_only_fields = ['file_name', 'original_filename', 'file_size', 'file_type', 'upload_status']
+        fields = [
+            'file',
+            'filename',
+            'original_filename',
+            'file_size',
+            'file_type',
+            'upload_status'
+        ]
+        read_only_fields = ['filename', 'original_filename', 'file_size', 'file_type', 'upload_status']
 
     def validate_file(self, value):
         """Validate uploaded file to ensure it's CSV or XLSX format"""
         if not value:
             raise serializers.ValidationError("No file provided.")
-        
-        # Get file extension
+
         file_extension = os.path.splitext(value.name)[1].lower()
-        
-        # Check file extension
         allowed_extensions = ['.csv', '.xlsx']
         if file_extension not in allowed_extensions:
             raise serializers.ValidationError(
-                f"File format not supported. Please upload a CSV (.csv) or Excel (.xlsx) file. "
-                f"Your file has extension: {file_extension}"
+                f"Unsupported format: {file_extension}. Please upload CSV or XLSX."
             )
-        
+
         max_size = 10 * 1024 * 1024  # 10MB
         if value.size > max_size:
             raise serializers.ValidationError(
-                f"File size too large. Maximum allowed size is 10MB. "
-                f"Your file size is: {value.size / (1024*1024):.2f}MB"
+                f"File too large. Max allowed size is 10MB, your file is {(value.size / (1024*1024)):.2f}MB"
             )
-        
-        # Additional validation for XLSX files (check file signature)
-        if file_extension == '.xlsx':
-            try:
-                value.seek(0)
-                file_header = value.read(4)
-                value.seek(0) 
-                
-                if not file_header.startswith(b'PK'):
-                    raise serializers.ValidationError(
-                        "Invalid Excel file format. Please upload a valid .xlsx file."
-                    )
-            except Exception as e:
-                # If header check fails, still allow the file
-                pass
-        
+
         return value
 
     def create(self, validated_data):
         uploaded_file = validated_data.pop('file')
 
-        upload_dir = "uploads"
-        os.makedirs(upload_dir, exist_ok=True)  
-        
-        upload_path = os.path.join(upload_dir, uploaded_file.name)
-        
-        with open(upload_path, 'wb+') as destination:
-            for chunk in uploaded_file.chunks():
-                destination.write(chunk)
-
         file_instance = FileUpload.objects.create(
-            uploaded_file=uploaded_file,
+            uploaded_file=uploaded_file,   # ✅ Django saves this in MEDIA_ROOT/uploads/
             filename=uploaded_file.name,
             original_filename=uploaded_file.name,
             file_size=uploaded_file.size,
             file_type=os.path.splitext(uploaded_file.name)[1],
-            upload_path=upload_path,
+            upload_path=uploaded_file.name,   # optional (Django can give path via `uploaded_file.url`)
             uploaded_by=self.context['request'].user,
             **validated_data
         )
 
         return file_instance
-
-
 class FileUploadListSerializer(serializers.ModelSerializer):
     """Serializer for listing file upload details"""
 
