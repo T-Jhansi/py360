@@ -176,19 +176,31 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
             try:
                 processing_result = self._process_uploaded_excel_file(uploads_record, request.user, file_upload_record)
+                print(f"Processing result: {processing_result}")
             except Exception as process_error:
-                uploads_record.status = 'failed'
-                uploads_record.error_message = str(process_error)
+                print(f"Processing error: {str(process_error)}")
+                print(f"Uploads record status: {uploads_record.status}")
+                
+                # Only fail if the uploads record wasn't already marked as completed/partial
+                if uploads_record.status not in ['completed', 'partial']:
+                    uploads_record.status = 'failed'
+                    uploads_record.error_message = str(process_error)
+                    uploads_record.save()
 
-                uploads_record.save()
-
-                if file_upload_record:
-                    file_upload_record.upload_status = 'failed'
-                    file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
-                    file_upload_record.processing_completed_at = timezone.now()
-
-                    file_upload_record.save()
-                raise process_error
+                    if file_upload_record:
+                        file_upload_record.upload_status = 'failed'
+                        file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
+                        file_upload_record.processing_completed_at = timezone.now()
+                        file_upload_record.save()
+                    raise process_error
+                else:
+                    # Data was processed successfully, just log the warning
+                    print(f"Data processing completed despite warning: {str(process_error)}")
+                    processing_result = {
+                        'success': True,
+                        'message': 'File processed successfully with minor warnings',
+                        'warning': str(process_error)
+                    }
 
             response_data = {
                 'success': True,
@@ -218,6 +230,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             error_type = type(e).__name__
+            print(f"Main exception caught: {error_type}: {str(e)}")
+            import traceback
+            print(f"Traceback: {traceback.format_exc()}")
 
             return Response({
                 'error': f'File processing failed: {str(e)}',
@@ -243,8 +258,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         if file_extension not in allowed_extensions:
             return {
                 'valid': False,
-                'error': 'Invalid file type. Only Excel files (.xlsx, .xls) are allowed.',
-                'details': {'file_extension': file_extension, 'allowed_extensions': allowed_extensions}
+                'error': 'File format not supported. Please upload a CSV (.csv) or Excel (.xlsx, .xls) file.',
+                'details': {
+                    'supported_formats': ['CSV (.csv)', 'Excel (.xlsx)', 'Excel (.xls)'],
+                    'file_extension': file_extension,
+                    'allowed_extensions': allowed_extensions
+                }
             }
 
         max_file_size = 50 * 1024 * 1024 
@@ -259,27 +278,43 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 }
             }
 
-        if hasattr(file, 'content_type') and file.content_type not in allowed_mime_types:
-            return {
-                'valid': False,
-                'error': 'Invalid file content type.',
-                'details': {'content_type': file.content_type, 'allowed_types': allowed_mime_types}
-            }
+        # MIME type validation is optional - some clients don't set it correctly
+        # We'll rely more on file extension validation
+        if hasattr(file, 'content_type') and file.content_type and file.content_type not in allowed_mime_types:
+            # Only show MIME type error for clearly wrong types
+            if file.content_type.startswith('image/') or file.content_type.startswith('video/') or file.content_type.startswith('audio/'):
+                return {
+                    'valid': False,
+                    'error': 'File format not supported. Please upload a CSV (.csv) or Excel (.xlsx, .xls) file.',
+                    'details': {
+                        'supported_formats': ['CSV (.csv)', 'Excel (.xlsx)', 'Excel (.xls)'],
+                        'content_type': file.content_type
+                    }
+                }
 
         try:
             file.seek(0)
             header = file.read(8)
             file.seek(0)
 
-            xlsx_signature = b'\x50\x4B\x03\x04' 
-            xls_signature = b'\xD0\xCF\x11\xE0'  
+            # Only validate file signatures for Excel files
+            if file_extension in ['.xlsx', '.xls']:
+                xlsx_signature = b'\x50\x4B\x03\x04' 
+                xls_signature = b'\xD0\xCF\x11\xE0'  
 
-            if not (header.startswith(xlsx_signature) or header.startswith(xls_signature)):
-                return {
-                    'valid': False,
-                    'error': 'File content does not match Excel format.',
-                    'details': {'file_signature': header.hex()}
-                }
+                if not (header.startswith(xlsx_signature) or header.startswith(xls_signature)):
+                    return {
+                        'valid': False,
+                        'error': 'Invalid Excel file format. Please upload a valid .xlsx or .xls file.',
+                        'details': {
+                            'supported_formats': ['CSV (.csv)', 'Excel (.xlsx)', 'Excel (.xls)'],
+                            'file_extension': file_extension,
+                            'file_signature': header.hex()
+                        }
+                    }
+            
+            # For CSV and TXT files, we don't need to validate file signatures
+            # as they can have various encodings and formats
 
         except Exception:
             return {
@@ -385,10 +420,25 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         except Exception as e:
             raise e
 
+    def _read_file_data(self, file_path, file_name):
+        """Read file data based on file extension (Excel or CSV)"""
+        file_extension = os.path.splitext(file_name)[1].lower()
+        
+        if file_extension == '.csv':
+            # Read CSV file
+            df = pd.read_csv(file_path)
+        elif file_extension in ['.xlsx', '.xls']:
+            # Read Excel file
+            df = pd.read_excel(file_path)
+        else:
+            raise ValueError(f"Unsupported file format: {file_extension}")
+        
+        return df
+
     def _process_uploaded_excel_file(self, uploads_record, user, file_upload_record=None):
-        """Process Excel file directly from uploads_record"""
+        """Process Excel/CSV file directly from uploads_record"""
         try:
-            df = pd.read_excel(uploads_record.file.path)
+            df = self._read_file_data(uploads_record.file.path, uploads_record.original_name)
 
             validation_result = self._validate_excel_structure_flexible(df)
             if not validation_result['valid']:
@@ -436,12 +486,24 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             return processing_result
 
         except Exception as e:
-
-            uploads_record.status = 'failed'
-            uploads_record.error_message = str(e)
-            uploads_record.updated_by = user
-            uploads_record.save()
-            raise e
+            # Log the error but don't fail the entire process if data was already processed
+            print(f"Warning: Exception in _process_uploaded_excel_file: {str(e)}")
+            
+            # Only mark as failed if no data was processed
+            if uploads_record.status not in ['completed', 'partial']:
+                uploads_record.status = 'failed'
+                uploads_record.error_message = str(e)
+                uploads_record.updated_by = user
+                uploads_record.save()
+                raise e
+            else:
+                # Data was processed successfully, just log the warning
+                print(f"Data processing completed despite warning: {str(e)}")
+                return {
+                    'success': True,
+                    'message': 'File processed successfully with minor warnings',
+                    'warning': str(e)
+                }
 
     def _validate_excel_structure_flexible(self, df):
         core_required = ['first_name', 'last_name', 'email']
@@ -457,11 +519,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         if df.empty:
             return {
                 'valid': False,
-                'error': "Excel file is empty"
+                'error': "File is empty"
             }
 
         available_columns = list(df.columns)
-        print(f"Available columns in Excel: {available_columns}")
+        print(f"Available columns in file: {available_columns}")
 
         has_channel = 'channel' in df.columns
         has_channel_source = 'channel_source' in df.columns
@@ -472,9 +534,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         return {'valid': True}
 
     def _process_excel_file(self, file_upload_record, uploads_record, user):
-        """Process Excel file and extract data"""
+        """Process Excel/CSV file and extract data"""
         try:
-            df = pd.read_excel(file_upload_record.uploaded_file.path)
+            df = self._read_file_data(file_upload_record.uploaded_file.path, file_upload_record.original_filename)
 
             validation_result = self._validate_excel_structure(df)
             if not validation_result['valid']:
@@ -492,7 +554,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             return processing_result
 
         except Exception as e:
-            error_msg = f"Excel processing error: {str(e)}"
+            error_msg = f"File processing error: {str(e)}"
             self._mark_processing_failed(file_upload_record, uploads_record, error_msg, user)
             return {'error': error_msg, 'valid': False}
 

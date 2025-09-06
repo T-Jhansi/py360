@@ -237,7 +237,7 @@ class FileUploadRequestSerializer(serializers.Serializer):
     """Serializer for file upload request"""
 
     file = serializers.FileField(
-        help_text="Excel file (.xlsx or .xls) containing customer and policy data"
+        help_text="Excel file (.xlsx or .xls) or CSV file (.csv) containing customer and policy data"
     )
     description = serializers.CharField(
         max_length=500,
@@ -259,11 +259,11 @@ class FileUploadRequestSerializer(serializers.Serializer):
     def validate_file(self, value):
         """Validate uploaded file"""
         # Check file extension
-        allowed_extensions = ['.xlsx', '.xls']
+        allowed_extensions = ['.xlsx', '.xls', '.csv']
         file_extension = value.name.split('.')[-1].lower()
         if f'.{file_extension}' not in allowed_extensions:
             raise serializers.ValidationError(
-                "Invalid file type. Only Excel files (.xlsx, .xls) are allowed."
+                "File format not supported. Please upload a CSV (.csv) or Excel (.xlsx, .xls) file."
             )
 
         # Check file size (max 50MB)

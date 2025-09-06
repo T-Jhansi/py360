@@ -15,7 +15,7 @@ from .serializers import (
 
 class FileUploadViewSet(viewsets.ModelViewSet):
     """ViewSet for managing file uploads with comprehensive filtering and statistics"""
-
+            
     queryset = FileUpload.objects.filter(is_deleted=False)
     permission_classes = [IsAuthenticated]
 
