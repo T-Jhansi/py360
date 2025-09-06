@@ -360,7 +360,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
                 try:
                     file_upload_record = self._create_file_uploads_record(uploads_record, user)
-                except Exception:
+                    print(f"Successfully created file_upload_record: {file_upload_record.id}")
+                except Exception as e:
+                    print(f"Failed to create file_upload_record: {str(e)}")
                     file_upload_record = None
 
             except Exception as e2:
@@ -481,6 +483,40 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 file_upload_record.processing_result = json.dumps(processing_summary)
 
                 file_upload_record.save()
+                print(f"Updated file_upload_record status to: {file_upload_record.upload_status}")
+            else:
+                print("Warning: file_upload_record is None, trying to find and update by uploads_record")
+                # Try to find the file_upload_record by looking up the uploads_record
+                try:
+                    file_upload_record = FileUpload.objects.filter(
+                        original_filename=uploads_record.original_name,
+                        file_size=uploads_record.file_size
+                    ).order_by('-created_at').first()
+                    
+                    if file_upload_record:
+                        file_upload_record.upload_status = 'completed' if processing_result['failed_records'] == 0 else 'partial'
+                        file_upload_record.total_records = processing_result['total_records']
+                        file_upload_record.successful_records = processing_result['successful_records']
+                        file_upload_record.failed_records = processing_result['failed_records']
+                        file_upload_record.processing_completed_at = timezone.now()
+                        import json
+                        processing_summary = {
+                            'status': 'completed' if processing_result['failed_records'] == 0 else 'partial',
+                            'total_records': processing_result['total_records'],
+                            'successful_records': processing_result['successful_records'],
+                            'failed_records': processing_result['failed_records'],
+                            'created_customers': processing_result['created_customers'],
+                            'created_policies': processing_result['created_policies'],
+                            'created_renewal_cases': processing_result['created_renewal_cases'],
+                            'errors': processing_result.get('errors', [])
+                        }
+                        file_upload_record.processing_result = json.dumps(processing_summary)
+                        file_upload_record.save()
+                        print(f"Found and updated file_upload_record status to: {file_upload_record.upload_status}")
+                    else:
+                        print("Could not find file_upload_record to update")
+                except Exception as e:
+                    print(f"Error trying to find and update file_upload_record: {str(e)}")
 
 
             return processing_result
