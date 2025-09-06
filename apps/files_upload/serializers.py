@@ -23,12 +23,10 @@ class FileUploadSerializer(serializers.ModelSerializer):
         allowed_extensions = ['.csv', '.xlsx']
         if file_extension not in allowed_extensions:
             raise serializers.ValidationError(
-                f"Only CSV and XLSX files are supported. "
-                f"Please upload a file with .csv or .xlsx extension. "
+                f"File format not supported. Please upload a CSV (.csv) or Excel (.xlsx) file. "
                 f"Your file has extension: {file_extension}"
             )
         
-        # Check file size (optional - limit to 10MB)
         max_size = 10 * 1024 * 1024  # 10MB
         if value.size > max_size:
             raise serializers.ValidationError(
@@ -39,15 +37,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
         # Additional validation for XLSX files (check file signature)
         if file_extension == '.xlsx':
             try:
-                # Reset file pointer to beginning
                 value.seek(0)
                 file_header = value.read(4)
-                value.seek(0)  # Reset again for normal processing
+                value.seek(0) 
                 
-                # XLSX files start with PK (ZIP signature)
                 if not file_header.startswith(b'PK'):
                     raise serializers.ValidationError(
-                        "Invalid XLSX file. The file does not appear to be a valid Excel file."
+                        "Invalid Excel file format. Please upload a valid .xlsx file."
                     )
             except Exception as e:
                 # If header check fails, still allow the file
