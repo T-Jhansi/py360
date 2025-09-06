@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from django.utils import timezone
 from datetime import datetime, timedelta
+import logging
 
 from .models import FileUpload
 from .serializers import (
@@ -12,6 +13,8 @@ from .serializers import (
     FileUploadListSerializer,
     FileUploadDetailSerializer
 )
+
+logger = logging.getLogger(__name__)
 
 class FileUploadViewSet(viewsets.ModelViewSet):
     """ViewSet for managing file uploads with comprehensive filtering and statistics"""
@@ -27,6 +30,135 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             return FileUploadDetailSerializer
         return FileUploadSerializer
 
+    def perform_create(self, serializer):
+        """Override to handle file processing after upload"""
+        # Save the file upload record first
+        file_instance = serializer.save(uploaded_by=self.request.user)
+        
+        try:
+            # Set status to processing and record start time
+            file_instance.upload_status = 'processing'
+            file_instance.processing_started_at = timezone.now()
+            file_instance.save(update_fields=['upload_status', 'processing_started_at'])
+            
+            # Process the file
+            processing_result = self.process_file(file_instance)
+            
+            if processing_result['success']:
+                # Update status to completed
+                file_instance.upload_status = 'completed'
+                file_instance.processing_completed_at = timezone.now()
+                file_instance.total_records = processing_result.get('total_records', 0)
+                file_instance.successful_records = processing_result.get('successful_records', 0)
+                file_instance.failed_records = processing_result.get('failed_records', 0)
+                file_instance.processing_result = processing_result.get('processing_result', {})
+                file_instance.error_details = {}
+                
+                # If there were some failures, mark as partial
+                if processing_result.get('failed_records', 0) > 0 and processing_result.get('successful_records', 0) > 0:
+                    file_instance.upload_status = 'partial'
+                    
+            else:
+                # Update status to failed
+                file_instance.upload_status = 'failed'
+                file_instance.processing_completed_at = timezone.now()
+                file_instance.error_details = {
+                    'error': processing_result.get('error', 'Unknown error occurred'),
+                    'details': processing_result.get('details', {})
+                }
+                
+            file_instance.save()
+            
+        except Exception as e:
+            # Handle any unexpected errors
+            logger.error(f"Error processing file {file_instance.id}: {str(e)}")
+            file_instance.upload_status = 'failed'
+            file_instance.processing_completed_at = timezone.now()
+            file_instance.error_details = {
+                'error': 'Unexpected error during processing',
+                'details': {'exception': str(e)}
+            }
+            file_instance.save()
+            raise
+
+    def process_file(self, file_instance):
+        """
+        Process uploaded Excel/CSV file and insert data into related tables.
+        
+        This is a stub function that you should implement with your business logic.
+        It should parse the Excel/CSV file and insert data into your 5 related tables.
+        
+        Args:
+            file_instance: FileUpload model instance
+            
+        Returns:
+            dict: Processing result with success status and details
+        """
+        try:
+            # TODO: Implement your file processing logic here
+            # This is where you would:
+            # 1. Read the Excel/CSV file from file_instance.uploaded_file
+            # 2. Parse the data according to your business rules
+            # 3. Insert data into your 5 related tables
+            # 4. Return processing statistics
+            
+            # Example structure - replace with your actual implementation:
+            import pandas as pd
+            import os
+            
+            # Read the file
+            file_path = file_instance.uploaded_file.path
+            file_extension = os.path.splitext(file_instance.original_filename)[1].lower()
+            
+            if file_extension == '.csv':
+                df = pd.read_csv(file_path)
+            elif file_extension == '.xlsx':
+                df = pd.read_excel(file_path)
+            else:
+                return {
+                    'success': False,
+                    'error': f'Unsupported file format: {file_extension}',
+                    'details': {}
+                }
+            
+            # TODO: Add your data processing logic here
+            # Example:
+            # - Validate data structure
+            # - Clean and transform data
+            # - Insert into Customer table
+            # - Insert into Policy table
+            # - Insert into other related tables
+            # - Handle errors and track statistics
+            
+            # Placeholder processing result
+            total_records = len(df)
+            successful_records = total_records  # Replace with actual count
+            failed_records = 0  # Replace with actual count
+            
+            return {
+                'success': True,
+                'total_records': total_records,
+                'successful_records': successful_records,
+                'failed_records': failed_records,
+                'processing_result': {
+                    'message': 'File processed successfully',
+                    'tables_updated': ['customers', 'policies', 'renewals', 'channels', 'claims'],  # Replace with actual tables
+                    'processing_time': '0.5s'  # Replace with actual time
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in process_file for {file_instance.id}: {str(e)}")
+            return {
+                'success': False,
+                'error': f'File processing failed: {str(e)}',
+                'details': {
+                    'exception_type': type(e).__name__,
+                    'file_name': file_instance.original_filename,
+                    'file_size': file_instance.file_size
+                }
+            }
+    
     def get_queryset(self):
         """Filter queryset based on query parameters"""
         queryset = super().get_queryset()
