@@ -13,12 +13,18 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 from .models import Campaign, CampaignRecipient, CampaignType
-from .serializers import CampaignSerializer, CampaignCreateSerializer
+from .serializers import (
+    CampaignSerializer, CampaignCreateSerializer
+)
 from .services import EmailCampaignService, send_campaign_emails_async
 from apps.core.pagination import StandardResultsSetPagination
 from apps.files_upload.models import FileUpload
 from apps.templates.models import Template
-
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.utils import timezone
+import base64
+import urllib.parse
 logger = logging.getLogger(__name__)
 
 class CampaignViewSet(viewsets.ModelViewSet):
@@ -438,32 +444,13 @@ class CampaignViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-
-# Standalone tracking views (no authentication required)
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
-from django.utils import timezone
-import base64
-import urllib.parse
-
-# Removed duplicate track_email_open function - using EmailTrackingView class instead
-
-
-# Removed duplicate track_email_click function - using EmailClickTrackingView class instead
-
-
 @api_view(['POST'])
 @permission_classes([])
 @authentication_classes([])
 def simulate_email_delivery(request):
-    """
-    Simulate email delivery webhook for testing
-    POST /api/campaigns/simulate-delivery/
-    Body: {"campaign_id": 1, "delivery_rate": 0.9}
-    """
     try:
         campaign_id = request.data.get('campaign_id')
-        delivery_rate = request.data.get('delivery_rate', 0.9)  # Default 90% delivery
+        delivery_rate = request.data.get('delivery_rate', 0.9)  
 
         if not campaign_id:
             return Response(
@@ -517,10 +504,6 @@ def simulate_email_delivery(request):
 @permission_classes([])
 @authentication_classes([])
 def debug_campaign_data(request):
-    """
-    Debug endpoint to check campaign data
-    GET /api/campaigns/debug-data/?campaign_id=<id>
-    """
     try:
         campaign_id = request.GET.get('campaign_id')
         if not campaign_id:
@@ -564,10 +547,6 @@ def debug_campaign_data(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_all_campaigns(request):
-    """
-    Get all campaigns with details including original filename
-    URL: /api/campaigns/list/
-    """
     try:
         campaigns = Campaign.objects.all().order_by('-created_at')
 
@@ -719,8 +698,8 @@ class EmailClickTrackingView(View):
 
 
 @api_view(['GET'])
-@permission_classes([])  # No authentication required for tracking
-@authentication_classes([])  # No authentication required for tracking
+@permission_classes([]) 
+@authentication_classes([]) 
 def test_tracking_pixel(request):
     """Test endpoint to verify tracking pixel functionality"""
     try:
@@ -797,7 +776,7 @@ def get_campaign_tracking_stats(request, campaign_id):
                         "open_tracking_url": f"http://localhost:8000/api/campaigns/track-open/?t={recipient.tracking_id}",
                         "click_tracking_url": f"http://localhost:8000/api/campaigns/track-click/?t={recipient.tracking_id}&url=https://example.com"
                     }
-                    for recipient in recipients[:3]  # Show first 3 recipients
+                    for recipient in recipients[:3]  
                 ]
             }
         }, status=status.HTTP_200_OK)
@@ -812,3 +791,5 @@ def get_campaign_tracking_stats(request, campaign_id):
             "success": False,
             "message": f"Error: {str(e)}"
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+

@@ -7,9 +7,11 @@ from apps.policies.models import Policy
 from apps.templates.models import Template
 from apps.files_upload.models import FileUpload
 from apps.target_audience.models import TargetAudience
+from apps.communication_provider.models import CommunicationProvider
 from decimal import Decimal
 import uuid
 import json
+from datetime import timedelta
 
 User = get_user_model()
 
@@ -55,6 +57,14 @@ class Campaign(BaseModel):
     channels = models.JSONField(default=list, help_text="List of communication channels")
     target_audience = models.ForeignKey(TargetAudience,on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns'
     )
+    communication_provider = models.ForeignKey(
+        CommunicationProvider, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='campaigns',
+        help_text="Communication provider for this campaign"
+    )
 
     # Scheduling
     schedule_type = models.CharField(max_length=20, choices=[
@@ -67,6 +77,17 @@ class Campaign(BaseModel):
 
     is_recurring = models.BooleanField(default=False)
     recurrence_pattern = models.JSONField(default=dict, blank=True)
+    
+    # Advanced Scheduling
+    enable_advanced_scheduling = models.BooleanField(
+        default=False,
+        help_text="Enable multi-channel communication intervals"
+    )
+    advanced_scheduling_config = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="Configuration for advanced scheduling intervals"
+    )
     
     # Content
     subject_line = models.CharField(max_length=200, blank=True)
@@ -190,15 +211,6 @@ class CampaignSegment(BaseModel):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     criteria = models.JSONField(default=dict, help_text="Segmentation criteria in JSON format")
-    
-    # Criteria examples:
-    # {
-    #   "policy_status": ["active", "expired"],
-    #   "days_to_expiry": {"min": 0, "max": 30},
-    #   "premium_range": {"min": 10000, "max": 50000},
-    #   "policy_types": ["LIFE", "HEALTH"],
-    #   "customer_age": {"min": 25, "max": 65}
-    # }
     
     customer_count = models.PositiveIntegerField(default=0)
     last_updated = models.DateTimeField(auto_now=True)
@@ -598,4 +610,174 @@ class CampaignAutomation(BaseModel):
         ordering = ['name']
     
     def __str__(self):
-        return f"{self.name} ({self.trigger_type})" 
+        return f"{self.name} ({self.trigger_type})"
+
+
+class CampaignScheduleInterval(BaseModel):
+    """Advanced scheduling intervals for multi-channel campaigns"""
+    
+    CHANNEL_CHOICES = [
+        ('email', 'Email'),
+        ('whatsapp', 'WhatsApp'),
+        ('sms', 'SMS'),
+        ('phone', 'Phone Call'),
+        ('push', 'Push Notification'),
+    ]
+    
+    DELAY_UNIT_CHOICES = [
+        ('minutes', 'Minutes'),
+        ('hours', 'Hours'),
+        ('days', 'Days'),
+        ('weeks', 'Weeks'),
+    ]
+    
+    TRIGGER_CONDITION_CHOICES = [
+        ('no_response', 'Send if no response to previous message'),
+        ('no_action', 'Send if no action taken (click/conversion)'),
+        ('no_engagement', 'Send if no engagement (open/click)'),
+        ('always', 'Always send (regardless of previous response)'),
+    ]
+    
+    # Core relationships
+    campaign = models.ForeignKey(
+        Campaign, 
+        on_delete=models.CASCADE, 
+        related_name='schedule_intervals',
+        help_text="Campaign this schedule interval belongs to"
+    )
+    template = models.ForeignKey(
+        Template, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True,
+        related_name='campaign_schedules',
+        help_text="Template to use for this interval"
+    )
+    communication_provider = models.ForeignKey(
+        CommunicationProvider,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='campaign_schedules',
+        help_text="Communication provider for this interval"
+    )
+    
+    # Schedule configuration
+    sequence_order = models.PositiveIntegerField(
+        default=1,
+        help_text="Order of this interval in the sequence (1, 2, 3, etc.)"
+    )
+    channel = models.CharField(
+        max_length=20, 
+        choices=CHANNEL_CHOICES,
+        help_text="Communication channel for this interval"
+    )
+    delay_value = models.PositiveIntegerField(
+        default=1,
+        help_text="Delay value (number)"
+    )
+    delay_unit = models.CharField(
+        max_length=10,
+        choices=DELAY_UNIT_CHOICES,
+        default='days',
+        help_text="Delay unit (minutes, hours, days, weeks)"
+    )
+    
+    # Trigger conditions
+    trigger_conditions = models.JSONField(
+        default=list,
+        help_text="List of trigger conditions for this interval"
+    )
+    
+    # Status and tracking
+    is_active = models.BooleanField(
+        default=True,
+        help_text="Whether this schedule interval is active"
+    )
+    is_sent = models.BooleanField(
+        default=False,
+        help_text="Whether this interval has been sent"
+    )
+    scheduled_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="When this interval is scheduled to be sent"
+    )
+    sent_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="When this interval was actually sent"
+    )
+    
+    # Note: Campaign-level statistics (sent_count, delivered_count, etc.) are tracked in the Campaign model
+    # This table focuses on individual interval configuration and scheduling
+    
+    class Meta:
+        db_table = 'campaign_schedule_intervals'
+        ordering = ['campaign', 'sequence_order']
+        indexes = [
+            models.Index(fields=['campaign', 'sequence_order']),
+            models.Index(fields=['scheduled_at']),
+            models.Index(fields=['is_active', 'is_sent']),
+        ]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['campaign', 'sequence_order'],
+                name='unique_campaign_sequence_order'
+            )
+        ]
+    
+    def __str__(self):
+        return f"{self.campaign.name} - {self.get_channel_display()} (Interval {self.sequence_order})"
+    
+    def get_delay_description(self):
+        """Get human-readable delay description"""
+        unit = self.delay_unit
+        if self.delay_value == 1:
+            unit = unit.rstrip('s')  # Remove 's' for singular
+        return f"After {self.delay_value} {unit}"
+    
+    def calculate_scheduled_time(self, base_time=None):
+        """Calculate when this interval should be scheduled"""
+        if base_time is None:
+            base_time = timezone.now()
+        
+        if self.delay_unit == 'minutes':
+            return base_time + timedelta(minutes=self.delay_value)
+        elif self.delay_unit == 'hours':
+            return base_time + timedelta(hours=self.delay_value)
+        elif self.delay_unit == 'days':
+            return base_time + timedelta(days=self.delay_value)
+        elif self.delay_unit == 'weeks':
+            return base_time + timedelta(weeks=self.delay_value)
+        
+        return base_time
+    
+    def should_send(self, recipient):
+        """Check if this interval should be sent for a specific recipient"""
+        if not self.is_active or self.is_sent:
+            return False
+        
+        # Check trigger conditions
+        for condition in self.trigger_conditions:
+            if condition == 'no_response':
+                # Check if recipient has responded to previous messages
+                previous_intervals = CampaignScheduleInterval.objects.filter(
+                    campaign=self.campaign,
+                    sequence_order__lt=self.sequence_order,
+                    is_sent=True
+                ).order_by('sequence_order')
+                
+                for prev_interval in previous_intervals:
+                    pass
+                    
+            elif condition == 'no_action':
+                pass
+                
+            elif condition == 'no_engagement':
+                pass
+                
+            elif condition == 'always':
+                return True
+        
+        return True  

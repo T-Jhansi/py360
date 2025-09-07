@@ -44,13 +44,17 @@ class CustomerPayment(BaseModel):
     customer = models.ForeignKey(
             Customer,
             on_delete=models.CASCADE,
-            related_name="payments"   
+            related_name="payments",
+            null=True,
+            blank=True
         )
 
     renewal_case = models.ForeignKey(
         "renewals.RenewalCase",
         on_delete=models.CASCADE,
-        related_name="payments"
+        related_name="payments",
+        null=True,
+        blank=True
     )
 
     # Payment Details

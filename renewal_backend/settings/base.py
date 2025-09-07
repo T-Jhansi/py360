@@ -77,6 +77,7 @@ LOCAL_APPS = [
     'apps.policy_exclusions',
     'apps.policy_conditions',
     'apps.renewal_timeline',
+    'apps.communication_provider',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
