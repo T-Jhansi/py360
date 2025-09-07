@@ -2,10 +2,12 @@ from .views import (
     CampaignViewSet, EmailTrackingView, EmailClickTrackingView,
     get_all_campaigns, test_tracking_pixel, get_campaign_tracking_stats
 )
+from .schedule_interval_views import CampaignScheduleIntervalViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
 router = DefaultRouter()
+router.register(r'schedule-intervals', CampaignScheduleIntervalViewSet, basename='campaign-schedule-interval')
 router.register(r'', CampaignViewSet, basename='campaign')
 
 urlpatterns = [

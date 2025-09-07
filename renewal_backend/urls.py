@@ -61,6 +61,7 @@ api_patterns = [
     path('policy-coverages/', include('apps.policy_coverages.urls')),
     path('policy-exclusions/', include('apps.policy_exclusions.urls')),
     path('policy-conditions/', include('apps.policy_conditions.urls')),
+    path('communication-provider/', include('apps.communication_provider.urls')),
 
     # API Documentation
     path('schema/', PublicSchemaView.as_view(), name='schema'),
