@@ -46,7 +46,6 @@ class FileUploadSerializer(serializers.ModelSerializer):
             file_size=uploaded_file.size,
             file_type=os.path.splitext(uploaded_file.name)[1],
             upload_path=uploaded_file.name,   
-            uploaded_by=self.context['request'].user,
             **validated_data
         )
 
