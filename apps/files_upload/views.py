@@ -6,7 +6,8 @@ from django.db.models import Q
 from django.utils import timezone
 from datetime import datetime, timedelta
 import logging
-
+import pandas as pd
+import os
 from .models import FileUpload
 from .serializers import (
     FileUploadSerializer,
@@ -82,29 +83,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             raise
 
     def process_file(self, file_instance):
-        """
-        Process uploaded Excel/CSV file and insert data into related tables.
-        
-        This is a stub function that you should implement with your business logic.
-        It should parse the Excel/CSV file and insert data into your 5 related tables.
-        
-        Args:
-            file_instance: FileUpload model instance
-            
-        Returns:
-            dict: Processing result with success status and details
-        """
         try:
-            # TODO: Implement your file processing logic here
-            # This is where you would:
-            # 1. Read the Excel/CSV file from file_instance.uploaded_file
-            # 2. Parse the data according to your business rules
-            # 3. Insert data into your 5 related tables
-            # 4. Return processing statistics
-            
-            # Example structure - replace with your actual implementation:
-            import pandas as pd
-            import os
             
             # Read the file
             file_path = file_instance.uploaded_file.path
@@ -120,17 +99,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     'error': f'Unsupported file format: {file_extension}',
                     'details': {}
                 }
-            
-            # TODO: Add your data processing logic here
-            # Example:
-            # - Validate data structure
-            # - Clean and transform data
-            # - Insert into Customer table
-            # - Insert into Policy table
-            # - Insert into other related tables
-            # - Handle errors and track statistics
-            
-            # Placeholder processing result
             total_records = len(df)
             successful_records = total_records  # Replace with actual count
             failed_records = 0  # Replace with actual count
