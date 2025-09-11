@@ -114,7 +114,6 @@ class EmailAutomationAdmin(admin.ModelAdmin):
         self.message_user(request, f"{count} automations deactivated.")
     deactivate_automations.short_description = "Deactivate selected automations"
 
-
 @admin.register(EmailAutomationLog)
 class EmailAutomationLogAdmin(admin.ModelAdmin):
     list_display = [
@@ -135,7 +134,6 @@ class EmailAutomationLogAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         """Optimize queryset"""
         return super().get_queryset(request).select_related('automation', 'executed_by')
-
 
 @admin.register(EmailIntegration)
 class EmailIntegrationAdmin(admin.ModelAdmin):
