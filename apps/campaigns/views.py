@@ -444,6 +444,81 @@ class CampaignViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+    @action(detail=True, methods=['post'], url_path='change-status')
+    def change_status(self, request, pk=None):
+        """
+        Change campaign status (Active/Paused) - Simplified for frontend
+        Expected payload: {"status": "active"} or {"status": "paused"}
+        """
+        try:
+            campaign = self.get_object()
+            new_simplified_status = request.data.get('status')
+            
+            if not new_simplified_status:
+                return Response({
+                    "success": False,
+                    "message": "Status is required"
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Validate simplified status
+            valid_statuses = ['active', 'paused']
+            if new_simplified_status not in valid_statuses:
+                return Response({
+                    "success": False,
+                    "message": f"Invalid status. Must be one of: {', '.join(valid_statuses)}"
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Check if status change is valid
+            current_simplified_status = campaign.get_simplified_status()
+            if current_simplified_status == new_simplified_status:
+                return Response({
+                    "success": True,
+                    "message": f"Campaign is already {new_simplified_status}",
+                    "data": {
+                        "campaign_id": campaign.id,
+                        "current_status": current_simplified_status,
+                        "new_status": new_simplified_status,
+                        "simplified_status": new_simplified_status
+                    }
+                }, status=status.HTTP_200_OK)
+            
+            # Update campaign status using simplified method
+            campaign.set_simplified_status(new_simplified_status)
+            
+            # Update timestamps based on status
+            if new_simplified_status == 'active' and current_simplified_status == 'paused':
+                # Resume campaign
+                campaign.started_at = timezone.now()
+                campaign.save(update_fields=['started_at'])
+            elif new_simplified_status == 'paused' and current_simplified_status == 'active':
+                # Pause campaign - keep existing started_at
+                pass
+            
+            return Response({
+                "success": True,
+                "message": f"Campaign status changed from {current_simplified_status} to {new_simplified_status}",
+                "data": {
+                    "campaign_id": campaign.id,
+                    "campaign_name": campaign.name,
+                    "previous_status": current_simplified_status,
+                    "new_status": new_simplified_status,
+                    "simplified_status": new_simplified_status,
+                    "updated_at": campaign.updated_at.isoformat()
+                }
+            }, status=status.HTTP_200_OK)
+            
+        except Campaign.DoesNotExist:
+            return Response({
+                "success": False,
+                "message": "Campaign not found"
+            }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            logger.error(f"Error changing campaign status: {str(e)}")
+            return Response({
+                "success": False,
+                "message": f"Error changing campaign status: {str(e)}"
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 @api_view(['POST'])
 @permission_classes([])
 @authentication_classes([])

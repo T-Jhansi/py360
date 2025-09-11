@@ -9,11 +9,12 @@ from apps.policies.models import Policy
 from apps.renewals.models import RenewalCase
 
 class CampaignSerializer(serializers.ModelSerializer):
+    simplified_status = serializers.SerializerMethodField()
 
     class Meta:
         model = Campaign
         fields = [
-            'id', 'name', 'campaign_type', 'description', 'status',
+            'id', 'name', 'campaign_type', 'description', 'status', 'simplified_status',
             'target_count','upload', 'delivered_count', 'sent_count', 'opened_count', 'clicked_count', 'total_responses',
             'channels', 'target_audience', 'communication_provider', 'started_at', 'completed_at',
             'is_recurring', 'recurrence_pattern', 'subject_line',
@@ -21,6 +22,10 @@ class CampaignSerializer(serializers.ModelSerializer):
             'created_by', 'assigned_to','created_at', 'updated_at','delivery_rate', 'open_rate', 'click_rate', 'response_rate',
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'delivery_rate', 'open_rate', 'click_rate', 'response_rate', 'created_by']
+
+    def get_simplified_status(self, obj):
+        """Get simplified status for frontend"""
+        return obj.get_simplified_status()
 
 
 class CampaignCreateSerializer(serializers.Serializer):
@@ -234,7 +239,7 @@ class CampaignCreateSerializer(serializers.Serializer):
             'channels': ['email'],
             'schedule_type': validated_data.get('schedule_type', 'immediate'),
             'scheduled_at': validated_data.get('scheduled_at'),
-            'started_at': validated_data.get('scheduled_at', timezone.now()),
+            'started_at': validated_data.get('scheduled_at') or timezone.now(),
             'subject_line': validated_data.get('subject_line', template.subject),
             'enable_advanced_scheduling': validated_data.get('enable_advanced_scheduling', False),
             'advanced_scheduling_config': validated_data.get('schedule_intervals', []),
