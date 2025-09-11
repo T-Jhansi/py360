@@ -39,6 +39,12 @@ class Campaign(BaseModel):
         ('cancelled', 'Cancelled'),
     ]
     
+    # Simplified status choices for frontend
+    SIMPLIFIED_STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('paused', 'Paused'),
+    ]
+    
     CHANNEL_CHOICES = [
         ('email', 'Email'),
         ('whatsapp', 'WhatsApp'),
@@ -51,7 +57,7 @@ class Campaign(BaseModel):
     campaign_type = models.ForeignKey(CampaignType, on_delete=models.CASCADE, related_name='campaigns')
     template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns')
     description = models.TextField(blank=True)
-    status = models.CharField(max_length=20, choices=CAMPAIGN_STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=20, choices=CAMPAIGN_STATUS_CHOICES, default='active')
     upload = models.ForeignKey(FileUpload,on_delete=models.SET_NULL,null=True,blank=True,related_name='campaigns')
     # Campaign Settings
     channels = models.JSONField(default=list, help_text="List of communication channels")
@@ -118,6 +124,35 @@ class Campaign(BaseModel):
 
     def __str__(self):
         return f"{self.name} ({self.status})"
+
+    def get_simplified_status(self):
+        """
+        Get simplified status for frontend display
+        Maps complex statuses to Active/Paused
+        """
+        if self.status in ['active', 'scheduled']:
+            return 'active'
+        elif self.status == 'paused':
+            return 'paused'
+        elif self.status in ['completed', 'cancelled']:
+            return 'paused'  # Treat completed/cancelled as paused for frontend
+        else:  # draft
+            return 'paused'
+
+    def set_simplified_status(self, simplified_status):
+        """
+        Set status based on simplified frontend status
+        Maps Active/Paused to appropriate complex statuses
+        """
+        if simplified_status == 'active':
+            if self.status == 'paused':
+                self.status = 'active'
+            elif self.status == 'draft':
+                self.status = 'active'
+        elif simplified_status == 'paused':
+            if self.status in ['active', 'scheduled']:
+                self.status = 'paused'
+        self.save(update_fields=['status'])
 
     def update_campaign_statistics(self):
         """Update campaign statistics based on recipient data"""

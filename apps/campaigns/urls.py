@@ -16,5 +16,6 @@ urlpatterns = [
     path('test-tracking/', test_tracking_pixel, name='test-tracking-pixel'),
     path('<int:campaign_id>/tracking-stats/', get_campaign_tracking_stats, name='campaign-tracking-stats'),
     path('list/', get_all_campaigns, name='get-all-campaigns'),
+    path('<int:pk>/change-status/', CampaignViewSet.as_view({'post': 'change_status'}), name='campaign-change-status-standalone'),
     path('', include(router.urls)),
 ]
