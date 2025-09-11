@@ -17,20 +17,24 @@ class CombinedPolicyDataAPIView(APIView):
     """
     API View to fetch combined policy data from multiple tables using nested serializers
     """ 
-    def get(self, request, case_id=None):
+    def get(self, request, case_id=None, case_number=None):
 
         try:
-            if case_id is None:
+            if case_id is None and case_number is None:
                 case_id = request.query_params.get('case_id')
-                if not case_id:
+                case_number = request.query_params.get('case_number')
+                if not case_id and not case_number:
                     return Response({
                         'success': False,
-                        'message': 'case_id parameter is required',
+                        'message': 'case_id or case_number parameter is required',
                         'data': None
                     }, status=status.HTTP_400_BAD_REQUEST)
 
-            # Get the renewal case
-            renewal_case = get_object_or_404(RenewalCase, id=case_id)  # type: ignore[attr-defined]
+            # Get the renewal case by id or case_number
+            if case_id:
+                renewal_case = get_object_or_404(RenewalCase, id=case_id)  # type: ignore[attr-defined]
+            else:
+                renewal_case = get_object_or_404(RenewalCase, case_number=case_number)  # type: ignore[attr-defined]
 
             # Get the customer with all related data using optimized queries
             customer = get_object_or_404(
