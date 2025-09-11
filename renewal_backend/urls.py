@@ -62,6 +62,11 @@ api_patterns = [
     path('policy-exclusions/', include('apps.policy_exclusions.urls')),
     path('policy-conditions/', include('apps.policy_conditions.urls')),
     path('communication-provider/', include('apps.communication_provider.urls')),
+    path('email-provider/', include('apps.email_provider.urls')),
+    path('email-templates/', include('apps.email_templates.urls')),
+    path('email-operations/', include('apps.email_operations.urls')),
+    path('email-inbox/', include('apps.email_inbox.urls')),
+    path('email-integration/', include('apps.email_integration.urls')),
 
     # API Documentation
     path('schema/', PublicSchemaView.as_view(), name='schema'),
