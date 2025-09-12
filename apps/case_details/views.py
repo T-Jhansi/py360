@@ -8,7 +8,8 @@ from .serializers import CustomerSerializer
 from apps.customers.models import Customer
 from apps.customer_communication_preferences.models import CustomerCommunicationPreference
 from .serializers import CustomerCommunicationPreferenceSerializer
-from apps.renewal_timeline.models import RenewalTimeline
+# RenewalTimeline import removed - using CommonRenewalTimelineSettings instead
+from apps.renewal_timeline.models import CommonRenewalTimelineSettings
 from apps.customer_payments.models import CustomerPayment
 
 # OverView & Policy
@@ -139,17 +140,33 @@ class CustomerPreferencesSummaryAPIView(APIView):
                     'preferred_language': getattr(comm_pref, 'preferred_language', None),
                 }
 
-            # Renewal timeline for this customer+policy, if present
-            timeline = RenewalTimeline.objects.filter(customer=customer, policy=renewal_case.policy).first()  # type: ignore[attr-defined]
+            # Renewal timeline - now using common settings instead of customer-specific
             renewal_timeline = None
-            if timeline:
+            # Fetch common renewal timeline settings
+            common_timeline_settings = CommonRenewalTimelineSettings.objects.filter(is_active=True).first()
+            if common_timeline_settings:
+                # Use the formatted reminder schedule if available, otherwise format from reminder_days
+                if common_timeline_settings.reminder_schedule:
+                    formatted_reminder_schedule = common_timeline_settings.reminder_schedule
+                else:
+                    # Fallback: format from reminder_days for backward compatibility
+                    formatted_reminder_schedule = []
+                    for days in common_timeline_settings.reminder_days:
+                        if days == 30:
+                            formatted_reminder_schedule.append("30 days before due date (Email)")
+                        elif days == 14:
+                            formatted_reminder_schedule.append("14 days before due date (Email)")
+                        elif days == 7:
+                            formatted_reminder_schedule.append("7 days before due date (Phone)")
+                        else:
+                            formatted_reminder_schedule.append(f"{days} days before due date (Email)")
+                
                 renewal_timeline = {
-                    'renewal_pattern': timeline.renewal_pattern,
-                    'reminder_days': timeline.reminder_days,
-                    'next_due_date': timeline.next_due_date,
-                    'auto_renewal_enabled': timeline.auto_renewal_enabled,
-                    'preferred_channel_id': timeline.preferred_channel_id,
-                    'notes': timeline.notes,
+                    'renewal_pattern': common_timeline_settings.renewal_pattern,
+                    'reminder_schedule': formatted_reminder_schedule,
+                    'auto_renewal_enabled': common_timeline_settings.auto_renewal_enabled,
+                    'is_active': common_timeline_settings.is_active,
+                    'description': common_timeline_settings.description,
                 }
 
             # Payments (for this case; fallback to latest customer payment)
