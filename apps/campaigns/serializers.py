@@ -68,6 +68,7 @@ class CampaignCreateSerializer(serializers.Serializer):
     )
     scheduled_at = serializers.DateTimeField(
         required=False,
+        allow_null=True,
         help_text="When to send the campaign (required if schedule_type is 'scheduled')"
     )
 
