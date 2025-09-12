@@ -69,6 +69,7 @@ api_patterns = [
     path('email-operations/', include('apps.email_operations.urls')),
     path('email-inbox/', include('apps.email_inbox.urls')),
     path('email-integration/', include('apps.email_integration.urls')),
+    path('offers/', include('apps.offers.urls')),
 
     # API Documentation
     path('schema/', PublicSchemaView.as_view(), name='schema'),

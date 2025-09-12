@@ -83,6 +83,7 @@ LOCAL_APPS = [
     'apps.email_operations',
     'apps.email_inbox',
     'apps.email_integration',
+    'apps.offers',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
