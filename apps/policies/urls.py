@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     PolicyTypeViewSet, PolicyViewSet, PolicyRenewalViewSet, PolicyClaimViewSet,
-    PolicyDocumentViewSet, PolicyBeneficiaryViewSet, PolicyPaymentViewSet, PolicyNoteViewSet
+    PolicyDocumentViewSet, PolicyBeneficiaryViewSet, PolicyPaymentViewSet, PolicyNoteViewSet,
+    PolicyMemberViewSet
 )
 
 router = DefaultRouter()
@@ -14,6 +15,7 @@ router.register(r'documents', PolicyDocumentViewSet, basename='policydocument')
 router.register(r'beneficiaries', PolicyBeneficiaryViewSet, basename='policybeneficiary')
 router.register(r'payments', PolicyPaymentViewSet, basename='policypayment')
 router.register(r'notes', PolicyNoteViewSet, basename='policynote')
+router.register(r'members', PolicyMemberViewSet, basename='policymember')
 
 
 
