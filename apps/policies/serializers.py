@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import (
     PolicyType, Policy, PolicyRenewal, PolicyClaim, 
-    PolicyDocument, PolicyBeneficiary, PolicyPayment, PolicyNote
+    PolicyDocument, PolicyBeneficiary, PolicyPayment, PolicyNote, PolicyMember
 )
 from apps.customers.models import Customer
 
@@ -261,4 +261,78 @@ class RenewalDashboardSerializer(serializers.Serializer):
     in_progress_renewals = serializers.IntegerField()
     completed_renewals = serializers.IntegerField()
     overdue_renewals = serializers.IntegerField()
-    renewal_rate = serializers.DecimalField(max_digits=5, decimal_places=2) 
+    renewal_rate = serializers.DecimalField(max_digits=5, decimal_places=2)
+
+
+class PolicyMemberSerializer(serializers.ModelSerializer):
+    """Serializer for PolicyMember model"""
+    
+    age = serializers.SerializerMethodField()
+    initials = serializers.ReadOnlyField()
+    relation_display = serializers.CharField(source='get_relation_display', read_only=True)
+    gender_display = serializers.CharField(source='get_gender_display', read_only=True)
+    policy_number = serializers.CharField(source='policy.policy_number', read_only=True)
+    customer_name = serializers.CharField(source='customer.full_name', read_only=True)
+    
+    class Meta:
+        model = PolicyMember
+        fields = [
+            'id', 'customer', 'policy', 'renewal_case', 'name', 'relation', 'relation_display',
+            'dob', 'age', 'gender', 'gender_display', 'sum_insured', 'premium_share',
+            'initials', 'policy_number', 'customer_name', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'age', 'initials', 'relation_display', 'gender_display', 
+                           'policy_number', 'customer_name', 'created_at', 'updated_at']
+    
+    def get_age(self, obj):
+        """Calculate age using SQL query or fallback to Python calculation"""
+        # Check if age was already calculated by SQL in the queryset
+        if hasattr(obj, 'age') and obj.age is not None:
+            return int(obj.age)
+        
+        # Fallback to Python calculation for individual objects
+        from datetime import date
+        today = date.today()
+        age = today.year - obj.dob.year - ((today.month, today.day) < (obj.dob.month, obj.dob.day))
+        return age
+    
+    def validate(self, data):
+        """Validate policy member data"""
+        # Ensure customer and policy are related
+        if 'customer' in data and 'policy' in data:
+            if data['customer'] != data['policy'].customer:
+                raise serializers.ValidationError(
+                    "Customer must be the owner of the policy"
+                )
+        return data
+
+
+class PolicyMemberCreateSerializer(serializers.ModelSerializer):
+    """Serializer for creating PolicyMember instances"""
+    
+    class Meta:
+        model = PolicyMember
+        fields = [
+            'customer', 'policy', 'renewal_case', 'name', 'relation', 'dob', 
+            'gender', 'sum_insured', 'premium_share'
+        ]
+    
+    def validate(self, data):
+        """Validate policy member data"""
+        # Ensure customer and policy are related
+        if 'customer' in data and 'policy' in data:
+            if data['customer'] != data['policy'].customer:
+                raise serializers.ValidationError(
+                    "Customer must be the owner of the policy"
+                )
+        return data
+
+
+class PolicyMemberUpdateSerializer(serializers.ModelSerializer):
+    """Serializer for updating PolicyMember instances"""
+    
+    class Meta:
+        model = PolicyMember
+        fields = [
+            'name', 'relation', 'dob', 'gender', 'sum_insured', 'premium_share'
+        ] 

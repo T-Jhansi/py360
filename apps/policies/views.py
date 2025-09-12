@@ -11,13 +11,14 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .models import (
     PolicyType, Policy, PolicyRenewal, PolicyClaim, 
-    PolicyDocument, PolicyBeneficiary, PolicyPayment, PolicyNote
+    PolicyDocument, PolicyBeneficiary, PolicyPayment, PolicyNote, PolicyMember
 )
 from .serializers import (
     PolicyTypeSerializer, PolicySerializer, PolicyListSerializer, PolicyCreateSerializer,
     PolicyRenewalSerializer, PolicyRenewalCreateSerializer,
     PolicyClaimSerializer, PolicyClaimCreateSerializer,
     PolicyDocumentSerializer, PolicyBeneficiarySerializer,
+    PolicyMemberSerializer, PolicyMemberCreateSerializer, PolicyMemberUpdateSerializer,
     PolicyPaymentSerializer, PolicyNoteSerializer,
     PolicyDashboardSerializer, RenewalDashboardSerializer
 )
@@ -633,4 +634,180 @@ class PolicyNoteViewSet(viewsets.ModelViewSet):
     ordering = ['-created_at']
     
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user) 
+        serializer.save(created_by=self.request.user)
+
+
+class PolicyMemberViewSet(viewsets.ModelViewSet):
+    """ViewSet for managing policy members"""
+    
+    queryset = PolicyMember.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['customer', 'policy', 'relation', 'gender']
+    search_fields = ['name', 'policy__policy_number', 'customer__full_name']
+    ordering_fields = ['name', 'relation', 'dob', 'sum_insured', 'premium_share', 'created_at']
+    ordering = ['relation', 'name']
+    
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return PolicyMemberCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return PolicyMemberUpdateSerializer
+        return PolicyMemberSerializer
+    
+    def get_queryset(self):
+        """Filter queryset based on user permissions and query parameters"""
+        from django.db import connection
+        
+        queryset = super().get_queryset()
+        
+        # Filter by customer if provided
+        customer_id = self.request.query_params.get('customer_id')
+        if customer_id:
+            queryset = queryset.filter(customer_id=customer_id)
+        
+        # Filter by policy if provided
+        policy_id = self.request.query_params.get('policy_id')
+        if policy_id:
+            queryset = queryset.filter(policy_id=policy_id)
+        
+        # Add age calculation using SQL for better performance
+        if self.action in ['list', 'by_policy', 'by_customer', 'by_case']:
+            try:
+                queryset = queryset.extra(
+                    select={
+                        'age': "EXTRACT(YEAR FROM AGE(CURRENT_DATE, dob))"
+                    }
+                )
+            except Exception:
+                # If SQL annotation fails, fallback to Python calculation in serializer
+                pass
+        
+        return queryset
+    
+    @action(detail=False, methods=['get'], url_path='by-policy/(?P<policy_id>[^/.]+)')
+    def by_policy(self, request, policy_id=None):
+        """Get all members for a specific policy"""
+        try:
+            members = self.get_queryset().filter(policy_id=policy_id)
+            serializer = self.get_serializer(members, many=True)
+            return Response({
+                'success': True,
+                'message': f'Policy members retrieved successfully for policy {policy_id}',
+                'data': serializer.data,
+                'count': members.count()
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error retrieving policy members: {str(e)}',
+                'data': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(detail=False, methods=['get'], url_path='by-customer/(?P<customer_id>[^/.]+)')
+    def by_customer(self, request, customer_id=None):
+        """Get all members for a specific customer"""
+        try:
+            members = self.get_queryset().filter(customer_id=customer_id)
+            serializer = self.get_serializer(members, many=True)
+            return Response({
+                'success': True,
+                'message': f'Policy members retrieved successfully for customer {customer_id}',
+                'data': serializer.data,
+                'count': members.count()
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error retrieving policy members: {str(e)}',
+                'data': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(detail=False, methods=['get'], url_path='by-case/(?P<case_id>[^/.]+)')
+    def by_case(self, request, case_id=None):
+        """Get all members for a specific renewal case (accepts both case ID and case number)"""
+        try:
+            from apps.renewals.models import RenewalCase
+            from apps.policies.models import PolicyMember
+            from apps.policies.serializers import PolicyMemberSerializer
+            
+            # Try to parse as integer first (case ID)
+            try:
+                case_id_int = int(case_id)
+                members = PolicyMember.objects.filter(renewal_case_id=case_id_int)
+            except ValueError:
+                # If not an integer, treat as case number
+                try:
+                    renewal_case = RenewalCase.objects.get(case_number=case_id)
+                    members = PolicyMember.objects.filter(renewal_case_id=renewal_case.id)
+                except RenewalCase.DoesNotExist:
+                    return Response({
+                        'success': False,
+                        'message': f'Renewal case not found: {case_id}',
+                        'data': None
+                    }, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = PolicyMemberSerializer(members, many=True)
+            return Response({
+                'success': True,
+                'message': f'Policy members retrieved successfully for case {case_id}',
+                'data': serializer.data,
+                'count': members.count()
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error retrieving policy members: {str(e)}',
+                'data': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    def create(self, request, *args, **kwargs):
+        """Create a new policy member"""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        # Auto-set renewal_case_id if not provided
+        if not serializer.validated_data.get('renewal_case'):
+            from apps.renewals.models import RenewalCase
+            customer_id = serializer.validated_data.get('customer').id
+            policy_id = serializer.validated_data.get('policy').id
+            
+            # Find the most recent renewal case for this customer and policy
+            renewal_case = RenewalCase.objects.filter(
+                customer_id=customer_id,
+                policy_id=policy_id
+            ).order_by('-created_at').first()
+            
+            if renewal_case:
+                serializer.validated_data['renewal_case'] = renewal_case
+        
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response({
+            'success': True,
+            'message': 'Policy member created successfully',
+            'data': serializer.data
+        }, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def update(self, request, *args, **kwargs):
+        """Update a policy member"""
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response({
+            'success': True,
+            'message': 'Policy member updated successfully',
+            'data': serializer.data
+        })
+    
+    def destroy(self, request, *args, **kwargs):
+        """Delete a policy member"""
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({
+            'success': True,
+            'message': 'Policy member deleted successfully',
+            'data': None
+        }, status=status.HTTP_204_NO_CONTENT) 

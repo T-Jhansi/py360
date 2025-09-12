@@ -453,4 +453,106 @@ class PolicyNote(BaseModel):
         ordering = ['-created_at']
     
     def __str__(self):
-        return f"Note - {self.policy.policy_number}" 
+        return f"Note - {self.policy.policy_number}"
+
+
+class PolicyMember(BaseModel):
+    """Policy members (family members covered under a policy)"""
+    
+    RELATION_CHOICES = [
+        ('self', 'Self'),
+        ('spouse', 'Spouse'),
+        ('son', 'Son'),
+        ('daughter', 'Daughter'),
+        ('father', 'Father'),
+        ('mother', 'Mother'),
+        ('brother', 'Brother'),
+        ('sister', 'Sister'),
+        ('other', 'Other'),
+    ]
+    
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ]
+    
+    # Foreign Keys
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE, 
+        related_name='policy_members',
+        help_text="Primary customer who owns the policy"
+    )
+    policy = models.ForeignKey(
+        Policy, 
+        on_delete=models.CASCADE, 
+        related_name='policy_members',
+        help_text="Policy this member is covered under"
+    )
+    renewal_case = models.ForeignKey(
+        'renewals.RenewalCase',
+        on_delete=models.CASCADE,
+        related_name='policy_members',
+        null=True,
+        blank=True,
+        help_text="Renewal case this member belongs to"
+    )
+    
+    # Member Details
+    name = models.CharField(max_length=200, help_text="Full name of the policy member")
+    relation = models.CharField(
+        max_length=20, 
+        choices=RELATION_CHOICES,
+        help_text="Relationship to the primary customer"
+    )
+    dob = models.DateField(help_text="Date of birth")
+    gender = models.CharField(
+        max_length=10, 
+        choices=GENDER_CHOICES,
+        help_text="Gender"
+    )
+    
+    # Financial Details
+    sum_insured = models.DecimalField(
+        max_digits=15, 
+        decimal_places=2,
+        help_text="Sum insured amount for this member"
+    )
+    premium_share = models.DecimalField(
+        max_digits=12, 
+        decimal_places=2,
+        help_text="Premium amount for this member"
+    )
+    
+    class Meta:
+        db_table = 'policy_members'
+        ordering = ['relation', 'name']
+        indexes = [
+            models.Index(fields=['customer', 'policy']),
+            models.Index(fields=['policy', 'relation']),
+            models.Index(fields=['relation']),
+            models.Index(fields=['renewal_case']),
+        ]
+        unique_together = ['policy', 'name', 'relation']
+    
+    def __str__(self):
+        return f"{self.name} ({self.get_relation_display()}) - {self.policy.policy_number}"
+    
+    @property
+    def age(self):
+        """Calculate age dynamically from date of birth"""
+        from datetime import date
+        today = date.today()
+        age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        return age
+    
+    @property
+    def initials(self):
+        """Get initials from name"""
+        names = self.name.split()
+        if len(names) >= 2:
+            return f"{names[0][0]}{names[-1][0]}".upper()
+        elif len(names) == 1:
+            return names[0][:2].upper()
+        return "??" 
