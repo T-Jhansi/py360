@@ -13,22 +13,21 @@ class EmailProviderConfigSerializer(serializers.ModelSerializer):
         model = EmailProviderConfig
         fields = [
             'id', 'name', 'provider_type', 'provider_type_display',
-            'api_key', 'api_secret', 'access_key', 'secret_key',
+            'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
             'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
             'smtp_use_tls', 'smtp_use_ssl',
             'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
             'priority', 'priority_display', 'is_default', 'is_active',
             'last_health_check', 'health_status', 'health_status_display',
-            'health_check_interval',
-            'emails_sent_today', 'emails_sent_this_month', 'last_reset_date',
+            'emails_sent_today', 'emails_sent_this_month', 'last_reset_daily', 'last_reset_monthly',
             'created_at', 'updated_at', 'created_by', 'updated_by',
             'is_deleted', 'deleted_at', 'deleted_by'
         ]
         read_only_fields = [
             'id', 'created_at', 'updated_at', 'created_by', 'updated_by',
             'last_health_check', 'health_status', 'emails_sent_today',
-            'emails_sent_this_month', 'last_reset_date', 'is_deleted',
+            'emails_sent_this_month', 'last_reset_daily', 'last_reset_monthly', 'is_deleted',
             'deleted_at', 'deleted_by'
         ]
     
@@ -83,7 +82,7 @@ class EmailProviderCredentialsSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailProviderConfig
         fields = [
-            'api_key', 'api_secret', 'access_key', 'secret_key',
+            'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
             'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
             'smtp_use_tls', 'smtp_use_ssl'
         ]

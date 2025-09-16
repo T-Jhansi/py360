@@ -10,8 +10,27 @@ class Template(models.Model):
         ('sms', 'SMS'),
     ]
 
+    CATEGORY_CHOICES = [
+        ('general', 'General'),
+        ('marketing', 'Marketing'),
+        ('notification', 'Notification'),
+        ('reminder', 'Reminder'),
+        ('confirmation', 'Confirmation'),
+        ('welcome', 'Welcome'),
+        ('renewal', 'Renewal'),
+        ('payment', 'Payment'),
+    ]
+
+    TEMPLATE_TYPE_CHOICES = [
+        ('email', 'Email'),
+        ('whatsapp', 'WhatsApp'),
+        ('sms', 'SMS'),
+    ]
+
     name = models.CharField(max_length=100, unique=True)
+    template_type = models.CharField(max_length=20, choices=TEMPLATE_TYPE_CHOICES, default='email')
     channel = models.CharField(max_length=20, choices=TEMPLATE_TYPES)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='general')
     subject = models.CharField(max_length=200, blank=True, help_text="Used for email subject")
     content = models.TextField(help_text="Template body content (HTML or plain text)")
     variables = models.JSONField(default=list, blank=True, help_text="List of dynamic variables used in the template")

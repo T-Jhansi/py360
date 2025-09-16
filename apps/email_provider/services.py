@@ -219,8 +219,8 @@ class EmailProviderService:
                          attachments: List[Tuple[str, str, str]]) -> Dict[str, Any]:
         """Send email via AWS SES"""
         try:
-            access_key = self._decrypt_credential(provider.access_key)
-            secret_key = self._decrypt_credential(provider.secret_key)
+            access_key = self._decrypt_credential(provider.access_key_id)
+            secret_key = self._decrypt_credential(provider.secret_access_key)
             
             if not access_key or not secret_key:
                 raise ValueError("AWS SES credentials not configured")
@@ -415,8 +415,8 @@ class EmailProviderService:
     def _check_aws_ses_health(self, provider: EmailProviderConfig) -> bool:
         """Check AWS SES health"""
         try:
-            access_key = self._decrypt_credential(provider.access_key)
-            secret_key = self._decrypt_credential(provider.secret_key)
+            access_key = self._decrypt_credential(provider.access_key_id)
+            secret_key = self._decrypt_credential(provider.secret_access_key)
             
             if not access_key or not secret_key:
                 return False

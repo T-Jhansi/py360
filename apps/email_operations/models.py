@@ -28,7 +28,7 @@ class EmailMessage(models.Model):
         ('unsubscribed', 'Unsubscribed'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.AutoField(primary_key=True)
     message_id = models.CharField(max_length=255, unique=True, help_text="Unique message identifier")
     
     # Recipients
@@ -122,7 +122,7 @@ class EmailQueue(models.Model):
         ('cancelled', 'Cancelled'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.AutoField(primary_key=True)
     email_message = models.OneToOneField(EmailMessage, on_delete=models.CASCADE, related_name='queue_entry')
     
     # Queue settings
@@ -171,7 +171,7 @@ class EmailTracking(models.Model):
         ('blocked', 'Blocked'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.AutoField(primary_key=True)
     email_message = models.ForeignKey(EmailMessage, on_delete=models.CASCADE, related_name='tracking_events')
     
     # Event details
@@ -217,7 +217,7 @@ class EmailDeliveryReport(models.Model):
         ('dropped', 'Dropped'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.AutoField(primary_key=True)
     email_message = models.ForeignKey(EmailMessage, on_delete=models.CASCADE, related_name='delivery_reports')
     
     # Provider information
@@ -252,7 +252,7 @@ class EmailDeliveryReport(models.Model):
 class EmailAnalytics(models.Model):
     """Email analytics and reporting"""
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.AutoField(primary_key=True)
     
     # Time period
     date = models.DateField()

@@ -131,6 +131,211 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
             return Response(result, status=status.HTTP_400_BAD_REQUEST)
     
     @action(detail=False, methods=['post'])
+    def send_simple(self, request):
+        """Send a simple email with minimal required fields"""
+        # Extract only the essential fields
+        to_email = request.data.get('to_email')
+        subject = request.data.get('subject')
+        html_content = request.data.get('html_content')
+        text_content = request.data.get('text_content')
+        
+        # Validate required fields
+        if not to_email:
+            return Response(
+                {'error': 'to_email is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if not subject:
+            return Response(
+                {'error': 'subject is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if not html_content and not text_content:
+            return Response(
+                {'error': 'Either html_content or text_content is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Prepare email data with defaults (only supported parameters)
+        email_data = {
+            'to_email': to_email,
+            'subject': subject,
+            'html_content': html_content or '',
+            'text_content': text_content or '',
+            'from_email': request.data.get('from_email', 'noreply@yourcompany.com'),
+            'from_name': request.data.get('from_name', 'Your Company'),
+            'reply_to': request.data.get('reply_to', 'support@yourcompany.com'),
+            'cc_emails': request.data.get('cc_emails', []),
+            'bcc_emails': request.data.get('bcc_emails', []),
+            'priority': request.data.get('priority', 'normal'),
+            'campaign_id': request.data.get('campaign_id', 'simple_email'),
+            'tags': request.data.get('tags', ['simple']),
+            'template_id': request.data.get('template_id'),
+            'template_variables': request.data.get('template_variables', {}),
+        }
+        
+        service = EmailOperationsService()
+        service.context = {'user': request.user}
+        
+        # Send the email using the service
+        result = service.send_email(**email_data)
+        
+        if result['success']:
+            return Response({
+                'success': True,
+                'message': 'Email sent successfully',
+                'data': {
+                    'to_email': to_email,
+                    'subject': subject,
+                    'status': 'sent'
+                }
+            }, status=status.HTTP_201_CREATED)
+        else:
+            return Response({
+                'success': False,
+                'message': 'Failed to send email',
+                'error': result.get('error', 'Unknown error')
+            }, status=status.HTTP_400_BAD_REQUEST)
+    
+    @action(detail=True, methods=['post'])
+    def reply(self, request, pk=None):
+        """Reply to an existing email with standard contact information"""
+        try:
+            # Get the original email
+            original_email = self.get_object()
+            
+            # Get reply content from request
+            reply_content = request.data.get('reply_content', '')
+            custom_message = request.data.get('custom_message', '')
+            
+            # Create reply subject
+            reply_subject = f"Re: {original_email.subject}"
+            if not reply_subject.startswith('Re: '):
+                reply_subject = f"Re: {reply_subject}"
+            
+            # Create standard reply content
+            standard_reply_html = f"""
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="color: #333; margin-top: 0;">Thank you for contacting us!</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        We have received your message and appreciate you reaching out to us.
+                    </p>
+                </div>
+                
+                {f'<div style="background-color: #e3f2fd; padding: 15px; border-radius: 5px; margin-bottom: 20px;"><p style="margin: 0; color: #1976d2;"><strong>Your Message:</strong></p><p style="margin: 5px 0 0 0; color: #333;">{reply_content}</p></div>' if reply_content else ''}
+                
+                {f'<div style="background-color: #f3e5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px;"><p style="margin: 0; color: #7b1fa2;"><strong>Our Response:</strong></p><p style="margin: 5px 0 0 0; color: #333;">{custom_message}</p></div>' if custom_message else ''}
+                
+                <div style="background-color: #fff3e0; padding: 20px; border-radius: 8px; border-left: 4px solid #ff9800;">
+                    <h4 style="color: #e65100; margin-top: 0;">Need Further Assistance?</h4>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
+                        If you have any queries or need additional assistance, please don't hesitate to contact us:
+                    </p>
+                    <ul style="color: #666; line-height: 1.8; margin: 0; padding-left: 20px;">
+                        <li><strong>Email:</strong> support@yourcompany.com</li>
+                        <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+                        <li><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM</li>
+                        <li><strong>Live Chat:</strong> Available on our website</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                    <p style="color: #999; font-size: 12px; margin: 0;">
+                        This is an automated response. Please do not reply to this email directly.
+                    </p>
+                    <p style="color: #999; font-size: 12px; margin: 5px 0 0 0;">
+                        For immediate assistance, please contact us using the information above.
+                    </p>
+                </div>
+            </div>
+            """
+            
+            standard_reply_text = f"""
+Thank you for contacting us!
+
+We have received your message and appreciate you reaching out to us.
+
+{f'Your Message: {reply_content}' if reply_content else ''}
+
+{f'Our Response: {custom_message}' if custom_message else ''}
+
+Need Further Assistance?
+If you have any queries or need additional assistance, please don't hesitate to contact us:
+
+- Email: support@yourcompany.com
+- Phone: +1 (555) 123-4567
+- Business Hours: Monday - Friday, 9:00 AM - 6:00 PM
+- Live Chat: Available on our website
+
+This is an automated response. Please do not reply to this email directly.
+For immediate assistance, please contact us using the information above.
+
+Best regards,
+Your Support Team
+            """
+            
+            # Prepare reply email data
+            reply_data = {
+                'to_email': original_email.from_email,  # Reply to the original sender
+                'subject': reply_subject,
+                'html_content': standard_reply_html,
+                'text_content': standard_reply_text,
+                'from_email': request.data.get('from_email', 'support@yourcompany.com'),
+                'from_name': request.data.get('from_name', 'Support Team'),
+                'reply_to': request.data.get('reply_to', 'support@yourcompany.com'),
+                'priority': request.data.get('priority', 'normal'),
+                'campaign_id': f'reply_to_{original_email.id}',
+                'tags': ['reply', 'support', 'automated'],
+                'template_variables': {
+                    'original_subject': original_email.subject,
+                    'original_sender': original_email.from_email,
+                    'reply_content': reply_content,
+                    'custom_message': custom_message
+                }
+            }
+            
+            service = EmailOperationsService()
+            service.context = {'user': request.user}
+            
+            # Send the reply email
+            result = service.send_email(**reply_data)
+            
+            if result['success']:
+                return Response({
+                    'success': True,
+                    'message': 'Reply sent successfully',
+                    'data': {
+                        'original_email_id': original_email.id,
+                        'reply_email_id': result.get('email_id'),
+                        'to_email': original_email.from_email,
+                        'subject': reply_subject,
+                        'status': 'sent'
+                    }
+                }, status=status.HTTP_201_CREATED)
+            else:
+                return Response({
+                    'success': False,
+                    'message': 'Failed to send reply',
+                    'error': result.get('error', 'Unknown error')
+                }, status=status.HTTP_400_BAD_REQUEST)
+                
+        except EmailMessage.DoesNotExist:
+            return Response({
+                'success': False,
+                'message': 'Original email not found',
+                'error': 'Email with the specified ID does not exist'
+            }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': 'Error sending reply',
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(detail=False, methods=['post'])
     def send_scheduled(self, request):
         """Schedule an email for future sending"""
         serializer = ScheduledEmailSerializer(data=request.data)

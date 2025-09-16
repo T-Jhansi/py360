@@ -29,16 +29,16 @@ class EmailProviderConfig(models.Model):
     # Provider-specific credentials (encrypted)
     api_key = models.TextField(blank=True, null=True, help_text="API key (encrypted)")
     api_secret = models.TextField(blank=True, null=True, help_text="API secret (encrypted)")
-    access_key = models.TextField(blank=True, null=True, help_text="AWS Access Key (encrypted)")
-    secret_key = models.TextField(blank=True, null=True, help_text="AWS Secret Key (encrypted)")
+    access_key_id = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Access Key ID (encrypted)")
+    secret_access_key = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Secret Access Key (encrypted)")
     
     # SMTP settings
-    smtp_host = models.CharField(max_length=255, blank=True, null=True)
-    smtp_port = models.PositiveIntegerField(blank=True, null=True)
-    smtp_username = models.CharField(max_length=255, blank=True, null=True)
-    smtp_password = models.TextField(blank=True, null=True, help_text="SMTP password (encrypted)")
-    smtp_use_tls = models.BooleanField(default=True)
-    smtp_use_ssl = models.BooleanField(default=False)
+    # smtp_host = models.CharField(max_length=255, blank=True, null=True)
+    # smtp_port = models.PositiveIntegerField(blank=True, null=True)
+    # smtp_username = models.CharField(max_length=255, blank=True, null=True)
+    # smtp_password = models.TextField(blank=True, null=True, help_text="SMTP password (encrypted)")
+    # smtp_use_tls = models.BooleanField(default=True)
+    # smtp_use_ssl = models.BooleanField(default=False)
     
     # Email settings
     from_email = models.EmailField(help_text="Default from email address")
@@ -62,12 +62,12 @@ class EmailProviderConfig(models.Model):
         ('unhealthy', 'Unhealthy'),
         ('unknown', 'Unknown'),
     ])
-    health_check_interval = models.PositiveIntegerField(default=300, help_text="Health check interval in seconds")
     
     # Usage tracking
     emails_sent_today = models.PositiveIntegerField(default=0)
     emails_sent_this_month = models.PositiveIntegerField(default=0)
-    last_reset_date = models.DateField(default=timezone.now)
+    last_reset_daily = models.DateField(default=timezone.now)
+    last_reset_monthly = models.DateField(default=timezone.now)
     
     # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
@@ -124,8 +124,8 @@ class EmailProviderConfig(models.Model):
     def reset_daily_usage(self):
         """Reset daily usage counter (called by scheduled task)"""
         self.emails_sent_today = 0
-        self.last_reset_date = timezone.now().date()
-        self.save(update_fields=['emails_sent_today', 'last_reset_date'])
+        self.last_reset_daily = timezone.now().date()
+        self.save(update_fields=['emails_sent_today', 'last_reset_daily'])
     
     def reset_monthly_usage(self):
         """Reset monthly usage counter (called by scheduled task)"""
