@@ -20,7 +20,7 @@ class EmailProviderConfigAdmin(admin.ModelAdmin):
     readonly_fields = [
         'id', 'created_at', 'updated_at', 'created_by', 'updated_by',
         'last_health_check', 'emails_sent_today', 'emails_sent_this_month',
-        'last_reset_date', 'is_deleted', 'deleted_at', 'deleted_by'
+        'last_reset_daily', 'last_reset_monthly', 'is_deleted', 'deleted_at', 'deleted_by'
     ]
     fieldsets = (
         ('Basic Information', {
@@ -34,7 +34,7 @@ class EmailProviderConfigAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('AWS SES Configuration', {
-            'fields': ('access_key', 'secret_key'),
+            'fields': ('access_key_id', 'secret_access_key'),
             'classes': ('collapse',)
         }),
         ('SMTP Configuration', {
@@ -48,10 +48,10 @@ class EmailProviderConfigAdmin(admin.ModelAdmin):
             'fields': ('daily_limit', 'monthly_limit', 'rate_limit_per_minute')
         }),
         ('Health Monitoring', {
-            'fields': ('health_status', 'last_health_check', 'health_check_interval')
+            'fields': ('health_status', 'last_health_check')
         }),
         ('Usage Tracking', {
-            'fields': ('emails_sent_today', 'emails_sent_this_month', 'last_reset_date')
+            'fields': ('emails_sent_today', 'emails_sent_this_month', 'last_reset_daily', 'last_reset_monthly')
         }),
         ('Metadata', {
             'fields': ('id', 'created_at', 'updated_at', 'created_by', 'updated_by'),

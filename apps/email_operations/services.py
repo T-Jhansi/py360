@@ -48,8 +48,13 @@ class EmailOperationsService:
             Dict with success status and message details
         """
         try:
+            # Generate unique message ID
+            import uuid
+            message_id = f"msg_{uuid.uuid4().hex[:12]}_{int(timezone.now().timestamp())}"
+            
             # Create email message record
             email_message = EmailMessage.objects.create(
+                message_id=message_id,
                 to_email=to_email,
                 cc_emails=cc_emails or [],
                 bcc_emails=bcc_emails or [],
