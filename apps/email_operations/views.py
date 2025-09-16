@@ -112,6 +112,25 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
             return Response(result, status=status.HTTP_400_BAD_REQUEST)
     
     @action(detail=False, methods=['post'])
+    def send(self, request):
+        """Send a single email immediately"""
+        serializer = EmailMessageCreateSerializer(data=request.data)
+        
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        service = EmailOperationsService()
+        service.context = {'user': request.user}
+        
+        # Send the email using the service
+        result = service.send_email(**serializer.validated_data)
+        
+        if result['success']:
+            return Response(result, status=status.HTTP_201_CREATED)
+        else:
+            return Response(result, status=status.HTTP_400_BAD_REQUEST)
+    
+    @action(detail=False, methods=['post'])
     def send_scheduled(self, request):
         """Schedule an email for future sending"""
         serializer = ScheduledEmailSerializer(data=request.data)
