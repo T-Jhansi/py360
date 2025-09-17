@@ -50,7 +50,7 @@ class EmailProviderConfigCreateSerializer(serializers.ModelSerializer):
         fields = [
             'name', 'provider_type', 'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
-            'priority', 'is_default', 'is_active', 'health_check_interval'
+            'priority', 'is_default', 'is_active'
         ]
     
     def create(self, validated_data):
@@ -67,7 +67,7 @@ class EmailProviderConfigUpdateSerializer(serializers.ModelSerializer):
         fields = [
             'name', 'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
-            'priority', 'is_default', 'is_active', 'health_check_interval'
+            'priority', 'is_default', 'is_active'
         ]
     
     def update(self, instance, validated_data):

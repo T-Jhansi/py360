@@ -191,7 +191,7 @@ class EmailProviderTestResult(models.Model):
         ('failed', 'Failed'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     provider = models.ForeignKey(EmailProviderConfig, on_delete=models.CASCADE, related_name='test_results')
     test_email = models.EmailField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
