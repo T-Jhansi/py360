@@ -51,6 +51,7 @@ api_patterns = [
     path('customer-payments/', include('apps.customer_payments.urls')),
     path('customer-payment-schedule/', include('apps.customer_payment_schedule.urls')),
     path('customer-communication-preferences/', include('apps.customer_communication_preferences.urls')),
+    path('customer-installments/', include('apps.customer_installment.urls')),
     path('customers-files/', include('apps.customers_files.urls')),
     path('customers-documents/', include('apps.customers_documents.urls')),
     path('policy-timeline/', include('apps.policy_timeline.urls')),

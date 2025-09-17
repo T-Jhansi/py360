@@ -199,9 +199,9 @@ class Customer(BaseModel):
     
     def __str__(self):
         if self.customer_type == 'individual':
-            return f"{self.first_name} {self.last_name} ({self.customer_id})"
+            return f"{self.first_name} {self.last_name} ({self.customer_code})"
         else:
-            return f"{self.company_name} ({self.customer_id})"
+            return f"{self.company_name} ({self.customer_code})"
     
     @property
     def full_name(self):

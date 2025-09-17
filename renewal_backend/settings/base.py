@@ -84,6 +84,7 @@ LOCAL_APPS = [
     'apps.email_inbox',
     'apps.email_integration',
     'apps.offers',
+    'apps.customer_installment',
     # 'apps.communications',
     # 'apps.emails',
     # 'apps.surveys',
