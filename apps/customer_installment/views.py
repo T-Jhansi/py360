@@ -237,3 +237,82 @@ class CustomerInstallmentViewSet(viewsets.ModelViewSet):
             'message': f'Updated {updated_count} installments to overdue status',
             'updated_count': updated_count
         })
+
+    @action(detail=False, methods=['post'])
+    def create_installments_for_policy(self, request):
+        """Manually create installments for a policy"""
+        policy_id = request.data.get('policy_id')
+        renewal_case_id = request.data.get('renewal_case_id')
+        
+        if not policy_id:
+            return Response(
+                {'error': 'policy_id is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            from apps.policies.models import Policy
+            from apps.renewals.models import RenewalCase
+            
+            policy = Policy.objects.get(id=policy_id)
+            renewal_case = None
+            
+            if renewal_case_id:
+                renewal_case = RenewalCase.objects.get(id=renewal_case_id)
+            
+            from .services import InstallmentIntegrationService
+            result = InstallmentIntegrationService.create_installments_for_policy(
+                policy, renewal_case
+            )
+            
+            if result['success']:
+                return Response(result)
+            else:
+                return Response(
+                    {'error': result.get('error', 'Failed to create installments')}, 
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+                
+        except Policy.DoesNotExist:
+            return Response(
+                {'error': 'Policy not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except RenewalCase.DoesNotExist:
+            return Response(
+                {'error': 'Renewal case not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    @action(detail=False, methods=['post'])
+    def link_payment_to_installment(self, request):
+        """Manually link a payment to an installment"""
+        payment_id = request.data.get('payment_id')
+        
+        if not payment_id:
+            return Response(
+                {'error': 'payment_id is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            from apps.customer_payments.models import CustomerPayment
+            from .services import InstallmentIntegrationService
+            
+            payment = CustomerPayment.objects.get(id=payment_id)
+            result = InstallmentIntegrationService.link_payment_to_installment(payment)
+            
+            if result['success']:
+                return Response(result)
+            else:
+                return Response(
+                    {'error': result.get('error', 'Failed to link payment')}, 
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+                
+        except CustomerPayment.DoesNotExist:
+            return Response(
+                {'error': 'Payment not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+
