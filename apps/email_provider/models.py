@@ -22,7 +22,7 @@ class EmailProviderConfig(models.Model):
         (3, 'Tertiary'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100, help_text="Friendly name for this provider")
     provider_type = models.CharField(max_length=20, choices=PROVIDER_CHOICES)
     
@@ -31,15 +31,7 @@ class EmailProviderConfig(models.Model):
     api_secret = models.TextField(blank=True, null=True, help_text="API secret (encrypted)")
     access_key_id = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Access Key ID (encrypted)")
     secret_access_key = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Secret Access Key (encrypted)")
-    
-    # SMTP settings
-    # smtp_host = models.CharField(max_length=255, blank=True, null=True)
-    # smtp_port = models.PositiveIntegerField(blank=True, null=True)
-    # smtp_username = models.CharField(max_length=255, blank=True, null=True)
-    # smtp_password = models.TextField(blank=True, null=True, help_text="SMTP password (encrypted)")
-    # smtp_use_tls = models.BooleanField(default=True)
-    # smtp_use_ssl = models.BooleanField(default=False)
-    
+
     # Email settings
     from_email = models.EmailField(help_text="Default from email address")
     from_name = models.CharField(max_length=100, blank=True, null=True)
@@ -143,7 +135,7 @@ class EmailProviderConfig(models.Model):
 class EmailProviderHealthLog(models.Model):
     """Log of health check results for email providers"""
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True)
     provider = models.ForeignKey(EmailProviderConfig, on_delete=models.CASCADE, related_name='health_logs')
     is_healthy = models.BooleanField()
     error_message = models.TextField(blank=True, null=True)
@@ -164,7 +156,7 @@ class EmailProviderHealthLog(models.Model):
 class EmailProviderUsageLog(models.Model):
     """Log of email sending usage for providers"""
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True)
     provider = models.ForeignKey(EmailProviderConfig, on_delete=models.CASCADE, related_name='usage_logs')
     emails_sent = models.PositiveIntegerField()
     success_count = models.PositiveIntegerField(default=0)
@@ -191,7 +183,6 @@ class EmailProviderTestResult(models.Model):
         ('failed', 'Failed'),
     ]
     
-    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     provider = models.ForeignKey(EmailProviderConfig, on_delete=models.CASCADE, related_name='test_results')
     test_email = models.EmailField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')

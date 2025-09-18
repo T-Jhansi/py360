@@ -288,13 +288,43 @@ class EmailOperationsService:
                 
                 return result
             else:
-                # Update email message with error
-                email_message.status = 'failed'
-                email_message.error_message = result.get('error', 'Unknown error')
-                email_message.retry_count += 1
-                email_message.save()
-                
-                return result
+                # If provider service fails due to no providers, try Django fallback
+                if result.get('error') == 'No available email providers':
+                    logger.info("No email providers available, falling back to Django SMTP")
+                    fallback_result = self._send_via_django_fallback(email_message)
+                    
+                    if fallback_result['success']:
+                        # Update email message
+                        email_message.status = 'sent'
+                        email_message.sent_at = timezone.now()
+                        email_message.provider_name = fallback_result.get('provider_name')
+                        email_message.provider_message_id = fallback_result.get('message_id')
+                        email_message.save()
+                        
+                        # Create tracking event
+                        EmailTracking.objects.create(
+                            email_message=email_message,
+                            event_type='sent',
+                            event_data={'provider': fallback_result.get('provider_name')}
+                        )
+                        
+                        return fallback_result
+                    else:
+                        # Update email message with error
+                        email_message.status = 'failed'
+                        email_message.error_message = fallback_result.get('error', 'Django fallback failed')
+                        email_message.retry_count += 1
+                        email_message.save()
+                        
+                        return fallback_result
+                else:
+                    # Update email message with error
+                    email_message.status = 'failed'
+                    email_message.error_message = result.get('error', 'Unknown error')
+                    email_message.retry_count += 1
+                    email_message.save()
+                    
+                    return result
                 
         except Exception as e:
             logger.error(f"Provider service failed, trying Django fallback: {str(e)}")
