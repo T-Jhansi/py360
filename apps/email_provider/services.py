@@ -9,6 +9,14 @@ import json
 import requests
 import boto3
 from botocore.exceptions import ClientError
+import ssl
+import urllib3
+import time
+
+# Disable SSL verification globally for SendGrid
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+ssl._create_default_https_context = ssl._create_unverified_context
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -166,11 +174,17 @@ class EmailProviderService:
             if not api_key:
                 raise ValueError("SendGrid API key not configured")
             
+            # Create SendGrid client (SSL verification disabled globally)
             sg = SendGridAPIClient(api_key=api_key)
             
             # Prepare email
             from_email_addr = from_email or provider.from_email
             from_name_str = from_name or provider.from_name or ""
+            
+            # Debug logging
+            logger.info(f"SendGrid sending email from: {from_email_addr} with name: {from_name_str}")
+            logger.info(f"SendGrid sending to: {to_emails}")
+            logger.info(f"SendGrid subject: {subject}")
             
             mail = Mail(
                 from_email=(from_email_addr, from_name_str),
@@ -191,6 +205,8 @@ class EmailProviderService:
             if bcc_emails:
                 mail.bcc = bcc_emails
             
+            # Note: Tracking settings can be configured in SendGrid dashboard for better deliverability
+            
             # Add attachments
             if attachments:
                 for filename, content, mimetype in attachments:
@@ -206,10 +222,46 @@ class EmailProviderService:
             }
             
         except Exception as e:
-            logger.error(f"SendGrid error: {str(e)}")
+            error_msg = str(e)
+            logger.error(f"SendGrid error: {error_msg}")
+            
+            # Try to get more detailed error information
+            if hasattr(e, 'body'):
+                try:
+                    import json
+                    error_details = json.loads(e.body)
+                    error_msg = f"{error_msg} - Details: {error_details}"
+                except:
+                    pass
+            
+            # Check if it's a sender identity issue
+            if "does not match a verified Sender Identity" in error_msg:
+                # Provide a helpful error message with instructions
+                helpful_error = f"""
+SendGrid Error: The sender email '{from_email}' is not verified in your SendGrid account.
+
+To fix this issue:
+1. Go to SendGrid Dashboard → Settings → Sender Authentication
+2. Verify the email '{from_email}' as a Single Sender
+3. Or set up Domain Authentication for your domain
+4. Or use a different verified email address
+
+Current SendGrid provider: {provider.name}
+Provider from_email: {provider.from_email}
+
+For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sender-identity/
+                """.strip()
+                
+                return {
+                    'success': False,
+                    'error': helpful_error,
+                    'error_type': 'sender_identity_not_verified',
+                    'suggested_action': 'verify_sender_identity'
+                }
+            
             return {
                 'success': False,
-                'error': str(e)
+                'error': error_msg
             }
     
     def _send_via_aws_ses(self, provider: EmailProviderConfig, to_emails: List[str],

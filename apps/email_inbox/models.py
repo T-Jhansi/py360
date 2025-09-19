@@ -95,13 +95,13 @@ class EmailInboxMessage(models.Model):
         ('negative', 'Negative'),
     ]
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True)
     message_id = models.CharField(max_length=255, unique=True, help_text="Unique message identifier")
     
     # Email headers
     from_email = models.EmailField()
     from_name = models.CharField(max_length=200, blank=True, null=True)
-    to_email = models.EmailField()
+    to_emails = models.JSONField(default=list, blank=True, help_text="List of recipient email addresses")
     cc_emails = models.JSONField(default=list, blank=True)
     bcc_emails = models.JSONField(default=list, blank=True)
     reply_to = models.EmailField(blank=True, null=True)
@@ -125,22 +125,31 @@ class EmailInboxMessage(models.Model):
     
     # Threading
     thread_id = models.CharField(max_length=255, blank=True, null=True, help_text="Thread identifier")
-    parent_message = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    in_reply_to = models.CharField(max_length=255, blank=True, null=True, help_text="In-Reply-To header")
+    references = models.CharField(max_length=500, blank=True, null=True, help_text="References header")
     
     # Processing
-    is_processed = models.BooleanField(default=False)
-    processing_notes = models.TextField(blank=True, null=True)
-    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_emails')
     
     # Email metadata
     received_at = models.DateTimeField(auto_now_add=True)
     read_at = models.DateTimeField(blank=True, null=True)
     replied_at = models.DateTimeField(blank=True, null=True)
-    forwarded_at = models.DateTimeField(blank=True, null=True)
+    
+    # Additional fields
+    is_spam = models.BooleanField(default=False)
+    is_phishing = models.BooleanField(default=False)
+    subcategory = models.CharField(max_length=50, blank=True, null=True)
+    confidence_score = models.FloatField(default=0.0)
+    attachments = models.JSONField(default=list, blank=True)
+    attachment_count = models.PositiveIntegerField(default=0)
     
     # Raw email data
-    raw_headers = models.JSONField(default=dict, blank=True, help_text="Raw email headers")
-    raw_body = models.TextField(blank=True, null=True, help_text="Raw email body")
+    headers = models.JSONField(default=dict, blank=True)
+    size_bytes = models.PositiveIntegerField(default=0)
+    source = models.CharField(max_length=50, default='webhook')
+    source_message_id = models.CharField(max_length=255, blank=True, null=True)
+    
+    # Raw email data
     
     # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
@@ -159,7 +168,6 @@ class EmailInboxMessage(models.Model):
             models.Index(fields=['category', 'status']),
             models.Index(fields=['from_email', 'received_at']),
             models.Index(fields=['thread_id', 'received_at']),
-            models.Index(fields=['assigned_to', 'status']),
             models.Index(fields=['is_starred', 'received_at']),
         ]
         verbose_name = 'Email Inbox Message'
@@ -311,7 +319,7 @@ class EmailAttachment(models.Model):
     """Email attachments"""
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email_message = models.ForeignKey(EmailInboxMessage, on_delete=models.CASCADE, related_name='attachments')
+    email_message = models.ForeignKey(EmailInboxMessage, on_delete=models.CASCADE, related_name='email_attachments')
     
     # File information
     filename = models.CharField(max_length=255)

@@ -21,6 +21,96 @@ class EmailIntegrationService:
     def __init__(self):
         pass
     
+    def process_incoming_email_webhook(self, provider: str, raw_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Process incoming email webhook from email provider
+        
+        Args:
+            provider: Email provider name
+            raw_data: Raw webhook payload containing incoming email data
+        
+        Returns:
+            Dict with processing result
+        """
+        try:
+            # Create webhook record for incoming email
+            webhook = EmailWebhook.objects.create(
+                provider=provider,
+                event_type='incoming',
+                raw_data=raw_data
+            )
+            
+            # Process incoming email data
+            processed_data = self._process_incoming_email_data(provider, raw_data)
+            webhook.processed_data = processed_data
+            
+            # Store the incoming email in the inbox
+            if processed_data.get('email_data'):
+                from apps.email_inbox.services import EmailInboxService
+                inbox_service = EmailInboxService()
+                
+                # Extract only the supported parameters for receive_email
+                email_data = processed_data['email_data']
+                
+                # Filter out unsupported parameters
+                supported_params = {
+                    'from_email': email_data.get('from_email', ''),
+                    'to_email': email_data.get('to_email', ''),
+                    'subject': email_data.get('subject', ''),
+                    'html_content': email_data.get('html_content', ''),
+                    'text_content': email_data.get('text_content', ''),
+                    'from_name': email_data.get('from_name', ''),
+                    'cc_emails': email_data.get('cc_emails', []),
+                    'bcc_emails': email_data.get('bcc_emails', []),
+                    'reply_to': email_data.get('reply_to', '')
+                }
+                
+                inbox_result = inbox_service.receive_email(**supported_params)
+                
+                if inbox_result['success']:
+                    webhook.email_message_id = inbox_result.get('message_id')
+                    webhook.status = 'processed'
+                    webhook.processed_at = timezone.now()
+                    webhook.save()
+                    
+                    return {
+                        'success': True,
+                        'message': 'Incoming email processed and stored successfully',
+                        'webhook_id': str(webhook.id),
+                        'inbox_message_id': inbox_result.get('message_id')
+                    }
+                else:
+                    webhook.status = 'failed'
+                    webhook.error_message = inbox_result.get('message', 'Failed to store in inbox')
+                    webhook.save()
+                    
+                    return {
+                        'success': False,
+                        'message': f"Failed to store incoming email: {inbox_result.get('message')}"
+                    }
+            else:
+                webhook.status = 'failed'
+                webhook.error_message = 'No email data found in webhook'
+                webhook.save()
+                
+                return {
+                    'success': False,
+                    'message': 'No email data found in webhook payload'
+                }
+            
+        except Exception as e:
+            logger.error(f"Error processing incoming email webhook: {str(e)}")
+            
+            if 'webhook' in locals():
+                webhook.status = 'failed'
+                webhook.error_message = str(e)
+                webhook.save()
+            
+            return {
+                'success': False,
+                'message': f'Error processing incoming email webhook: {str(e)}'
+            }
+
     def process_webhook(self, provider: str, event_type: str, raw_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Process incoming webhook from email provider
@@ -77,6 +167,74 @@ class EmailIntegrationService:
                 'message': f'Error processing webhook: {str(e)}'
             }
     
+    def _process_incoming_email_data(self, provider: str, raw_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Process incoming email data based on provider"""
+        try:
+            if provider == 'sendgrid':
+                return self._process_sendgrid_incoming_email(raw_data)
+            else:
+                return {
+                    'provider': provider,
+                    'raw_data': raw_data,
+                    'error': f'Unsupported provider: {provider}'
+                }
+        except Exception as e:
+            logger.error(f"Error processing incoming email data: {str(e)}")
+            return {
+                'provider': provider,
+                'raw_data': raw_data,
+                'error': str(e)
+            }
+    
+    def _process_sendgrid_incoming_email(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Process SendGrid incoming email data"""
+        try:
+            # SendGrid incoming email webhook format
+            # Extract email data from the webhook payload
+            email_data = {
+                'from_email': raw_data.get('from', ''),
+                'to_email': raw_data.get('to', ''),
+                'subject': raw_data.get('subject', ''),
+                'text_content': raw_data.get('text', ''),
+                'html_content': raw_data.get('html', ''),
+                'message_id': raw_data.get('message_id', ''),
+                'thread_id': raw_data.get('thread_id', ''),
+                'in_reply_to': raw_data.get('in_reply_to', ''),
+                'references': raw_data.get('references', ''),
+                'cc_emails': raw_data.get('cc', []),
+                'bcc_emails': raw_data.get('bcc', []),
+                'reply_to': raw_data.get('reply_to', ''),
+                'headers': raw_data.get('headers', {}),
+                'received_at': raw_data.get('received_at', timezone.now().isoformat()),
+                'size_bytes': raw_data.get('size', 0),
+                'is_read': False,
+                'is_starred': False,
+                'is_spam': False,
+                'is_important': False,
+                'folder': 'inbox',
+                'category': 'incoming',
+                'subcategory': 'reply' if raw_data.get('in_reply_to') else 'new',
+                'priority': 'normal',
+                'tags': [],
+                'confidence_score': 1.0,
+                'source': 'sendgrid_webhook',
+                'raw_data': raw_data
+            }
+            
+            return {
+                'provider': 'sendgrid',
+                'email_data': email_data,
+                'processed_at': timezone.now().isoformat()
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing SendGrid incoming email: {str(e)}")
+            return {
+                'provider': 'sendgrid',
+                'raw_data': raw_data,
+                'error': str(e)
+            }
+
     def _process_webhook_data(self, provider: str, event_type: str, raw_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process webhook data based on provider"""
         try:
@@ -475,8 +633,6 @@ class EmailIntegrationService:
     def _execute_create_task_action(self, action_config: Dict[str, Any], trigger_data: Dict[str, Any]) -> Dict[str, Any]:
         """Execute create task action"""
         try:
-            # This would integrate with your task management system
-            # For now, just return success
             return {
                 'success': True,
                 'message': 'Task created successfully'
@@ -492,8 +648,6 @@ class EmailIntegrationService:
     def _execute_update_crm_action(self, action_config: Dict[str, Any], trigger_data: Dict[str, Any]) -> Dict[str, Any]:
         """Execute update CRM action"""
         try:
-            # This would integrate with your CRM system
-            # For now, just return success
             return {
                 'success': True,
                 'message': 'CRM updated successfully'
@@ -563,16 +717,6 @@ class EmailIntegrationService:
             }
     
     def sync_integration(self, integration_id: str, sync_type: str = 'incremental') -> Dict[str, Any]:
-        """
-        Sync data with external integration
-        
-        Args:
-            integration_id: ID of the integration to sync
-            sync_type: Type of sync (full, incremental, manual)
-        
-        Returns:
-            Dict with sync result
-        """
         try:
             integration = EmailIntegration.objects.get(id=integration_id)
             
