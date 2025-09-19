@@ -1,10 +1,14 @@
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.models import Q, Count, Avg
 from django.utils import timezone
 from datetime import timedelta
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+import json
+import logging
 
 from .models import (
     EmailWebhook, EmailAutomation, EmailAutomationLog, EmailIntegration,
@@ -626,3 +630,55 @@ class EmailIntegrationAnalyticsViewSet(viewsets.ReadOnlyModelViewSet):
             'weekly_trends': EmailIntegrationAnalyticsSerializer(weekly_trends, many=True).data,
             'monthly_trends': EmailIntegrationAnalyticsSerializer(monthly_trends, many=True).data
         })
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@csrf_exempt
+def sendgrid_incoming_webhook(request):
+    """
+    Webhook endpoint for receiving incoming emails from SendGrid
+    This endpoint processes incoming emails and stores them in the email_inbox_messages table
+    """
+    logger = logging.getLogger(__name__)
+    
+    try:
+        # Parse the incoming webhook data
+        if request.content_type == 'application/json':
+            webhook_data = json.loads(request.body)
+        else:
+            # Handle form-encoded data
+            webhook_data = request.POST.dict()
+        
+        logger.info(f"Received SendGrid incoming webhook: {webhook_data}")
+        
+        # Process the webhook using the existing service
+        service = EmailIntegrationService()
+        result = service.process_incoming_email_webhook('sendgrid', webhook_data)
+        
+        if result['success']:
+            return Response({
+                'success': True,
+                'message': 'Incoming email processed successfully',
+                'webhook_id': result.get('webhook_id')
+            }, status=status.HTTP_200_OK)
+        else:
+            logger.error(f"Failed to process incoming email webhook: {result['message']}")
+            return Response({
+                'success': False,
+                'message': result['message']
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in webhook payload: {str(e)}")
+        return Response({
+            'success': False,
+            'message': 'Invalid JSON payload'
+        }, status=status.HTTP_400_BAD_REQUEST)
+        
+    except Exception as e:
+        logger.error(f"Error processing incoming email webhook: {str(e)}")
+        return Response({
+            'success': False,
+            'message': f'Internal server error: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

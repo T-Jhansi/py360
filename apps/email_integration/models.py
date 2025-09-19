@@ -27,6 +27,7 @@ class EmailWebhook(models.Model):
         ('blocked', 'Blocked'),
         ('deferred', 'Deferred'),
         ('dropped', 'Dropped'),
+        ('incoming', 'Incoming Email'),
     ]
     
     STATUS_CHOICES = [

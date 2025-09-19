@@ -7,7 +7,8 @@ from .views import (
     EmailIntegrationViewSet,
     EmailSLAViewSet,
     EmailTemplateVariableViewSet,
-    EmailIntegrationAnalyticsViewSet
+    EmailIntegrationAnalyticsViewSet,
+    sendgrid_incoming_webhook
 )
 
 router = DefaultRouter()
@@ -21,4 +22,6 @@ router.register(r'analytics', EmailIntegrationAnalyticsViewSet, basename='email-
 
 urlpatterns = [
     path('', include(router.urls)),
+    # Webhook endpoints for receiving incoming emails
+    path('webhooks/sendgrid/incoming/', sendgrid_incoming_webhook, name='sendgrid-incoming-webhook'),
 ]

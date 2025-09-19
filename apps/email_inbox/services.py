@@ -51,16 +51,27 @@ class EmailInboxService:
             email_message = EmailInboxMessage.objects.create(
                 from_email=from_email,
                 from_name=from_name,
-                to_email=to_email,
+                to_emails=[to_email] if to_email else [],
                 cc_emails=cc_emails or [],
                 bcc_emails=bcc_emails or [],
-                reply_to=reply_to,
+                reply_to=reply_to or '',
                 subject=subject,
                 html_content=html_content,
                 text_content=text_content,
-                raw_headers=raw_headers or {},
-                raw_body=raw_body,
-                message_id=str(uuid.uuid4())
+                message_id=str(uuid.uuid4()),
+                thread_id=str(uuid.uuid4()),
+                in_reply_to='',
+                references='',
+                is_spam=False,
+                is_phishing=False,
+                subcategory='reply',
+                confidence_score=0.0,
+                attachments=[],
+                attachment_count=0,
+                headers={},
+                size_bytes=0,
+                source='webhook',
+                source_message_id=str(uuid.uuid4())
             )
             
             # Classify email

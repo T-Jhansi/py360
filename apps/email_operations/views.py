@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.db import models
 from django.db.models import Q, Count, F
 from django.utils import timezone
 from datetime import timedelta, date
@@ -11,7 +12,7 @@ from .serializers import (
     EmailMessageSerializer, EmailMessageCreateSerializer, EmailMessageUpdateSerializer,
     EmailQueueSerializer, EmailTrackingSerializer, EmailDeliveryReportSerializer,
     EmailAnalyticsSerializer, BulkEmailSerializer, ScheduledEmailSerializer,
-    EmailStatsSerializer, EmailCampaignStatsSerializer
+    EmailStatsSerializer, EmailCampaignStatsSerializer, SentEmailListSerializer
 )
 from .services import EmailOperationsService
 
@@ -56,7 +57,7 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
         # Filter by recipient
         to_email = self.request.query_params.get('to_email')
         if to_email:
-            queryset = queryset.filter(to_email__icontains=to_email)
+            queryset = queryset.filter(to_emails__icontains=to_email)
         
         # Filter by sender
         from_email = self.request.query_params.get('from_email')
@@ -82,6 +83,45 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Set created_by when creating a new email message"""
         serializer.save(created_by=self.request.user)
+    
+    def create(self, request, *args, **kwargs):
+        """Override create to return simple success response"""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        # Send the email using the service (service will create the record)
+        service = EmailOperationsService()
+        service.context = {'user': request.user}
+        
+        # Send the email using the service
+        result = service.send_email(**serializer.validated_data)
+        
+        # Debug logging
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"Email service result: {result}")
+        
+        if result['success']:
+            return Response({
+                'success': True,
+                'message': 'Email sent successfully',
+                'data': {
+                    'to_emails': serializer.validated_data.get('to_emails'),
+                    'subject': serializer.validated_data.get('subject'),
+                    'status': 'sent'
+                }
+            }, status=status.HTTP_201_CREATED)
+        else:
+            # Get the actual error message from the result
+            error_message = result.get('error', 'Unknown error')
+            if not error_message or error_message == 'Unknown error':
+                error_message = result.get('message', 'Failed to send email')
+            
+            return Response({
+                'success': False,
+                'message': 'Failed to send email',
+                'error': error_message
+            }, status=status.HTTP_400_BAD_REQUEST)
     
     def perform_update(self, serializer):
         """Set updated_by when updating an email message"""
@@ -134,15 +174,15 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
     def send_simple(self, request):
         """Send a simple email with minimal required fields"""
         # Extract only the essential fields
-        to_email = request.data.get('to_email')
+        to_emails = request.data.get('to_emails')
         subject = request.data.get('subject')
         html_content = request.data.get('html_content')
         text_content = request.data.get('text_content')
         
         # Validate required fields
-        if not to_email:
+        if not to_emails:
             return Response(
-                {'error': 'to_email is required'}, 
+                {'error': 'to_emails is required'}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -160,13 +200,13 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
         
         # Prepare email data with defaults (only supported parameters)
         email_data = {
-            'to_email': to_email,
+            'to_emails': to_emails,
             'subject': subject,
             'html_content': html_content or '',
             'text_content': text_content or '',
             'from_email': request.data.get('from_email', 'noreply@yourcompany.com'),
             'from_name': request.data.get('from_name', 'Your Company'),
-            'reply_to': request.data.get('reply_to', 'support@yourcompany.com'),
+            'reply_to': request.data.get('reply_to', 'banuyasin401@gmail.com'),
             'cc_emails': request.data.get('cc_emails', []),
             'bcc_emails': request.data.get('bcc_emails', []),
             'priority': request.data.get('priority', 'normal'),
@@ -187,7 +227,7 @@ class EmailMessageViewSet(viewsets.ModelViewSet):
                 'success': True,
                 'message': 'Email sent successfully',
                 'data': {
-                    'to_email': to_email,
+                    'to_emails': to_emails,
                     'subject': subject,
                     'status': 'sent'
                 }
@@ -279,13 +319,13 @@ Your Support Team
             
             # Prepare reply email data
             reply_data = {
-                'to_email': original_email.from_email,  # Reply to the original sender
+                'to_emails': original_email.from_email,  # Reply to the original sender
                 'subject': reply_subject,
                 'html_content': standard_reply_html,
                 'text_content': standard_reply_text,
                 'from_email': request.data.get('from_email', 'support@yourcompany.com'),
                 'from_name': request.data.get('from_name', 'Support Team'),
-                'reply_to': request.data.get('reply_to', 'support@yourcompany.com'),
+                'reply_to': request.data.get('reply_to', 'banuyasin401@gmail.com'),
                 'priority': request.data.get('priority', 'normal'),
                 'campaign_id': f'reply_to_{original_email.id}',
                 'tags': ['reply', 'support', 'automated'],
@@ -310,7 +350,7 @@ Your Support Team
                     'data': {
                         'original_email_id': original_email.id,
                         'reply_email_id': result.get('email_id'),
-                        'to_email': original_email.from_email,
+                        'to_emails': original_email.from_email,
                         'subject': reply_subject,
                         'status': 'sent'
                     }
@@ -488,6 +528,74 @@ Your Support Team
             'unsubscribe_rate': round(unsubscribe_rate, 2),
             'start_date': start_date,
             'end_date': end_date
+        })
+    
+    @action(detail=False, methods=['get'])
+    def sent_emails(self, request):
+        """List all sent emails with optional filtering"""
+        # Get query parameters for filtering
+        page = int(request.query_params.get('page', 1))
+        page_size = int(request.query_params.get('page_size', 20))
+        status_filter = request.query_params.get('status', 'sent')
+        start_date = request.query_params.get('start_date')
+        end_date = request.query_params.get('end_date')
+        to_email = request.query_params.get('to_email')
+        from_email = request.query_params.get('from_email')
+        search = request.query_params.get('search')
+        
+        # Build queryset for sent emails
+        queryset = EmailMessage.objects.filter(
+            is_deleted=False,
+            status=status_filter
+        ).order_by('-sent_at', '-created_at')
+        
+        # Apply additional filters
+        if start_date:
+            queryset = queryset.filter(sent_at__gte=start_date)
+        if end_date:
+            queryset = queryset.filter(sent_at__lte=end_date)
+        if to_email:
+            queryset = queryset.filter(to_emails__icontains=to_email)
+        if from_email:
+            queryset = queryset.filter(from_email__icontains=from_email)
+        if search:
+            queryset = queryset.filter(subject__icontains=search)
+        
+        # Get total count
+        total_count = queryset.count()
+        
+        # Apply pagination
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+        emails = queryset[start_index:end_index]
+        
+        # Serialize the emails with clean format
+        serializer = SentEmailListSerializer(emails, many=True)
+        
+        # Calculate pagination info
+        total_pages = (total_count + page_size - 1) // page_size
+        has_next = page < total_pages
+        has_previous = page > 1
+        
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'pagination': {
+                'current_page': page,
+                'page_size': page_size,
+                'total_count': total_count,
+                'total_pages': total_pages,
+                'has_next': has_next,
+                'has_previous': has_previous
+            },
+            'filters_applied': {
+                'status': status_filter,
+                'start_date': start_date,
+                'end_date': end_date,
+                'to_email': to_email,
+                'from_email': from_email,
+                'search': search
+            }
         })
 
 

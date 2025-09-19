@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import EmailMessage, EmailQueue, EmailTracking, EmailDeliveryReport, EmailAnalytics
+from django.utils import timezone
 
 
 class EmailMessageSerializer(serializers.ModelSerializer):
@@ -13,7 +14,7 @@ class EmailMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailMessage
         fields = [
-            'id', 'message_id', 'to_email', 'cc_emails', 'bcc_emails',
+            'id', 'message_id', 'to_emails', 'cc_emails', 'bcc_emails',
             'from_email', 'from_name', 'reply_to', 'subject', 'html_content',
             'text_content', 'template_id', 'template_name', 'template_variables',
             'priority', 'priority_display', 'status', 'status_display',
@@ -35,7 +36,7 @@ class EmailMessageCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailMessage
         fields = [
-            'to_email', 'cc_emails', 'bcc_emails', 'from_email', 'from_name',
+            'to_emails', 'cc_emails', 'bcc_emails', 'from_email', 'from_name',
             'reply_to', 'subject', 'html_content', 'text_content', 'template_id',
             'template_variables', 'priority', 'scheduled_at', 'campaign_id', 'tags'
         ]
@@ -54,7 +55,7 @@ class EmailMessageUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailMessage
         fields = [
-            'to_email', 'cc_emails', 'bcc_emails', 'from_email', 'from_name',
+            'to_emails', 'cc_emails', 'bcc_emails', 'from_email', 'from_name',
             'reply_to', 'subject', 'html_content', 'text_content', 'template_id',
             'template_variables', 'priority', 'scheduled_at', 'campaign_id', 'tags'
         ]
@@ -90,7 +91,7 @@ class EmailTrackingSerializer(serializers.ModelSerializer):
     
     event_type_display = serializers.CharField(source='get_event_type_display', read_only=True)
     email_message_subject = serializers.CharField(source='email_message.subject', read_only=True)
-    email_message_to = serializers.CharField(source='email_message.to_email', read_only=True)
+    email_message_to = serializers.CharField(source='email_message.to_emails', read_only=True)
     
     class Meta:
         model = EmailTracking
@@ -107,7 +108,7 @@ class EmailDeliveryReportSerializer(serializers.ModelSerializer):
     
     status_display = serializers.CharField(source='get_status_display', read_only=True)
     email_message_subject = serializers.CharField(source='email_message.subject', read_only=True)
-    email_message_to = serializers.CharField(source='email_message.to_email', read_only=True)
+    email_message_to = serializers.CharField(source='email_message.to_emails', read_only=True)
     
     class Meta:
         model = EmailDeliveryReport
@@ -185,7 +186,7 @@ class BulkEmailSerializer(serializers.Serializer):
 class ScheduledEmailSerializer(serializers.Serializer):
     """Serializer for scheduling emails"""
     
-    to_email = serializers.EmailField()
+    to_emails = serializers.EmailField()
     subject = serializers.CharField(max_length=500)
     html_content = serializers.CharField(required=False, allow_blank=True)
     text_content = serializers.CharField(required=False, allow_blank=True)
@@ -262,3 +263,87 @@ class EmailCampaignStatsSerializer(serializers.Serializer):
     avg_response_time = serializers.FloatField()
     start_date = serializers.DateTimeField()
     end_date = serializers.DateTimeField()
+
+
+class SentEmailListSerializer(serializers.ModelSerializer):
+    """Clean serializer for sent emails list - shows only essential information"""
+    
+    # Format the sent_at time to be more readable
+    sent_time = serializers.SerializerMethodField()
+    # Format the created_at time to be more readable
+    created_time = serializers.SerializerMethodField()
+    # Get a preview of the email content (first 100 characters)
+    content_preview = serializers.SerializerMethodField()
+    # Get the status in a more readable format
+    status_text = serializers.SerializerMethodField()
+    # Get priority in a more readable format
+    priority_text = serializers.SerializerMethodField()
+    # Get the sender name or email
+    sender_info = serializers.SerializerMethodField()
+    # Get the recipient count (including CC and BCC)
+    recipient_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = EmailMessage
+        fields = [
+            'id', 'message_id', 'subject', 'sender_info', 'to_emails', 
+            'recipient_count', 'status_text', 'priority_text', 'sent_time', 
+            'created_time', 'content_preview', 'provider_name', 'provider_message_id'
+        ]
+    
+    def get_sent_time(self, obj):
+        """Format sent time to readable format"""
+        if obj.sent_at:
+            return obj.sent_at.strftime('%Y-%m-%d %H:%M:%S')
+        return None
+    
+    def get_created_time(self, obj):
+        """Format created time to readable format"""
+        if obj.created_at:
+            return obj.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        return None
+    
+    def get_content_preview(self, obj):
+        """Get a preview of the email content"""
+        content = obj.text_content or obj.html_content or ''
+        # Remove HTML tags and get first 100 characters
+        import re
+        clean_content = re.sub(r'<[^>]+>', '', content)
+        return clean_content[:100] + '...' if len(clean_content) > 100 else clean_content
+    
+    def get_status_text(self, obj):
+        """Get status in readable format"""
+        status_map = {
+            'sent': 'Sent Successfully',
+            'delivered': 'Delivered',
+            'failed': 'Failed',
+            'pending': 'Pending',
+            'bounced': 'Bounced',
+            'complained': 'Complained'
+        }
+        return status_map.get(obj.status, obj.status.title())
+    
+    def get_priority_text(self, obj):
+        """Get priority in readable format"""
+        priority_map = {
+            'low': 'Low Priority',
+            'normal': 'Normal Priority',
+            'high': 'High Priority',
+            'urgent': 'Urgent'
+        }
+        return priority_map.get(obj.priority, obj.priority.title())
+    
+    def get_sender_info(self, obj):
+        """Get sender information in readable format"""
+        if obj.from_name:
+            return f"{obj.from_name} <{obj.from_email}>"
+        return obj.from_email
+    
+    def get_recipient_count(self, obj):
+        """Get total recipient count including CC and BCC"""
+        count = 1  # Main recipient
+        if obj.cc_emails:
+            count += len(obj.cc_emails)
+        if obj.bcc_emails:
+            count += len(obj.bcc_emails)
+        return count

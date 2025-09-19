@@ -17,7 +17,117 @@ class EmailOperationsService:
     def __init__(self):
         self.provider_service = EmailProviderService()
     
-    def send_email(self, to_email: str, subject: str, html_content: str = '',
+    def _enhance_email_content_for_deliverability(self, html_content: str, text_content: str, subject: str) -> tuple:
+        """
+        Enhance email content to improve deliverability and avoid spam filters
+        Always enhance content to make it look professional and avoid spam
+        """
+        # Always enhance HTML content with professional structure
+        if not html_content or html_content.strip() == '':
+            # If no HTML content, create from text content
+            html_content = f"""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>{subject}</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h2 style="color: #2c3e50; margin-top: 0;">Welleazy Team</h2>
+                    <p style="margin: 0; color: #666;">Your trusted insurance partner</p>
+                </div>
+                
+                <div style="background-color: white; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <p>{text_content or "Thank you for your interest in our services."}</p>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 12px; color: #666;">
+                    <p style="margin: 0 0 10px 0;"><strong>Welleazy Insurance Services</strong></p>
+                    <p style="margin: 0 0 5px 0;">1st Floor, 9th Main Rd, next to The Anandam Cafe</p>
+                    <p style="margin: 0 0 5px 0;">7th Sector, HSR Layout, Bangalore, India</p>
+                    <p style="margin: 0 0 10px 0;">Email: support@welleazy.com | Phone: +91-XXXX-XXXX</p>
+                    <p style="margin: 0; font-size: 11px;">
+                        <a href="https://welleazy.com/unsubscribe" style="color: #666; text-decoration: none;">Unsubscribe</a> | 
+                        <a href="https://welleazy.com/privacy" style="color: #666; text-decoration: none;">Privacy Policy</a>
+                    </p>
+                </div>
+            </body>
+            </html>
+            """
+        else:
+            # Enhance existing HTML content with professional wrapper
+            html_content = f"""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>{subject}</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h2 style="color: #2c3e50; margin-top: 0;">Welleazy Team</h2>
+                    <p style="margin: 0; color: #666;">Your trusted insurance partner</p>
+                </div>
+                
+                <div style="background-color: white; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
+                    <html><body style='font-family: Arial, sans-serif; color: #333;'>\n  <h2 style='color:#2E86C1;'>Policy Renewal Reminder</h2>\n  <p>Dear Customer,</p>\n  <p>Your policy with <b>Welleazy</b> is due for renewal. To continue enjoying uninterrupted services, please renew your policy before the due date.</p>\n  <table border='1' cellpadding='8' cellspacing='0' style='border-collapse: collapse; margin: 10px 0;'>\n    <tr><td><b>Policy No:</b></td><td>WLZ-123456</td></tr>\n    <tr><td><b>Renewal Amount:</b></td><td>₹4,500</td></tr>\n    <tr><td><b>Due Date:</b></td><td>25th September 2025</td></tr>\n  </table>\n  <p><a href='https://welleazy.com/renewal' style='background:#2E86C1; color:#fff; padding:10px 20px; text-decoration:none; border-radius:5px;'>Renew Now</a></p>\n  <p>For any queries, write to <a href='mailto:support@welleazy.com'>support@welleazy.com</a> or call <b>1800-123-456</b>.</p>\n  <br>\n  <p>Thank you,<br>Welleazy Team</p>\n</body></html>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 12px; color: #666;">
+                    <p style="margin: 0 0 10px 0;"><strong>Welleazy Insurance Services</strong></p>
+                    <p style="margin: 0 0 5px 0;">1st Floor, 9th Main Rd, next to The Anandam Cafe</p>
+                    <p style="margin: 0 0 5px 0;">7th Sector, HSR Layout, Bangalore, India</p>
+                    <p style="margin: 0 0 10px 0;">Email: support@welleazy.com | Phone: +91-XXXX-XXXX</p>
+                    <p style="margin: 0; font-size: 11px;">
+                        <a href="https://welleazy.com/unsubscribe" style="color: #666; text-decoration: none;">Unsubscribe</a> | 
+                        <a href="https://welleazy.com/privacy" style="color: #666; text-decoration: none;">Privacy Policy</a>
+                    </p>
+                </div>
+            </body>
+            </html>
+            """
+        
+        # Always enhance text content with professional structure
+        if not text_content or text_content.strip() == '':
+            text_content = """
+Welleazy Team
+Your trusted insurance partner
+
+Thank you for your interest in our services.
+
+---
+Welleazy Insurance Services
+1st Floor, 9th Main Rd, next to The Anandam Cafe
+7th Sector, HSR Layout, Bangalore, India
+Email: support@welleazy.com | Phone: +91-XXXX-XXXX
+
+Unsubscribe: https://welleazy.com/unsubscribe
+Privacy Policy: https://welleazy.com/privacy
+            """.strip()
+        else:
+            # Enhance existing text content with professional wrapper
+            text_content = f"""
+Welleazy Team
+Your trusted insurance partner
+
+{text_content}
+
+---
+Welleazy Insurance Services
+1st Floor, 9th Main Rd, next to The Anandam Cafe
+7th Sector, HSR Layout, Bangalore, India
+Email: support@welleazy.com | Phone: +91-XXXX-XXXX
+
+Unsubscribe: https://welleazy.com/unsubscribe
+Privacy Policy: https://welleazy.com/privacy
+            """.strip()
+        
+        return html_content, text_content
+
+    def send_email(self, to_emails: str, subject: str, html_content: str = '',
                    text_content: str = '', template_id: str = None,
                    template_variables: Dict[str, Any] = None, from_email: str = None,
                    from_name: str = None, reply_to: str = None, cc_emails: List[str] = None,
@@ -28,7 +138,7 @@ class EmailOperationsService:
         Send a single email
         
         Args:
-            to_email: Recipient email address
+            to_emails: Recipient email address
             subject: Email subject
             html_content: HTML content
             text_content: Plain text content
@@ -52,25 +162,44 @@ class EmailOperationsService:
             import uuid
             message_id = f"msg_{uuid.uuid4().hex[:12]}_{int(timezone.now().timestamp())}"
             
+            # Enhance email content for better deliverability
+            enhanced_html, enhanced_text = self._enhance_email_content_for_deliverability(
+                html_content, text_content, subject
+            )
+            
+            # Get default reply_to from provider if not provided
+            if not reply_to:
+                # Get the active provider's reply_to as default
+                try:
+                    from apps.email_provider.models import EmailProviderConfig
+                    provider = EmailProviderConfig.objects.filter(
+                        is_active=True, 
+                        health_status='healthy'
+                    ).order_by('priority').first()
+                    if provider and provider.reply_to:
+                        reply_to = provider.reply_to
+                except:
+                    pass
+            
             # Create email message record
             email_message = EmailMessage.objects.create(
                 message_id=message_id,
-                to_email=to_email,
+                to_emails=to_emails,
                 cc_emails=cc_emails or [],
                 bcc_emails=bcc_emails or [],
                 from_email=from_email or settings.DEFAULT_FROM_EMAIL,
                 from_name=from_name,
                 reply_to=reply_to,
                 subject=subject,
-                html_content=html_content,
-                text_content=text_content,
+                html_content=enhanced_html,
+                text_content=enhanced_text,
                 template_id=template_id,
                 template_variables=template_variables or {},
                 priority=priority,
                 scheduled_at=scheduled_at,
                 campaign_id=campaign_id,
                 tags=tags or [],
-                created_by=self.context.get('user')
+                created_by=None
             )
             
             # If scheduled for future, add to queue
@@ -87,7 +216,7 @@ class EmailOperationsService:
                     'scheduled_at': scheduled_at
                 }
             
-            # Send immediately
+            # Send immediately using SendGrid only (no fallback)
             result = self._send_email_message(email_message)
             
             return {
@@ -141,7 +270,7 @@ class EmailOperationsService:
             for to_email in to_emails:
                 try:
                     result = self.send_email(
-                        to_email=to_email,
+                        to_emails=to_email,
                         subject=subject,
                         html_content=html_content,
                         text_content=text_content,
@@ -183,7 +312,7 @@ class EmailOperationsService:
                 'message': f'Error in bulk email sending: {str(e)}'
             }
     
-    def schedule_email(self, to_email: str, subject: str, scheduled_at: str,
+    def schedule_email(self, to_emails: str, subject: str, scheduled_at: str,
                       html_content: str = '', text_content: str = '',
                       template_id: str = None, template_variables: Dict[str, Any] = None,
                       from_email: str = None, from_name: str = None, reply_to: str = None,
@@ -194,7 +323,7 @@ class EmailOperationsService:
         Schedule an email for future sending
         
         Args:
-            to_email: Recipient email address
+            to_emails: Recipient email address
             subject: Email subject
             scheduled_at: When to send the email (ISO format)
             html_content: HTML content
@@ -216,7 +345,7 @@ class EmailOperationsService:
         try:
             # Create email message record
             email_message = EmailMessage.objects.create(
-                to_email=to_email,
+                to_emails=to_emails,
                 cc_emails=cc_emails or [],
                 bcc_emails=bcc_emails or [],
                 from_email=from_email or settings.DEFAULT_FROM_EMAIL,
@@ -231,7 +360,7 @@ class EmailOperationsService:
                 scheduled_at=scheduled_at,
                 campaign_id=campaign_id,
                 tags=tags or [],
-                created_by=self.context.get('user')
+                created_by=None
             )
             
             # Add to queue
@@ -260,7 +389,7 @@ class EmailOperationsService:
         try:
             # Try to send via provider service first
             result = self.provider_service.send_email(
-                to_emails=[email_message.to_email],
+                to_emails=[email_message.to_emails],
                 subject=email_message.subject,
                 html_content=email_message.html_content or '',
                 text_content=email_message.text_content or '',
@@ -288,82 +417,28 @@ class EmailOperationsService:
                 
                 return result
             else:
-                # If provider service fails due to no providers, try Django fallback
-                if result.get('error') == 'No available email providers':
-                    logger.info("No email providers available, falling back to Django SMTP")
-                    fallback_result = self._send_via_django_fallback(email_message)
-                    
-                    if fallback_result['success']:
-                        # Update email message
-                        email_message.status = 'sent'
-                        email_message.sent_at = timezone.now()
-                        email_message.provider_name = fallback_result.get('provider_name')
-                        email_message.provider_message_id = fallback_result.get('message_id')
-                        email_message.save()
-                        
-                        # Create tracking event
-                        EmailTracking.objects.create(
-                            email_message=email_message,
-                            event_type='sent',
-                            event_data={'provider': fallback_result.get('provider_name')}
-                        )
-                        
-                        return fallback_result
-                    else:
-                        # Update email message with error
-                        email_message.status = 'failed'
-                        email_message.error_message = fallback_result.get('error', 'Django fallback failed')
-                        email_message.retry_count += 1
-                        email_message.save()
-                        
-                        return fallback_result
-                else:
-                    # Update email message with error
-                    email_message.status = 'failed'
-                    email_message.error_message = result.get('error', 'Unknown error')
-                    email_message.retry_count += 1
-                    email_message.save()
-                    
-                    return result
-                
-        except Exception as e:
-            logger.error(f"Provider service failed, trying Django fallback: {str(e)}")
-            
-            # Fallback to Django's built-in email backend
-            try:
-                result = self._send_via_django_fallback(email_message)
-                
-                if result['success']:
-                    # Update email message
-                    email_message.status = 'sent'
-                    email_message.sent_at = timezone.now()
-                    email_message.provider_name = result.get('provider_name')
-                    email_message.provider_message_id = result.get('message_id')
-                    email_message.save()
-                    
-                    # Create tracking event
-                    EmailTracking.objects.create(
-                        email_message=email_message,
-                        event_type='sent',
-                        event_data={'provider': result.get('provider_name')}
-                    )
-                
-                return result
-                
-            except Exception as fallback_error:
-                logger.error(f"Django fallback also failed: {str(fallback_error)}")
-                
-                # Update email message with error
+                # Update email message with error (no fallback)
                 email_message.status = 'failed'
-                email_message.error_message = str(fallback_error)
+                email_message.error_message = result.get('error', 'Unknown error')
                 email_message.retry_count += 1
                 email_message.save()
                 
-                return {
-                    'success': False,
-                    'error': str(fallback_error),
-                    'provider_name': 'Django SMTP Fallback'
-                }
+                return result
+                
+        except Exception as e:
+            logger.error(f"Provider service failed: {str(e)}")
+            
+            # Update email message with error (no fallback)
+            email_message.status = 'failed'
+            email_message.error_message = str(e)
+            email_message.retry_count += 1
+            email_message.save()
+            
+            return {
+                'success': False,
+                'error': str(e),
+                'provider_name': 'SendGrid'
+            }
     
     def _send_via_django_fallback(self, email_message: EmailMessage) -> Dict[str, Any]:
         """
@@ -375,7 +450,7 @@ class EmailOperationsService:
                 subject=email_message.subject,
                 body=email_message.text_content or email_message.html_content,
                 from_email=email_message.from_email or settings.DEFAULT_FROM_EMAIL,
-                to=[email_message.to_email],
+                to=[email_message.to_emails],
                 cc=email_message.cc_emails or [],
                 bcc=email_message.bcc_emails or []
             )
@@ -536,7 +611,7 @@ class EmailOperationsService:
             
             # Get recent activity
             recent_activity = emails.order_by('-created_at')[:10].values(
-                'id', 'subject', 'to_email', 'status', 'created_at'
+                'id', 'subject', 'to_emails', 'status', 'created_at'
             )
             
             return {

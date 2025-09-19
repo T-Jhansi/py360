@@ -7,11 +7,11 @@ from .models import EmailMessage, EmailQueue, EmailTracking, EmailDeliveryReport
 @admin.register(EmailMessage)
 class EmailMessageAdmin(admin.ModelAdmin):
     list_display = [
-        'subject', 'to_email', 'from_email', 'status', 'priority',
+        'subject', 'to_emails', 'from_email', 'status', 'priority',
         'campaign_id', 'created_at', 'sent_at'
     ]
     list_filter = ['status', 'priority', 'campaign_id', 'created_at', 'sent_at']
-    search_fields = ['subject', 'to_email', 'from_email', 'message_id']
+    search_fields = ['subject', 'to_emails', 'from_email', 'message_id']
     readonly_fields = [
         'id', 'message_id', 'sent_at', 'provider_name', 'provider_message_id',
         'error_message', 'retry_count', 'created_at', 'updated_at',
@@ -20,7 +20,7 @@ class EmailMessageAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('subject', 'to_email', 'from_email', 'from_name', 'reply_to')
+            'fields': ('subject', 'to_emails', 'from_email', 'from_name', 'reply_to')
         }),
         ('Content', {
             'fields': ('html_content', 'text_content', 'template_id', 'template_name', 'template_variables')
@@ -75,7 +75,7 @@ class EmailQueueAdmin(admin.ModelAdmin):
         'attempts', 'max_attempts', 'created_at'
     ]
     list_filter = ['status', 'priority', 'scheduled_for', 'created_at']
-    search_fields = ['email_message__subject', 'email_message__to_email']
+    search_fields = ['email_message__subject', 'email_message__to_emails']
     readonly_fields = [
         'id', 'processed_at', 'attempts', 'error_message', 'last_error',
         'created_at', 'updated_at'
@@ -98,7 +98,7 @@ class EmailTrackingAdmin(admin.ModelAdmin):
         'link_url', 'event_time'
     ]
     list_filter = ['event_type', 'event_time']
-    search_fields = ['email_message__subject', 'email_message__to_email', 'ip_address']
+    search_fields = ['email_message__subject', 'email_message__to_emails', 'ip_address']
     readonly_fields = ['id', 'event_time']
     
     def email_message_subject(self, obj):
@@ -118,7 +118,7 @@ class EmailDeliveryReportAdmin(admin.ModelAdmin):
         'reported_at'
     ]
     list_filter = ['provider_name', 'status', 'reported_at']
-    search_fields = ['email_message__subject', 'email_message__to_email', 'provider_message_id']
+    search_fields = ['email_message__subject', 'email_message__to_emails', 'provider_message_id']
     readonly_fields = ['id', 'reported_at']
     
     def email_message_subject(self, obj):

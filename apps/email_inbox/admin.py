@@ -43,22 +43,22 @@ class EmailFolderAdmin(admin.ModelAdmin):
 @admin.register(EmailInboxMessage)
 class EmailInboxMessageAdmin(admin.ModelAdmin):
     list_display = [
-        'subject', 'from_email', 'to_email', 'category', 'priority',
-        'status', 'is_starred', 'is_important', 'assigned_to', 'received_at'
+        'subject', 'from_email', 'to_emails_display', 'category', 'priority',
+        'status', 'is_starred', 'is_important', 'received_at'
     ]
     list_filter = [
         'category', 'priority', 'status', 'sentiment', 'is_starred',
-        'is_important', 'assigned_to', 'received_at', 'created_at'
+        'is_important', 'received_at', 'created_at'
     ]
-    search_fields = ['subject', 'from_email', 'to_email', 'message_id']
+    search_fields = ['subject', 'from_email', 'message_id']
     readonly_fields = [
         'id', 'message_id', 'received_at', 'read_at', 'replied_at',
-        'forwarded_at', 'created_at', 'updated_at', 'created_by', 'updated_by'
+        'created_at', 'updated_at', 'created_by', 'updated_by'
     ]
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('subject', 'from_email', 'from_name', 'to_email', 'cc_emails', 'bcc_emails', 'reply_to')
+            'fields': ('subject', 'from_email', 'from_name', 'to_emails', 'cc_emails', 'bcc_emails', 'reply_to')
         }),
         ('Content', {
             'fields': ('html_content', 'text_content', 'raw_headers', 'raw_body')
@@ -85,6 +85,13 @@ class EmailInboxMessageAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         })
     )
+    
+    def to_emails_display(self, obj):
+        """Display to_emails as a comma-separated list"""
+        if obj.to_emails:
+            return ', '.join(obj.to_emails[:3]) + ('...' if len(obj.to_emails) > 3 else '')
+        return '-'
+    to_emails_display.short_description = 'To'
     
     def get_queryset(self, request):
         """Filter out soft-deleted messages"""

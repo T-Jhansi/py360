@@ -32,7 +32,7 @@ class EmailMessage(models.Model):
     message_id = models.CharField(max_length=255, unique=True, help_text="Unique message identifier")
     
     # Recipients
-    to_email = models.EmailField()
+    to_emails = models.EmailField()
     cc_emails = models.JSONField(default=list, blank=True, help_text="CC email addresses")
     bcc_emails = models.JSONField(default=list, blank=True, help_text="BCC email addresses")
     
@@ -86,7 +86,7 @@ class EmailMessage(models.Model):
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['status', 'priority']),
-            models.Index(fields=['to_email', 'status']),
+            models.Index(fields=['to_emails', 'status']),
             models.Index(fields=['campaign_id', 'status']),
             models.Index(fields=['scheduled_at', 'status']),
             models.Index(fields=['created_at', 'status']),
@@ -95,7 +95,7 @@ class EmailMessage(models.Model):
         verbose_name_plural = 'Email Messages'
     
     def __str__(self):
-        return f"{self.subject} -> {self.to_email}"
+        return f"{self.subject} -> {self.to_emails}"
     
     def soft_delete(self):
         """Soft delete the email message"""
