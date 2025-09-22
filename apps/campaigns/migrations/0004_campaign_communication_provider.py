@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('communication_provider', '0003_alter_communicationprovider_channel'),
         ('campaigns', '0003_alter_campaign_target_audience'),
     ]
 

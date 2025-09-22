@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('templates', '__first__'),
-        ('communication_provider', '0003_alter_communicationprovider_channel'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('campaigns', '0006_delete_campaign_schedule_intervals'),
     ]

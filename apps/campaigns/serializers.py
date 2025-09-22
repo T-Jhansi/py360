@@ -38,7 +38,7 @@ class CampaignCreateSerializer(serializers.Serializer):
     template_id = serializers.IntegerField(help_text="ID of template to use for the campaign")
     communication_provider_id = serializers.IntegerField(
         required=False,
-        help_text="ID of communication provider to use for this campaign"
+        help_text="ID of email provider to use for this campaign"
     )
 
     # Target audience options
@@ -137,12 +137,12 @@ class CampaignCreateSerializer(serializers.Serializer):
         if value is None:
             return value
         try:
-            from apps.communication_provider.models import CommunicationProvider
-            provider = CommunicationProvider.objects.get(id=value, is_deleted=False)
+            from apps.email_provider.models import EmailProviderConfig
+            provider = EmailProviderConfig.objects.get(id=value, is_deleted=False)
             if not provider.is_active:
                 raise serializers.ValidationError("Communication provider must be active")
             return value
-        except CommunicationProvider.DoesNotExist:
+        except EmailProviderConfig.DoesNotExist:
             raise serializers.ValidationError("Communication provider not found")
 
     def validate_schedule_intervals(self, value):
@@ -224,8 +224,8 @@ class CampaignCreateSerializer(serializers.Serializer):
         # Handle communication provider
         communication_provider = None
         if validated_data.get('communication_provider_id'):
-            from apps.communication_provider.models import CommunicationProvider
-            communication_provider = CommunicationProvider.objects.get(id=validated_data['communication_provider_id'])
+            from apps.email_provider.models import EmailProviderConfig
+            communication_provider = EmailProviderConfig.objects.get(id=validated_data['communication_provider_id'])
 
         # Create the campaign with proper relationships
         campaign_data = {
@@ -590,7 +590,7 @@ class CampaignCreateSerializer(serializers.Serializer):
         """Create CampaignScheduleInterval objects for advanced scheduling intervals"""
         from .models import CampaignScheduleInterval
         from apps.templates.models import Template
-        from apps.communication_provider.models import CommunicationProvider
+        from apps.email_provider.models import EmailProviderConfig
         from django.utils import timezone
         
         created_intervals = []
@@ -607,12 +607,12 @@ class CampaignCreateSerializer(serializers.Serializer):
             provider = None
             if interval_data.get('communication_provider_id'):
                 try:
-                    provider = CommunicationProvider.objects.get(
+                    provider = EmailProviderConfig.objects.get(
                         id=interval_data['communication_provider_id'],
                         is_deleted=False,
                         is_active=True
                     )
-                except CommunicationProvider.DoesNotExist:
+                except EmailProviderConfig.DoesNotExist:
                     pass  
             
             base_time = campaign.scheduled_at or campaign.started_at or timezone.now()

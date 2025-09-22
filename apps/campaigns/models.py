@@ -7,7 +7,7 @@ from apps.policies.models import Policy
 from apps.templates.models import Template
 from apps.files_upload.models import FileUpload
 from apps.target_audience.models import TargetAudience
-from apps.communication_provider.models import CommunicationProvider
+from apps.email_provider.models import EmailProviderConfig
 from decimal import Decimal
 import uuid
 import json
@@ -64,7 +64,7 @@ class Campaign(BaseModel):
     target_audience = models.ForeignKey(TargetAudience,on_delete=models.SET_NULL, null=True, blank=True, related_name='campaigns'
     )
     communication_provider = models.ForeignKey(
-        CommunicationProvider, 
+        EmailProviderConfig, 
         on_delete=models.SET_NULL, 
         null=True, 
         blank=True, 
@@ -689,7 +689,7 @@ class CampaignScheduleInterval(BaseModel):
         help_text="Template to use for this interval"
     )
     communication_provider = models.ForeignKey(
-        CommunicationProvider,
+        EmailProviderConfig,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
