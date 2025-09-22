@@ -467,3 +467,5 @@ class EmailIntegrationAnalytics(models.Model):
         self.save(update_fields=[
             'webhook_success_rate', 'automation_success_rate', 'integration_success_rate'
         ])
+
+
