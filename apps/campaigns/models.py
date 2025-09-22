@@ -283,6 +283,7 @@ class CampaignRecipient(BaseModel):
         ('unsubscribed', 'Unsubscribed'),
     ]
 
+
     # Core relationships
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='recipients')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='campaign_recipients')
