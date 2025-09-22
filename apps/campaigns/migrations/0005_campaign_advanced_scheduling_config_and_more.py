@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('templates', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('communication_provider', '0003_alter_communicationprovider_channel'),
         ('campaigns', '0004_campaign_communication_provider'),
     ]
 

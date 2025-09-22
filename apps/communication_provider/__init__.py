@@ -1,1 +1,0 @@
-# Communication Provider App

@@ -62,7 +62,6 @@ api_patterns = [
     path('policy-coverages/', include('apps.policy_coverages.urls')),
     path('policy-exclusions/', include('apps.policy_exclusions.urls')),
     path('policy-conditions/', include('apps.policy_conditions.urls')),
-    path('communication-provider/', include('apps.communication_provider.urls')),
     
     # Email Integration endpoints
     path('email-provider/', include('apps.email_provider.urls')),
