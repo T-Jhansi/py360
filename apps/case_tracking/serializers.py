@@ -332,8 +332,9 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
             return None
     
     def get_calls_count(self, obj):
-        if obj.communication_attempts:
-            return f"{obj.communication_attempts} calls"
+        attempts = obj.communication_attempts_count
+        if attempts:
+            return f"{attempts} calls"
         return "0 calls"
     
     def get_last_action(self, obj):
@@ -381,7 +382,7 @@ class CaseDetailSerializer(serializers.ModelSerializer):
             'status',
             'priority',
             'renewal_amount',
-            'communication_attempts',
+            'communication_attempts_count',
             'last_contact_date',
             'notes',
             'created_at',
@@ -476,6 +477,7 @@ class CaseDetailSerializer(serializers.ModelSerializer):
         return obj.created_at.strftime('%d/%m/%Y') if obj.created_at else None
 
     def get_calls_count(self, obj):
-        if obj.communication_attempts:
-            return f"{obj.communication_attempts} calls"
+        attempts = obj.communication_attempts_count
+        if attempts:
+            return f"{attempts} calls"
         return "0 calls"

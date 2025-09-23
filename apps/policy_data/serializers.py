@@ -139,7 +139,7 @@ class PolicyImportSerializer(serializers.ModelSerializer):
             'id', 'policy_number', 'customer', 'customer_name', 'policy_type',
             'policy_type_name', 'start_date', 'end_date', 'premium_amount',
             'sum_assured', 'status', 'nominee_name', 'nominee_relationship',
-            'agent_name', 'agent_code', 'is_due_for_renewal', 'created_at', 'updated_at'
+            'agent', 'is_due_for_renewal', 'created_at', 'updated_at'
         ]
         read_only_fields = [
             'id', 'customer_name', 'policy_type_name', 'is_due_for_renewal',
@@ -173,8 +173,8 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'case_number', 'batch_code', 'customer', 'customer_name', 'customer_profile', 'policy',
             'policy_number', 'status', 'priority', 'assigned_to', 'assigned_to_name',
-            'renewal_amount', 'payment_status', 'payment_date',
-            'communication_attempts', 'last_contact_date', 'channel_id', 'channel_name', 'notes',
+            'renewal_amount', 'payment_status',
+            'communication_attempts_count', 'last_contact_date', 'channel_id', 'channel_name', 'notes',
             'created_at', 'updated_at'
         ]
         read_only_fields = [
@@ -185,6 +185,17 @@ class RenewalCaseImportSerializer(serializers.ModelSerializer):
     def get_customer_name(self, obj):
         """Get customer's full name"""
         return obj.customer.full_name if obj.customer else None
+
+    def get_customer_profile(self, obj):
+        """Get customer profile information"""
+        if obj.customer:
+            return {
+                'id': obj.customer.id,
+                'email': obj.customer.email,
+                'phone': obj.customer.phone,
+                'status': obj.customer.status,
+            }
+        return None
 
     def get_policy_number(self, obj):
         """Get policy number"""

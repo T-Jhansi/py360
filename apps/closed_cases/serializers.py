@@ -142,7 +142,7 @@ class ClosedCasesListSerializer(serializers.ModelSerializer):
             return None
     
     def get_calls_count(self, obj):
-        return obj.communication_attempts
+        return obj.communication_attempts_count
     
     def get_renewal_date(self, obj):
         return obj.policy.renewal_date if obj.policy else None
@@ -178,7 +178,7 @@ class ClosedCasesDetailSerializer(serializers.ModelSerializer):
             'renewal_amount',
             'payment_status',
             'payment_date',
-            'communication_attempts',
+            'communication_attempts_count',
             'last_contact_date',
             'notes',
             'created_at',

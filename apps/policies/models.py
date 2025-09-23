@@ -7,6 +7,45 @@ from decimal import Decimal
 
 User = get_user_model()
 
+class PolicyAgent(BaseModel):
+    """Policy agents model for storing agent information"""
+    
+    agent_code = models.CharField(max_length=50, unique=True, help_text="Auto-generated agent code")
+    agent_name = models.CharField(max_length=200)
+    contact_number = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)
+    address = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        db_table = 'policy_agents'
+        ordering = ['agent_name']
+        indexes = [
+            models.Index(fields=['agent_code']),
+            models.Index(fields=['agent_name']),
+            models.Index(fields=['is_active']),
+        ]
+    
+    def __str__(self):
+        return f"{self.agent_code} - {self.agent_name}"
+    
+    def save(self, *args, **kwargs):
+        if not self.agent_code:
+            # Auto-generate agent code if not provided
+            self.agent_code = self.generate_agent_code()
+        super().save(*args, **kwargs)
+    
+    def generate_agent_code(self):
+        """Generate a unique agent code"""
+        import random
+        import string
+        
+        # Generate a code like AGT-1234
+        while True:
+            code = f"AGT-{random.randint(1000, 9999)}"
+            if not PolicyAgent.objects.filter(agent_code=code).exists():
+                return code
+
 class PolicyType(BaseModel):
     """Types of insurance policies (Life, Health, Motor, etc.)"""
 
@@ -84,8 +123,7 @@ class Policy(BaseModel):
     policy_document = models.FileField(upload_to='policies/documents/', blank=True, null=True)
     terms_conditions = models.TextField(blank=True)
     special_conditions = models.TextField(blank=True)
-    agent_name = models.CharField(max_length=200, blank=True)
-    agent_code = models.CharField(max_length=50, blank=True)
+    agent = models.ForeignKey(PolicyAgent, on_delete=models.SET_NULL, null=True, blank=True, related_name='policies', help_text="Policy agent")
     
     # System Fields
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_policies')

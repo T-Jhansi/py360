@@ -39,16 +39,15 @@ class RenewalCase(BaseModel):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='renewal_cases')
     
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default='medium')
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_renewal_cases', db_column='assigned_to')
     
     renewal_amount = models.DecimalField(max_digits=12, decimal_places=2)
-    # payment_status = models.CharField(max_length=20, default='pending')
-    # payment_date = models.DateTimeField(null=True, blank=True)
+    payment_status = models.CharField(max_length=20, choices=[
+        ('pending', 'Pending'),
+        ('success', 'Success'),
+        ('failed', 'Failed'),
+    ], default='pending', help_text="Payment status - auto-generated from customer_payments table")
     
-    communication_attempts = models.IntegerField(default=0)
-    last_contact_date = models.DateTimeField(null=True, blank=True)
-
     # Channel tracking
     channel_id = models.ForeignKey(
         Channel,
@@ -78,7 +77,6 @@ class RenewalCase(BaseModel):
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['status']),
-            models.Index(fields=['priority']),
             models.Index(fields=['assigned_to']),
             models.Index(fields=['channel_id']),
             models.Index(fields=['batch_code']),
@@ -86,3 +84,32 @@ class RenewalCase(BaseModel):
         
     def __str__(self):
         return f"{self.case_number} - {self.customer.full_name}"
+    
+    @property
+    def communication_attempts_count(self):
+        """Calculate communication attempts from CommunicationLog records"""
+        from apps.customer_communication_preferences.models import CommunicationLog
+        return CommunicationLog.objects.filter(customer=self.customer).count()
+    
+    def get_communication_attempts(self):
+        """Get the actual communication attempts count from logs"""
+        return self.communication_attempts_count
+    
+    @property
+    def priority(self):
+        """Get priority - always returns 'medium' for backward compatibility"""
+        return 'medium'
+    
+    def get_priority_display(self):
+        """Get priority display name - always returns 'Medium' for backward compatibility"""
+        return 'Medium'
+    
+    @property
+    def last_contact_date(self):
+        """Get the last contact date from CommunicationLog records"""
+        from apps.customer_communication_preferences.models import CommunicationLog
+        latest_communication = CommunicationLog.objects.filter(
+            customer=self.customer,
+            is_deleted=False
+        ).order_by('-communication_date').first()
+        return latest_communication.communication_date if latest_communication else None
