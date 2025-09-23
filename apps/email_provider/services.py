@@ -74,10 +74,27 @@ class EmailProviderService:
     
     def get_available_provider(self) -> Optional[EmailProviderConfig]:
         """Get the first available provider that can send emails"""
+        # First try healthy providers
         providers = self.get_healthy_providers()
         
         for provider in providers:
             if provider.can_send_email():
+                return provider
+        
+        # If no healthy providers, try active providers with unknown health status
+        # This is useful for providers that haven't been health-checked yet
+        active_providers = EmailProviderConfig.objects.filter(
+            is_active=True,
+            is_deleted=False,
+            health_status__in=['unknown', 'healthy']
+        ).order_by('priority', 'name')
+        
+        for provider in active_providers:
+            # For unknown health status, check basic requirements
+            if (provider.api_key and 
+                provider.provider_type == 'sendgrid' and 
+                provider.from_email):
+                logger.info(f"Using provider with unknown health status: {provider.name}")
                 return provider
         
         return None
@@ -174,7 +191,6 @@ class EmailProviderService:
             if not api_key:
                 raise ValueError("SendGrid API key not configured")
             
-            # Create SendGrid client (SSL verification disabled globally)
             sg = SendGridAPIClient(api_key=api_key)
             
             # Prepare email
@@ -205,7 +221,6 @@ class EmailProviderService:
             if bcc_emails:
                 mail.bcc = bcc_emails
             
-            # Note: Tracking settings can be configured in SendGrid dashboard for better deliverability
             
             # Add attachments
             if attachments:
@@ -233,10 +248,9 @@ class EmailProviderService:
                     error_msg = f"{error_msg} - Details: {error_details}"
                 except:
                     pass
-            
-            # Check if it's a sender identity issue
+        
             if "does not match a verified Sender Identity" in error_msg:
-                # Provide a helpful error message with instructions
+          
                 helpful_error = f"""
 SendGrid Error: The sender email '{from_email}' is not verified in your SendGrid account.
 
@@ -432,8 +446,6 @@ For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sen
     def check_provider_health(self, provider: EmailProviderConfig) -> bool:
         """Check if a provider is healthy"""
         try:
-            # Simple health check - try to send a test email to a non-existent address
-            # This will test connectivity without actually sending emails
             if provider.provider_type == 'sendgrid':
                 return self._check_sendgrid_health(provider)
             elif provider.provider_type == 'aws_ses':

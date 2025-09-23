@@ -13,6 +13,6 @@ router = DefaultRouter()
 router.register(r'payments', views.CustomerPaymentViewSet, basename='customer-payment')
 
 urlpatterns = [
-    # ViewSet routes - provides all CRUD operations
+
     path('', include(router.urls)),
 ]
