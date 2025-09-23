@@ -16,7 +16,7 @@ from django.core.files.storage import default_storage
 from apps.customers.models import Customer
 from apps.files_upload.models import FileUpload
 from apps.uploads.models import FileUpload as UploadsFileUpload
-from apps.policies.models import Policy, PolicyType
+from apps.policies.models import Policy, PolicyType, PolicyAgent
 from .utils import generate_customer_code, generate_case_number, generate_policy_number, generate_batch_code
 from .serializers import (
     FileUploadSerializer,
@@ -41,6 +41,58 @@ def get_next_available_agent():
     except Exception as e:
         print(f"Error getting next available agent: {e}")
         return None
+
+def get_or_create_policy_agent(agent_name, agent_code=None):
+    """Get or create a PolicyAgent based on agent_name and optional agent_code"""
+    if not agent_name or not str(agent_name).strip():
+        return None
+    
+    agent_name = str(agent_name).strip()
+    
+    try:
+        # First try to find by agent_code if provided
+        if agent_code and str(agent_code).strip():
+            agent_code = str(agent_code).strip()
+            agent = PolicyAgent.objects.filter(agent_code=agent_code).first()
+            if agent:
+                return agent
+        
+        # Try to find by agent_name
+        agent = PolicyAgent.objects.filter(agent_name__iexact=agent_name).first()
+        if agent:
+            return agent
+        
+        # Create new agent
+        agent = PolicyAgent.objects.create(
+            agent_name=agent_name,
+            agent_code=agent_code  # Will auto-generate if None
+        )
+        return agent
+        
+    except Exception as e:
+        print(f"Error creating/finding policy agent: {e}")
+        return None
+
+def log_communication_attempt(customer, channel, outcome='successful', message_content='', response_received='', notes='', initiated_by=None):
+    """Log a communication attempt with a customer"""
+    from apps.customer_communication_preferences.models import CommunicationLog
+    from django.utils import timezone
+    
+    try:
+        CommunicationLog.objects.create(
+            customer=customer,
+            channel=channel,
+            communication_date=timezone.now(),
+            outcome=outcome,
+            message_content=message_content,
+            response_received=response_received,
+            notes=notes,
+            initiated_by=initiated_by
+        )
+        return True
+    except Exception as e:
+        print(f"Error logging communication attempt: {e}")
+        return False
 
 def get_customer_previous_policy_end_date(customer, current_policy_start_date=None, exclude_policy_id=None):
     from apps.policies.models import Policy
@@ -177,30 +229,101 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             try:
                 processing_result = self._process_uploaded_excel_file(uploads_record, request.user, file_upload_record)
                 print(f"Processing result: {processing_result}")
+                print(f"Uploads record status after processing: {uploads_record.status}")
+                
+                # Check if processing was actually successful
+                if not processing_result.get('valid', False):
+                    # Processing failed - return error response
+                    return Response({
+                        'success': False,
+                        'message': 'File processing failed',
+                        'error': processing_result.get('error', 'Unknown processing error'),
+                        'data': {
+                            'uploads_file_id': uploads_record.pk,
+                            'file_name': uploaded_file.name,
+                            'file_size': uploaded_file.size,
+                            'file_hash': file_hash,
+                            'upload_status': 'failed',
+                            'created_at': uploads_record.created_at.isoformat(),
+                            'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
+                            'category': uploads_record.category,
+                            'subcategory': uploads_record.subcategory
+                        },
+                        'processing_details': processing_result
+                    }, status=status.HTTP_400_BAD_REQUEST)
+                
+                # Check if there were any failed records
+                if processing_result.get('failed_records', 0) > 0:
+                    # Some records failed - return partial success with warnings
+                    return Response({
+                        'success': False,
+                        'message': f'File processing completed with {processing_result.get("failed_records", 0)} failed records',
+                        'error': f'{processing_result.get("failed_records", 0)} out of {processing_result.get("total_records", 0)} records failed to process',
+                        'data': {
+                            'uploads_file_id': uploads_record.pk,
+                            'file_name': uploaded_file.name,
+                            'file_size': uploaded_file.size,
+                            'file_hash': file_hash,
+                            'upload_status': 'partial',
+                            'created_at': uploads_record.created_at.isoformat(),
+                            'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
+                            'category': uploads_record.category,
+                            'subcategory': uploads_record.subcategory
+                        },
+                        'processing_details': processing_result
+                    }, status=status.HTTP_207_MULTI_STATUS)
+                
+                # Check if uploads_record status indicates failure
+                if uploads_record.status == 'failed':
+                    return Response({
+                        'success': False,
+                        'message': 'File processing failed',
+                        'error': uploads_record.error_message or 'Unknown processing error',
+                        'data': {
+                            'uploads_file_id': uploads_record.pk,
+                            'file_name': uploaded_file.name,
+                            'file_size': uploaded_file.size,
+                            'file_hash': file_hash,
+                            'upload_status': 'failed',
+                            'created_at': uploads_record.created_at.isoformat(),
+                            'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
+                            'category': uploads_record.category,
+                            'subcategory': uploads_record.subcategory
+                        }
+                    }, status=status.HTTP_400_BAD_REQUEST)
+                    
             except Exception as process_error:
                 print(f"Processing error: {str(process_error)}")
                 print(f"Uploads record status: {uploads_record.status}")
                 
-                # Only fail if the uploads record wasn't already marked as completed/partial
-                if uploads_record.status not in ['completed', 'partial']:
-                    uploads_record.status = 'failed'
-                    uploads_record.error_message = str(process_error)
-                    uploads_record.save()
+                # Mark records as failed
+                uploads_record.status = 'failed'
+                uploads_record.error_message = str(process_error)
+                uploads_record.save()
 
-                    if file_upload_record:
-                        file_upload_record.upload_status = 'failed'
-                        file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
-                        file_upload_record.processing_completed_at = timezone.now()
-                        file_upload_record.save()
-                    raise process_error
-                else:
-                    # Data was processed successfully, just log the warning
-                    print(f"Data processing completed despite warning: {str(process_error)}")
-                    processing_result = {
-                        'success': True,
-                        'message': 'File processed successfully with minor warnings',
-                        'warning': str(process_error)
+                if file_upload_record:
+                    file_upload_record.upload_status = 'failed'
+                    file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
+                    file_upload_record.processing_completed_at = timezone.now()
+                    file_upload_record.save()
+                
+                # Return error response
+                return Response({
+                    'success': False,
+                    'message': 'File processing failed due to an unexpected error',
+                    'error': str(process_error),
+                    'data': {
+                        'uploads_file_id': uploads_record.pk,
+                        'file_name': uploaded_file.name,
+                        'file_size': uploaded_file.size,
+                        'file_hash': file_hash,
+                        'upload_status': 'failed',
+                        'created_at': uploads_record.created_at.isoformat(),
+                        'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
+                        'category': uploads_record.category,
+                        'subcategory': uploads_record.subcategory
                     }
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             response_data = {
                 'success': True,
@@ -427,8 +550,25 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_extension = os.path.splitext(file_name)[1].lower()
         
         if file_extension == '.csv':
-            # Read CSV file
-            df = pd.read_csv(file_path)
+            # Read CSV file with proper encoding handling
+            try:
+                # Try UTF-8 first
+                df = pd.read_csv(file_path, encoding='utf-8')
+            except UnicodeDecodeError:
+                try:
+                    # Try latin-1 if UTF-8 fails
+                    df = pd.read_csv(file_path, encoding='latin-1')
+                except UnicodeDecodeError:
+                    try:
+                        # Try cp1252 (Windows encoding) if latin-1 fails
+                        df = pd.read_csv(file_path, encoding='cp1252')
+                    except UnicodeDecodeError:
+                        try:
+                            # Try utf-8-sig (with BOM) if cp1252 fails
+                            df = pd.read_csv(file_path, encoding='utf-8-sig')
+                        except UnicodeDecodeError:
+                            # Last resort: try with errors='replace' to replace invalid characters
+                            df = pd.read_csv(file_path, encoding='utf-8', errors='replace')
         elif file_extension in ['.xlsx', '.xls']:
             # Read Excel file
             df = pd.read_excel(file_path)
@@ -447,7 +587,18 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 uploads_record.status = 'failed'
                 uploads_record.error_message = validation_result['error']
                 uploads_record.save()
-                return validation_result
+                # Return error result with valid=False
+                return {
+                    'valid': False,
+                    'error': validation_result['error'],
+                    'total_records': 0,
+                    'successful_records': 0,
+                    'failed_records': 0,
+                    'created_customers': 0,
+                    'created_policies': 0,
+                    'created_renewal_cases': 0,
+                    'errors': [validation_result['error']]
+                }
 
             processing_result = self._process_excel_data(df, user)
 
@@ -519,27 +670,31 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     print(f"Error trying to find and update file_upload_record: {str(e)}")
 
 
+            # Ensure processing_result has valid flag
+            processing_result['valid'] = True
             return processing_result
 
         except Exception as e:
-            # Log the error but don't fail the entire process if data was already processed
-            print(f"Warning: Exception in _process_uploaded_excel_file: {str(e)}")
+            # Log the error and mark as failed
+            print(f"Error in _process_uploaded_excel_file: {str(e)}")
             
-            # Only mark as failed if no data was processed
-            if uploads_record.status not in ['completed', 'partial']:
-                uploads_record.status = 'failed'
-                uploads_record.error_message = str(e)
-                uploads_record.updated_by = user
-                uploads_record.save()
-                raise e
-            else:
-                # Data was processed successfully, just log the warning
-                print(f"Data processing completed despite warning: {str(e)}")
-                return {
-                    'success': True,
-                    'message': 'File processed successfully with minor warnings',
-                    'warning': str(e)
-                }
+            uploads_record.status = 'failed'
+            uploads_record.error_message = str(e)
+            uploads_record.updated_by = user
+            uploads_record.save()
+            
+            # Return error result
+            return {
+                'valid': False,
+                'error': str(e),
+                'total_records': 0,
+                'successful_records': 0,
+                'failed_records': 0,
+                'created_customers': 0,
+                'created_policies': 0,
+                'created_renewal_cases': 0,
+                'errors': [str(e)]
+            }
 
     def _validate_excel_structure_flexible(self, df):
         core_required = ['first_name', 'last_name', 'email']
@@ -601,13 +756,14 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             'communication_preferences', 'policy_number', 'policy_type',
             'premium_amount', 'start_date', 'end_date', 'nominee_name',
             'nominee_relationship', 'agent_name', 'agent_code',
-            'priority', 'renewal_amount', 'payment_status',
-            'last_contact_date', 'notes'
+            'renewal_amount',
+            'notes'
         ]
 
-        has_comm_attempts = 'communication_attempts' in df.columns or 'communications_attempts' in df.columns
-        if not has_comm_attempts:
-            required_columns.append('communication_attempts')
+        # communication_attempts is now auto-generated from CommunicationLog, not required from Excel
+        # has_comm_attempts = 'communication_attempts' in df.columns or 'communications_attempts' in df.columns
+        # if not has_comm_attempts:
+        #     required_columns.append('communication_attempts')
 
         missing_columns = [col for col in required_columns if col not in df.columns]
 
@@ -636,7 +792,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         created_renewal_cases = 0
 
         batch_code = generate_batch_code()
-        print(f"Generated batch code: {batch_code}")
 
         for idx, (_, row) in enumerate(df.iterrows()):
             try:
@@ -688,9 +843,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 try:
                     customer_code = generate_customer_code()
 
-                    priority = str(row.get('priority', 'medium')).lower()
-                    if priority not in ['low', 'medium', 'high', 'urgent']:
-                        priority = 'medium'
+                    # priority is now always 'medium' for backward compatibility
 
                     assigned_agent = get_next_available_agent()
 
@@ -711,7 +864,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                             country=str(row.get('country', 'India')),
                             kyc_status=row.get('kyc_status', 'pending').lower(),
                             kyc_documents=str(row.get('kyc_documents', '')),
-                            priority=priority,
+                            # priority is now always 'medium' for backward compatibility
                             assigned_agent=assigned_agent,
                             created_by=user,
                             updated_by=None
@@ -844,6 +997,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 customer=customer
             )
 
+            # Get or create policy agent
+            agent_name = str(row.get('agent_name', '')).strip()
+            agent_code = str(row.get('agent_code', '')).strip() if row.get('agent_code') else None
+            policy_agent = get_or_create_policy_agent(agent_name, agent_code)
+
             policy = Policy.objects.create(
                 policy_number=policy_number,
                 customer=customer,
@@ -857,8 +1015,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 nominee_name=str(row.get('nominee_name', '')),
                 nominee_relationship=str(row.get('nominee_relationship', '')),
                 nominee_contact=str(row.get('nominee_contact', '')),
-                agent_name=str(row.get('agent_name', '')),
-                agent_code=str(row.get('agent_code', '')),
+                agent=policy_agent,  # Store the agent reference
                 created_by=user,
                 last_modified_by=user
             )
@@ -887,13 +1044,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             customer=customer
         )
 
-        renewal_priority = str(row.get('priority', 'medium')).lower()
-        if renewal_priority not in ['low', 'medium', 'high', 'urgent']:
-            renewal_priority = 'medium'
+        # renewal_priority is now always 'medium' for backward compatibility
 
-        payment_status = str(row.get('payment_status', 'pending')).lower()
-        if payment_status not in ['pending', 'completed', 'failed', 'refunded']:
-            payment_status = 'pending'
+        # payment_status is now auto-generated from customer_payments table via signals
+        # payment_status = str(row.get('payment_status', 'pending')).lower()
+        # if payment_status not in ['pending', 'completed', 'failed', 'refunded']:
+        #     payment_status = 'pending'
 
         renewal_amount = row.get('renewal_amount')
         if renewal_amount is None or pd.isna(renewal_amount):
@@ -960,7 +1116,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     # net_amount is required; since fees/taxes/discounts have defaults, set it equal to payment_amount
                     customer_payment_obj = CustomerPayment.objects.create(
                         payment_amount=payment_amount_value,
-                        payment_status=payment_status,
+                        payment_status='pending',  # Default status, will be updated by signals
                         payment_date=payment_date_parsed,
                         payment_mode=payment_mode_value,
                         transaction_id=transaction_id_value,
@@ -978,10 +1134,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             customer=customer,
             policy=policy,
             status=renewal_status,
-            priority=renewal_priority,
+            # priority is now always 'medium' for backward compatibility
             renewal_amount=renewal_amount,
-            communication_attempts=int(row.get('communication_attempts') or row.get('communications_attempts', 0)) if (row.get('communication_attempts') or row.get('communications_attempts')) else 0,
-            last_contact_date=self._parse_datetime(row.get('last_contact_date')),
+            # communication_attempts and last_contact_date are now auto-generated from CommunicationLog records
             channel_id=channel_id,
             notes=str(row.get('notes', '')),
             assigned_to=assigned_user,
@@ -989,6 +1144,29 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             updated_by=None,
             customer_payment=customer_payment_obj
         )
+        
+        # Log initial communication attempt for renewal case creation
+        if channel_id:
+            channel_name = channel_id.name.lower() if channel_id.name else 'email'
+            # Map channel names to communication log channels
+            channel_mapping = {
+                'email': 'email',
+                'sms': 'sms',
+                'whatsapp': 'whatsapp',
+                'phone': 'phone',
+                'call': 'phone',
+                'push': 'push_notification',
+                'in_app': 'in_app'
+            }
+            comm_channel = channel_mapping.get(channel_name, 'email')
+            log_communication_attempt(
+                customer=customer,
+                channel=comm_channel,
+                outcome='successful',
+                message_content=f'Renewal case created: {case_number}',
+                notes=f'Initial renewal case creation via {channel_name}',
+                initiated_by=user
+            )
 
         return renewal_case
 

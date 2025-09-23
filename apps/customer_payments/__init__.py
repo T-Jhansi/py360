@@ -1,1 +1,1 @@
-
+default_app_config = 'apps.customer_payments.apps.CustomerPaymentsConfig'

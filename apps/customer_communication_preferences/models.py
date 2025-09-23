@@ -280,3 +280,100 @@ class CustomerCommunicationPreference(BaseModel):
             enabled_channels.append('push_notification')
             
         return enabled_channels
+
+
+class CommunicationLog(BaseModel):
+    """Log of all communication attempts with customers"""
+    
+    COMMUNICATION_CHANNEL_CHOICES = [
+        ('email', 'Email'),
+        ('sms', 'SMS'),
+        ('phone', 'Phone Call'),
+        ('whatsapp', 'WhatsApp'),
+        ('postal_mail', 'Postal Mail'),
+        ('in_app', 'In-App Notification'),
+        ('push_notification', 'Push Notification'),
+    ]
+    
+    OUTCOME_CHOICES = [
+        ('successful', 'Successful'),
+        ('failed', 'Failed'),
+        ('no_response', 'No Response'),
+        ('busy', 'Busy'),
+        ('invalid_number', 'Invalid Number'),
+        ('blocked', 'Blocked'),
+        ('opt_out', 'Opted Out'),
+        ('delivered', 'Delivered'),
+        ('bounced', 'Bounced'),
+        ('opened', 'Opened'),
+        ('clicked', 'Clicked'),
+        ('replied', 'Replied'),
+    ]
+    
+    # Foreign Key to Customer
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        related_name='communication_logs',
+        help_text="Customer this communication was sent to"
+    )
+    
+    # Communication Details
+    channel = models.CharField(
+        max_length=20,
+        choices=COMMUNICATION_CHANNEL_CHOICES,
+        help_text="Communication channel used"
+    )
+    
+    communication_date = models.DateTimeField(
+        help_text="Date and time of communication attempt"
+    )
+    
+    outcome = models.CharField(
+        max_length=20,
+        choices=OUTCOME_CHOICES,
+        help_text="Result of the communication attempt"
+    )
+    
+    # Additional Details
+    message_content = models.TextField(
+        blank=True,
+        help_text="Content of the message sent (optional)"
+    )
+    
+    response_received = models.TextField(
+        blank=True,
+        help_text="Customer response if any (optional)"
+    )
+    
+    notes = models.TextField(
+        blank=True,
+        help_text="Additional notes about the communication"
+    )
+    
+    # System Fields
+    initiated_by = models.ForeignKey(
+        'users.User',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='initiated_communications',
+        help_text="User who initiated this communication"
+    )
+    
+    class Meta:
+        db_table = 'communication_logs'
+        ordering = ['-communication_date']
+        indexes = [
+            models.Index(fields=['customer', 'communication_date']),
+            models.Index(fields=['channel', 'outcome']),
+            models.Index(fields=['communication_date']),
+        ]
+    
+    def __str__(self):
+        return f"{self.customer.full_name} - {self.get_channel_display()} - {self.get_outcome_display()}"
+    
+    @property
+    def customer_name(self):
+        """Return customer's full name for easy access"""
+        return self.customer.full_name if self.customer else None

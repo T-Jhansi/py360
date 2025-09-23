@@ -106,7 +106,7 @@ class PolicySerializer(serializers.ModelSerializer):
             'policy_type', 'policy_type_name', 'start_date', 'end_date', 'premium_amount',
             'sum_assured', 'status', 'payment_frequency', 'nominee_name', 'nominee_relationship',
             'nominee_contact', 'coverage_details', 'complete_coverage_details', 'policy_document',
-            'terms_conditions', 'special_conditions', 'agent_name', 'agent_code', 'created_by',
+            'terms_conditions', 'special_conditions', 'agent', 'created_by',
             'created_by_name', 'last_modified_by', 'last_modified_by_name', 'is_due_for_renewal',
             'days_to_expiry', 'beneficiaries', 'documents', 'payments', 'notes',
             'created_at', 'updated_at',
@@ -176,7 +176,7 @@ class PolicyCreateSerializer(serializers.ModelSerializer):
             'policy_number', 'customer', 'policy_type', 'start_date', 'end_date',
             'premium_amount', 'sum_assured', 'payment_frequency', 'nominee_name',
             'nominee_relationship', 'nominee_contact', 'coverage_details', 'terms_conditions',
-            'special_conditions', 'agent_name', 'agent_code'
+            'special_conditions', 'agent'
         ]
     
     def validate_policy_number(self, value):

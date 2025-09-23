@@ -51,9 +51,10 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
                 Q(customer__customer_code__icontains=search)
             )
         
-        priority = request.query_params.get('priority', None)
-        if priority:
-            queryset = queryset.filter(priority=priority)
+        # priority filtering removed - all cases now have 'medium' priority
+        # priority = request.query_params.get('priority', None)
+        # if priority:
+        #     queryset = queryset.filter(priority=priority)
         
         # Channel filter
         channel = request.query_params.get('channel', None)
@@ -113,7 +114,7 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
             'case_number', '-case_number',
             'customer__first_name', '-customer__first_name',
             'policy__policy_number', '-policy__policy_number',
-            'priority', '-priority',
+            # 'priority', '-priority',  # priority removed - all cases have 'medium' priority
             'updated_at', '-updated_at',
             'created_at', '-created_at',
             'renewal_amount', '-renewal_amount',
@@ -151,20 +152,17 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
         
         total_closed_cases = queryset.count()
         
-        # Priority breakdown
-        priority_stats = {}
-        for priority_choice in RenewalCase.PRIORITY_CHOICES:
-            priority_code = priority_choice[0]
-            priority_label = priority_choice[1]
-            count = queryset.filter(priority=priority_code).count()
-            priority_stats[priority_code] = {
-                'label': priority_label,
-                'count': count
+        # Priority breakdown - all cases now have 'medium' priority
+        priority_stats = {
+            'medium': {
+                'label': 'Medium',
+                'count': queryset.count()
             }
+        }
         
         # Channel breakdown
         channel_stats = queryset.values(
-            'channel_id__channel_name'
+            'channel_id__name'
         ).annotate(
             count=Count('id')
         ).order_by('-count')[:10] 
@@ -236,12 +234,12 @@ class ClosedCasesViewSet(viewsets.ReadOnlyModelViewSet):
                 'premium_amount': str(case.policy.premium_amount) if case.policy else '',
                 'renewal_amount': str(case.renewal_amount) if case.renewal_amount else '',
                 'priority': case.get_priority_display(),
-                'channel': case.channel_id.channel_name if case.channel_id else '',
+                'channel': case.channel_id.name if case.channel_id else '',
                 'agent': f"{case.assigned_to.first_name} {case.assigned_to.last_name}".strip() if case.assigned_to else '',
                 'batch_id': case.batch_code,
                 'closed_date': case.updated_at.strftime('%Y-%m-%d %H:%M:%S') if case.updated_at else '',
                 'payment_date': case.payment_date.strftime('%Y-%m-%d %H:%M:%S') if case.payment_date else '',
-                'communication_attempts': case.communication_attempts,
+                'communication_attempts': case.communication_attempts_count,
             })
         
         return Response({
