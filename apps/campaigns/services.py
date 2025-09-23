@@ -6,6 +6,7 @@ from django.template import Template, Context
 from .models import Campaign, CampaignRecipient
 from apps.customers.models import Customer
 from apps.policies.models import Policy
+from apps.email_provider.services import EmailProviderService
 
 logger = logging.getLogger(__name__)
 
@@ -111,10 +112,9 @@ class EmailCampaignService:
     @staticmethod
     def _send_individual_email(recipient):
         """
-        Send email to individual recipient with tracking
+        Send email to individual recipient with tracking using SendGrid
         """
         try:
-            from django.core.mail import EmailMultiAlternatives
             import traceback
 
             customer = recipient.customer
@@ -148,7 +148,85 @@ class EmailCampaignService:
             plain_text = re.sub(r'<[^>]+>', '', tracked_content)
             plain_text = plain_text.replace('&nbsp;', ' ').strip()
 
-            logger.info(f"Creating email message for {customer.email}")
+            # Store the email content for debugging
+            recipient.email_content = {
+                'html': tracked_content,
+                'plain': plain_text,
+                'subject': subject
+            }
+
+            logger.info(f"Attempting to send email to {customer.email} using SendGrid")
+
+            # Use SendGrid via EmailProviderService
+            email_service = EmailProviderService()
+            
+            # Get the communication provider from campaign or use default
+            provider = None
+            if campaign.communication_provider:
+                provider = campaign.communication_provider
+                logger.info(f"Using campaign-specific provider: {provider.name}")
+            else:
+                # Get the best available provider (SendGrid with highest priority)
+                provider = email_service.get_available_provider()
+                if provider:
+                    logger.info(f"Using available provider: {provider.name}")
+                else:
+                    logger.warning("No available email providers found, falling back to Django email")
+
+            # Send email using SendGrid if provider is available
+            if provider and provider.provider_type == 'sendgrid':
+                result = email_service.send_email(
+                    to_emails=[customer.email],
+                    subject=subject,
+                    html_content=tracked_content,
+                    text_content=plain_text,
+                    from_email=str(provider.from_email),
+                    from_name=str(provider.from_name) if provider.from_name else None,
+                    reply_to=str(provider.reply_to) if provider.reply_to else None
+                )
+                
+                if result['success']:
+                    logger.info(f"SendGrid email sent successfully to {customer.email}")
+                    current_time = timezone.now()
+                    recipient.email_status = 'delivered'  
+                    recipient.email_sent_at = current_time
+                    recipient.email_delivered_at = current_time  
+                    recipient.save()
+                    
+                    # Update campaign statistics immediately
+                    campaign.update_campaign_statistics()
+                    
+                    logger.info(f"Email sent and delivered successfully to {customer.email}")
+                    return True
+                else:
+                    error_msg = result.get('error', 'Unknown SendGrid error')
+                    logger.error(f"SendGrid email failed to {customer.email}: {error_msg}")
+                    raise Exception(f"SendGrid error: {error_msg}")
+            else:
+                # Fallback to Django email if no SendGrid provider available
+                logger.warning("No SendGrid provider available, using Django email fallback")
+                return EmailCampaignService._send_individual_email_django_fallback(recipient, tracked_content, plain_text, subject)
+
+        except Exception as e:
+            logger.error(f"Error sending individual email: {str(e)}")
+            recipient.email_status = 'failed'
+            recipient.email_error_message = str(e)
+            recipient.save()
+            return False
+    
+    @staticmethod
+    def _send_individual_email_django_fallback(recipient, tracked_content, plain_text, subject):
+        """
+        Fallback method using Django's built-in email sending
+        """
+        try:
+            from django.core.mail import EmailMultiAlternatives
+            import traceback
+
+            customer = recipient.customer
+            campaign = recipient.campaign
+
+            logger.info(f"Using Django email fallback for {customer.email}")
 
             # Create email message with HTML content
             msg = EmailMultiAlternatives(
@@ -158,25 +236,15 @@ class EmailCampaignService:
                 to=[customer.email]
             )
 
-            # Add HTML version with tracking (this is the important part)
             msg.attach_alternative(tracked_content, "text/html")
-
-            # Store the email content for debugging
-            recipient.email_content = {
-                'html': tracked_content,
-                'plain': plain_text,
-                'subject': subject
-            }
-
-            logger.info(f"Attempting to send email to {customer.email}")
 
             # Send email with detailed error handling
             try:
                 msg.send(fail_silently=False)
-                logger.info(f"Email sent successfully to {customer.email}")
+                logger.info(f"Django email sent successfully to {customer.email}")
             except Exception as send_error:
-                logger.error(f"Email send failed to {customer.email}: {str(send_error)}")
-                logger.error(f"Email send traceback: {traceback.format_exc()}")
+                logger.error(f"Django email send failed to {customer.email}: {str(send_error)}")
+                logger.error(f"Django email send traceback: {traceback.format_exc()}")
                 raise send_error
 
             current_time = timezone.now()
@@ -188,11 +256,11 @@ class EmailCampaignService:
             # Update campaign statistics immediately
             campaign.update_campaign_statistics()
 
-            logger.info(f"Email sent and delivered successfully to {customer.email}")
+            logger.info(f"Django email sent and delivered successfully to {customer.email}")
             return True
 
         except Exception as e:
-            logger.error(f"Error sending individual email: {str(e)}")
+            logger.error(f"Error in Django email fallback: {str(e)}")
             recipient.email_status = 'failed'
             recipient.email_error_message = str(e)
             recipient.save()

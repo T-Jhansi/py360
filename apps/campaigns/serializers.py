@@ -48,12 +48,13 @@ class CampaignCreateSerializer(serializers.Serializer):
         ('all_customers', 'All Customers in File'),
     ]
     target_audience_id = serializers.IntegerField(
-        help_text="ID of existing target audience"
+        required=False,
+        help_text="ID of existing target audience (optional - not used in date-based logic)"
     )
     target_audience_type = serializers.ChoiceField(
         choices=TARGET_AUDIENCE_CHOICES,
-        required=False,
-        help_text="Type of target audience to filter (optional fallback)"
+        required=True,
+        help_text="Type of target audience to filter (required for date-based logic)"
     )
 
     # Scheduling options
@@ -124,7 +125,9 @@ class CampaignCreateSerializer(serializers.Serializer):
             raise serializers.ValidationError("Template not found")
 
     def validate_target_audience_id(self, value):
-        """Validate that the target audience exists"""
+        """Validate that the target audience exists (optional)"""
+        if value is None:
+            return value
         try:
             from apps.target_audience.models import TargetAudience
             TargetAudience.objects.get(id=value)
@@ -144,6 +147,27 @@ class CampaignCreateSerializer(serializers.Serializer):
             return value
         except EmailProviderConfig.DoesNotExist:
             raise serializers.ValidationError("Communication provider not found")
+
+    def validate(self, data):
+        """Validate the entire serializer data"""
+        schedule_type = data.get('schedule_type', 'immediate')
+        scheduled_at = data.get('scheduled_at')
+        
+        # Validate scheduled campaigns
+        if schedule_type == 'scheduled':
+            if not scheduled_at:
+                raise serializers.ValidationError({
+                    'scheduled_at': 'Scheduled time is required when schedule_type is "scheduled"'
+                })
+            
+            # Check if scheduled time is in the future
+            from django.utils import timezone
+            if scheduled_at <= timezone.now():
+                raise serializers.ValidationError({
+                    'scheduled_at': 'Scheduled time must be in the future'
+                })
+        
+        return data
 
     def validate_schedule_intervals(self, value):
         """Validate schedule intervals data"""
@@ -209,17 +233,16 @@ class CampaignCreateSerializer(serializers.Serializer):
 
         campaign_name = validated_data.get('campaign_name', file_upload.original_filename)
 
-        # Handle target audience - target_audience_id is required, target_audience_type is optional fallback
         target_audience = None
-        if validated_data.get('target_audience_id'):
-            from apps.target_audience.models import TargetAudience
-            target_audience = TargetAudience.objects.get(id=validated_data['target_audience_id'])
-        elif validated_data.get('target_audience_type'):
+        if validated_data.get('target_audience_type'):
             try:
                 target_audience = self._get_or_create_target_audience(validated_data['target_audience_type'], file_upload)
             except Exception as e:
                 print(f"Warning: Could not create target audience due to permissions: {e}")
                 target_audience = None
+        elif validated_data.get('target_audience_id'):
+            from apps.target_audience.models import TargetAudience
+            target_audience = TargetAudience.objects.get(id=validated_data['target_audience_id'])
 
         # Handle communication provider
         communication_provider = None
@@ -227,20 +250,31 @@ class CampaignCreateSerializer(serializers.Serializer):
             from apps.email_provider.models import EmailProviderConfig
             communication_provider = EmailProviderConfig.objects.get(id=validated_data['communication_provider_id'])
 
+        # Determine campaign status based on schedule type
+        schedule_type = validated_data.get('schedule_type', 'immediate')
+        scheduled_at = validated_data.get('scheduled_at')
+        
+        if schedule_type == 'scheduled' and scheduled_at:
+            campaign_status = 'scheduled'
+            started_at = scheduled_at
+        else:
+            campaign_status = 'draft'
+            started_at = timezone.now()
+
         # Create the campaign with proper relationships
         campaign_data = {
             'name': campaign_name,
             'campaign_type': campaign_type,
             'template': template,
             'description': validated_data.get('description', f"Campaign created from file: {file_upload.original_filename}"),
-            'status': 'draft',
+            'status': campaign_status,
             'upload': file_upload,
             'target_audience': target_audience,
             'communication_provider': communication_provider,
             'channels': ['email'],
-            'schedule_type': validated_data.get('schedule_type', 'immediate'),
-            'scheduled_at': validated_data.get('scheduled_at'),
-            'started_at': validated_data.get('scheduled_at') or timezone.now(),
+            'schedule_type': schedule_type,
+            'scheduled_at': scheduled_at,
+            'started_at': started_at,
             'subject_line': validated_data.get('subject_line', template.subject),
             'enable_advanced_scheduling': validated_data.get('enable_advanced_scheduling', False),
             'advanced_scheduling_config': validated_data.get('schedule_intervals', []),
@@ -264,7 +298,9 @@ class CampaignCreateSerializer(serializers.Serializer):
         campaign.target_count = target_count
         campaign.save()
 
-        if validated_data.get('send_immediately', False):
+        # Handle email sending based on schedule type
+        if schedule_type == 'immediate' and validated_data.get('send_immediately', False):
+            # Send emails immediately
             try:
                 from .services import EmailCampaignService
                 import logging
@@ -306,6 +342,32 @@ class CampaignCreateSerializer(serializers.Serializer):
                 campaign.description += f" [Exception: {str(e)}]"
 
             campaign.save()
+            
+        elif schedule_type == 'scheduled' and scheduled_at:
+            # Schedule campaign for later - Celery will handle the sending
+            try:
+                from .tasks import send_scheduled_campaign_email
+                import logging
+                
+                logger = logging.getLogger(__name__)
+                logger.info(f"Scheduling campaign {campaign.pk} for {scheduled_at}")
+                
+                # Schedule the email sending task
+                send_scheduled_campaign_email.apply_async(
+                    args=[campaign.pk],
+                    eta=scheduled_at
+                )
+                
+                campaign.description += f" [Scheduled for {scheduled_at}]"
+                logger.info(f"Campaign {campaign.pk} scheduled successfully for {scheduled_at}")
+                
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Exception scheduling campaign: {str(e)}")
+                campaign.status = 'draft'
+                campaign.description += f" [Scheduling Error: {str(e)}]"
+                campaign.save()
 
         return campaign
 
@@ -385,36 +447,42 @@ class CampaignCreateSerializer(serializers.Serializer):
             recipients_to_create = []
 
             if target_audience_type == 'pending_renewals':
-                renewal_cases = RenewalCase.objects.filter(
-                    status='pending',
-                    customer__email__isnull=False,
+                # Date-based pending renewals: policies where renewal date has arrived but not yet expired
+                from datetime import date
+                today = date.today()
+                
+                policies = Policy.objects.filter(
+                    status='active',                   
+                    renewal_date__lte=today,           
+                    end_date__gt=today,              
+                    customer__email__isnull=False,   
                     customer__email__gt=''
-                ).select_related('customer', 'policy')
+                ).select_related('customer')
 
                 if file_upload:
                     upload_time = file_upload.created_at
                     time_window_start = upload_time - timedelta(hours=1)
                     time_window_end = upload_time + timedelta(hours=1)
 
-                    file_related_cases = renewal_cases.filter(
+                    file_related_policies = policies.filter(
                         created_at__range=(time_window_start, time_window_end)
                     )
 
-                    # If we found cases in the time window, use them
-                    if file_related_cases.exists():
-                        renewal_cases = file_related_cases
+                    # If we found policies in the time window, use them
+                    if file_related_policies.exists():
+                        policies = file_related_policies
                     else:
-                        renewal_cases = renewal_cases.order_by('-created_at')[:file_upload.successful_records]
+                        policies = policies.order_by('-created_at')[:file_upload.successful_records]
 
-                logger.info(f"Found {renewal_cases.count()} pending renewal cases for campaign {campaign.id}")
+                logger.info(f"Found {policies.count()} policies with pending renewals for campaign {campaign.id if campaign else 'test'}")
 
                 # Prepare bulk recipients
-                for renewal_case in renewal_cases:
+                for policy in policies:
                     recipients_to_create.append(
                         CampaignRecipient(
                             campaign=campaign,
-                            customer=renewal_case.customer,
-                            policy=renewal_case.policy,
+                            customer=policy.customer,
+                            policy=policy,
                             email_status='pending',
                             whatsapp_status='pending',
                             sms_status='pending'
@@ -422,10 +490,14 @@ class CampaignCreateSerializer(serializers.Serializer):
                     )
 
             elif target_audience_type == 'expired_policies':
-                # Get customers with expired policies - IMPROVED LOGIC
+                # Date-based expired policies: policies where end date has passed
+                from datetime import date
+                today = date.today()
+                
                 expired_policies = Policy.objects.filter(
-                    status='expired',
-                    customer__email__isnull=False,
+                    status='active',                   
+                    end_date__lt=today,               
+                    customer__email__isnull=False,    
                     customer__email__gt=''
                 ).select_related('customer')
 
@@ -445,7 +517,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                     else:
                         expired_policies = expired_policies.order_by('-created_at')[:file_upload.successful_records]
 
-                logger.info(f"Found {expired_policies.count()} expired policies for campaign {campaign.id}")
+                logger.info(f"Found {expired_policies.count()} expired policies for campaign {campaign.id if campaign else 'test'}")
 
                 # Prepare bulk recipients
                 for policy in expired_policies:
@@ -489,7 +561,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                     # No file upload, get all customers
                     logger.info(f"No file upload specified, using all customers")
 
-                logger.info(f"Total customers selected for campaign {campaign.id}: {customers.count()}")
+                logger.info(f"Total customers selected for campaign {campaign.id if campaign else 'test'}: {customers.count()}")
 
                 customer_ids = list(customers.values_list('id', flat=True))
 
@@ -564,7 +636,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                         logger.warning(f"Failed to create recipient for customer {recipient_data.customer.id}: {str(e)}")
                         continue
 
-        logger.info(f"Successfully created {recipients_created} recipients for campaign {campaign.id}")
+        logger.info(f"Successfully created {recipients_created} recipients for campaign {campaign.id if campaign else 'test'}")
         return recipients_created
 
     def _add_email_tracking(self, recipient):

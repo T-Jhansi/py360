@@ -1,5 +1,3 @@
-# views.py - FIXED VERSION
-
 import logging
 from rest_framework import viewsets, permissions, filters, status
 from rest_framework.decorators import action, api_view, permission_classes, authentication_classes
@@ -696,8 +694,6 @@ class EmailTrackingView(View):
             if recipient.email_engagement == 'not_opened':
                 recipient.email_engagement = 'opened'
                 recipient.email_opened_at = timezone.now()
-
-                # Set email_delivered_at if not already set (email was delivered if it was opened)
                 if not recipient.email_delivered_at:
                     recipient.email_delivered_at = timezone.now()
 

@@ -39,7 +39,6 @@ class Campaign(BaseModel):
         ('cancelled', 'Cancelled'),
     ]
     
-    # Simplified status choices for frontend
     SIMPLIFIED_STATUS_CHOICES = [
         ('active', 'Active'),
         ('paused', 'Paused'),
@@ -135,8 +134,8 @@ class Campaign(BaseModel):
         elif self.status == 'paused':
             return 'paused'
         elif self.status in ['completed', 'cancelled']:
-            return 'paused'  # Treat completed/cancelled as paused for frontend
-        else:  # draft
+            return 'paused'  
+        else:  
             return 'paused'
 
     def set_simplified_status(self, simplified_status):
@@ -378,7 +377,6 @@ class CampaignRecipient(BaseModel):
         if not self.tracking_id:
             import uuid
             import hashlib
-            # Create a unique tracking ID using campaign, customer, and timestamp
             unique_string = f"{self.campaign_id}-{self.customer_id}-{uuid.uuid4()}"
             self.tracking_id = hashlib.sha256(unique_string.encode()).hexdigest()[:32]
         super().save(*args, **kwargs)
@@ -745,9 +743,6 @@ class CampaignScheduleInterval(BaseModel):
         help_text="When this interval was actually sent"
     )
     
-    # Note: Campaign-level statistics (sent_count, delivered_count, etc.) are tracked in the Campaign model
-    # This table focuses on individual interval configuration and scheduling
-    
     class Meta:
         db_table = 'campaign_schedule_intervals'
         ordering = ['campaign', 'sequence_order']
@@ -770,7 +765,7 @@ class CampaignScheduleInterval(BaseModel):
         """Get human-readable delay description"""
         unit = self.delay_unit
         if self.delay_value == 1:
-            unit = unit.rstrip('s')  # Remove 's' for singular
+            unit = unit.rstrip('s') 
         return f"After {self.delay_value} {unit}"
     
     def calculate_scheduled_time(self, base_time=None):
@@ -797,7 +792,6 @@ class CampaignScheduleInterval(BaseModel):
         # Check trigger conditions
         for condition in self.trigger_conditions:
             if condition == 'no_response':
-                # Check if recipient has responded to previous messages
                 previous_intervals = CampaignScheduleInterval.objects.filter(
                     campaign=self.campaign,
                     sequence_order__lt=self.sequence_order,

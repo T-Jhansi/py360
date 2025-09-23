@@ -65,7 +65,7 @@ def get_or_create_policy_agent(agent_name, agent_code=None):
         # Create new agent
         agent = PolicyAgent.objects.create(
             agent_name=agent_name,
-            agent_code=agent_code  # Will auto-generate if None
+            agent_code=agent_code 
         )
         return agent
         
@@ -104,17 +104,17 @@ def get_customer_previous_policy_end_date(customer, current_policy_start_date=No
         # Build query to find previous policies
         query = Policy.objects.filter(customer_id=customer_id)
 
-        # Exclude current policy if specified
+       
         if exclude_policy_id:
             query = query.exclude(id=exclude_policy_id)
 
-        # If we have current policy start date, only look for policies that ended before it
+       
         if current_policy_start_date:
             if isinstance(current_policy_start_date, datetime):
                 current_policy_start_date = current_policy_start_date.date()
             query = query.filter(end_date__lt=current_policy_start_date)
 
-        # Get the most recent previous policy by end_date
+       
         previous_policy = query.order_by('-end_date').first()
 
         if previous_policy:
@@ -123,7 +123,7 @@ def get_customer_previous_policy_end_date(customer, current_policy_start_date=No
         return None
 
     except Exception as e:
-        # Log error but don't break the flow
+      
         print(f"Error getting previous policy end date: {e}")
         return None
 
@@ -143,22 +143,20 @@ def calculate_policy_and_renewal_status(end_date, start_date=None, grace_period_
     policy_due_threshold = 15
     overdue_threshold = today - timedelta(days=grace_period_days)
 
-    # Enhanced renewal detection logic
-    # First check: Original logic for backward compatibility
     if start_date and start_date > end_date:
         return 'active', 'renewed'
 
-    # Second check: New logic - compare with previous policy end date
+    
     if customer and start_date:
         previous_policy_end_date = get_customer_previous_policy_end_date(
             customer, start_date, exclude_policy_id
         )
 
         if previous_policy_end_date and start_date > previous_policy_end_date:
-            # This is a renewal - new policy starts after previous policy ended
+           
             return 'active', 'renewed'
 
-    # Existing status calculation logic (unchanged)
+    
     if end_date < today:
         if end_date >= overdue_threshold:
             policy_status = 'expired'
@@ -254,7 +252,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 
                 # Check if there were any failed records
                 if processing_result.get('failed_records', 0) > 0:
-                    # Some records failed - return partial success with warnings
+                 
                     return Response({
                         'success': False,
                         'message': f'File processing completed with {processing_result.get("failed_records", 0)} failed records',
@@ -401,10 +399,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 }
             }
 
-        # MIME type validation is optional - some clients don't set it correctly
-        # We'll rely more on file extension validation
         if hasattr(file, 'content_type') and file.content_type and file.content_type not in allowed_mime_types:
-            # Only show MIME type error for clearly wrong types
+           
             if file.content_type.startswith('image/') or file.content_type.startswith('video/') or file.content_type.startswith('audio/'):
                 return {
                     'valid': False,
@@ -420,7 +416,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             header = file.read(8)
             file.seek(0)
 
-            # Only validate file signatures for Excel files
+           
             if file_extension in ['.xlsx', '.xls']:
                 xlsx_signature = b'\x50\x4B\x03\x04' 
                 xls_signature = b'\xD0\xCF\x11\xE0'  
@@ -436,8 +432,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         }
                     }
             
-            # For CSV and TXT files, we don't need to validate file signatures
-            # as they can have various encodings and formats
+           
 
         except Exception:
             return {
@@ -550,24 +545,23 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         file_extension = os.path.splitext(file_name)[1].lower()
         
         if file_extension == '.csv':
-            # Read CSV file with proper encoding handling
+            
             try:
-                # Try UTF-8 first
+              
                 df = pd.read_csv(file_path, encoding='utf-8')
             except UnicodeDecodeError:
                 try:
-                    # Try latin-1 if UTF-8 fails
+                   
                     df = pd.read_csv(file_path, encoding='latin-1')
                 except UnicodeDecodeError:
                     try:
-                        # Try cp1252 (Windows encoding) if latin-1 fails
+                       
                         df = pd.read_csv(file_path, encoding='cp1252')
                     except UnicodeDecodeError:
                         try:
-                            # Try utf-8-sig (with BOM) if cp1252 fails
+                           
                             df = pd.read_csv(file_path, encoding='utf-8-sig')
                         except UnicodeDecodeError:
-                            # Last resort: try with errors='replace' to replace invalid characters
                             df = pd.read_csv(file_path, encoding='utf-8', errors='replace')
         elif file_extension in ['.xlsx', '.xls']:
             # Read Excel file
@@ -760,10 +754,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             'notes'
         ]
 
-        # communication_attempts is now auto-generated from CommunicationLog, not required from Excel
-        # has_comm_attempts = 'communication_attempts' in df.columns or 'communications_attempts' in df.columns
-        # if not has_comm_attempts:
-        #     required_columns.append('communication_attempts')
 
         missing_columns = [col for col in required_columns if col not in df.columns]
 

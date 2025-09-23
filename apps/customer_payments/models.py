@@ -8,9 +8,6 @@ from decimal import Decimal
 from apps.core.models import BaseModel
 from apps.customers.models import Customer
 
-# from apps.renewals.models import RenewalCase
-
-
 class CustomerPayment(BaseModel):
     """
     Customer payment records for tracking policy renewal payments and transactions.
