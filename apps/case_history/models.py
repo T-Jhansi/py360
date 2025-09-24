@@ -7,12 +7,8 @@ from decimal import Decimal
 
 User = get_user_model()
 
-# Import the existing RenewalCase model to use as our Case model
 from apps.renewals.models import RenewalCase
 
-
-# Use the existing RenewalCase model as our Case model
-# This ensures we work with actual business data instead of dummy data
 Case = RenewalCase
 
 # Add properties to RenewalCase to make it compatible with our case history system
