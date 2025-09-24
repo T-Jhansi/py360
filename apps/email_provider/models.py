@@ -13,7 +13,8 @@ class EmailProviderConfig(models.Model):
     PROVIDER_CHOICES = [
         ('sendgrid', 'SendGrid'),
         ('aws_ses', 'AWS SES'),
-        ('smtp', 'SMTP'),
+        ('mailgun', 'Mailgun'),
+        ('smtp', 'Custom SMTP'),
     ]
     
     PRIORITY_CHOICES = [
@@ -31,6 +32,18 @@ class EmailProviderConfig(models.Model):
     api_secret = models.TextField(blank=True, null=True, help_text="API secret (encrypted)")
     access_key_id = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Access Key ID (encrypted)")
     secret_access_key = models.CharField(max_length=255, blank=True, null=True, help_text="AWS Secret Access Key (encrypted)")
+    
+    # AWS SES specific fields
+    aws_region = models.CharField(max_length=50, blank=True, null=True, help_text="AWS region for SES")
+    
+    # Mailgun specific fields
+    domain = models.CharField(max_length=255, blank=True, null=True, help_text="Mailgun domain")
+    
+    # SMTP specific fields
+    smtp_host = models.CharField(max_length=255, blank=True, null=True, help_text="SMTP server host")
+    smtp_port = models.PositiveIntegerField(blank=True, null=True, help_text="SMTP server port")
+    smtp_username = models.CharField(max_length=255, blank=True, null=True, help_text="SMTP username (encrypted)")
+    smtp_password = models.CharField(max_length=255, blank=True, null=True, help_text="SMTP password (encrypted)")
 
     # Email settings
     from_email = models.EmailField(help_text="Default from email address")
