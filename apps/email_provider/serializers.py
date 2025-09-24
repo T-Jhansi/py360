@@ -48,7 +48,7 @@ class EmailProviderConfigCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailProviderConfig
         fields = [
-            'name', 'provider_type', 'from_email', 'from_name', 'reply_to',
+            'name', 'provider_type', 'api_key', 'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
             'priority', 'is_default', 'is_active'
         ]

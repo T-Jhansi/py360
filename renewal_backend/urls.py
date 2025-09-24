@@ -42,6 +42,7 @@ api_patterns = [
     path('case-tracking/', include('apps.case_tracking.urls')),
     path('case-logs/', include('apps.case_logs.urls')),
     path('case-details/', include('apps.case_details.urls')),
+    path('cases/', include('apps.case_history.urls')),
     path('closed-cases/', include('apps.closed_cases.urls')),
     path('financial-profiles/', include('apps.customer_financial_profile.urls')),
     path('customer-assets/', include('apps.customer_assets.urls')),
