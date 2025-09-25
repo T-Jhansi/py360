@@ -10,6 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 from .models import CaseHistory, CaseComment
 from apps.renewals.models import RenewalCase as Case
+from apps.case_logs.models import CaseLog
 from .serializers import (
     CaseSerializer,
     CaseListSerializer,
@@ -19,6 +20,7 @@ from .serializers import (
     CaseStatusUpdateSerializer,
     CaseAssignmentSerializer,
 )
+from apps.case_logs.serializers import CaseLogSerializer
 
 
 class CaseListView(generics.ListCreateAPIView):
@@ -241,6 +243,10 @@ def case_timeline_view(request, case_number):
     comments = CaseComment.objects.filter(case=case, is_deleted=False).select_related('created_by').order_by('-created_at')
     comments_serializer = CaseCommentSerializer(comments, many=True, context={'request': request})
     
+    # Get case logs
+    case_logs = CaseLog.objects.filter(renewal_case=case, is_deleted=False).select_related('created_by', 'updated_by').order_by('-created_at')
+    case_logs_serializer = CaseLogSerializer(case_logs, many=True, context={'request': request})
+    
     # Get case details
     case_serializer = CaseSerializer(case, context={'request': request})
     
@@ -248,6 +254,7 @@ def case_timeline_view(request, case_number):
         'case': case_serializer.data,
         'history': history_serializer.data,
         'comments': comments_serializer.data,
+        'case_logs': case_logs_serializer.data,
     })
 
 
