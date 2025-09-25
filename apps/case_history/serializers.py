@@ -72,6 +72,9 @@ class CaseSerializer(serializers.ModelSerializer):
     # Map RenewalCase fields to expected case history fields
     handling_agent_name = serializers.SerializerMethodField()
     case_creation_method = serializers.SerializerMethodField()
+    created_date = serializers.SerializerMethodField()
+    current_status = serializers.SerializerMethodField()
+    processing_time = serializers.SerializerMethodField()
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_email = serializers.CharField(source='customer.email', read_only=True)
     status_display = serializers.CharField(source='get_status_display', read_only=True)
@@ -98,6 +101,9 @@ class CaseSerializer(serializers.ModelSerializer):
             'priority_display',
             'handling_agent_name',
             'case_creation_method',
+            'created_date',
+            'current_status',
+            'processing_time',
             'customer',
             'customer_name',
             'customer_email',
@@ -112,8 +118,6 @@ class CaseSerializer(serializers.ModelSerializer):
             'is_active',
             'history',
             'comments',
-            'created_at',
-            'updated_at',
             'created_by',
             'updated_by',
         ]
@@ -136,6 +140,38 @@ class CaseSerializer(serializers.ModelSerializer):
             return f"Case uploaded via bulk upload (Batch: {obj.batch_code})"
         else:
             return "Case created by agent"
+    
+    def get_created_date(self, obj):
+        """Format created_at as readable date and time"""
+        if obj.created_at:
+            return obj.created_at.strftime('%d/%m/%Y, %I:%M:%S %p')
+        return None
+    
+    def get_current_status(self, obj):
+        """Get current work step from the last case log entry"""
+        from apps.case_logs.models import CaseLog
+        last_case_log = CaseLog.objects.filter(
+            renewal_case=obj, 
+            is_deleted=False
+        ).order_by('-created_at').first()
+        
+        if last_case_log and last_case_log.current_work_step:
+            return last_case_log.get_current_work_step_display()
+        return None
+    
+    def get_processing_time(self, obj):
+        """Calculate processing time in days from case creation to now"""
+        if obj.created_at:
+            from django.utils import timezone
+            now = timezone.now()
+            # Ensure both datetimes are timezone-aware
+            if obj.created_at.tzinfo is None:
+                case_created = timezone.make_aware(obj.created_at)
+            else:
+                case_created = obj.created_at
+            delta = now - case_created
+            return delta.days
+        return None
     
     def get_closed_at(self, obj):
         """Get closed date"""
