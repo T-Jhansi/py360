@@ -5,7 +5,6 @@ from apps.renewals.models import RenewalCase
 
 User = get_user_model()
 
-
 class CaseCommentSerializer(serializers.ModelSerializer):
     
     created_by_name = serializers.CharField(source='created_by.get_full_name', read_only=True)
@@ -71,12 +70,8 @@ class CaseSerializer(serializers.ModelSerializer):
     """Serializer for case details with history and comments."""
     
     # Map RenewalCase fields to expected case history fields
-    case_id = serializers.CharField(source='case_number', read_only=True)
-    title = serializers.SerializerMethodField()
-    description = serializers.CharField(source='notes', read_only=True)
-    handling_agent = serializers.CharField(source='assigned_to', read_only=True)
     handling_agent_name = serializers.SerializerMethodField()
-    handling_agent_email = serializers.SerializerMethodField()
+    case_creation_method = serializers.SerializerMethodField()
     customer_name = serializers.CharField(source='customer.full_name', read_only=True)
     customer_email = serializers.CharField(source='customer.email', read_only=True)
     status_display = serializers.CharField(source='get_status_display', read_only=True)
@@ -97,16 +92,12 @@ class CaseSerializer(serializers.ModelSerializer):
         model = RenewalCase
         fields = [
             'id',
-            'case_id',
-            'title',
-            'description',
             'status',
             'status_display',
             'priority',
             'priority_display',
-            'handling_agent',
             'handling_agent_name',
-            'handling_agent_email',
+            'case_creation_method',
             'customer',
             'customer_name',
             'customer_email',
@@ -127,26 +118,24 @@ class CaseSerializer(serializers.ModelSerializer):
             'updated_by',
         ]
     
-    def get_title(self, obj):
-        """Get case title from customer and policy info"""
-        if obj.customer and obj.policy:
-            return f"Renewal for {obj.customer.full_name} - {obj.policy.policy_number}"
-        elif obj.customer:
-            return f"Renewal for {obj.customer.full_name}"
-        else:
-            return f"Renewal Case {obj.case_number}"
+    # def get_handling_agent(self, obj):
+    #     """Get handling agent from policy_agents table"""
+    #     if obj.policy and obj.policy.agent:
+    #         return f"{obj.policy.agent.agent_name} ({obj.policy.agent.email})"
+    #     return None
     
     def get_handling_agent_name(self, obj):
-        """Get handling agent name"""
-        if obj.assigned_to:
-            return obj.assigned_to.get_full_name()
+        """Get handling agent name from policy_agents table"""
+        if obj.policy and obj.policy.agent:
+            return obj.policy.agent.agent_name
         return None
     
-    def get_handling_agent_email(self, obj):
-        """Get handling agent email"""
-        if obj.assigned_to:
-            return obj.assigned_to.email
-        return None
+    def get_case_creation_method(self, obj):
+        """Determine how the case was created based on batch_code"""
+        if obj.batch_code:
+            return f"Case uploaded via bulk upload (Batch: {obj.batch_code})"
+        else:
+            return "Case created by agent"
     
     def get_closed_at(self, obj):
         """Get closed date"""
@@ -289,7 +278,6 @@ class CaseListSerializer(serializers.ModelSerializer):
             from django.utils import timezone
             now = timezone.now()
             if obj.created_at.tzinfo is None:
-                # If created_at is naive, make it timezone-aware
                 created_at = timezone.make_aware(obj.created_at)
             else:
                 created_at = obj.created_at
@@ -326,7 +314,6 @@ class CaseCommentCreateSerializer(serializers.ModelSerializer):
         validated_data['created_by'] = self.context['request'].user
         comment = super().create(validated_data)
         
-        # Create history entry for the comment
         CaseHistory.objects.create(
             case=comment.case,
             action='comment_added',
@@ -340,7 +327,6 @@ class CaseCommentCreateSerializer(serializers.ModelSerializer):
 
 class CaseStatusUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating case status."""
-    
     class Meta:
         model = RenewalCase
         fields = ['status']
@@ -351,7 +337,6 @@ class CaseStatusUpdateSerializer(serializers.ModelSerializer):
         instance.status = validated_data['status']
         instance.save()
         
-        # Create history entry for status change
         CaseHistory.objects.create(
             case=instance,
             action='status_changed',
@@ -363,10 +348,8 @@ class CaseStatusUpdateSerializer(serializers.ModelSerializer):
         
         return instance
 
-
 class CaseAssignmentSerializer(serializers.ModelSerializer):
     """Serializer for assigning cases to agents."""
-    
     class Meta:
         model = RenewalCase
         fields = ['handling_agent']
@@ -377,7 +360,6 @@ class CaseAssignmentSerializer(serializers.ModelSerializer):
         instance.handling_agent = validated_data['handling_agent']
         instance.save()
         
-        # Create history entry for assignment change
         if instance.handling_agent:
             CaseHistory.objects.create(
                 case=instance,
@@ -396,3 +378,4 @@ class CaseAssignmentSerializer(serializers.ModelSerializer):
             )
         
         return instance
+

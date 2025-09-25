@@ -1,7 +1,3 @@
-"""
-Admin configuration for Case History & Timeline module.
-"""
-
 from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
@@ -9,7 +5,6 @@ from django.utils.safestring import mark_safe
 
 from .models import CaseHistory, CaseComment
 from apps.renewals.models import RenewalCase as Case
-
 
 @admin.register(Case)
 class CaseAdmin(admin.ModelAdmin):

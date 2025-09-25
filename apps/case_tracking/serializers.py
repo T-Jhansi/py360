@@ -311,7 +311,7 @@ class CaseTrackingSerializer(serializers.ModelSerializer):
 
     
     def get_agent_name(self, obj):
-        return obj.policy.agent_name if obj.policy and obj.policy.agent_name else None
+        return obj.policy.agent.agent_name if obj.policy and obj.policy.agent else None
     
     def get_upload_date(self, obj):
         return obj.created_at.strftime('%d/%m/%Y') if obj.created_at else None
