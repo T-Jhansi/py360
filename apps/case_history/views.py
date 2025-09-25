@@ -222,7 +222,11 @@ class CaseCloseView(APIView):
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def case_timeline_view(request, case_number):
-    case = get_object_or_404(Case, case_number=case_number, is_deleted=False)
+    case = get_object_or_404(
+        Case.objects.select_related('policy__agent', 'customer', 'assigned_to'), 
+        case_number=case_number, 
+        is_deleted=False
+    )
     
     if not (request.user.is_staff or 
             case.handling_agent == request.user or 
@@ -230,11 +234,11 @@ def case_timeline_view(request, case_number):
         raise PermissionDenied("You don't have permission to view this case.")
     
     # Get history entries
-    history = CaseHistory.objects.filter(case=case, is_deleted=False).order_by('-created_at')
+    history = CaseHistory.objects.filter(case=case, is_deleted=False).select_related('created_by').order_by('-created_at')
     history_serializer = CaseHistorySerializer(history, many=True, context={'request': request})
     
     # Get comments
-    comments = CaseComment.objects.filter(case=case, is_deleted=False).order_by('-created_at')
+    comments = CaseComment.objects.filter(case=case, is_deleted=False).select_related('created_by').order_by('-created_at')
     comments_serializer = CaseCommentSerializer(comments, many=True, context={'request': request})
     
     # Get case details

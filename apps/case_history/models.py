@@ -11,7 +11,6 @@ from apps.renewals.models import RenewalCase
 
 Case = RenewalCase
 
-# Add properties to RenewalCase to make it compatible with our case history system
 def get_case_id(self):
     """Get case ID in the format expected by case history"""
     return self.case_number
@@ -43,7 +42,6 @@ def get_processing_days(self):
         from django.utils import timezone
         now = timezone.now()
         if self.created_at.tzinfo is None:
-            # If created_at is naive, make it timezone-aware
             from django.utils import timezone
             created_at = timezone.make_aware(self.created_at)
         else:

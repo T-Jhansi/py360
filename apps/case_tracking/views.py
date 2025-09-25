@@ -35,6 +35,7 @@ class CaseTrackingViewSet(viewsets.ReadOnlyModelViewSet):
             'customer',                   
             'policy',                      
             'policy__policy_type',       
+            'policy__agent',
             'channel_id',                  
             'assigned_to',                 
         ).prefetch_related(
