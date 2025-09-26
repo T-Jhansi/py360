@@ -18,6 +18,18 @@ urlpatterns = [
     # Timeline by customer
     path('customer/<int:customer_id>/', views.customer_policy_timeline, name='customer-timeline'),
     
+    # Dashboard and comprehensive views
+    path('dashboard/<int:customer_id>/', views.policy_timeline_dashboard, name='timeline-dashboard'),
+    path('complete-view/<int:customer_id>/', views.policy_timeline_complete_view, name='timeline-complete-view'),
+    path('complete-api/<int:customer_id>/', views.policy_timeline_complete_api, name='timeline-complete-api'),
+    
+    # Search and analytics
+    path('search/', views.search_timeline_events, name='search-timeline-events'),
+    path('statistics/', views.timeline_statistics, name='timeline-statistics'),
+    
+    # Bulk operations
+    path('bulk-create/', views.create_timeline_event_bulk, name='bulk-create-events'),
+    
     # Utility endpoints
     path('event-types/', views.timeline_event_types, name='event-types'),
     path('create-event/', views.create_timeline_event, name='create-event'),
