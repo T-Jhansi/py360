@@ -459,4 +459,4 @@ AUTHENTICATION_BACKENDS = ['apps.users.backends.EmailBackend']
 AUTH_USER_MODEL = 'users.User'
 
 # Email tracking settings
-BASE_URL = config('BASE_URL', default='http://localhost:8000')
+BASE_URL = config('BASE_URL', default='http://13.233.6.207:8000')
