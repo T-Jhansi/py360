@@ -69,6 +69,7 @@ LOCAL_APPS = [
     'apps.customers_files',
     'apps.customers_documents',
     'apps.ai_insights',
+    'apps.customer_insights',
     'apps.ai_policy_recommendations',
     'apps.policy_timeline',
     'apps.other_insurance_policies',
