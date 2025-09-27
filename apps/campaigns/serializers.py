@@ -76,7 +76,7 @@ class CampaignCreateSerializer(serializers.Serializer):
     # Optional fields
     description = serializers.CharField(max_length=500, required=False, help_text="Campaign description")
     subject_line = serializers.CharField(max_length=200, required=False, help_text="Email subject line")
-    send_immediately = serializers.BooleanField(required=False, help_text="Send emails immediately after creating campaign")
+    send_immediately = serializers.BooleanField(required=False, default=False, help_text="Send emails immediately after creating campaign")
     
     # Advanced Scheduling
     enable_advanced_scheduling = serializers.BooleanField(
@@ -541,20 +541,24 @@ class CampaignCreateSerializer(serializers.Serializer):
                 )
 
                 if file_upload:
+                    # For file uploads, use the successful_records count as target
+                    target_count = file_upload.successful_records if file_upload.successful_records > 0 else customers.count()
+                    
+                    # Try to find customers created around the file upload time first
                     upload_time = file_upload.created_at
-                    time_window_start = upload_time - timedelta(hours=1)
+                    time_window_start = upload_time - timedelta(hours=2)
                     time_window_end = upload_time + timedelta(hours=2)
 
                     file_related_customers = customers.filter(
                         created_at__range=(time_window_start, time_window_end)
                     )
 
-                    # If we found customers in the time window, use them
+                    # If we found customers in the time window, use them (up to target count)
                     if file_related_customers.exists():
-                        customers = file_related_customers
+                        customers = file_related_customers.order_by('-created_at')[:target_count]
                         logger.info(f"Found {customers.count()} customers from file upload time window")
                     else:
-                        target_count = file_upload.successful_records if file_upload.successful_records > 0 else 10
+                        # Fallback: use most recent customers up to target count
                         customers = customers.order_by('-created_at')[:target_count]
                         logger.info(f"Using {customers.count()} most recent customers (target: {target_count})")
                 else:
@@ -562,6 +566,10 @@ class CampaignCreateSerializer(serializers.Serializer):
                     logger.info(f"No file upload specified, using all customers")
 
                 logger.info(f"Total customers selected for campaign {campaign.id if campaign else 'test'}: {customers.count()}")
+                
+                # Debug: Log customer details
+                for customer in customers[:3]:  # Log first 3 customers for debugging
+                    logger.info(f"Selected customer: {customer.email} (ID: {customer.pk}, Created: {customer.created_at})")
 
                 customer_ids = list(customers.values_list('id', flat=True))
 
@@ -592,6 +600,7 @@ class CampaignCreateSerializer(serializers.Serializer):
                     )
 
             if recipients_to_create:
+                logger.info(f"Creating {len(recipients_to_create)} campaign recipients for campaign {campaign.id if campaign else 'test'}")
                 recipients_created = 0
                 try:
                     recipients_to_create.sort(
