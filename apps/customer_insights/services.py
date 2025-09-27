@@ -1,5 +1,6 @@
 """
 Customer Insights services for data aggregation and calculations.
+Simplified design with single insights model and JSON storage.
 """
 
 from django.db import models
@@ -8,6 +9,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from collections import defaultdict, Counter
 from typing import Dict, List, Any, Optional
+import json
 
 from apps.customers.models import Customer
 from apps.customer_payments.models import CustomerPayment
@@ -16,10 +18,7 @@ from apps.customer_communication_preferences.models import CommunicationLog
 from apps.policies.models import Policy
 from apps.renewals.models import RenewalCase
 from apps.case_logs.models import CaseLog
-from .models import (
-    CustomerInsight, PaymentInsight, CommunicationInsight, 
-    ClaimsInsight, CustomerProfileInsight
-)
+from .models import CustomerInsight
 
 
 class CustomerInsightsService:
@@ -29,24 +28,78 @@ class CustomerInsightsService:
         self.now = timezone.now()
         self.today = self.now.date()
     
-    def get_customer_insights(self, customer_id: int) -> Dict[str, Any]:
-        """Get comprehensive customer insights"""
+    def _serialize_datetime(self, obj):
+        """Convert datetime objects to ISO format strings for JSON serialization"""
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        elif isinstance(obj, dict):
+            return {key: self._serialize_datetime(value) for key, value in obj.items()}
+        elif isinstance(obj, list):
+            return [self._serialize_datetime(item) for item in obj]
+        else:
+            return obj
+    
+    def get_customer_insights(self, customer_id: int, force_recalculate: bool = False) -> Dict[str, Any]:
+        """Get comprehensive customer insights with caching"""
         try:
             customer = Customer.objects.get(id=customer_id, is_deleted=False)
         except Customer.DoesNotExist:
             return {"error": "Customer not found"}
         
-        insights = {
+        # Check if we have cached insights
+        insight_record, created = CustomerInsight.objects.get_or_create(
+            customer=customer,
+            defaults={'is_cached': False}
+        )
+        
+        # Recalculate if forced, expired, or not cached
+        if force_recalculate or not insight_record.is_cached or insight_record.is_expired:
+            insights_data = self._calculate_all_insights(customer)
+            
+            # Serialize datetime objects before storing in JSONFields
+            insights_data['payment_insights'] = self._serialize_datetime(insights_data['payment_insights'])
+            insights_data['communication_insights'] = self._serialize_datetime(insights_data['communication_insights'])
+            insights_data['claims_insights'] = self._serialize_datetime(insights_data['claims_insights'])
+            insights_data['profile_insights'] = self._serialize_datetime(insights_data['profile_insights'])
+            
+            # Update the insight record
+            insight_record.payment_insights = insights_data['payment_insights']
+            insight_record.communication_insights = insights_data['communication_insights']
+            insight_record.claims_insights = insights_data['claims_insights']
+            insight_record.profile_insights = insights_data['profile_insights']
+            insight_record.is_cached = True
+            insight_record.cache_expires_at = timezone.now() + timedelta(hours=24)  # Cache for 24 hours
+            insight_record.save()
+        else:
+            # Use cached data
+            insights_data = {
+                'payment_insights': insight_record.payment_insights,
+                'communication_insights': insight_record.communication_insights,
+                'claims_insights': insight_record.claims_insights,
+                'profile_insights': insight_record.profile_insights,
+            }
+        
+        # Always get fresh payment schedule and history (these change frequently)
+        return {
             "customer_info": self._get_customer_basic_info(customer),
+            "payment_insights": insights_data['payment_insights'],
+            "communication_insights": insights_data['communication_insights'],
+            "claims_insights": insights_data['claims_insights'],
+            "profile_insights": insights_data['profile_insights'],
+            "payment_schedule": self.get_payment_schedule(customer),
+            "payment_history": self.get_payment_history(customer),
+            "calculated_at": insight_record.calculated_at,
+            "is_cached": insight_record.is_cached,
+        }
+    
+    def _calculate_all_insights(self, customer: Customer) -> Dict[str, Any]:
+        """Calculate all insights for a customer"""
+        return {
             "payment_insights": self.calculate_payment_insights(customer),
             "communication_insights": self.calculate_communication_insights(customer),
             "claims_insights": self.calculate_claims_insights(customer),
             "profile_insights": self.calculate_profile_insights(customer),
-            "payment_schedule": self.get_payment_schedule(customer),
-            "payment_history": self.get_payment_history(customer),
         }
-        
-        return insights
     
     def _get_customer_basic_info(self, customer: Customer) -> Dict[str, Any]:
         """Get basic customer information"""
@@ -59,7 +112,7 @@ class CustomerInsightsService:
             "status": customer.status,
             "priority": customer.priority,
             "profile": customer.profile,
-            "customer_since": customer.first_policy_date,
+            "customer_since": getattr(customer, 'first_policy_date', None),
             "total_policies": customer.total_policies,
             "total_premium": float(customer.total_premium),
         }
@@ -111,12 +164,9 @@ class CustomerInsightsService:
             "preferred_payment_method": most_used_mode,
             "average_payment_amount": float(avg_amount),
             "customer_since_years": customer_since,
-            "last_payment_date": payments.first().payment_date if payments.exists() else None,
+            "last_payment_date": payments.first().payment_date.isoformat() if payments.exists() and payments.first().payment_date else None,
             "payment_frequency": timing_analysis.get('frequency', 'Unknown'),
         }
-        
-        # Save to database
-        self._save_payment_insights(customer, insights)
         
         return insights
     
@@ -198,12 +248,6 @@ class CustomerInsightsService:
         else:
             return "Poor"
     
-    def _save_payment_insights(self, customer: Customer, insights: Dict[str, Any]):
-        """Save payment insights to database"""
-        PaymentInsight.objects.update_or_create(
-            customer=customer,
-            defaults=insights
-        )
     
     def calculate_communication_insights(self, customer: Customer) -> Dict[str, Any]:
         """Calculate communication insights for a customer"""
@@ -246,16 +290,13 @@ class CustomerInsightsService:
             "total_communications": total_communications,
             "avg_response_time": round(response_time, 1),
             "satisfaction_rating": round(satisfaction, 1),
-            "last_contact_date": last_contact,
+            "last_contact_date": last_contact.isoformat() if last_contact else None,
             "channel_breakdown": channel_breakdown,
             "preferred_channel": preferred_channel,
             "communication_frequency": frequency,
             "response_rate": round(response_rate, 1),
             "escalation_count": escalations,
         }
-        
-        # Save to database
-        self._save_communication_insights(customer, insights)
         
         return insights
     
@@ -303,63 +344,87 @@ class CustomerInsightsService:
         else:
             return "Very Low"
     
-    def _save_communication_insights(self, customer: Customer, insights: Dict[str, Any]):
-        """Save communication insights to database"""
-        CommunicationInsight.objects.update_or_create(
-            customer=customer,
-            defaults=insights
-        )
     
     def calculate_claims_insights(self, customer: Customer) -> Dict[str, Any]:
-        """Calculate claims insights for a customer"""
-        # Note: This is a mock implementation since we don't have a claims model yet
-        # In a real system, you'd query actual claims data
+        """Calculate real claims insights from PolicyClaim data"""
+        from apps.policies.models import PolicyClaim
         
-        # Mock data based on the images
-        mock_claims_data = {
-            "total_claims": 5,
-            "approved_amount": 99000.0,
-            "avg_processing_time": 8,
-            "approval_rate": 80.0,
-            "claims_by_type": {
-                "vehicle": 2,
-                "home": 1,
-                "health": 1,
-                "travel": 1
-            },
-            "claims_by_status": {
-                "approved": 4,
-                "rejected": 1,
-                "pending": 0
-            },
-            "risk_level": "low",
-            "last_claim_date": self.now - timedelta(days=30),
-            "claim_frequency": "Low",
-            "total_claimed_amount": 120000.0,
+        claims = PolicyClaim.objects.filter(policy__customer=customer)
+        
+        if not claims.exists():
+            return self._get_empty_claims_insights()
+        
+        # Real calculations based on actual claims data
+        total_claims = claims.count()
+        approved_claims = claims.filter(status='approved')
+        rejected_claims = claims.filter(status='rejected')
+        pending_claims = claims.filter(status='submitted')
+        
+        total_claimed_amount = sum(claim.claim_amount for claim in claims)
+        approved_amount = sum(claim.approved_amount for claim in approved_claims)
+        
+        # Calculate approval rate
+        approval_rate = (approved_claims.count() / total_claims * 100) if total_claims > 0 else 0
+        
+        # Group by claim type
+        claims_by_type = {}
+        for claim in claims:
+            claim_type = claim.claim_type
+            claims_by_type[claim_type] = claims_by_type.get(claim_type, 0) + 1
+        
+        # Group by status
+        claims_by_status = {
+            'approved': approved_claims.count(),
+            'rejected': rejected_claims.count(),
+            'pending': pending_claims.count()
         }
         
-        # Save to database
-        self._save_claims_insights(customer, mock_claims_data)
+        # Calculate average processing time (simplified - using claim_date to incident_date difference)
+        processing_times = []
+        for claim in approved_claims:
+            if claim.claim_date and claim.incident_date:
+                processing_days = (claim.claim_date - claim.incident_date).days
+                if processing_days > 0:
+                    processing_times.append(processing_days)
         
-        return mock_claims_data
-    
-    def _save_claims_insights(self, customer: Customer, insights: Dict[str, Any]):
-        """Save claims insights to database"""
-        ClaimsInsight.objects.update_or_create(
-            customer=customer,
-            defaults=insights
-        )
+        avg_processing_time = sum(processing_times) / len(processing_times) if processing_times else 8
+        
+        # Determine risk level based on claim frequency and amounts
+        if total_claims >= 5 or total_claimed_amount > 100000:
+            risk_level = "medium"
+        elif total_claims >= 3 or total_claimed_amount > 50000:
+            risk_level = "low"
+        else:
+            risk_level = "very_low"
+        
+        # Determine claim frequency
+        if total_claims >= 5:
+            claim_frequency = "High"
+        elif total_claims >= 3:
+            claim_frequency = "Medium"
+        else:
+            claim_frequency = "Low"
+        
+        return {
+            "total_claims": total_claims,
+            "approved_amount": float(approved_amount),
+            "total_claimed_amount": float(total_claimed_amount),
+            "approval_rate": round(approval_rate, 1),
+            "claims_by_type": claims_by_type,
+            "claims_by_status": claims_by_status,
+            "last_claim_date": claims.first().incident_date.isoformat() if claims.exists() else None,
+            "avg_processing_time": round(avg_processing_time, 1),
+            "claim_frequency": claim_frequency,
+            "risk_level": risk_level
+        }
     
     def calculate_profile_insights(self, customer: Customer) -> Dict[str, Any]:
         """Calculate comprehensive customer profile insights"""
-        # Get policy information
         policies = Policy.objects.filter(customer=customer, is_deleted=False)
         active_policies = policies.filter(status='active').count()
         expired_policies = policies.filter(status__in=['expired', 'cancelled']).count()
         
-        # Family policies (policies with family members)
         family_policies = policies.filter(
-            # This would need to be adjusted based on actual family policy logic
         ).count()
         
         # Customer value calculations
@@ -415,14 +480,11 @@ class CustomerInsightsService:
             "overall_risk_score": risk_score,
         }
         
-        # Save to database
-        self._save_profile_insights(customer, insights)
-        
         return insights
     
     def _calculate_risk_score(self, customer: Customer, policies) -> float:
         """Calculate overall risk score (0-100)"""
-        score = 50.0  # Base score
+        score = 50.0 
         
         # Adjust based on payment history
         payments = CustomerPayment.objects.filter(customer=customer, is_deleted=False)
@@ -433,24 +495,17 @@ class CustomerInsightsService:
             elif on_time_rate < 70:
                 score += 15
         
-        # Adjust based on policy count
         if policies.count() > 3:
-            score -= 5  # More policies = lower risk
+            score -= 5 
         
         # Adjust based on customer age
-        if customer.first_policy_date:
+        if hasattr(customer, 'first_policy_date') and customer.first_policy_date:
             years_as_customer = (self.today - customer.first_policy_date).days // 365
             if years_as_customer > 5:
-                score -= 10  # Long-term customer = lower risk
+                score -= 10 
         
         return max(0, min(100, score))
     
-    def _save_profile_insights(self, customer: Customer, insights: Dict[str, Any]):
-        """Save profile insights to database"""
-        CustomerProfileInsight.objects.update_or_create(
-            customer=customer,
-            defaults=insights
-        )
     
     def get_payment_schedule(self, customer: Customer) -> Dict[str, Any]:
         """Get upcoming payment schedule for customer"""
@@ -466,7 +521,7 @@ class CustomerInsightsService:
             days_until_due = (payment.due_date - self.today).days
             payments_data.append({
                 "amount": float(payment.amount_due),
-                "due_date": payment.due_date,
+                "due_date": payment.due_date.isoformat() if payment.due_date else None,
                 "policy": payment.renewal_case.policy.policy_type.name if payment.renewal_case.policy.policy_type else "Unknown",
                 "days_until_due": days_until_due,
                 "status": payment.status,
@@ -495,10 +550,10 @@ class CustomerInsightsService:
             year = payment.payment_date.year
             yearly_data[year].append({
                 "amount": float(payment.payment_amount),
-                "date": payment.payment_date,
+                "date": payment.payment_date.isoformat() if payment.payment_date else None,
                 "status": payment.payment_status,
                 "mode": payment.payment_mode,
-                "policy": "Unknown",  # Would need to link to policy
+                "policy": "Unknown",  
             })
             yearly_totals[year] += float(payment.payment_amount)
         
@@ -545,7 +600,7 @@ class CustomerInsightsService:
         for comm in communications:
             channel_data[comm.channel].append({
                 "id": comm.id,
-                "date": comm.communication_date,
+                "date": comm.communication_date.isoformat() if comm.communication_date else None,
                 "outcome": comm.outcome,
                 "message_content": comm.message_content[:100] + "..." if len(comm.message_content) > 100 else comm.message_content,
                 "response_received": comm.response_received,
@@ -557,7 +612,7 @@ class CustomerInsightsService:
             "recent_communications": [
                 {
                     "id": comm.id,
-                    "date": comm.communication_date,
+                    "date": comm.communication_date.isoformat() if comm.communication_date else None,
                     "channel": comm.channel,
                     "outcome": comm.outcome,
                     "message_content": comm.message_content[:100] + "..." if len(comm.message_content) > 100 else comm.message_content,
@@ -604,4 +659,23 @@ class CustomerInsightsService:
                 "rejected_claims": len([c for c in mock_claims if c["status"] == "rejected"]),
                 "pending_claims": len([c for c in mock_claims if c["status"] == "pending"]),
             }
+        }
+    
+    def _get_empty_claims_insights(self) -> Dict[str, Any]:
+        """Return empty claims insights structure"""
+        return {
+            "total_claims": 0,
+            "approved_amount": 0.0,
+            "total_claimed_amount": 0.0,
+            "approval_rate": 0.0,
+            "claims_by_type": {},
+            "claims_by_status": {
+                "approved": 0,
+                "rejected": 0,
+                "pending": 0
+            },
+            "last_claim_date": None,
+            "avg_processing_time": 0,
+            "claim_frequency": "None",
+            "risk_level": "very_low"
         }

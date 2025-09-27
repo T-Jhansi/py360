@@ -1,181 +1,62 @@
 """
 Admin configuration for Customer Insights models.
+Simplified design with single insights model.
 """
 
 from django.contrib import admin
-from .models import (
-    CustomerInsight, PaymentInsight, CommunicationInsight, 
-    ClaimsInsight, CustomerProfileInsight
-)
+from django.utils.html import format_html
+from .models import CustomerInsight
 
 
 @admin.register(CustomerInsight)
 class CustomerInsightAdmin(admin.ModelAdmin):
-    """Admin for CustomerInsight model"""
+    """Admin for CustomerInsight model - simplified"""
     
     list_display = [
-        'id', 'customer', 'insight_type', 'calculated_at', 'is_active'
+        'id', 'customer', 'is_cached', 'cache_status', 'calculated_at'
     ]
-    list_filter = ['insight_type', 'is_active', 'calculated_at']
+    list_filter = ['is_cached', 'calculated_at', 'created_at']
     search_fields = ['customer__customer_code', 'customer__first_name', 'customer__last_name']
-    readonly_fields = ['calculated_at', 'created_at', 'updated_at']
+    readonly_fields = ['calculated_at', 'created_at', 'updated_at', 'cache_status']
     ordering = ['-calculated_at']
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('customer', 'insight_type', 'is_active')
+            'fields': ('customer', 'is_cached', 'cache_expires_at', 'cache_status')
         }),
-        ('Data', {
-            'fields': ('data',)
+        ('Payment Insights', {
+            'fields': ('payment_insights',),
+            'classes': ('collapse',)
+        }),
+        ('Communication Insights', {
+            'fields': ('communication_insights',),
+            'classes': ('collapse',)
+        }),
+        ('Claims Insights', {
+            'fields': ('claims_insights',),
+            'classes': ('collapse',)
+        }),
+        ('Profile Insights', {
+            'fields': ('profile_insights',),
+            'classes': ('collapse',)
         }),
         ('Timestamps', {
             'fields': ('calculated_at', 'created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )
-
-
-@admin.register(PaymentInsight)
-class PaymentInsightAdmin(admin.ModelAdmin):
-    """Admin for PaymentInsight model"""
     
-    list_display = [
-        'customer', 'total_premiums_paid', 'on_time_payment_rate', 
-        'payment_reliability', 'customer_since_years'
-    ]
-    list_filter = ['payment_reliability', 'most_used_mode', 'created_at']
-    search_fields = ['customer__customer_code', 'customer__first_name', 'customer__last_name']
-    readonly_fields = ['created_at', 'updated_at']
-    ordering = ['-created_at']
+    def cache_status(self, obj):
+        """Display cache status with color coding"""
+        if obj.is_cached and not obj.is_expired:
+            return format_html('<span style="color: green;">✓ Cached (Valid)</span>')
+        elif obj.is_cached and obj.is_expired:
+            return format_html('<span style="color: orange;">⚠ Cached (Expired)</span>')
+        else:
+            return format_html('<span style="color: red;">✗ Not Cached</span>')
     
-    fieldsets = (
-        ('Customer', {
-            'fields': ('customer',)
-        }),
-        ('Payment Statistics', {
-            'fields': (
-                'total_premiums_paid', 'on_time_payment_rate', 'total_payments_made',
-                'average_payment_amount', 'customer_since_years'
-            )
-        }),
-        ('Payment Patterns', {
-            'fields': (
-                'most_used_mode', 'preferred_payment_method', 'average_payment_timing',
-                'payment_frequency', 'payment_reliability'
-            )
-        }),
-        ('Timestamps', {
-            'fields': ('last_payment_date', 'created_at', 'updated_at'),
-            'classes': ('collapse',)
-        }),
-    )
-
-
-@admin.register(CommunicationInsight)
-class CommunicationInsightAdmin(admin.ModelAdmin):
-    """Admin for CommunicationInsight model"""
+    cache_status.short_description = 'Cache Status'
     
-    list_display = [
-        'customer', 'total_communications', 'satisfaction_rating', 
-        'preferred_channel', 'response_rate'
-    ]
-    list_filter = ['preferred_channel', 'communication_frequency', 'created_at']
-    search_fields = ['customer__customer_code', 'customer__first_name', 'customer__last_name']
-    readonly_fields = ['created_at', 'updated_at']
-    ordering = ['-created_at']
-    
-    fieldsets = (
-        ('Customer', {
-            'fields': ('customer',)
-        }),
-        ('Communication Statistics', {
-            'fields': (
-                'total_communications', 'avg_response_time', 'satisfaction_rating',
-                'response_rate', 'escalation_count'
-            )
-        }),
-        ('Communication Patterns', {
-            'fields': (
-                'preferred_channel', 'communication_frequency', 'channel_breakdown'
-            )
-        }),
-        ('Timestamps', {
-            'fields': ('last_contact_date', 'created_at', 'updated_at'),
-            'classes': ('collapse',)
-        }),
-    )
-
-
-@admin.register(ClaimsInsight)
-class ClaimsInsightAdmin(admin.ModelAdmin):
-    """Admin for ClaimsInsight model"""
-    
-    list_display = [
-        'customer', 'total_claims', 'approval_rate', 'risk_level', 
-        'avg_processing_time'
-    ]
-    list_filter = ['risk_level', 'created_at']
-    search_fields = ['customer__customer_code', 'customer__first_name', 'customer__last_name']
-    readonly_fields = ['created_at', 'updated_at']
-    ordering = ['-created_at']
-    
-    fieldsets = (
-        ('Customer', {
-            'fields': ('customer',)
-        }),
-        ('Claims Statistics', {
-            'fields': (
-                'total_claims', 'approved_amount', 'total_claimed_amount',
-                'avg_processing_time', 'approval_rate'
-            )
-        }),
-        ('Claims Analysis', {
-            'fields': (
-                'claims_by_type', 'claims_by_status', 'risk_level', 'claim_frequency'
-            )
-        }),
-        ('Timestamps', {
-            'fields': ('last_claim_date', 'created_at', 'updated_at'),
-            'classes': ('collapse',)
-        }),
-    )
-
-
-@admin.register(CustomerProfileInsight)
-class CustomerProfileInsightAdmin(admin.ModelAdmin):
-    """Admin for CustomerProfileInsight model"""
-    
-    list_display = [
-        'customer', 'active_policies', 'customer_segment', 
-        'engagement_level', 'overall_risk_score'
-    ]
-    list_filter = ['customer_segment', 'engagement_level', 'created_at']
-    search_fields = ['customer__customer_code', 'customer__first_name', 'customer__last_name']
-    readonly_fields = ['created_at', 'updated_at']
-    ordering = ['-created_at']
-    
-    fieldsets = (
-        ('Customer', {
-            'fields': ('customer',)
-        }),
-        ('Policy Information', {
-            'fields': (
-                'active_policies', 'family_policies', 'expired_lapsed_policies',
-                'policy_portfolio'
-            )
-        }),
-        ('Customer Value', {
-            'fields': (
-                'customer_lifetime_value', 'total_paid_ytd'
-            )
-        }),
-        ('Customer Analysis', {
-            'fields': (
-                'customer_segment', 'engagement_level', 'overall_risk_score'
-            )
-        }),
-        ('Timestamps', {
-            'fields': ('created_at', 'updated_at'),
-            'classes': ('collapse',)
-        }),
-    )
+    def get_queryset(self, request):
+        """Optimize queryset with select_related"""
+        return super().get_queryset(request).select_related('customer')

@@ -1,5 +1,6 @@
 """
 API views for Customer Insights endpoints.
+Simplified design with single main endpoint and consolidated functionality.
 """
 
 from rest_framework import status, viewsets, permissions
@@ -10,28 +11,21 @@ from django.db.models import Q, Count, Avg, Sum
 from django.utils import timezone
 from datetime import datetime, timedelta
 
-from rest_framework import viewsets
 from apps.customers.models import Customer
-from .models import (
-    CustomerInsight, PaymentInsight, CommunicationInsight, 
-    ClaimsInsight, CustomerProfileInsight
-)
+from .models import CustomerInsight
 from .serializers import (
-    CustomerInsightsResponseSerializer, PaymentInsightSerializer,
-    CommunicationInsightSerializer, ClaimsInsightSerializer,
-    CustomerProfileInsightSerializer, PaymentScheduleResponseSerializer,
-    PaymentHistoryResponseSerializer, CommunicationHistoryResponseSerializer,
-    ClaimsHistoryResponseSerializer, CustomerInsightSerializer,
+    CustomerInsightsResponseSerializer, CustomerInsightSerializer,
     CustomerInsightsSummarySerializer, InsightsDashboardSerializer,
-    CustomerInsightsFilterSerializer, CustomerInsightsBulkUpdateSerializer
+    CustomerInsightsFilterSerializer, CustomerInsightsBulkUpdateSerializer,
+    CustomerInsightsRecalculateSerializer
 )
 from .services import CustomerInsightsService
 
 
 class CustomerInsightsViewSet(viewsets.ModelViewSet):
-    """ViewSet for customer insights operations"""
+    """ViewSet for customer insights operations - simplified"""
     
-    queryset = CustomerInsight.objects.filter(is_deleted=False)
+    queryset = CustomerInsight.objects.all()
     serializer_class = CustomerInsightSerializer
     permission_classes = [permissions.IsAuthenticated]
     
@@ -44,24 +38,53 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
         if customer_id:
             queryset = queryset.filter(customer_id=customer_id)
         
-        insight_type = self.request.query_params.get('insight_type')
-        if insight_type:
-            queryset = queryset.filter(insight_type=insight_type)
-        
         return queryset.order_by('-calculated_at')
     
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)')
-    def get_customer_insights(self, request, customer_id=None):
-        """Get comprehensive insights for a specific customer"""
+    @action(detail=False, methods=['get'], url_path='customer/(?P<case_number>[^/.]+)')
+    def get_customer_insights(self, request, case_number=None):
+        """Get comprehensive insights for a specific customer - MAIN ENDPOINT"""
         try:
+            # Check for force recalculation parameter
+            force_recalculate = request.query_params.get('force_recalculate', 'false').lower() == 'true'
+            
+            # Check for specific sections to include
+            sections = request.query_params.get('sections', '').split(',')
+            sections = [s.strip() for s in sections if s.strip()]
+            
+            # Get customer via RenewalCase using case_number
+            try:
+                from apps.renewals.models import RenewalCase
+                renewal_case = RenewalCase.objects.select_related('customer').get(case_number=case_number)
+                customer = renewal_case.customer
+            except RenewalCase.DoesNotExist:
+                return Response({
+                    'success': False,
+                    'message': f'Case with number {case_number} not found',
+                    'data': None
+                }, status=status.HTTP_404_NOT_FOUND)
+            
             service = CustomerInsightsService()
-            insights_data = service.get_customer_insights(int(customer_id))
+            insights_data = service.get_customer_insights(customer.id, force_recalculate)
             
             if 'error' in insights_data:
                 return Response(
                     {'error': insights_data['error']}, 
                     status=status.HTTP_404_NOT_FOUND
                 )
+            
+            # Filter sections if requested
+            if sections:
+                filtered_data = {
+                    'customer_info': insights_data['customer_info'],
+                    'calculated_at': insights_data['calculated_at'],
+                    'is_cached': insights_data['is_cached']
+                }
+                
+                for section in sections:
+                    if section in insights_data:
+                        filtered_data[section] = insights_data[section]
+                
+                insights_data = filtered_data
             
             serializer = CustomerInsightsResponseSerializer(insights_data)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -77,21 +100,43 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
     
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/payment')
-    def get_payment_insights(self, request, customer_id=None):
-        """Get payment insights for a specific customer"""
+    @action(detail=False, methods=['post'], url_path='customer/(?P<case_number>[^/.]+)/recalculate')
+    def recalculate_insights(self, request, case_number=None):
+        """Recalculate insights for a specific customer"""
         try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
+            serializer = CustomerInsightsRecalculateSerializer(data=request.data)
+            if not serializer.is_valid():
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            force_recalculate = serializer.validated_data.get('force_recalculate', False)
+            sections = serializer.validated_data.get('sections', [])
+            
+            # Get customer via RenewalCase using case_number
+            try:
+                from apps.renewals.models import RenewalCase
+                renewal_case = RenewalCase.objects.select_related('customer').get(case_number=case_number)
+                customer = renewal_case.customer
+            except RenewalCase.DoesNotExist:
+                return Response({
+                    'success': False,
+                    'message': f'Case with number {case_number} not found',
+                    'data': None
+                }, status=status.HTTP_404_NOT_FOUND)
+            
             service = CustomerInsightsService()
-            payment_insights = service.calculate_payment_insights(customer)
+            insights_data = service.get_customer_insights(customer.id, force_recalculate=True)
             
-            return Response(payment_insights, status=status.HTTP_200_OK)
+            if 'error' in insights_data:
+                return Response(
+                    {'error': insights_data['error']}, 
+                    status=status.HTTP_404_NOT_FOUND
+                )
             
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
+            return Response({
+                'message': 'Insights recalculated successfully',
+                'data': insights_data
+            }, status=status.HTTP_200_OK)
+            
         except ValueError:
             return Response(
                 {'error': 'Invalid customer ID'}, 
@@ -99,171 +144,10 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
             )
         except Exception as e:
             return Response(
-                {'error': f'Failed to get payment insights: {str(e)}'}, 
+                {'error': f'Failed to recalculate insights: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
     
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/communication')
-    def get_communication_insights(self, request, customer_id=None):
-        """Get communication insights for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            communication_insights = service.calculate_communication_insights(customer)
-            
-            return Response(communication_insights, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get communication insights: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/claims')
-    def get_claims_insights(self, request, customer_id=None):
-        """Get claims insights for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            claims_insights = service.calculate_claims_insights(customer)
-            
-            return Response(claims_insights, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get claims insights: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/payment-schedule')
-    def get_payment_schedule(self, request, customer_id=None):
-        """Get payment schedule for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            payment_schedule = service.get_payment_schedule(customer)
-            
-            serializer = PaymentScheduleResponseSerializer(payment_schedule)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get payment schedule: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/payment-history')
-    def get_payment_history(self, request, customer_id=None):
-        """Get payment history for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            
-            years = int(request.query_params.get('years', 10))
-            payment_history = service.get_payment_history(customer, years)
-            
-            serializer = PaymentHistoryResponseSerializer(payment_history)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID or years parameter'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get payment history: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/communication-history')
-    def get_communication_history(self, request, customer_id=None):
-        """Get communication history for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            communication_history = service.get_communication_history(customer)
-            
-            serializer = CommunicationHistoryResponseSerializer(communication_history)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get communication history: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    @action(detail=False, methods=['get'], url_path='customer/(?P<customer_id>[^/.]+)/claims-history')
-    def get_claims_history(self, request, customer_id=None):
-        """Get claims history for a specific customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            claims_history = service.get_claims_history(customer)
-            
-            serializer = ClaimsHistoryResponseSerializer(claims_history)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get claims history: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
     
     @action(detail=False, methods=['post'], url_path='bulk-update')
     def bulk_update_insights(self, request):
@@ -313,22 +197,36 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
             ).count()
             
             # Customers with claims (mock data)
-            customers_with_claims = 150  # This would be calculated from actual claims data
+            customers_with_claims = 150  
             
-            # Average satisfaction rating
-            avg_satisfaction = CommunicationInsight.objects.filter(
-                is_deleted=False
-            ).aggregate(avg=Avg('satisfaction_rating'))['avg'] or 0.0
+            # Average satisfaction rating (from JSON fields)
+            avg_satisfaction = 0.0
+            total_premiums = 0.0
+            payment_reliability_avg = 0.0
             
-            # Total premiums collected
-            total_premiums = PaymentInsight.objects.filter(
-                is_deleted=False
-            ).aggregate(total=Sum('total_premiums_paid'))['total'] or 0
-            
-            # Average payment reliability
-            payment_reliability_avg = PaymentInsight.objects.filter(
-                is_deleted=False
-            ).aggregate(avg=Avg('on_time_payment_rate'))['avg'] or 0.0
+            # Calculate from JSON fields in customer_insights table
+            insights_records = CustomerInsight.objects.all()
+            if insights_records.exists():
+                satisfaction_ratings = []
+                premium_totals = []
+                payment_rates = []
+                
+                for record in insights_records:
+                    comm_insights = record.communication_insights
+                    pay_insights = record.payment_insights
+                    
+                    if comm_insights.get('satisfaction_rating'):
+                        satisfaction_ratings.append(comm_insights['satisfaction_rating'])
+                    
+                    if pay_insights.get('total_premiums_paid'):
+                        premium_totals.append(pay_insights['total_premiums_paid'])
+                    
+                    if pay_insights.get('on_time_payment_rate'):
+                        payment_rates.append(pay_insights['on_time_payment_rate'])
+                
+                avg_satisfaction = sum(satisfaction_ratings) / len(satisfaction_ratings) if satisfaction_ratings else 0.0
+                total_premiums = sum(premium_totals) if premium_totals else 0.0
+                payment_reliability_avg = sum(payment_rates) / len(payment_rates) if payment_rates else 0.0
             
             # Recent insights (last 10 customers with insights)
             recent_insights = []
@@ -339,27 +237,27 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
             
             for customer in recent_customers:
                 try:
-                    payment_insight = PaymentInsight.objects.get(customer=customer, is_deleted=False)
-                    communication_insight = CommunicationInsight.objects.get(customer=customer, is_deleted=False)
-                    claims_insight = ClaimsInsight.objects.get(customer=customer, is_deleted=False)
-                    profile_insight = CustomerProfileInsight.objects.get(customer=customer, is_deleted=False)
+                    insight_record = CustomerInsight.objects.get(customer=customer)
+                    payment_insights = insight_record.payment_insights
+                    communication_insights = insight_record.communication_insights
+                    claims_insights = insight_record.claims_insights
+                    profile_insights = insight_record.profile_insights
                     
                     recent_insights.append({
                         'customer_id': customer.id,
                         'customer_name': customer.full_name,
                         'customer_code': customer.customer_code,
-                        'total_premiums_paid': payment_insight.total_premiums_paid,
-                        'on_time_payment_rate': payment_insight.on_time_payment_rate,
-                        'total_communications': communication_insight.total_communications,
-                        'satisfaction_rating': communication_insight.satisfaction_rating,
-                        'total_claims': claims_insight.total_claims,
-                        'approval_rate': claims_insight.approval_rate,
-                        'risk_level': claims_insight.risk_level,
-                        'customer_segment': profile_insight.customer_segment,
-                        'last_updated': payment_insight.updated_at,
+                        'total_premiums_paid': payment_insights.get('total_premiums_paid', 0),
+                        'on_time_payment_rate': payment_insights.get('on_time_payment_rate', 0),
+                        'total_communications': communication_insights.get('total_communications', 0),
+                        'satisfaction_rating': communication_insights.get('satisfaction_rating', 0),
+                        'total_claims': claims_insights.get('total_claims', 0),
+                        'approval_rate': claims_insights.get('approval_rate', 0),
+                        'risk_level': claims_insights.get('risk_level', 'low'),
+                        'customer_segment': profile_insights.get('customer_segment', 'Standard'),
+                        'last_updated': insight_record.updated_at,
                     })
-                except (PaymentInsight.DoesNotExist, CommunicationInsight.DoesNotExist, 
-                       ClaimsInsight.DoesNotExist, CustomerProfileInsight.DoesNotExist):
+                except CustomerInsight.DoesNotExist:
                     continue
             
             dashboard_data = {
@@ -432,27 +330,27 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
             summary_data = []
             for customer in customers:
                 try:
-                    payment_insight = PaymentInsight.objects.get(customer=customer, is_deleted=False)
-                    communication_insight = CommunicationInsight.objects.get(customer=customer, is_deleted=False)
-                    claims_insight = ClaimsInsight.objects.get(customer=customer, is_deleted=False)
-                    profile_insight = CustomerProfileInsight.objects.get(customer=customer, is_deleted=False)
+                    insight_record = CustomerInsight.objects.get(customer=customer)
+                    payment_insights = insight_record.payment_insights
+                    communication_insights = insight_record.communication_insights
+                    claims_insights = insight_record.claims_insights
+                    profile_insights = insight_record.profile_insights
                     
                     summary_data.append({
                         'customer_id': customer.id,
                         'customer_name': customer.full_name,
                         'customer_code': customer.customer_code,
-                        'total_premiums_paid': payment_insight.total_premiums_paid,
-                        'on_time_payment_rate': payment_insight.on_time_payment_rate,
-                        'total_communications': communication_insight.total_communications,
-                        'satisfaction_rating': communication_insight.satisfaction_rating,
-                        'total_claims': claims_insight.total_claims,
-                        'approval_rate': claims_insight.approval_rate,
-                        'risk_level': claims_insight.risk_level,
-                        'customer_segment': profile_insight.customer_segment,
-                        'last_updated': payment_insight.updated_at,
+                        'total_premiums_paid': payment_insights.get('total_premiums_paid', 0),
+                        'on_time_payment_rate': payment_insights.get('on_time_payment_rate', 0),
+                        'total_communications': communication_insights.get('total_communications', 0),
+                        'satisfaction_rating': communication_insights.get('satisfaction_rating', 0),
+                        'total_claims': claims_insights.get('total_claims', 0),
+                        'approval_rate': claims_insights.get('approval_rate', 0),
+                        'risk_level': claims_insights.get('risk_level', 'low'),
+                        'customer_segment': profile_insights.get('customer_segment', 'Standard'),
+                        'last_updated': insight_record.updated_at,
                     })
-                except (PaymentInsight.DoesNotExist, CommunicationInsight.DoesNotExist, 
-                       ClaimsInsight.DoesNotExist, CustomerProfileInsight.DoesNotExist):
+                except CustomerInsight.DoesNotExist:
                     continue
             
             return Response({
@@ -469,62 +367,3 @@ class CustomerInsightsViewSet(viewsets.ModelViewSet):
             )
 
 
-class CustomerInsightsAPIView(APIView):
-    """Standalone API view for customer insights"""
-    
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def get(self, request, customer_id):
-        """Get comprehensive customer insights"""
-        try:
-            service = CustomerInsightsService()
-            insights_data = service.get_customer_insights(int(customer_id))
-            
-            if 'error' in insights_data:
-                return Response(
-                    {'error': insights_data['error']}, 
-                    status=status.HTTP_404_NOT_FOUND
-                )
-            
-            return Response(insights_data, status=status.HTTP_200_OK)
-            
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to get customer insights: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-    
-    def post(self, request, customer_id):
-        """Recalculate insights for a customer"""
-        try:
-            customer = Customer.objects.get(id=int(customer_id), is_deleted=False)
-            service = CustomerInsightsService()
-            
-            # Force recalculation
-            insights_data = service.get_customer_insights(int(customer_id))
-            
-            return Response({
-                'message': 'Insights recalculated successfully',
-                'data': insights_data
-            }, status=status.HTTP_200_OK)
-            
-        except Customer.DoesNotExist:
-            return Response(
-                {'error': 'Customer not found'}, 
-                status=status.HTTP_404_NOT_FOUND
-            )
-        except ValueError:
-            return Response(
-                {'error': 'Invalid customer ID'}, 
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except Exception as e:
-            return Response(
-                {'error': f'Failed to recalculate insights: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )

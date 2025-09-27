@@ -1,96 +1,28 @@
 """
 Serializers for Customer Insights API endpoints.
+Simplified design with single insights model and JSON storage.
 """
 
 from rest_framework import serializers
 from django.utils import timezone
-from .models import (
-    CustomerInsight, PaymentInsight, CommunicationInsight, 
-    ClaimsInsight, CustomerProfileInsight
-)
+from .models import CustomerInsight
 from apps.customers.models import Customer
 
 
-class CustomerBasicInfoSerializer(serializers.ModelSerializer):
-    """Serializer for basic customer information"""
+class CustomerBasicInfoSerializer(serializers.Serializer):
+    """Serializer for basic customer information - handles both Customer objects and dicts"""
     
-    full_name = serializers.CharField(read_only=True)
-    customer_since = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = Customer
-        fields = [
-            'id', 'customer_code', 'full_name', 'email', 'phone',
-            'status', 'priority', 'profile', 'customer_since',
-            'total_policies', 'total_premium'
-        ]
-    
-    def get_customer_since(self, obj):
-        """Get customer since date"""
-        return obj.first_policy_date
-
-
-class PaymentInsightSerializer(serializers.ModelSerializer):
-    """Serializer for payment insights"""
-    
-    total_premiums_paid = serializers.DecimalField(max_digits=15, decimal_places=2)
-    average_payment_amount = serializers.DecimalField(max_digits=12, decimal_places=2)
-    
-    class Meta:
-        model = PaymentInsight
-        fields = [
-            'total_premiums_paid', 'on_time_payment_rate', 'total_payments_made',
-            'most_used_mode', 'average_payment_timing', 'payment_reliability',
-            'preferred_payment_method', 'average_payment_amount', 'customer_since_years',
-            'last_payment_date', 'payment_frequency'
-        ]
-
-
-class CommunicationInsightSerializer(serializers.ModelSerializer):
-    """Serializer for communication insights"""
-    
-    channel_breakdown = serializers.JSONField()
-    
-    class Meta:
-        model = CommunicationInsight
-        fields = [
-            'total_communications', 'avg_response_time', 'satisfaction_rating',
-            'last_contact_date', 'channel_breakdown', 'preferred_channel',
-            'communication_frequency', 'response_rate', 'escalation_count'
-        ]
-
-
-class ClaimsInsightSerializer(serializers.ModelSerializer):
-    """Serializer for claims insights"""
-    
-    approved_amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    total_claimed_amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    claims_by_type = serializers.JSONField()
-    claims_by_status = serializers.JSONField()
-    
-    class Meta:
-        model = ClaimsInsight
-        fields = [
-            'total_claims', 'approved_amount', 'avg_processing_time', 'approval_rate',
-            'claims_by_type', 'claims_by_status', 'risk_level', 'last_claim_date',
-            'claim_frequency', 'total_claimed_amount'
-        ]
-
-
-class CustomerProfileInsightSerializer(serializers.ModelSerializer):
-    """Serializer for customer profile insights"""
-    
-    customer_lifetime_value = serializers.DecimalField(max_digits=15, decimal_places=2)
-    total_paid_ytd = serializers.DecimalField(max_digits=15, decimal_places=2)
-    policy_portfolio = serializers.JSONField()
-    
-    class Meta:
-        model = CustomerProfileInsight
-        fields = [
-            'active_policies', 'family_policies', 'expired_lapsed_policies',
-            'customer_lifetime_value', 'total_paid_ytd', 'customer_segment',
-            'engagement_level', 'policy_portfolio', 'overall_risk_score'
-        ]
+    id = serializers.IntegerField()
+    customer_code = serializers.CharField()
+    full_name = serializers.CharField()
+    email = serializers.EmailField()
+    phone = serializers.CharField()
+    status = serializers.CharField()
+    priority = serializers.CharField()
+    profile = serializers.CharField()
+    customer_since = serializers.DateField(allow_null=True)
+    total_policies = serializers.IntegerField()
+    total_premium = serializers.DecimalField(max_digits=12, decimal_places=2)
 
 
 class PaymentScheduleSerializer(serializers.Serializer):
@@ -171,15 +103,17 @@ class ClaimsHistoryResponseSerializer(serializers.Serializer):
 
 
 class CustomerInsightsResponseSerializer(serializers.Serializer):
-    """Main serializer for customer insights response"""
+    """Main serializer for customer insights response - simplified"""
     
     customer_info = CustomerBasicInfoSerializer()
-    payment_insights = PaymentInsightSerializer()
-    communication_insights = CommunicationInsightSerializer()
-    claims_insights = ClaimsInsightSerializer()
-    profile_insights = CustomerProfileInsightSerializer()
+    payment_insights = serializers.DictField()
+    communication_insights = serializers.DictField()
+    claims_insights = serializers.DictField()
+    profile_insights = serializers.DictField()
     payment_schedule = serializers.DictField()
-    payment_history = PaymentHistoryResponseSerializer()
+    payment_history = serializers.DictField()
+    calculated_at = serializers.DateTimeField()
+    is_cached = serializers.BooleanField()
 
 
 class PaymentScheduleResponseSerializer(serializers.Serializer):
@@ -190,16 +124,16 @@ class PaymentScheduleResponseSerializer(serializers.Serializer):
 
 
 class CustomerInsightSerializer(serializers.ModelSerializer):
-    """Serializer for CustomerInsight model"""
+    """Serializer for CustomerInsight model - simplified"""
     
     customer = CustomerBasicInfoSerializer(read_only=True)
-    insight_type_display = serializers.CharField(source='get_insight_type_display', read_only=True)
     
     class Meta:
         model = CustomerInsight
         fields = [
-            'id', 'customer', 'insight_type', 'insight_type_display',
-            'calculated_at', 'data', 'is_active', 'created_at', 'updated_at'
+            'id', 'customer', 'calculated_at', 'payment_insights',
+            'communication_insights', 'claims_insights', 'profile_insights',
+            'is_cached', 'cache_expires_at', 'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'calculated_at']
 
@@ -255,3 +189,14 @@ class CustomerInsightsBulkUpdateSerializer(serializers.Serializer):
         max_length=100
     )
     force_recalculate = serializers.BooleanField(default=False)
+
+
+class CustomerInsightsRecalculateSerializer(serializers.Serializer):
+    """Serializer for recalculating customer insights"""
+    
+    force_recalculate = serializers.BooleanField(default=False)
+    sections = serializers.ListField(
+        child=serializers.ChoiceField(choices=['payment', 'communication', 'claims', 'profile']),
+        required=False,
+        help_text="Specific sections to recalculate (all if not specified)"
+    )
