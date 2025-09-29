@@ -14,12 +14,11 @@ User = get_user_model()
 class CustomerInsight(BaseModel):
     """Main customer insights aggregation - simplified single table approach"""
     
-    customer = models.ForeignKey(
+    customer = models.OneToOneField(
         Customer,
         on_delete=models.CASCADE,
         related_name='customer_insights',
         help_text="Customer these insights belong to",
-        unique=True  # One insight record per customer
     )
     
     calculated_at = models.DateTimeField(
@@ -79,4 +78,10 @@ class CustomerInsight(BaseModel):
             return True
         from django.utils import timezone
         return timezone.now() > self.cache_expires_at
+
+
+
+
+
+
 
