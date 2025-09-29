@@ -14,8 +14,8 @@ class EmailProviderConfigSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'provider_type', 'provider_type_display',
             'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
+            'aws_region', 'domain',
             'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
-            'smtp_use_tls', 'smtp_use_ssl',
             'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
             'priority', 'priority_display', 'is_default', 'is_active',
@@ -83,8 +83,8 @@ class EmailProviderCredentialsSerializer(serializers.ModelSerializer):
         model = EmailProviderConfig
         fields = [
             'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
-            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
-            'smtp_use_tls', 'smtp_use_ssl'
+            'aws_region', 'domain',
+            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password'
         ]
     
     def update(self, instance, validated_data):
