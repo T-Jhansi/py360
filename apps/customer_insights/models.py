@@ -79,3 +79,9 @@ class CustomerInsight(BaseModel):
         from django.utils import timezone
         return timezone.now() > self.cache_expires_at
 
+
+
+
+
+
+
