@@ -229,9 +229,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 print(f"Processing result: {processing_result}")
                 print(f"Uploads record status after processing: {uploads_record.status}")
                 
-                # Check if processing was actually successful
+              
                 if not processing_result.get('valid', False):
-                    # Processing failed - return error response
+                   
                     return Response({
                         'success': False,
                         'message': 'File processing failed',
@@ -250,7 +250,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         'processing_details': processing_result
                     }, status=status.HTTP_400_BAD_REQUEST)
                 
-                # Check if there were any failed records
+               
                 if processing_result.get('failed_records', 0) > 0:
                  
                     return Response({
@@ -271,7 +271,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         'processing_details': processing_result
                     }, status=status.HTTP_207_MULTI_STATUS)
                 
-                # Check if uploads_record status indicates failure
+              
                 if uploads_record.status == 'failed':
                     return Response({
                         'success': False,
@@ -294,7 +294,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 print(f"Processing error: {str(process_error)}")
                 print(f"Uploads record status: {uploads_record.status}")
                 
-                # Mark records as failed
+              
                 uploads_record.status = 'failed'
                 uploads_record.error_message = str(process_error)
                 uploads_record.save()
@@ -305,7 +305,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     file_upload_record.processing_completed_at = timezone.now()
                     file_upload_record.save()
                 
-                # Return error response
+              
                 return Response({
                     'success': False,
                     'message': 'File processing failed due to an unexpected error',
@@ -564,10 +564,13 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         except UnicodeDecodeError:
                             df = pd.read_csv(file_path, encoding='utf-8', errors='replace')
         elif file_extension in ['.xlsx', '.xls']:
-            # Read Excel file
+          
             df = pd.read_excel(file_path)
         else:
             raise ValueError(f"Unsupported file format: {file_extension}")
+        
+        df = df.dropna(how='all')  
+        df = df[~(df.astype(str).eq('').all(axis=1))] 
         
         return df
 
@@ -581,7 +584,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 uploads_record.status = 'failed'
                 uploads_record.error_message = validation_result['error']
                 uploads_record.save()
-                # Return error result with valid=False
+              
                 return {
                     'valid': False,
                     'error': validation_result['error'],
@@ -631,7 +634,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 print(f"Updated file_upload_record status to: {file_upload_record.upload_status}")
             else:
                 print("Warning: file_upload_record is None, trying to find and update by uploads_record")
-                # Try to find the file_upload_record by looking up the uploads_record
+               
                 try:
                     file_upload_record = FileUpload.objects.filter(
                         original_filename=uploads_record.original_name,
@@ -664,12 +667,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     print(f"Error trying to find and update file_upload_record: {str(e)}")
 
 
-            # Ensure processing_result has valid flag
+       
             processing_result['valid'] = True
             return processing_result
 
         except Exception as e:
-            # Log the error and mark as failed
+         
             print(f"Error in _process_uploaded_excel_file: {str(e)}")
             
             uploads_record.status = 'failed'
@@ -677,7 +680,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             uploads_record.updated_by = user
             uploads_record.save()
             
-            # Return error result
+          
             return {
                 'valid': False,
                 'error': str(e),
@@ -833,8 +836,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 try:
                     customer_code = generate_customer_code()
 
-                    # priority is now always 'medium' for backward compatibility
-
                     assigned_agent = get_next_available_agent()
 
                     with transaction.atomic():
@@ -845,16 +846,15 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                             email=email,
                             phone=phone,
                             date_of_birth=self._parse_date(row.get('date_of_birth')),
-                            gender=row.get('gender', 'male').lower() if row.get('gender') else 'male',
+                            gender=str(row.get('gender', 'male')).lower() if row.get('gender') and pd.notna(row.get('gender')) else 'male',
                             address_line1=str(row.get('address_line1', '') or row.get('address', '')),
                             address_line2=str(row.get('address_line2', '')),
                             city=str(row.get('city', '')),
                             state=str(row.get('state', '')),
                             postal_code=str(row.get('postalcode', '') or row.get('postal_code', '')),
                             country=str(row.get('country', 'India')),
-                            kyc_status=row.get('kyc_status', 'pending').lower(),
+                            kyc_status=str(row.get('kyc_status', 'pending')).lower() if row.get('kyc_status') and pd.notna(row.get('kyc_status')) else 'pending',
                             kyc_documents=str(row.get('kyc_documents', '')),
-                            # priority is now always 'medium' for backward compatibility
                             assigned_agent=assigned_agent,
                             created_by=user,
                             updated_by=None
@@ -873,14 +873,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     else:
                         raise
 
-        # Also store communication preferences into the dedicated table without changing existing logic
         try:
             comm_pref_raw = str(row.get('communication_preferences', '') or '').strip()
             if comm_pref_raw and customer:
-                # Use a savepoint so any error here won't poison the outer atomic block
                 with transaction.atomic():
                     tokens = [t.strip().lower() for t in comm_pref_raw.replace(';', ',').split(',') if t and t.strip()]
-                    # Determine channel flags
                     email_enabled = 'email' in tokens
                     sms_enabled = 'sms' in tokens
                     phone_enabled = ('phone' in tokens) or ('call' in tokens)
@@ -888,7 +885,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     postal_mail_enabled = ('postal' in tokens) or ('postal_mail' in tokens) or ('mail' in tokens)
                     push_notification_enabled = ('push' in tokens) or ('in_app' in tokens) or ('notification' in tokens)
 
-                    # Choose a preferred channel
+                 
                     valid_channels = ['email', 'sms', 'phone', 'whatsapp', 'postal_mail', 'push_notification']
                     preferred_channel = next((t for t in tokens if t in valid_channels), 'email')
                     if preferred_channel == 'mail':
@@ -900,7 +897,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
                     comm_obj, created = CustomerCommunicationPreference.objects.get_or_create(
                         customer=customer,
-                        communication_type='policy_renewal',  # default context for imported renewals
+                        communication_type='policy_renewal',  
                         defaults={
                             'preferred_channel': preferred_channel,
                             'email_enabled': email_enabled,
@@ -916,7 +913,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     )
 
                     if not created:
-                        # Update fields if the record already exists
                         comm_obj.preferred_channel = preferred_channel or comm_obj.preferred_channel
                         comm_obj.email_enabled = email_enabled or comm_obj.email_enabled
                         comm_obj.sms_enabled = sms_enabled or comm_obj.sms_enabled
@@ -924,14 +920,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         comm_obj.whatsapp_enabled = whatsapp_enabled or comm_obj.whatsapp_enabled
                         comm_obj.postal_mail_enabled = postal_mail_enabled or comm_obj.postal_mail_enabled
                         comm_obj.push_notification_enabled = push_notification_enabled or comm_obj.push_notification_enabled
-                        # Keep frequency/time defaults unless explicitly provided in future
                         comm_obj.updated_by = user
                         comm_obj.save(update_fields=[
                             'preferred_channel','email_enabled','sms_enabled','phone_enabled',
                             'whatsapp_enabled','postal_mail_enabled','push_notification_enabled','updated_by'
                         ])
         except Exception:
-            # Do not fail the import due to preference issues; keep existing workflow untouched
             pass
 
         return customer, customer_created
@@ -958,7 +952,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 }
             )
 
-            payment_frequency = str(row.get('payment_frequency', 'yearly')).lower()
+            payment_frequency = str(row.get('payment_frequency', 'yearly')).lower() if row.get('payment_frequency') and pd.notna(row.get('payment_frequency')) else 'yearly'
             if payment_frequency not in ['monthly', 'quarterly', 'half_yearly', 'yearly']:
                 payment_frequency = 'yearly'
 
@@ -980,14 +974,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 else:  
                     end_date = start_date + timedelta(days=365)
 
-            # Enhanced renewal detection: pass customer and start_date for cross-policy comparison
             policy_status, _ = calculate_policy_and_renewal_status(
                 end_date,
                 start_date=start_date,
                 customer=customer
             )
 
-            # Get or create policy agent
             agent_name = str(row.get('agent_name', '')).strip()
             agent_code = str(row.get('agent_code', '')).strip() if row.get('agent_code') else None
             policy_agent = get_or_create_policy_agent(agent_name, agent_code)
@@ -1005,7 +997,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 nominee_name=str(row.get('nominee_name', '')),
                 nominee_relationship=str(row.get('nominee_relationship', '')),
                 nominee_contact=str(row.get('nominee_contact', '')),
-                agent=policy_agent,  # Store the agent reference
+                agent=policy_agent, 
                 created_by=user,
                 last_modified_by=user
             )
@@ -1027,19 +1019,11 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             if attempt == max_retries - 1:
                 raise ValueError(f"Could not generate unique case number after {max_retries} attempts")
 
-        # Enhanced renewal detection: pass customer and policy dates for cross-policy comparison
         _, renewal_status = calculate_policy_and_renewal_status(
             policy.end_date,
             start_date=policy.start_date,
             customer=customer
         )
-
-        # renewal_priority is now always 'medium' for backward compatibility
-
-        # payment_status is now auto-generated from customer_payments table via signals
-        # payment_status = str(row.get('payment_status', 'pending')).lower()
-        # if payment_status not in ['pending', 'completed', 'failed', 'refunded']:
-        #     payment_status = 'pending'
 
         renewal_amount = row.get('renewal_amount')
         if renewal_amount is None or pd.isna(renewal_amount):
@@ -1086,27 +1070,23 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
         channel_id = self._get_or_create_channel(row, user)
 
-        # Create a CustomerPayment record (if payment info is provided) and link it to the renewal case.
-        # Wrap DB writes in a nested atomic block so any DB error rolls back to a savepoint
-        # without breaking the outer transaction for this row.
         customer_payment_obj = None
         try:
             from uuid import uuid4
             from apps.customer_payments.models import CustomerPayment
 
-            # Accept payment_date from either 'payment_date' or fallback to 'last_contact_date' if provided
             payment_date_raw = row.get('payment_date') or row.get('last_contact_date')
             payment_date_parsed = self._parse_datetime(payment_date_raw)
             if payment_date_parsed:
                 with transaction.atomic():
-                    payment_mode_value = str(row.get('payment_mode', 'cash')).lower() or 'cash'
-                    payment_amount_value = renewal_amount  # Use renewal amount as the payment amount
+                    payment_mode_value = str(row.get('payment_mode', 'cash')).lower() if row.get('payment_mode') and pd.notna(row.get('payment_mode')) else 'cash'
+                    payment_amount_value = renewal_amount 
                     transaction_id_value = f"IMP-{batch_code}-{case_number}-{uuid4().hex[:8]}"
 
-                    # net_amount is required; since fees/taxes/discounts have defaults, set it equal to payment_amount
+                  
                     customer_payment_obj = CustomerPayment.objects.create(
                         payment_amount=payment_amount_value,
-                        payment_status='pending',  # Default status, will be updated by signals
+                        payment_status='pending',  
                         payment_date=payment_date_parsed,
                         payment_mode=payment_mode_value,
                         transaction_id=transaction_id_value,
@@ -1115,7 +1095,6 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                         updated_by=user
                     )
         except Exception:
-            # If payment creation fails, proceed without linking a payment to avoid breaking other logic
             customer_payment_obj = None
 
         renewal_case = RenewalCase.objects.create(
@@ -1124,9 +1103,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             customer=customer,
             policy=policy,
             status=renewal_status,
-            # priority is now always 'medium' for backward compatibility
+           
             renewal_amount=renewal_amount,
-            # communication_attempts and last_contact_date are now auto-generated from CommunicationLog records
             channel_id=channel_id,
             notes=str(row.get('notes', '')),
             assigned_to=assigned_user,
@@ -1135,10 +1113,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             customer_payment=customer_payment_obj
         )
         
-        # Log initial communication attempt for renewal case creation
         if channel_id:
-            channel_name = channel_id.name.lower() if channel_id.name else 'email'
-            # Map channel names to communication log channels
+            channel_name = str(channel_id.name).lower() if channel_id.name and pd.notna(channel_id.name) else 'email'
             channel_mapping = {
                 'email': 'email',
                 'sms': 'sms',
@@ -1167,8 +1143,8 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         channel_name = str(row.get('channel', 'Online')).strip()
         channel_source = str(row.get('channel_source', 'Website')).strip()
 
-        channel_name_normalized = channel_name.lower()
-        channel_source_normalized = channel_source.lower()
+        channel_name_normalized = str(channel_name).lower() if channel_name and pd.notna(channel_name) else 'email'
+        channel_source_normalized = str(channel_source).lower() if channel_source and pd.notna(channel_source) else 'website'
 
         combined_name = f"{channel_name} - {channel_source}"
 

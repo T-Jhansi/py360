@@ -269,15 +269,13 @@ class FileUploadRequestSerializer(serializers.Serializer):
 
     def validate_file(self, value):
         """Validate uploaded file"""
-        # Check file extension
+
         allowed_extensions = ['.xlsx', '.xls', '.csv']
         file_extension = value.name.split('.')[-1].lower()
         if f'.{file_extension}' not in allowed_extensions:
             raise serializers.ValidationError(
                 "File format not supported. Please upload a CSV (.csv) or Excel (.xlsx, .xls) file."
             )
-
-        # Check file size (max 50MB)
         if value.size > 50 * 1024 * 1024:
             raise serializers.ValidationError(
                 "File too large. Maximum size is 50MB."
