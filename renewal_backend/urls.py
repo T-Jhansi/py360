@@ -67,6 +67,7 @@ api_patterns = [
     
     # Email Integration endpoints
     path('email-provider/', include('apps.email_provider.urls')),
+    path('communication-provider/', include('apps.email_provider.urls')),  # Alias for communication-provider
     path('email-templates/', include('apps.email_templates.urls')),
     path('email-operations/', include('apps.email_operations.urls')),
     path('email-inbox/', include('apps.email_inbox.urls')),
