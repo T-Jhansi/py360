@@ -208,12 +208,24 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             existing_file = UploadsFileUpload.objects.filter(file_hash=file_hash).first()
 
             if existing_file:
+                from django.utils import timezone
+                from datetime import datetime
+                
+                # Format the uploaded date in a user-friendly way
+                uploaded_date = existing_file.created_at
+                if isinstance(uploaded_date, str):
+                    uploaded_date = datetime.fromisoformat(uploaded_date.replace('Z', '+00:00'))
+                
+                formatted_date = uploaded_date.strftime('%B %d, %Y at %I:%M %p') if uploaded_date else 'Unknown'
+                
                 return Response({
-                    'error': 'Duplicate file detected. This file has already been uploaded.',
+                    'error': f'This file has already been uploaded. The file "{existing_file.original_name}" was uploaded on {formatted_date}. Please upload a new file or modify the existing one.',
+                    'message': 'Duplicate file detected',
                     'details': {
                         'existing_file_id': existing_file.pk,
                         'existing_file_name': existing_file.original_name,
-                        'uploaded_at': existing_file.created_at
+                        'uploaded_at': existing_file.created_at,
+                        'suggestion': 'This file its already exist.'
                     }
                 }, status=status.HTTP_400_BAD_REQUEST)
 
