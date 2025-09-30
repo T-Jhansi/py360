@@ -175,6 +175,13 @@ class EmailCampaignService:
 
             # Send email using SendGrid if provider is available
             if provider and provider.provider_type == 'sendgrid':
+                # Prepare custom_args for SendGrid webhook tracking
+                custom_args = {
+                    'campaign_id': str(campaign.id),
+                    'recipient_id': str(recipient.id),
+                    'tracking_id': str(recipient.tracking_id)
+                }
+                
                 result = email_service.send_email(
                     to_emails=[customer.email],
                     subject=subject,
@@ -182,21 +189,22 @@ class EmailCampaignService:
                     text_content=plain_text,
                     from_email=str(provider.from_email),
                     from_name=str(provider.from_name) if provider.from_name else None,
-                    reply_to=str(provider.reply_to) if provider.reply_to else None
+                    reply_to=str(provider.reply_to) if provider.reply_to else None,
+                    custom_args=custom_args
                 )
                 
                 if result['success']:
                     logger.info(f"SendGrid email sent successfully to {customer.email}")
                     current_time = timezone.now()
-                    recipient.email_status = 'delivered'  
+                    recipient.email_status = 'sent'  # Changed to 'sent' - will be updated to 'delivered' by webhook
                     recipient.email_sent_at = current_time
-                    recipient.email_delivered_at = current_time  
+                    recipient.provider_message_id = result.get('message_id')  # Store SendGrid message ID
                     recipient.save()
                     
                     # Update campaign statistics immediately
                     campaign.update_campaign_statistics()
                     
-                    logger.info(f"Email sent and delivered successfully to {customer.email}")
+                    logger.info(f"Email sent successfully to {customer.email}, message_id: {result.get('message_id')}")
                     return True
                 else:
                     error_msg = result.get('error', 'Unknown SendGrid error')
@@ -331,31 +339,13 @@ class EmailCampaignService:
     @staticmethod
     def _add_email_tracking(email_content, recipient, campaign):
         """
-        Add tracking pixel and wrap URLs with click tracking using secure tracking ID
+        Prepare email content for SendGrid webhook tracking
+        No pixel tracking - using SendGrid webhooks instead
         """
         try:
-            import re
-            from urllib.parse import quote
-            from django.conf import settings
-
             # Ensure recipient has tracking ID
             if not recipient.tracking_id:
-                recipient.save()  
-
-            # Get base URL from settings or use localhost for development
-            base_url = getattr(settings, 'BASE_URL', "http://localhost:8000")
-
-            # Create tracking URLs using secure tracking ID
-            tracking_pixel_url = f"{base_url}/api/campaigns/track-open/?t={recipient.tracking_id}"
-
-            # Create a medium-sized tracking image that's more reliable than tiny pixels
-            tracking_pixel = f'''
-<!-- Email Open Tracking Image -->
-<div style="text-align: center; margin: 20px 0; padding: 10px;">
-    <img src="{tracking_pixel_url}" width="150" height="50" style="display: block; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f8f9fa;" alt="Email Analytics" title="Email Analytics" />
-    <p style="font-size: 10px; color: #888; margin: 5px 0 0 0; text-align: center;">Email Analytics & Tracking</p>
-</div>
-'''
+                recipient.save()
 
             # Ensure content is HTML format
             if not ('<html>' in email_content.lower() or '<body>' in email_content.lower()):
@@ -370,45 +360,18 @@ class EmailCampaignService:
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     {html_content}
-    {tracking_pixel}
 </body>
 </html>'''
-            else:
-                # Add pixel before closing body tag or at the end
-                if '</body>' in email_content.lower():
-                    email_content = email_content.replace('</body>', f'{tracking_pixel}\n</body>')
-                elif '</html>' in email_content.lower():
-                    email_content = email_content.replace('</html>', f'{tracking_pixel}\n</html>')
-                else:
-                    email_content += f'\n{tracking_pixel}'
 
-            # Wrap URLs with click tracking
-            url_pattern = r'href=["\']([^"\']+)["\']'
+            # No pixel tracking - SendGrid will track opens via webhooks
+            # No link wrapping - SendGrid will track clicks via webhooks
+            
+            logger.info(f"Prepared email for recipient {recipient.id}, campaign {campaign.id} (SendGrid webhook tracking)")
 
-            def replace_url(match):
-                original_url = match.group(1)
-                # Skip tracking for certain URL types
-                if (original_url.startswith('mailto:') or
-                    original_url.startswith('#') or
-                    original_url.startswith('tel:') or
-                    'track-' in original_url or
-                    tracking_pixel_url in original_url):
-                    return match.group(0)
-
-                encoded_url = quote(original_url)
-                tracking_url = f"{base_url}/api/campaigns/track-click/?t={recipient.tracking_id}&url={encoded_url}"
-                return f'href="{tracking_url}"'
-
-            tracked_content = re.sub(url_pattern, replace_url, email_content)
-
-            # Debug logging
-            logger.info(f"Added tracking to email for recipient {recipient.id}, campaign {campaign.id}")
-            logger.info(f"Tracking pixel URL: {tracking_pixel_url}")
-
-            return tracked_content
+            return email_content
 
         except Exception as e:
-            logger.error(f"Error adding email tracking: {str(e)}")
+            logger.error(f"Error preparing email content: {str(e)}")
             return email_content
 
     @staticmethod

@@ -682,3 +682,172 @@ def sendgrid_incoming_webhook(request):
             'success': False,
             'message': f'Internal server error: {str(e)}'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@csrf_exempt
+def sendgrid_events_webhook(request):
+    """
+    Webhook endpoint for receiving SendGrid event tracking (delivered, open, click, bounce, etc.)
+    This endpoint updates campaign recipient tracking based on SendGrid events
+    """
+    logger = logging.getLogger(__name__)
+    
+    try:
+        # Parse the webhook data - SendGrid sends an array of events
+        webhook_data = json.loads(request.body) if request.body else []
+        
+        if not isinstance(webhook_data, list):
+            webhook_data = [webhook_data]
+        
+        logger.info(f"Received {len(webhook_data)} SendGrid event(s)")
+        
+        processed_count = 0
+        failed_count = 0
+        
+        for event in webhook_data:
+            try:
+                event_type = event.get('event')
+                sg_message_id = event.get('sg_message_id')
+                custom_args = event.get('custom_args', {})
+                
+                logger.info(f"Processing SendGrid event: {event_type} for message: {sg_message_id}")
+                logger.info(f"Custom args: {custom_args}")
+                
+                # Get campaign and recipient info from custom_args
+                campaign_id = custom_args.get('campaign_id')
+                recipient_id = custom_args.get('recipient_id')
+                tracking_id = custom_args.get('tracking_id')
+                
+                logger.info(f"Extracted IDs - campaign_id: {campaign_id}, recipient_id: {recipient_id}, tracking_id: {tracking_id}, sg_message_id: {sg_message_id}")
+                
+                if not (campaign_id or recipient_id or tracking_id or sg_message_id):
+                    logger.warning(f"Missing all identification in event: {event}")
+                    logger.warning(f"custom_args was: {custom_args}")
+                    failed_count += 1
+                    continue
+                
+                # Find the campaign recipient
+                from apps.campaigns.models import CampaignRecipient
+                recipient = None
+                
+                # Try to find by recipient_id first (most reliable)
+                if recipient_id:
+                    try:
+                        recipient = CampaignRecipient.objects.select_related('campaign').get(id=recipient_id)
+                    except CampaignRecipient.DoesNotExist:
+                        logger.warning(f"Recipient not found by ID: {recipient_id}")
+                
+                # Try to find by provider_message_id
+                if not recipient and sg_message_id:
+                    recipient = CampaignRecipient.objects.select_related('campaign').filter(
+                        provider_message_id=sg_message_id
+                    ).first()
+                
+                # Try to find by tracking_id
+                if not recipient and tracking_id:
+                    recipient = CampaignRecipient.objects.select_related('campaign').filter(
+                        tracking_id=tracking_id
+                    ).first()
+                
+                if not recipient:
+                    logger.warning(f"Recipient not found for event: {event_type}, message_id: {sg_message_id}")
+                    failed_count += 1
+                    continue
+                
+                # Process the event based on type
+                event_timestamp = event.get('timestamp')
+                if event_timestamp:
+                    from datetime import datetime
+                    event_time = datetime.fromtimestamp(event_timestamp, tz=timezone.utc)
+                else:
+                    event_time = timezone.now()
+                
+                updated = False
+                
+                if event_type == 'delivered':
+                    recipient.email_status = 'delivered'
+                    recipient.email_delivered_at = event_time
+                    updated = True
+                    logger.info(f"Updated recipient {recipient.id} as delivered")
+                
+                elif event_type == 'open':
+                    if recipient.email_engagement == 'not_opened':
+                        recipient.email_engagement = 'opened'
+                        recipient.email_opened_at = event_time
+                        # Also mark as delivered if not already
+                        if recipient.email_status != 'delivered':
+                            recipient.email_status = 'delivered'
+                            recipient.email_delivered_at = event_time
+                        updated = True
+                        logger.info(f"Updated recipient {recipient.id} as opened")
+                
+                elif event_type == 'click':
+                    recipient.email_engagement = 'clicked'
+                    recipient.email_clicked_at = event_time
+                    # Also mark as delivered and opened if not already
+                    if recipient.email_status != 'delivered':
+                        recipient.email_status = 'delivered'
+                        recipient.email_delivered_at = event_time
+                    if not recipient.email_opened_at:
+                        recipient.email_opened_at = event_time
+                    updated = True
+                    logger.info(f"Updated recipient {recipient.id} as clicked")
+                
+                elif event_type == 'bounce':
+                    recipient.email_status = 'bounced'
+                    recipient.email_error_message = event.get('reason', 'Email bounced')
+                    updated = True
+                    logger.info(f"Updated recipient {recipient.id} as bounced")
+                
+                elif event_type == 'dropped':
+                    recipient.email_status = 'failed'
+                    recipient.email_error_message = event.get('reason', 'Email dropped')
+                    updated = True
+                    logger.info(f"Updated recipient {recipient.id} as dropped/failed")
+                
+                elif event_type in ['spamreport', 'unsubscribe']:
+                    recipient.email_engagement = 'unsubscribed'
+                    updated = True
+                    logger.info(f"Updated recipient {recipient.id} as unsubscribed")
+                
+                # Save recipient if updated
+                if updated:
+                    recipient.save()
+                    
+                    # Update campaign statistics
+                    recipient.campaign.update_campaign_statistics()
+                    logger.info(f"Updated campaign {recipient.campaign.id} statistics")
+                    
+                    processed_count += 1
+                else:
+                    logger.info(f"Event {event_type} did not trigger update for recipient {recipient.id}")
+            
+            except Exception as event_error:
+                logger.error(f"Error processing individual event: {str(event_error)}")
+                failed_count += 1
+                continue
+        
+        return Response({
+            'success': True,
+            'message': f'Processed {processed_count} events successfully, {failed_count} failed',
+            'processed_count': processed_count,
+            'failed_count': failed_count
+        }, status=status.HTTP_200_OK)
+        
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in webhook payload: {str(e)}")
+        return Response({
+            'success': False,
+            'message': 'Invalid JSON payload'
+        }, status=status.HTTP_400_BAD_REQUEST)
+        
+    except Exception as e:
+        logger.error(f"Error processing SendGrid events webhook: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
+        return Response({
+            'success': False,
+            'message': f'Internal server error: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

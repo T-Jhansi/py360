@@ -300,6 +300,9 @@ class CampaignRecipient(BaseModel):
 
     # Unique tracking ID for secure tracking
     tracking_id = models.CharField(max_length=64, unique=True, blank=True)
+    
+    # Provider message ID for SendGrid/Email provider tracking
+    provider_message_id = models.CharField(max_length=255, blank=True, null=True, help_text="Message ID from email provider (SendGrid, SES, etc.)")
 
     # Delivery timestamps
     email_sent_at = models.DateTimeField(null=True, blank=True)
