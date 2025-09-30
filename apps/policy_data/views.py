@@ -219,13 +219,9 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 formatted_date = uploaded_date.strftime('%B %d, %Y at %I:%M %p') if uploaded_date else 'Unknown'
                 
                 return Response({
-                    'error': f'This file has already been uploaded. The file "{existing_file.original_name}" was uploaded on {formatted_date}. Please upload a new file or modify the existing one.',
                     'message': 'Duplicate file detected',
                     'details': {
-                        'existing_file_id': existing_file.pk,
-                        'existing_file_name': existing_file.original_name,
-                        'uploaded_at': existing_file.created_at,
-                        'suggestion': 'This file its already exist.'
+                        'suggestion': 'This file already exists. Please upload a new file.'
                     }
                 }, status=status.HTTP_400_BAD_REQUEST)
 
@@ -243,28 +239,42 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 
               
                 if not processing_result.get('valid', False):
+                    # Delete file records when processing completely fails
+                    try:
+                        if file_upload_record:
+                            file_upload_record.delete()
+                        if uploads_record:
+                            uploads_record.delete()
+                    except Exception as delete_error:
+                        print(f"Error deleting file records: {delete_error}")
                    
                     return Response({
                         'success': False,
                         'message': 'File processing failed',
                         'error': processing_result.get('error', 'Unknown processing error'),
-                        'data': {
-                            'uploads_file_id': uploads_record.pk,
-                            'file_name': uploaded_file.name,
-                            'file_size': uploaded_file.size,
-                            'file_hash': file_hash,
-                            'upload_status': 'failed',
-                            'created_at': uploads_record.created_at.isoformat(),
-                            'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
-                            'category': uploads_record.category,
-                            'subcategory': uploads_record.subcategory
-                        },
                         'processing_details': processing_result
                     }, status=status.HTTP_400_BAD_REQUEST)
                 
                
-                if processing_result.get('failed_records', 0) > 0:
+                if processing_result.get('failed_records', 0) > 0 and processing_result.get('successful_records', 0) == 0:
+                    # All records failed - delete file records
+                    try:
+                        if file_upload_record:
+                            file_upload_record.delete()
+                        if uploads_record:
+                            uploads_record.delete()
+                    except Exception as delete_error:
+                        print(f"Error deleting file records: {delete_error}")
                  
+                    return Response({
+                        'success': False,
+                        'message': f'File processing failed. All {processing_result.get("total_records", 0)} records failed to process.',
+                        'error': 'All records failed to process',
+                        'processing_details': processing_result
+                    }, status=status.HTTP_400_BAD_REQUEST)
+                
+                # Partial success - some records succeeded, keep the file records
+                if processing_result.get('failed_records', 0) > 0:
                     return Response({
                         'success': False,
                         'message': f'File processing completed with {processing_result.get("failed_records", 0)} failed records',
@@ -285,54 +295,38 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                 
               
                 if uploads_record.status == 'failed':
+                    # Delete file records when status is failed
+                    try:
+                        if file_upload_record:
+                            file_upload_record.delete()
+                        if uploads_record:
+                            uploads_record.delete()
+                    except Exception as delete_error:
+                        print(f"Error deleting file records: {delete_error}")
+                    
                     return Response({
                         'success': False,
                         'message': 'File processing failed',
-                        'error': uploads_record.error_message or 'Unknown processing error',
-                        'data': {
-                            'uploads_file_id': uploads_record.pk,
-                            'file_name': uploaded_file.name,
-                            'file_size': uploaded_file.size,
-                            'file_hash': file_hash,
-                            'upload_status': 'failed',
-                            'created_at': uploads_record.created_at.isoformat(),
-                            'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
-                            'category': uploads_record.category,
-                            'subcategory': uploads_record.subcategory
-                        }
+                        'error': uploads_record.error_message or 'Unknown processing error'
                     }, status=status.HTTP_400_BAD_REQUEST)
                     
             except Exception as process_error:
                 print(f"Processing error: {str(process_error)}")
                 print(f"Uploads record status: {uploads_record.status}")
                 
-              
-                uploads_record.status = 'failed'
-                uploads_record.error_message = str(process_error)
-                uploads_record.save()
-
-                if file_upload_record:
-                    file_upload_record.upload_status = 'failed'
-                    file_upload_record.error_details = {'error': str(process_error), 'type': 'processing_error'}
-                    file_upload_record.processing_completed_at = timezone.now()
-                    file_upload_record.save()
-                
+                # Delete file records when processing throws an exception
+                try:
+                    if file_upload_record:
+                        file_upload_record.delete()
+                    if uploads_record:
+                        uploads_record.delete()
+                except Exception as delete_error:
+                    print(f"Error deleting file records: {delete_error}")
               
                 return Response({
                     'success': False,
                     'message': 'File processing failed due to an unexpected error',
-                    'error': str(process_error),
-                    'data': {
-                        'uploads_file_id': uploads_record.pk,
-                        'file_name': uploaded_file.name,
-                        'file_size': uploaded_file.size,
-                        'file_hash': file_hash,
-                        'upload_status': 'failed',
-                        'created_at': uploads_record.created_at.isoformat(),
-                        'secure_filename': uploads_record.metadata.get('secure_filename', uploaded_file.name),
-                        'category': uploads_record.category,
-                        'subcategory': uploads_record.subcategory
-                    }
+                    'error': str(process_error)
                 }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             response_data = {
@@ -582,7 +576,12 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             raise ValueError(f"Unsupported file format: {file_extension}")
         
         df = df.dropna(how='all')  
-        df = df[~(df.astype(str).eq('').all(axis=1))] 
+        df = df[~(df.astype(str).eq('').all(axis=1))]
+        
+        # Remove 'id' column if it exists to prevent primary key conflicts
+        # Users should not provide ID as it's auto-generated
+        if 'id' in df.columns:
+            df = df.drop(columns=['id'])
         
         return df
 
@@ -832,10 +831,16 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
     def _process_customer_data(self, row, user):
         """Process customer data from Excel row"""
-        email = row['email']
-        phone = str(row.get('phone', ''))
+        # Clean and validate email
+        email = str(row['email']).strip().lower() if row.get('email') and pd.notna(row.get('email')) else ''
+        if not email:
+            raise ValueError("Email is required for customer creation")
+        
+        # Clean phone number
+        phone = str(row.get('phone', '')).strip() if row.get('phone') and pd.notna(row.get('phone')) else ''
 
-        customer = Customer.objects.filter(email=email).first()
+        # Look for existing customer by email (case-insensitive)
+        customer = Customer.objects.filter(email__iexact=email).first()
 
         if not customer and phone:
             customer = Customer.objects.filter(phone=phone).first()
@@ -851,6 +856,18 @@ class FileUploadViewSet(viewsets.ModelViewSet):
                     assigned_agent = get_next_available_agent()
 
                     with transaction.atomic():
+                        # Fix sequence before creating customer to prevent ID conflicts
+                        if attempt == 0:  # Only fix sequence on first attempt
+                            from django.db import connection
+                            with connection.cursor() as cursor:
+                                cursor.execute("""
+                                    SELECT setval(
+                                        pg_get_serial_sequence('customers', 'id'),
+                                        COALESCE((SELECT MAX(id) FROM customers), 0) + 1,
+                                        false
+                                    )
+                                """)
+                        
                         customer = Customer.objects.create(
                             customer_code=customer_code,
                             first_name=row['first_name'],
@@ -880,8 +897,27 @@ class FileUploadViewSet(viewsets.ModelViewSet):
 
                     break
                 except IntegrityError as e:
-                    if 'customer_code' in str(e) and attempt < max_retries - 1:
+                    error_message = str(e).lower()
+                    if 'customer_code' in error_message and attempt < max_retries - 1:
                         continue
+                    elif 'customer_pkey' in error_message or 'duplicate key' in error_message:
+                        # ID sequence issue - try to fix it and retry
+                        if attempt < max_retries - 1:
+                            from django.db import connection
+                            try:
+                                with connection.cursor() as cursor:
+                                    cursor.execute("""
+                                        SELECT setval(
+                                            pg_get_serial_sequence('customers', 'id'),
+                                            COALESCE((SELECT MAX(id) FROM customers), 0) + 1,
+                                            false
+                                        )
+                                    """)
+                                print(f"Fixed customer ID sequence on attempt {attempt + 1}")
+                                continue
+                            except Exception as seq_error:
+                                print(f"Error fixing sequence: {seq_error}")
+                                raise e
                     else:
                         raise
 
@@ -995,6 +1031,20 @@ class FileUploadViewSet(viewsets.ModelViewSet):
             agent_name = str(row.get('agent_name', '')).strip()
             agent_code = str(row.get('agent_code', '')).strip() if row.get('agent_code') else None
             policy_agent = get_or_create_policy_agent(agent_name, agent_code)
+
+            # Fix policy ID sequence before creation to prevent conflicts
+            try:
+                from django.db import connection
+                with connection.cursor() as cursor:
+                    cursor.execute("""
+                        SELECT setval(
+                            pg_get_serial_sequence('policies', 'id'),
+                            COALESCE((SELECT MAX(id) FROM policies), 0) + 1,
+                            false
+                        )
+                    """)
+            except Exception as seq_error:
+                print(f"Warning: Could not fix policy sequence: {seq_error}")
 
             policy = Policy.objects.create(
                 policy_number=policy_number,
