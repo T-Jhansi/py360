@@ -640,6 +640,7 @@ def get_all_campaigns(request):
                 "clicked_count": campaign.clicked_count,
                 "delivered_count": campaign.delivered_count,
                 "status": campaign.status,
+                "current_status": campaign.current_status,
                 "original_filename": original_filename,
                 "campaign_type": campaign.campaign_type.name if campaign.campaign_type else "N/A",
                 "template_name": campaign.template.name if campaign.template else "N/A",
@@ -661,6 +662,60 @@ def get_all_campaigns(request):
         return Response({
             "success": False,
             "message": f"Error fetching campaigns: {str(e)}"
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_campaign_status(request, campaign_id):
+    """
+    Update campaign current_status (active/paused)
+    """
+    try:
+        campaign = Campaign.objects.get(id=campaign_id)
+        
+        # Get the new status from request
+        new_status = request.data.get('current_status')
+        
+        if not new_status:
+            return Response({
+                "success": False,
+                "message": "current_status is required"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Validate status value
+        valid_statuses = ['active', 'paused']
+        if new_status not in valid_statuses:
+            return Response({
+                "success": False,
+                "message": f"Invalid status. Must be one of: {', '.join(valid_statuses)}"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Update the campaign status
+        campaign.current_status = new_status
+        campaign.save(update_fields=['current_status'])
+        
+        return Response({
+            "success": True,
+            "message": f"Campaign status updated to {new_status}",
+            "data": {
+                "id": campaign.id,
+                "campaign_name": campaign.name,
+                "current_status": campaign.current_status,
+                "status": campaign.status
+            }
+        }, status=status.HTTP_200_OK)
+        
+    except Campaign.DoesNotExist:
+        return Response({
+            "success": False,
+            "message": f"Campaign with ID {campaign_id} not found"
+        }, status=status.HTTP_404_NOT_FOUND)
+    
+    except Exception as e:
+        return Response({
+            "success": False,
+            "message": f"Error updating campaign status: {str(e)}"
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
