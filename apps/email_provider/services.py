@@ -102,7 +102,8 @@ class EmailProviderService:
     def send_email(self, to_emails: List[str], subject: str, html_content: str = '',
                    text_content: str = '', from_email: str = None, from_name: str = None,
                    reply_to: str = None, cc_emails: List[str] = None,
-                   bcc_emails: List[str] = None, attachments: List[Tuple[str, str, str]] = None) -> Dict[str, Any]:
+                   bcc_emails: List[str] = None, attachments: List[Tuple[str, str, str]] = None,
+                   custom_args: Dict[str, str] = None) -> Dict[str, Any]:
         """
         Send email using the best available provider
         
@@ -136,7 +137,7 @@ class EmailProviderService:
             if provider.provider_type == 'sendgrid':
                 result = self._send_via_sendgrid(provider, to_emails, subject, html_content,
                                                text_content, from_email, from_name, reply_to,
-                                               cc_emails, bcc_emails, attachments)
+                                               cc_emails, bcc_emails, attachments, custom_args)
             elif provider.provider_type == 'aws_ses':
                 result = self._send_via_aws_ses(provider, to_emails, subject, html_content,
                                               text_content, from_email, from_name, reply_to,
@@ -184,7 +185,8 @@ class EmailProviderService:
                           subject: str, html_content: str, text_content: str,
                           from_email: str, from_name: str, reply_to: str,
                           cc_emails: List[str], bcc_emails: List[str],
-                          attachments: List[Tuple[str, str, str]]) -> Dict[str, Any]:
+                          attachments: List[Tuple[str, str, str]],
+                          custom_args: Dict[str, str] = None) -> Dict[str, Any]:
         """Send email via SendGrid"""
         try:
             api_key = self._decrypt_credential(provider.api_key)
@@ -221,6 +223,19 @@ class EmailProviderService:
             if bcc_emails:
                 mail.bcc = bcc_emails
             
+            # Add custom arguments for webhook tracking (using proper SendGrid syntax)
+            if custom_args:
+                from sendgrid.helpers.mail import CustomArg
+                for key, value in custom_args.items():
+                    mail.add_custom_arg(CustomArg(key, value))
+                logger.info(f"Added custom_args to SendGrid email: {custom_args}")
+            
+            # Enable SendGrid click and open tracking (using proper SendGrid classes)
+            from sendgrid.helpers.mail import ClickTracking, OpenTracking, TrackingSettings
+            tracking_settings = TrackingSettings()
+            tracking_settings.click_tracking = ClickTracking(enable=True, enable_text=True)
+            tracking_settings.open_tracking = OpenTracking(enable=True)
+            mail.tracking_settings = tracking_settings
             
             # Add attachments
             if attachments:
