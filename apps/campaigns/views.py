@@ -640,7 +640,6 @@ def get_all_campaigns(request):
                 "clicked_count": campaign.clicked_count,
                 "delivered_count": campaign.delivered_count,
                 "status": campaign.status,
-                "current_status": campaign.current_status,
                 "original_filename": original_filename,
                 "campaign_type": campaign.campaign_type.name if campaign.campaign_type else "N/A",
                 "template_name": campaign.template.name if campaign.template else "N/A",
@@ -669,22 +668,22 @@ def get_all_campaigns(request):
 @permission_classes([IsAuthenticated])
 def update_campaign_status(request, campaign_id):
     """
-    Update campaign current_status (active/paused)
+    Update campaign status (active/paused)
     """
     try:
         campaign = Campaign.objects.get(id=campaign_id)
         
         # Get the new status from request
-        new_status = request.data.get('current_status')
+        new_status = request.data.get('status')
         
         if not new_status:
             return Response({
                 "success": False,
-                "message": "current_status is required"
+                "message": "status is required"
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Validate status value
-        valid_statuses = ['active', 'paused']
+        # Validate status value - accept both active/paused and other valid statuses
+        valid_statuses = ['active', 'paused', 'draft', 'scheduled', 'running', 'completed', 'cancelled']
         if new_status not in valid_statuses:
             return Response({
                 "success": False,
@@ -692,8 +691,8 @@ def update_campaign_status(request, campaign_id):
             }, status=status.HTTP_400_BAD_REQUEST)
         
         # Update the campaign status
-        campaign.current_status = new_status
-        campaign.save(update_fields=['current_status'])
+        campaign.status = new_status
+        campaign.save(update_fields=['status'])
         
         return Response({
             "success": True,
@@ -701,7 +700,6 @@ def update_campaign_status(request, campaign_id):
             "data": {
                 "id": campaign.id,
                 "campaign_name": campaign.name,
-                "current_status": campaign.current_status,
                 "status": campaign.status
             }
         }, status=status.HTTP_200_OK)

@@ -109,14 +109,6 @@ class Campaign(BaseModel):
     clicked_count = models.PositiveIntegerField(default=0)
     total_responses = models.PositiveIntegerField(default=0)
     
-    # Current Status for Frontend Control
-    current_status = models.CharField(
-        max_length=20, 
-        choices=SIMPLIFIED_STATUS_CHOICES, 
-        default='active',
-        help_text="Current status for frontend toggle (active/paused)"
-    )
-    
     # System Fields
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_campaigns')
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_campaigns')
