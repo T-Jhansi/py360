@@ -306,16 +306,26 @@ For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sen
             if not access_key or not secret_key:
                 raise ValueError("AWS SES credentials not configured")
             
+            logger.info(f"AWS SES: Sending email via provider '{provider.name}' to {len(to_emails)} recipient(s)")
+            
             # Initialize SES client
             ses_client = boto3.client(
                 'ses',
                 aws_access_key_id=access_key,
                 aws_secret_access_key=secret_key,
-                region_name=getattr(settings, 'AWS_SES_REGION', 'us-east-1')
+                region_name=provider.aws_region or getattr(settings, 'AWS_SES_REGION', 'us-east-1')
             )
             
             # Prepare email
             from_email_addr = from_email or provider.from_email
+            from_name_str = from_name or provider.from_name or ""
+            
+            # Format sender with name if provided
+            if from_name_str:
+                sender = f'"{from_name_str}" <{from_email_addr}>'
+            else:
+                sender = from_email_addr
+            
             destination = {'ToAddresses': to_emails}
             
             if cc_emails:
@@ -336,28 +346,60 @@ For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sen
             
             # Send email
             response = ses_client.send_email(
-                Source=from_email_addr,
+                Source=sender,
                 Destination=destination,
                 Message=message,
                 ReplyToAddresses=[reply_to] if reply_to else [provider.reply_to] if provider.reply_to else []
             )
             
+            message_id = response['MessageId']
+            logger.info(f"AWS SES: Email sent successfully via '{provider.name}'. MessageId: {message_id}")
+            
             return {
                 'success': True,
-                'message_id': response['MessageId']
+                'message_id': message_id
             }
             
         except ClientError as e:
-            logger.error(f"AWS SES error: {str(e)}")
+            error_code = e.response['Error']['Code']
+            error_message = e.response['Error']['Message']
+            logger.error(f"AWS SES ClientError: {error_code} - {error_message}")
+            
+            # Handle specific AWS SES errors
+            if error_code == 'MessageRejected':
+                helpful_error = f"""
+AWS SES Error: Email was rejected by Amazon SES.
+Reason: {error_message}
+
+Common causes:
+1. The sender email '{from_email or provider.from_email}' is not verified in AWS SES
+2. Your AWS SES account is in sandbox mode (can only send to verified emails)
+3. The recipient email is invalid or blocked
+
+To fix:
+1. Verify the sender email in AWS SES Console
+2. Request production access to send to any email
+3. Check recipient email validity
+
+Provider: {provider.name}
+                """.strip()
+                return {
+                    'success': False,
+                    'error': helpful_error,
+                    'error_type': 'message_rejected',
+                    'error_code': error_code
+                }
+            
             return {
                 'success': False,
-                'error': str(e)
+                'error': f"AWS SES Error ({error_code}): {error_message}",
+                'error_code': error_code
             }
         except Exception as e:
             logger.error(f"AWS SES error: {str(e)}")
             return {
                 'success': False,
-                'error': str(e)
+                'error': f"AWS SES Error: {str(e)}"
             }
     
     def _send_via_smtp(self, provider: EmailProviderConfig, to_emails: List[str],
@@ -498,6 +540,7 @@ For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sen
             secret_key = self._decrypt_credential(provider.secret_access_key)
             
             if not access_key or not secret_key:
+                logger.warning(f"AWS SES health check failed for {provider.name}: Missing credentials")
                 return False
             
             # Test credentials
@@ -505,15 +548,27 @@ For more help, visit: https://sendgrid.com/docs/for-developers/sending-email/sen
                 'ses',
                 aws_access_key_id=access_key,
                 aws_secret_access_key=secret_key,
-                region_name=getattr(settings, 'AWS_SES_REGION', 'us-east-1')
+                region_name=provider.aws_region or getattr(settings, 'AWS_SES_REGION', 'us-east-1')
             )
             
             # Get sending quota
             response = ses_client.get_send_quota()
-            return 'Max24HourSend' in response
             
+            if 'Max24HourSend' in response:
+                logger.info(f"AWS SES health check passed for {provider.name}. Quota: {response['Max24HourSend']}")
+                provider.update_health_status(True)
+                return True
+            
+            return False
+            
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+            logger.error(f"AWS SES health check failed for {provider.name}: {error_code} - {str(e)}")
+            provider.update_health_status(False, str(e))
+            return False
         except Exception as e:
-            logger.error(f"AWS SES health check failed: {str(e)}")
+            logger.error(f"AWS SES health check failed for {provider.name}: {str(e)}")
+            provider.update_health_status(False, str(e))
             return False
     
     def _check_smtp_health(self, provider: EmailProviderConfig) -> bool:
