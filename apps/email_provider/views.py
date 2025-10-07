@@ -36,6 +36,9 @@ class EmailProviderConfigViewSet(viewsets.ModelViewSet):
         """Filter providers based on query parameters"""
         queryset = super().get_queryset()
         
+        # Ensure soft-deleted providers are excluded
+        queryset = queryset.filter(is_deleted=False)
+        
         # Filter by provider type
         provider_type = self.request.query_params.get('provider_type')
         if provider_type:
@@ -65,6 +68,21 @@ class EmailProviderConfigViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         """Set updated_by when updating a provider"""
         serializer.save(updated_by=self.request.user)
+    
+    def destroy(self, request, *args, **kwargs):
+        """Soft delete the provider and return success message"""
+        instance = self.get_object()
+        provider_name = instance.name
+        
+        # Perform soft delete
+        instance.soft_delete()
+        instance.deleted_by = request.user
+        instance.save(update_fields=['deleted_by'])
+        
+        return Response({
+            'success': True,
+            'message': f'Provider "{provider_name}" deleted successfully'
+        }, status=status.HTTP_200_OK)
     
     def perform_destroy(self, instance):
         """Soft delete the provider"""
