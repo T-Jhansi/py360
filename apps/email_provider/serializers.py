@@ -15,7 +15,7 @@ class EmailProviderConfigSerializer(serializers.ModelSerializer):
             'id', 'name', 'provider_type', 'provider_type_display',
             'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
             'aws_region', 'domain',
-            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password',
+            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password', 'smtp_use_tls', 'smtp_use_ssl',
             'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
             'priority', 'priority_display', 'is_default', 'is_active',
@@ -43,12 +43,15 @@ class EmailProviderConfigSerializer(serializers.ModelSerializer):
 
 
 class EmailProviderConfigCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating EmailProviderConfig (without sensitive fields)"""
+    """Serializer for creating EmailProviderConfig (includes all fields)"""
     
     class Meta:
         model = EmailProviderConfig
         fields = [
-            'name', 'provider_type', 'api_key', 'from_email', 'from_name', 'reply_to',
+            'name', 'provider_type', 'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
+            'aws_region', 'domain',
+            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password', 'smtp_use_tls', 'smtp_use_ssl',
+            'from_email', 'from_name', 'reply_to',
             'daily_limit', 'monthly_limit', 'rate_limit_per_minute',
             'priority', 'is_default', 'is_active'
         ]
@@ -56,6 +59,18 @@ class EmailProviderConfigCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new email provider configuration"""
         validated_data['created_by'] = self.context['request'].user
+        
+        # Encrypt sensitive credentials if they exist
+        if 'smtp_password' in validated_data and validated_data['smtp_password']:
+            from apps.email_provider.services import EmailProviderService
+            service = EmailProviderService()
+            validated_data['smtp_password'] = service._encrypt_credential(validated_data['smtp_password'])
+        
+        if 'smtp_username' in validated_data and validated_data['smtp_username']:
+            from apps.email_provider.services import EmailProviderService
+            service = EmailProviderService()
+            validated_data['smtp_username'] = service._encrypt_credential(validated_data['smtp_username'])
+        
         return super().create(validated_data)
 
 
@@ -84,7 +99,7 @@ class EmailProviderCredentialsSerializer(serializers.ModelSerializer):
         fields = [
             'api_key', 'api_secret', 'access_key_id', 'secret_access_key',
             'aws_region', 'domain',
-            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password'
+            'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password', 'smtp_use_tls', 'smtp_use_ssl'
         ]
     
     def update(self, instance, validated_data):
@@ -102,9 +117,9 @@ class EmailProviderHealthLogSerializer(serializers.ModelSerializer):
         model = EmailProviderHealthLog
         fields = [
             'id', 'provider', 'provider_name', 'is_healthy', 'error_message',
-            'response_time', 'checked_at'
+            'response_time', 'checked_at', 'created_at', 'updated_at', 'status', 'test_type'
         ]
-        read_only_fields = ['id', 'checked_at']
+        read_only_fields = ['id', 'checked_at', 'created_at', 'updated_at']
 
 
 class EmailProviderUsageLogSerializer(serializers.ModelSerializer):

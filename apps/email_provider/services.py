@@ -412,6 +412,8 @@ Provider: {provider.name}
             from_email_addr = from_email or provider.from_email
             from_name_str = from_name or provider.from_name or ""
             
+            logger.info(f"SMTP: Sending email via provider '{provider.name}' to {len(to_emails)} recipient(s)")
+            
             # Create email message
             msg = EmailMultiAlternatives(
                 subject=subject,
@@ -435,29 +437,69 @@ Provider: {provider.name}
                 for filename, content, mimetype in attachments:
                     msg.attach(filename, content, mimetype)
             
-            # Configure SMTP settings
-            smtp_settings = {
-                'host': provider.smtp_host,
-                'port': provider.smtp_port,
-                'username': provider.smtp_username,
-                'password': self._decrypt_credential(provider.smtp_password),
-                'use_tls': provider.smtp_use_tls,
-                'use_ssl': provider.smtp_use_ssl,
-            }
+            # Configure SMTP settings for Django
+            smtp_host = provider.smtp_host
+            smtp_port = provider.smtp_port
+            smtp_username = provider.smtp_username
+            smtp_password = self._decrypt_credential(provider.smtp_password)
+            smtp_use_tls = provider.smtp_use_tls
+            smtp_use_ssl = provider.smtp_use_ssl
             
-            # Send email
-            msg.send()
+            if not smtp_host or not smtp_port:
+                raise ValueError("SMTP host and port are required")
             
-            return {
-                'success': True,
-                'message_id': f"smtp_{int(time.time())}"
-            }
+            # Configure Django email backend settings temporarily
+            original_email_backend = getattr(settings, 'EMAIL_BACKEND', None)
+            original_email_host = getattr(settings, 'EMAIL_HOST', None)
+            original_email_port = getattr(settings, 'EMAIL_PORT', None)
+            original_email_host_user = getattr(settings, 'EMAIL_HOST_USER', None)
+            original_email_host_password = getattr(settings, 'EMAIL_HOST_PASSWORD', None)
+            original_email_use_tls = getattr(settings, 'EMAIL_USE_TLS', None)
+            original_email_use_ssl = getattr(settings, 'EMAIL_USE_SSL', None)
+            
+            try:
+                # Set SMTP configuration
+                settings.EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+                settings.EMAIL_HOST = smtp_host
+                settings.EMAIL_PORT = smtp_port
+                settings.EMAIL_HOST_USER = smtp_username
+                settings.EMAIL_HOST_PASSWORD = smtp_password
+                settings.EMAIL_USE_TLS = smtp_use_tls
+                settings.EMAIL_USE_SSL = smtp_use_ssl
+                
+                # Send email
+                msg.send()
+                
+                message_id = f"smtp_{int(time.time())}"
+                logger.info(f"SMTP: Email sent successfully via '{provider.name}'. MessageId: {message_id}")
+                
+                return {
+                    'success': True,
+                    'message_id': message_id
+                }
+                
+            finally:
+                # Restore original settings
+                if original_email_backend is not None:
+                    settings.EMAIL_BACKEND = original_email_backend
+                if original_email_host is not None:
+                    settings.EMAIL_HOST = original_email_host
+                if original_email_port is not None:
+                    settings.EMAIL_PORT = original_email_port
+                if original_email_host_user is not None:
+                    settings.EMAIL_HOST_USER = original_email_host_user
+                if original_email_host_password is not None:
+                    settings.EMAIL_HOST_PASSWORD = original_email_host_password
+                if original_email_use_tls is not None:
+                    settings.EMAIL_USE_TLS = original_email_use_tls
+                if original_email_use_ssl is not None:
+                    settings.EMAIL_USE_SSL = original_email_use_ssl
             
         except Exception as e:
             logger.error(f"SMTP error: {str(e)}")
             return {
                 'success': False,
-                'error': str(e)
+                'error': f"SMTP Error: {str(e)}"
             }
     
     def _log_usage(self, provider: EmailProviderConfig, emails_sent: int, 
@@ -527,10 +569,13 @@ Provider: {provider.name}
             # Test API key validity
             sg = SendGridAPIClient(api_key=api_key)
             response = sg.client.user.get()
-            return response.status_code == 200
+            is_healthy = response.status_code == 200
+            provider.update_health_status(is_healthy, response_time=0.5)
+            return is_healthy
             
         except Exception as e:
             logger.error(f"SendGrid health check failed: {str(e)}")
+            provider.update_health_status(False, str(e), response_time=0.5)
             return False
     
     def _check_aws_ses_health(self, provider: EmailProviderConfig) -> bool:
@@ -556,7 +601,7 @@ Provider: {provider.name}
             
             if 'Max24HourSend' in response:
                 logger.info(f"AWS SES health check passed for {provider.name}. Quota: {response['Max24HourSend']}")
-                provider.update_health_status(True)
+                provider.update_health_status(True, response_time=0.5)
                 return True
             
             return False
@@ -564,11 +609,11 @@ Provider: {provider.name}
         except ClientError as e:
             error_code = e.response['Error']['Code']
             logger.error(f"AWS SES health check failed for {provider.name}: {error_code} - {str(e)}")
-            provider.update_health_status(False, str(e))
+            provider.update_health_status(False, str(e), response_time=0.5)
             return False
         except Exception as e:
             logger.error(f"AWS SES health check failed for {provider.name}: {str(e)}")
-            provider.update_health_status(False, str(e))
+            provider.update_health_status(False, str(e), response_time=0.5)
             return False
     
     def _check_smtp_health(self, provider: EmailProviderConfig) -> bool:
@@ -577,7 +622,10 @@ Provider: {provider.name}
             import smtplib
             
             if not provider.smtp_host or not provider.smtp_port:
+                logger.warning(f"SMTP health check failed for {provider.name}: Missing host or port")
                 return False
+            
+            logger.info(f"SMTP: Testing connection to {provider.smtp_host}:{provider.smtp_port}")
             
             # Test SMTP connection
             if provider.smtp_use_ssl:
@@ -592,8 +640,11 @@ Provider: {provider.name}
                 server.login(provider.smtp_username, password)
             
             server.quit()
+            logger.info(f"SMTP health check passed for {provider.name}")
+            provider.update_health_status(True, response_time=1.0)
             return True
             
         except Exception as e:
-            logger.error(f"SMTP health check failed: {str(e)}")
+            logger.error(f"SMTP health check failed for {provider.name}: {str(e)}")
+            provider.update_health_status(False, str(e), response_time=1.0)
             return False

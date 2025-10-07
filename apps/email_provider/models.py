@@ -44,6 +44,8 @@ class EmailProviderConfig(models.Model):
     smtp_port = models.PositiveIntegerField(blank=True, null=True, help_text="SMTP server port")
     smtp_username = models.CharField(max_length=255, blank=True, null=True, help_text="SMTP username (encrypted)")
     smtp_password = models.CharField(max_length=255, blank=True, null=True, help_text="SMTP password (encrypted)")
+    smtp_use_tls = models.BooleanField(default=False, help_text="Use TLS for SMTP connection")
+    smtp_use_ssl = models.BooleanField(default=False, help_text="Use SSL for SMTP connection")
 
     # Email settings
     from_email = models.EmailField(help_text="Default from email address")
@@ -92,7 +94,7 @@ class EmailProviderConfig(models.Model):
     def __str__(self):
         return f"{self.name} ({self.get_provider_type_display()})"
     
-    def update_health_status(self, is_healthy: bool, error_message: str = None):
+    def update_health_status(self, is_healthy: bool, error_message: str = None, response_time: float = None):
         """Update the health status of the provider"""
         self.last_health_check = timezone.now()
         self.health_status = 'healthy' if is_healthy else 'unhealthy'
@@ -102,7 +104,10 @@ class EmailProviderConfig(models.Model):
         EmailProviderHealthLog.objects.create(
             provider=self,
             is_healthy=is_healthy,
-            error_message=error_message
+            error_message=error_message,
+            response_time=response_time or 0.0,  # Default to 0.0 if None
+            status='active',
+            test_type='health_check'
         )
     
     def can_send_email(self) -> bool:
@@ -152,8 +157,19 @@ class EmailProviderHealthLog(models.Model):
     provider = models.ForeignKey(EmailProviderConfig, on_delete=models.CASCADE, related_name='health_logs')
     is_healthy = models.BooleanField()
     error_message = models.TextField(blank=True, null=True)
-    response_time = models.FloatField(blank=True, null=True, help_text="Response time in seconds")
+    response_time = models.FloatField(default=0.0, help_text="Response time in seconds")
     checked_at = models.DateTimeField(auto_now_add=True)
+    
+    # Additional fields that exist in database
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(blank=True, null=True)
+    status = models.CharField(max_length=20, default='active')
+    test_type = models.CharField(max_length=50, blank=True, null=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_health_logs')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_health_logs')
+    deleted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='deleted_health_logs')
     
     class Meta:
         db_table = 'email_provider_health_logs'
