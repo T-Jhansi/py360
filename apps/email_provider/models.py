@@ -104,8 +104,8 @@ class EmailProviderConfig(models.Model):
         EmailProviderHealthLog.objects.create(
             provider=self,
             is_healthy=is_healthy,
-            error_message=error_message,
-            response_time=response_time or 0.0,  # Default to 0.0 if None
+            error_message = models.TextField(default='', blank=True),
+            response_time=response_time or 0.0, 
             status='active',
             test_type='health_check'
         )
