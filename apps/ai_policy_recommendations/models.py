@@ -192,6 +192,5 @@ class AIPolicyRecommendationInteraction(BaseModel):
             models.Index(fields=['recommendation', 'interaction_type']),
             models.Index(fields=['interaction_at']),
         ]
-    
     def __str__(self):
         return f"{self.interaction_type} - {self.recommendation.recommendation_title}"
