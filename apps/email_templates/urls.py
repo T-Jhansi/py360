@@ -15,4 +15,5 @@ router.register(r'versions', EmailTemplateVersionViewSet, basename='email-templa
 
 urlpatterns = [
     path('', include(router.urls)),
+    
 ]

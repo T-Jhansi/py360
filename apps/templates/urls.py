@@ -7,4 +7,5 @@ router.register(r'templates', TemplateViewSet, basename='template')
 
 urlpatterns = [
     path('', include(router.urls)),
+    
 ]
