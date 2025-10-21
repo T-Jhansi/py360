@@ -13,7 +13,6 @@ from .serializers import (
     EmailTemplateRenderSerializer, EmailTemplateStatsSerializer
 )
 
-
 class EmailTemplateCategoryViewSet(viewsets.ModelViewSet):
     """ViewSet for managing email template categories"""
     
